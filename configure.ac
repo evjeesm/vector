@@ -2,8 +2,9 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_PREREQ([2.69])
-AC_CONFIG_MACRO_DIRS([m4])
+AC_CONFIG_MACRO_DIRS([m4 /usr/share/aclocal])
 AC_INIT([Vector], [0.1], [https://github.com/JekasObps])
+AC_CONFIG_AUX_DIR([build-aux])
 
 # valgrind
 AX_VALGRIND_DFLT([memcheck], [on])
