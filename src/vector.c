@@ -23,6 +23,7 @@ static bool free_space_at(vector_t **vector, size_t index, size_t amount);
 static size_t binary_find_insert_place(const vector_t *vector, compare_t cmp, const void *value, void *param, ssize_t start, ssize_t end);
 static void *binary_find(const vector_t *vector, compare_t cmp, const void *value, void *param, ssize_t start, ssize_t end);
 
+
 vector_t *vector_create_(const vector_opts_t *opts)
 {
     size_t next_cap = opts->initial_cap * opts->grow_factor;
@@ -31,13 +32,23 @@ vector_t *vector_create_(const vector_opts_t *opts)
 
     assert(next_shrink_at <= grow_at);
 
-    vector_t *vec = (vector_t*) malloc(sizeof(vector_t) + opts->initial_cap * opts->esize);
+    vector_t *vec = (vector_t *) malloc(sizeof(vector_t) + opts->initial_cap * opts->esize);
     if (!vec) return NULL;
     *vec = (vector_t){
         .opts = *opts,
         .capacity = opts->initial_cap,
     };
     return vec;
+}
+
+
+vector_t *vector_clone(const vector_t *vector)
+{
+    size_t alloc_size = sizeof(vector_t) + vector->capacity * vector->opts.esize;
+    vector_t *clone = (vector_t *) malloc(alloc_size);
+    if (!clone) return NULL;
+    memcpy(clone, vector, alloc_size);
+    return clone;
 }
 
 

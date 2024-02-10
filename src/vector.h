@@ -57,6 +57,13 @@ vector_t *vector_create_(const vector_opts_t *opts);
 
 
 /*
+* Makes a copy of the whole vector.
+* (Allocation may fail).
+*/
+vector_t *vector_clone(const vector_t *vector);
+
+
+/*
 * Deallocates vector. After the call pointer will be invalidated.
 */
 void vector_destroy(vector_t *vector);
