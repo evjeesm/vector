@@ -13,11 +13,11 @@ struct vector_t
     char memory[];
 };
 
+static bool equal_bytes(const void *a, const void *b, void *param);
 static size_t vector_has_to_grow(const vector_t *vector, size_t amount_to_add);
 static size_t vector_has_to_shrink(const vector_t *vector, size_t amount_to_remove);
 static bool vector_grow(vector_t **vector, size_t times);
 static bool vector_shrink(vector_t **vector, size_t times);
-static bool equal_bytes(const void *a, const void *b, void *param);
 static bool make_space_for_range(vector_t **vector, size_t index, size_t amount);
 static bool free_space_at(vector_t **vector, size_t index, size_t amount);
 static size_t binary_find_insert_place(const vector_t *vector, compare_t cmp, const void *value, void *param, ssize_t start, ssize_t end);
@@ -103,12 +103,6 @@ void *vector_binary_find(const vector_t *vector, compare_t cmp, const void *valu
 }
 
 
-static bool equal_bytes(const void *a, const void *b, void *param)
-{
-    return 0 == memcmp(a, b, (size_t)param);
-}
-
-
 void *vector_first(const vector_t *vector)
 {
     return vector_get(vector, 0);
@@ -135,7 +129,8 @@ bool vector_set(vector_t *vector, size_t index, const void *value)
     void *dest = vector_get(vector, index);
     if (dest)
     {
-        memcpy(dest, value, vector->opts.esize);
+        if (value) memcpy(dest, value, vector->opts.esize);
+        else memset(dest, 0, vector->opts.esize);
         return true;
     }
     return false;
@@ -146,6 +141,28 @@ bool vector_insert_at(vector_t **vector, size_t index, const void *value)
 {
     if (!make_space_for_range(vector, index, 1)) return false;
     (void)vector_set(*vector, index, value);
+    return true;
+}
+
+
+bool vector_insert_fill(vector_t **vector, size_t index, size_t amount, const void *value)
+{
+    if (!make_space_for_range(vector, index, amount)) return false;
+
+    size_t elements_set = 1;
+    (void)vector_set(*vector, index, value);
+    
+    /* copy elements exponentially through out the range */
+    for (; (elements_set + elements_set) <= amount; elements_set += elements_set)
+    {
+        memcpy(vector_get(*vector, index + elements_set), vector_get(*vector, index), (*vector)->opts.esize * elements_set);
+    }
+    /* copy rest that left */
+    for (; elements_set < amount; ++elements_set)
+    {
+        memcpy(vector_get(*vector, index + elements_set), vector_get(*vector, index + elements_set - 1), (*vector)->opts.esize);
+    }
+
     return true;
 }
 
@@ -199,6 +216,12 @@ bool vector_remove(vector_t **vector, size_t index)
 }
 
 
+bool vector_remove_range(vector_t **vector, size_t index, size_t amount)
+{
+    return free_space_at(vector, index, amount);
+}
+
+
 bool vector_truncate(vector_t **vector, size_t capacity)
 {
     capacity = (capacity < (*vector)->opts.initial_cap) ? (*vector)->opts.initial_cap : capacity;
@@ -211,6 +234,95 @@ bool vector_truncate(vector_t **vector, size_t capacity)
 
     *vector = vec;
     return true;
+}
+
+
+static void *memxor(void *restrict dest, const void *restrict src, size_t n)
+{
+    char const *s = src;
+    char *d = dest;
+
+    for (; n > 0; n--)
+        *d++ ^= *s++;
+
+    return dest;
+}
+
+void vector_swap(vector_t *vector, size_t index_a, size_t index_b)
+{
+    assert(index_a != index_b);
+    assert(index_a < vector->size && index_b < vector->size);
+
+    void *a = vector_get(vector, index_a);
+    void *b = vector_get(vector, index_b);
+
+    memxor(a, b, vector->opts.esize);
+    memxor(b, a, vector->opts.esize);
+    memxor(a, b, vector->opts.esize);
+}
+
+
+bool vector_swap_ranges(vector_t **vector, size_t idx_a, size_t len_a, size_t idx_b, size_t len_b)
+{
+    assert((idx_a + len_a <= idx_b || idx_b + len_b <= idx_a)
+        && "ranges must not overlap.");
+
+    assert(((idx_a + len_a <= (*vector)->size) && (idx_b + len_b <= (*vector)->size))
+        && "ranges must be in bounds of vector.");
+
+    assert((idx_a < idx_b) && "ranges must preserve ordering!");
+    
+    /* duplicating range `b */
+    if (!make_space_for_range(vector, idx_a, len_b))
+    {
+        return false;
+    }
+    idx_b += len_b; /* update index of range `b */
+    memcpy(vector_get(*vector, idx_a), vector_get(*vector, idx_b), (*vector)->opts.esize * len_b);
+
+    idx_a += len_b; /* update index of range `a */
+
+    ssize_t dlt = len_a - len_b;
+    if (dlt > 0) /* `b shorter then `a */
+    {
+        if (!make_space_for_range(vector, idx_b, dlt)) /* expand range `b */
+        {
+            return false;
+        }
+    }
+    else if (!free_space_at(vector, idx_b, -dlt)) /* crop range `b*/
+    {
+        return false;
+    }
+
+    memcpy(vector_get(*vector, idx_b), vector_get(*vector, idx_a), (*vector)->opts.esize * len_a);
+    return vector_remove_range(vector, idx_a, len_a);
+}
+
+//  [1, 2, 3| 4, 5, 6, 7]
+//  [4, 5, 6, 7| 1, 2, 3]
+//  [6, 7| 4, 5| 2, 3| 1]
+//  [7| 6| 5| 4| 3, 2| 1]
+
+void vector_reverse(vector_t **vector)
+{
+    const size_t size = vector_size(*vector);
+
+    for (size_t group = 1; group < size / 2; group += group)
+    {
+        for (size_t i = 0; i < size; i += group)
+        {
+            size_t sec_range_len = (size % group == 0) ? group : (size % group);
+
+            vector_swap_ranges(vector, i, group, i + group, sec_range_len);
+        }
+    }
+}
+
+
+static bool equal_bytes(const void *a, const void *b, void *param)
+{
+    return 0 == memcmp(a, b, (size_t)param);
 }
 
 
@@ -278,7 +390,7 @@ static bool free_space_at(vector_t **vector, size_t index, size_t amount)
     if (index >= size) return true; /* already free */
 
     size_t rest_from_index = size - index;
- 
+
     if (amount >= rest_from_index)
     {
         (*vector)->size -= rest_from_index;

@@ -240,7 +240,7 @@ START_TEST (test_vector_find)
     ck_assert(vector_append_front(&vector, TMP_REF(int, 10)));
     ck_assert(vector_append_front(&vector, TMP_REF(int, 20)));
     ck_assert(vector_append_front(&vector, TMP_REF(int, 30)));
-    
+
     p = vector_find(vector, TMP_REF(int, 0), pred, NULL);
     ck_assert_ptr_null(p);
     
@@ -340,11 +340,58 @@ START_TEST (test_vector_binary_find)
     {
         ck_assert(vector_binary_insert(&vector, cmp, &table[i], NULL, NULL));
     }
-    
+
     for (int i = 0; i < size; ++i)
     {
         void *p = vector_binary_find(vector, cmp, &table[i], NULL);
         ck_assert_mem_eq(p, &table[i], sizeof(int));
+    }
+}
+END_TEST
+
+START_TEST (test_vector_insert_fill)
+{
+    bool status = vector_insert_fill(&vector, 0, 10, TMP_REF(int, 999));
+
+    ck_assert(status);
+
+    size_t size = vector_size(vector);
+    ck_assert_uint_eq(size, 10);
+
+    for (int i = 0; i < size; ++i)
+    {
+        ck_assert_mem_eq(vector_get(vector, i), TMP_REF(int, 999), sizeof(int));
+    }
+}
+END_TEST
+
+START_TEST (test_vector_insert_fill_inbetween)
+{
+    for (int i = 0; i < 20; ++i)
+    {
+        ck_assert(vector_append_back(&vector, &i));
+    }
+    const size_t initial_size = vector_size(vector);
+    const size_t insert_idx = 9;
+    const size_t amount = 5;
+
+    bool status = vector_insert_fill(&vector, insert_idx, amount, TMP_REF(int, 999));
+    ck_assert(status);
+
+    const size_t size = vector_size(vector);
+    ck_assert_uint_eq(size, amount + initial_size);
+
+    for (int i = 0, k = 0; i < size; ++i)
+    {
+        if (i >= insert_idx && i < (insert_idx + amount))
+        {
+            ck_assert_mem_eq(vector_get(vector, i), TMP_REF(int, 999), sizeof(int));
+        }
+        else
+        {
+            ck_assert_mem_eq(vector_get(vector, i), &k, sizeof(int));
+            ++k;
+        }
     }
 }
 END_TEST
@@ -380,6 +427,7 @@ Suite * vector_suite(void)
     tcase_add_test(tc_core, test_vector_remove);
     tcase_add_test(tc_core, test_vector_binary_insert);
     tcase_add_test(tc_core, test_vector_binary_find);
+    tcase_add_test(tc_core, test_vector_insert_fill_inbetween);
 
     suite_add_tcase(s, tc_core);
 

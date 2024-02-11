@@ -131,9 +131,33 @@ void *vector_get(const vector_t *vector, size_t index);
 
 
 /*
-* Sets element at given `index` to a `value`. May fail if index is invalid.
+* Sets element at given `index` to a `value`.
+* If `value` is a null pointer, then element will be filled with zeroes.
+* May fail if index is invalid.
 */
 bool vector_set(vector_t *vector, size_t index, const void *value);
+
+
+/*
+* Inserts new element at given `index`, shifting one element forward
+* from that index.
+* (Allocation may fail, so returning operation status)
+*/
+bool vector_insert_at(vector_t **vector, size_t index, const void *value);
+
+
+/*
+* Fills vector range with `amount` copies of same value at `index`.
+*/
+bool vector_insert_fill(vector_t **vector, size_t index, size_t amount, const void *value);
+
+
+/*
+* Binary insert. Works only if previous elements
+* that contained in the vector are ordered in same way.
+* (Allocation may fail, so returning operation status)
+*/
+bool vector_binary_insert(vector_t **vector, compare_t cmp, const void *value, void *param, size_t *index);
 
 
 /*
@@ -171,6 +195,20 @@ bool vector_pop_front(vector_t **vector);
 
 
 /*
+* Removes element at given `index`.
+* May fail on realloc.
+*/
+bool vector_remove(vector_t **vector, size_t index);
+
+
+/*
+* Removes range of elements of `amount` length at given `index`.
+* May fail on realloc.
+*/
+bool vector_remove_range(vector_t **vector, size_t index, size_t amount);
+
+
+/*
 * Truncates vector to a desired capacity, wiping out rest of the elements.
 * Capacity's lower limit is `initial_cap`.
 * (Allocation may fail, so returning operation status)
@@ -179,25 +217,20 @@ bool vector_truncate(vector_t **vector, size_t capacity);
 
 
 /*
-* Inserts new element at given `index`, shifting one element forward
-* from that index.
-* (Allocation may fail, so returning operation status)
+* 
 */
-bool vector_insert_at(vector_t **vector, size_t index, const void *value);
+void vector_swap(vector_t *vector, size_t index_a, size_t index_b);
 
 
 /*
-* Binary insert. Works only if previous elements
-* that contained in the vector are ordered in same way.
-* (Allocation may fail, so returning operation status)
+* 
 */
-bool vector_binary_insert(vector_t **vector, compare_t cmp, const void *value, void *param, size_t *index);
+bool vector_swap_ranges(vector_t **vector, size_t idx_a, size_t len_a, size_t idx_b, size_t len_b);
 
 
 /*
-* Removes element at given `index`.
-* May fail on realloc or if index is invalid.
+* Reverse order of elements in the vector 
 */
-bool vector_remove(vector_t **vector, size_t index);
+void vector_reverse(vector_t **vector);
 
 #endif/*_VECTOR_H_*/

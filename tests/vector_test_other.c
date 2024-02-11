@@ -1,25 +1,17 @@
 #include <check.h>
 #include <stdlib.h>
+#include <signal.h>
+
 #include "../src/vector.h"
 
-static int cmp(const void *a, const void *b, void *param)
-{
-    (void)param;
-    return *(int*)a - *(int*)b;
-}
-
 static vector_t *vector;
+static const int data[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
 void setup(void)
 {
-    vector_create(vector,
-       .esize = sizeof(int),
-       .initial_cap = 10,
-       .shrink_threshold = 0.25f,
-       .grow_threshold = 0.75f,
-       .grow_factor = 1.5f
-    );
-
+    vector_create(vector);
+    for (size_t i = 0; i < sizeof(data)/sizeof(data[0]); ++i)
+        vector_append_back(&vector, &data[i]);
 }
 
 void teardown(void)
@@ -27,14 +19,44 @@ void teardown(void)
     vector_destroy(vector);
 }
 
-START_TEST (test_vector_other)
+START_TEST (test_vector_swap_ranges)
 {
-    ck_assert_ptr_nonnull(vector);
-    ck_assert_uint_eq(vector_size(vector), 0);
-    ck_assert_uint_eq(vector_capacity(vector), 10);
+    const int expected[] = {1, 6, 7, 8, 9, 5, 2, 3, 4, 10};
+    const size_t idx_a = 1;
+    const size_t len_a = 3;
+    const size_t idx_b = 5;
+    const size_t len_b = 4;
+    const size_t init_size = vector_size(vector);
+
+    ck_assert(vector_swap_ranges(&vector, idx_a, len_a, idx_b, len_b));
+    size_t size = vector_size(vector);
+    ck_assert_uint_eq(size, init_size);
+
+    for (size_t i = 0; i < size; ++i)
+    {
+        ck_assert_uint_eq(expected[i], *(int*) vector_get(vector, i));
+    }
 }
 END_TEST
 
+START_TEST (test_vector_swap_ranges_messed_order)
+{
+    const int expected[] = {1, 6, 7, 8, 9, 5, 2, 3, 4, 10};
+    const size_t idx_a = 5;
+    const size_t len_a = 4;
+    const size_t idx_b = 1;
+    const size_t len_b = 3;
+    const size_t init_size = vector_size(vector);
+
+    ck_assert(vector_swap_ranges(&vector, idx_a, len_a, idx_b, len_b));
+    size_t size = vector_size(vector);
+    ck_assert_uint_eq(size, init_size);
+    for (size_t i = 0; i < size; ++i)
+    {
+        ck_assert_uint_eq(expected[i], *(int*) vector_get(vector, i));
+    }
+}
+END_TEST
 
 Suite * vector_other_suite(void)
 {
@@ -47,7 +69,8 @@ Suite * vector_other_suite(void)
     tc_core = tcase_create("Core");
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
-    tcase_add_test(tc_core, test_vector_other);
+    tcase_add_test(tc_core, test_vector_swap_ranges);
+    tcase_add_test_raise_signal(tc_core, test_vector_swap_ranges_messed_order, SIGABRT);
     suite_add_tcase(s, tc_core);
 
     return s;
@@ -67,58 +90,4 @@ int main(void)
     number_failed = srunner_ntests_failed(sr);
     srunner_free(sr);
     return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-    return 0;
 }
-/*  */
-#if 0
-int main(void)
-{
-    vector_t *vec;
-
-    vector_create(vec,
-       .esize = sizeof(int),
-       .initial_cap = 10,
-       .shrink_threshold = 0.25f,
-       .grow_threshold = 0.75f,
-       .grow_factor = 1.5f
-    );
-
-    /* for (int n = 0; n < 10; ++n) */
-    /* { */
-    /*     vector_append_back(&vec, &n); */
-    /*     printf(">> %d\n", n); */
-    /* } */
-
-    vector_binary_insert(&vec, cmp, (int[1]){9}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){6}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){2}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){0}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){5}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){4}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){7}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){3}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){1}, NULL, NULL);
-    vector_binary_insert(&vec, cmp, (int[1]){8}, NULL, NULL);
-
-    /* int v = 10; */
-    /* size_t i = binary_find_insert_place(vec, cmp, &v, NULL, 0, 9); */
-    /* printf("  > %zu \n", i); */
-
-    for (int n = 0; n < 10; ++n)
-    {
-        int *v = (int*)vector_binary_find(vec, cmp, &n, NULL);
-        printf("== %d\n", *v);
-    }
-
-    /* for (int n = 0; n < 10; ++n) */
-    /* { */
-    /*     int *v = (int*)vector_last(vec); */
-    /*     printf("<-- %d\n", *v); */
-    /*     vector_pop_back(&vec); */
-    /* } */
-    vector_destroy(vec);
-    return 0;
-}
-
-#endif
-
