@@ -58,6 +58,21 @@ START_TEST (test_vector_swap_ranges_messed_order)
 }
 END_TEST
 
+START_TEST (test_vector_reverse)
+{
+    const size_t init_size = vector_size(vector);
+
+    vector_reverse(&vector);
+    size_t size = vector_size(vector);
+    ck_assert_uint_eq(size, init_size);
+    for (size_t i = 0; i < size; ++i)
+    {
+        ck_assert_uint_eq(data[size - i - 1], *(int*) vector_get(vector, i));
+    }
+}
+END_TEST
+
+
 Suite * vector_other_suite(void)
 {
     Suite *s;
@@ -70,7 +85,11 @@ Suite * vector_other_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
     tcase_add_test(tc_core, test_vector_swap_ranges);
+#if CK_FORK != no
     tcase_add_test_raise_signal(tc_core, test_vector_swap_ranges_messed_order, SIGABRT);
+#endif
+    tcase_add_test(tc_core, test_vector_reverse);
+
     suite_add_tcase(s, tc_core);
 
     return s;

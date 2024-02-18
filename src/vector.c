@@ -1,9 +1,33 @@
 #include "vector.h"
 
 #include <assert.h> /* assert */
+#include <stdio.h>  /* fprintf */
 #include <stdlib.h> /* malloc, realloc, free */
 #include <string.h> /* memcpy, memset */
 #include <math.h>   /* pow, ceil */
+
+#define VECTOR_HANDLE_ERROR(vector_pp, error) \
+    (*vector_pp)->opts.error_handler.callback(vector_pp, error, (*vector_pp)->opts.error_handler.param)
+
+/*
+* Try to grow a vector and realloc if required.
+* Reports an error if allocation failed.
+*/
+#define VECTOR_GROW(vector_pp, times) do{\
+    if (!vector_grow(vector_pp, vector_has_to_grow(*vector_pp, times))) {\
+        VECTOR_HANDLE_ERROR(vector_pp, VECTOR_GROW_ALLOC_ERROR); \
+    }\
+} while(0)
+
+#define VECTOR_SHRINK(vector_pp, times) do{\
+    if (!vector_shrink(vector_pp, vector_has_to_shrink(*vector_pp, times))) {\
+        VECTOR_HANDLE_ERROR(vector_pp, VECTOR_SHRINK_ALLOC_ERROR); \
+    }\
+} while(0)
+
+#define VECTOR_INC(vector_pp) VECTOR_GROW(vector_pp, 1)
+
+#define VECTOR_DEC(vector_pp) VECTOR_SHRINK(vector_pp, 1)
 
 struct vector_t
 {
@@ -18,10 +42,14 @@ static size_t vector_has_to_grow(const vector_t *vector, size_t amount_to_add);
 static size_t vector_has_to_shrink(const vector_t *vector, size_t amount_to_remove);
 static bool vector_grow(vector_t **vector, size_t times);
 static bool vector_shrink(vector_t **vector, size_t times);
-static bool make_space_for_range(vector_t **vector, size_t index, size_t amount);
-static bool free_space_at(vector_t **vector, size_t index, size_t amount);
+static bool make_space_for_range(vector_t *vector, size_t index, size_t amount);
+static void free_space_at(vector_t *vector, size_t index, size_t amount);
 static size_t binary_find_insert_place(const vector_t *vector, compare_t cmp, const void *value, void *param, ssize_t start, ssize_t end);
 static void *binary_find(const vector_t *vector, compare_t cmp, const void *value, void *param, ssize_t start, ssize_t end);
+static void memswap(char *restrict a, char *restrict b, size_t size);
+static bool vector_reverse_rec(vector_t **vector, size_t i, size_t len);
+static bool has_enough_space_for(vector_t *vector, size_t amount);
+static void default_error_callback(vector_t **vector, vector_error_t error, void *param);
 
 
 vector_t *vector_create_(const vector_opts_t *opts)
@@ -33,11 +61,19 @@ vector_t *vector_create_(const vector_opts_t *opts)
     assert(next_shrink_at <= grow_at);
 
     vector_t *vec = (vector_t *) malloc(sizeof(vector_t) + opts->initial_cap * opts->esize);
-    if (!vec) return NULL;
+    if (!vec)
+    {
+        VECTOR_HANDLE_ERROR(&vec, VECTOR_CREATE_ERROR);
+        return NULL;
+    }
     *vec = (vector_t){
         .opts = *opts,
         .capacity = opts->initial_cap,
     };
+    if (!vec->opts.error_handler.callback)
+    {
+        vec->opts.error_handler.callback = default_error_callback;
+    }
     return vec;
 }
 
@@ -46,9 +82,20 @@ vector_t *vector_clone(const vector_t *vector)
 {
     size_t alloc_size = sizeof(vector_t) + vector->capacity * vector->opts.esize;
     vector_t *clone = (vector_t *) malloc(alloc_size);
-    if (!clone) return NULL;
+    if (!clone)
+    {
+        VECTOR_HANDLE_ERROR(&clone, VECTOR_CREATE_ERROR);
+        return NULL;
+    }
     memcpy(clone, vector, alloc_size);
     return clone;
+}
+
+
+void vector_copy(void *dest, const vector_t *vector, size_t offset, size_t length)
+{
+    assert(offset + length <= vector->size);
+    memcpy(dest, vector_get(vector, offset), length * (vector->opts.esize));
 }
 
 
@@ -117,8 +164,7 @@ void *vector_last(const vector_t *vector)
 
 void *vector_get(const vector_t *vector, size_t index)
 {
-    if (vector->size == 0) return NULL;
-    if (index >= vector->size) return NULL;
+    if (vector->size == 0 || index >= vector->size) return NULL;
     const void *dest = vector->memory + index * vector->opts.esize;
     return (void*)dest;
 }
@@ -139,28 +185,32 @@ bool vector_set(vector_t *vector, size_t index, const void *value)
 
 bool vector_insert_at(vector_t **vector, size_t index, const void *value)
 {
-    if (!make_space_for_range(vector, index, 1)) return false;
-    (void)vector_set(*vector, index, value);
+    VECTOR_INC(vector);
+    if (!make_space_for_range(*vector, index, 1)) return false;
+    (void) vector_set(*vector, index, value);
     return true;
 }
 
 
 bool vector_insert_fill(vector_t **vector, size_t index, size_t amount, const void *value)
 {
-    if (!make_space_for_range(vector, index, amount)) return false;
+    VECTOR_GROW(vector, amount);
+    if (!make_space_for_range(*vector, index, amount)) return false;
 
     size_t elements_set = 1;
-    (void)vector_set(*vector, index, value);
+    (void) vector_set(*vector, index, value);
     
     /* copy elements exponentially through out the range */
     for (; (elements_set + elements_set) <= amount; elements_set += elements_set)
     {
-        memcpy(vector_get(*vector, index + elements_set), vector_get(*vector, index), (*vector)->opts.esize * elements_set);
+        void *dest = vector_get(*vector, index + elements_set);
+        vector_copy(dest, *vector, index, elements_set);
     }
     /* copy rest that left */
     for (; elements_set < amount; ++elements_set)
     {
-        memcpy(vector_get(*vector, index + elements_set), vector_get(*vector, index + elements_set - 1), (*vector)->opts.esize);
+        void *dest = vector_get(*vector, index + elements_set);
+        vector_copy(dest, *vector, index + elements_set - 1, 1);
     }
 
     return true;
@@ -180,51 +230,60 @@ bool vector_binary_insert(vector_t **vector, compare_t cmp, const void *value, v
 
 bool vector_append_back(vector_t **vector, const void *value)
 {
+    VECTOR_INC(vector);
+
     size_t index = (*vector)->size;
-    if (!make_space_for_range(vector, index, 1)) return false;
-    (void)vector_set(*vector, index, value);
+    if (!make_space_for_range(*vector, index, 1)) return false;
+    (void) vector_set(*vector, index, value);
     return true;
 }
 
 
-bool vector_pop_back(vector_t **vector)
+void vector_pop_back(vector_t **vector)
 {
     size_t index = (*vector)->size - 1;
-    void *dest = (*vector)->memory + index * (*vector)->opts.esize;
-    memset(dest, 0, (*vector)->opts.esize);
-    return free_space_at(vector, index, 1);
+    (void) vector_set(*vector, index, NULL);
+    free_space_at(*vector, index, 1);
+    VECTOR_DEC(vector);
 }
 
 
 bool vector_append_front(vector_t **vector, const void *value)
 {
-    if (!make_space_for_range(vector, 0, 1)) return false;
-    (void)vector_set(*vector, 0, value);
+    VECTOR_INC(vector);
+
+    if (!make_space_for_range(*vector, 0, 1)) return false;
+    (void) vector_set(*vector, 0, value);
     return true;
 }
 
 
-bool vector_pop_front(vector_t **vector)
+void vector_pop_front(vector_t **vector)
 {
-    return free_space_at(vector, 0, 1);
+    free_space_at(*vector, 0, 1);
+    VECTOR_DEC(vector);
 }
 
 
-bool vector_remove(vector_t **vector, size_t index)
+void vector_remove(vector_t **vector, size_t index)
 {
-    return free_space_at(vector, index, 1);
+    free_space_at(*vector, index, 1);
+    VECTOR_SHRINK(vector, 1);
 }
 
 
-bool vector_remove_range(vector_t **vector, size_t index, size_t amount)
+void vector_remove_range(vector_t **vector, size_t index, size_t amount)
 {
-    return free_space_at(vector, index, amount);
+    free_space_at(*vector, index, amount);
+    VECTOR_SHRINK(vector, amount);
 }
 
 
 bool vector_truncate(vector_t **vector, size_t capacity)
 {
-    capacity = (capacity < (*vector)->opts.initial_cap) ? (*vector)->opts.initial_cap : capacity;
+    capacity = (capacity < (*vector)->opts.initial_cap)
+        ? (*vector)->opts.initial_cap
+        : capacity;
 
     vector_t *vec = (vector_t*) realloc(*vector, sizeof(vector_t) + capacity * (*vector)->opts.esize);
     if (!vec) return false;
@@ -237,17 +296,6 @@ bool vector_truncate(vector_t **vector, size_t capacity)
 }
 
 
-static void *memxor(void *restrict dest, const void *restrict src, size_t n)
-{
-    char const *s = src;
-    char *d = dest;
-
-    for (; n > 0; n--)
-        *d++ ^= *s++;
-
-    return dest;
-}
-
 void vector_swap(vector_t *vector, size_t index_a, size_t index_b)
 {
     assert(index_a != index_b);
@@ -255,10 +303,21 @@ void vector_swap(vector_t *vector, size_t index_a, size_t index_b)
 
     void *a = vector_get(vector, index_a);
     void *b = vector_get(vector, index_b);
+    memswap(a, b, vector->opts.esize);
+}
 
-    memxor(a, b, vector->opts.esize);
-    memxor(b, a, vector->opts.esize);
-    memxor(a, b, vector->opts.esize);
+
+bool vector_move_range(vector_t **dest, size_t dest_idx, vector_t **src, size_t src_idx, size_t size)
+{
+    VECTOR_GROW(dest, size);
+    if (!make_space_for_range(*dest, dest_idx, size)) return false;
+
+    if (*dest == *src && src_idx > dest_idx) src_idx += size;
+    vector_copy(vector_get(*dest, dest_idx), *src, src_idx, size);
+
+    free_space_at(*src, src_idx, size);
+    VECTOR_SHRINK(src, size);
+    return true;
 }
 
 
@@ -271,52 +330,55 @@ bool vector_swap_ranges(vector_t **vector, size_t idx_a, size_t len_a, size_t id
         && "ranges must be in bounds of vector.");
 
     assert((idx_a < idx_b) && "ranges must preserve ordering!");
-    
-    /* duplicating range `b */
-    if (!make_space_for_range(vector, idx_a, len_b))
-    {
-        return false;
-    }
-    idx_b += len_b; /* update index of range `b */
-    memcpy(vector_get(*vector, idx_a), vector_get(*vector, idx_b), (*vector)->opts.esize * len_b);
 
+    /* preallocate space for swap */
+    if (!vector_truncate(vector, vector_capacity(*vector) + (len_a + len_b))) return false;
+
+    /* duplicating range `b */
+    (void) make_space_for_range(*vector, idx_a, len_b);
+
+    idx_b += len_b; /* update index of range `b */
+    vector_copy(vector_get(*vector, idx_a), *vector, idx_b, len_b);
     idx_a += len_b; /* update index of range `a */
 
-    ssize_t dlt = len_a - len_b;
-    if (dlt > 0) /* `b shorter then `a */
+    if (len_a > len_b) /* `b shorter then `a */
     {
-        if (!make_space_for_range(vector, idx_b, dlt)) /* expand range `b */
-        {
-            return false;
-        }
+        (void) make_space_for_range(*vector, idx_b, len_a - len_b); /* expand range `b */
     }
-    else if (!free_space_at(vector, idx_b, -dlt)) /* crop range `b*/
+    else if (len_a < len_b)
     {
-        return false;
+        free_space_at(*vector, idx_b, len_b - len_a); /* crop range `b */
     }
 
-    memcpy(vector_get(*vector, idx_b), vector_get(*vector, idx_a), (*vector)->opts.esize * len_a);
-    return vector_remove_range(vector, idx_a, len_a);
+    vector_copy(vector_get(*vector, idx_b), *vector, idx_a, len_a);
+    vector_remove_range(vector, idx_a, len_a);
+    return true;
 }
 
-//  [1, 2, 3| 4, 5, 6, 7]
-//  [4, 5, 6, 7| 1, 2, 3]
-//  [6, 7| 4, 5| 2, 3| 1]
-//  [7| 6| 5| 4| 3, 2| 1]
 
-void vector_reverse(vector_t **vector)
+bool vector_reverse(vector_t **vector)
 {
-    const size_t size = vector_size(*vector);
-
-    for (size_t group = 1; group < size / 2; group += group)
+    vector_t *reversed = vector_clone(*vector);
+    if (!reversed) return false;
+    if (!vector_reverse_rec(&reversed, 0, vector_size(reversed)))
     {
-        for (size_t i = 0; i < size; i += group)
-        {
-            size_t sec_range_len = (size % group == 0) ? group : (size % group);
-
-            vector_swap_ranges(vector, i, group, i + group, sec_range_len);
-        }
+        vector_destroy(reversed);
+        return false;
     }
+    *vector = reversed;
+    return true;
+}
+
+
+static bool vector_reverse_rec(vector_t **vector, size_t i, size_t len)
+{
+    if (len == 1) return true;
+    const size_t first = len / 2;
+    const size_t second = len - first;
+
+    if (!vector_swap_ranges(vector, i, first, i + first, second)) return false;
+
+    return vector_reverse_rec(vector, i, second) && vector_reverse_rec(vector, i + second, first);
 }
 
 
@@ -349,7 +411,7 @@ static size_t vector_has_to_grow(const vector_t *vector, size_t amount_to_add)
 static size_t vector_has_to_shrink(const vector_t *vector, size_t amount_to_remove)
 {
     assert(amount_to_remove > 0);
-    
+
     size_t times = 0;
     size_t size = vector->size - amount_to_remove;
     double capacity = vector->capacity;
@@ -383,54 +445,52 @@ static bool vector_shrink(vector_t **vector, size_t times)
 }
 
 
-static bool free_space_at(vector_t **vector, size_t index, size_t amount)
+static void free_space_at(vector_t *vector, size_t index, size_t amount)
 {
-    size_t size = vector_size(*vector);
+    size_t size = vector_size(vector);
 
-    if (index >= size) return true; /* already free */
+    if (index >= size) return; /* already free */
 
     size_t rest_from_index = size - index;
 
     if (amount >= rest_from_index)
     {
-        (*vector)->size -= rest_from_index;
+        vector->size -= rest_from_index;
     }
     else
     {
         size_t rest = rest_from_index - amount;
-        char *to = (*vector)->memory + (*vector)->opts.esize * index;
-        char *from = to + (*vector)->opts.esize * amount;
+        char *to = vector->memory + vector->opts.esize * index;
+        char *from = to + vector->opts.esize * amount;
 
-        memmove(to, from, (*vector)->opts.esize * rest);
-        (*vector)->size -= amount;
+        memmove(to, from, vector->opts.esize * rest);
+        vector->size -= amount;
     }
-
-    return vector_shrink(vector, vector_has_to_shrink(*vector, amount));
 }
 
 
-static bool make_space_for_range(vector_t **vector, size_t index, size_t amount)
+static bool make_space_for_range(vector_t *vector, size_t index, size_t amount)
 {
-    size_t size = vector_size(*vector);
+    if (!has_enough_space_for(vector, amount))
+    {
+        return false;
+    }
+
+    size_t size = vector_size(vector);
+
     if (index > size)
     {
         amount += index - size;
     }
 
-    if (!vector_grow(vector, vector_has_to_grow(*vector, amount)))
+    if (index < vector->size)
     {
-        return false;
-    }
-    
-    if (index < (*vector)->size)
-    {
-        char *from = (*vector)->memory + (*vector)->opts.esize * index;
-        char *to = from + (*vector)->opts.esize * amount;
+        char *from = vector->memory + vector->opts.esize * index;
+        char *to = from + vector->opts.esize * amount;
 
-        memmove(to, from, (*vector)->opts.esize * ((*vector)->size - index));
+        memmove(to, from, vector->opts.esize * (vector->size - index));
     }
-    (*vector)->size += amount;
-
+    vector->size += amount;
     return true;
 }
 
@@ -484,4 +544,52 @@ static void *binary_find(const vector_t *vector, compare_t cmp, const void *valu
     }
 
     return binary_find(vector, cmp, value, param, start, middle - 1);
+}
+
+
+static void memswap(char *restrict a, char *restrict b, size_t size)
+{
+    union {
+        size_t _word;
+        char _bytes[sizeof(size_t)];
+    }
+    tmp;
+
+    for (int i = 0; i < size / sizeof(tmp); ++i)
+    {
+        tmp._word = *(size_t*)a;
+        *(size_t*)a = *(size_t*)b;
+        *(size_t*)b = tmp._word;
+        a += sizeof(tmp);
+        b += sizeof(tmp);
+    }
+    for (int i = 0; i < size % sizeof(tmp); ++i, ++a, ++b)
+    {
+        tmp._bytes[0] = *a;
+        *a = *b;
+        *b = tmp._bytes[0];
+    }
+}
+
+static bool has_enough_space_for(vector_t *vector, size_t amount)
+{
+    return (vector->capacity - vector->size) >= amount;
+}
+
+
+static void default_error_callback(vector_t **vector, vector_error_t error, void *param)
+{
+    (void) param;
+
+    const char *operation;
+    switch (error)
+    {
+        case VECTOR_CREATE_ERROR: operation = "VECTOR_CREATE"; break;
+        case VECTOR_GROW_ALLOC_ERROR: operation = "VECTOR_GROW"; break;
+        case VECTOR_SHRINK_ALLOC_ERROR: operation = "VECTOR_SHRINK"; break;
+        default: operation = "UNKNOWN";
+    }
+
+    fprintf(stderr, "Allocation error occured.\nvector at (%p) on %s\nabort()\n", *vector, operation);
+    abort();
 }

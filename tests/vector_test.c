@@ -68,10 +68,7 @@ END_TEST
 
 START_TEST (test_vector_pop_empty)
 {
-    bool status = vector_pop_back(&vector);
-    ck_assert_msg(status,
-        "Pop must be valid operation on empty vector.\n"
-        "Expected %s, but got %s\n", BOOL_STR(true), BOOL_STR(status));
+    vector_pop_back(&vector);
 }
 END_TEST
 
@@ -79,8 +76,7 @@ START_TEST (test_vector_pop_single)
 {
     vector_append_back(&vector, TMP_REF(int, 64));
 
-    bool status = vector_pop_back(&vector);
-    ck_assert(status);
+    vector_pop_back(&vector);
     ck_assert_uint_eq(vector_size(vector), 0);
 }
 END_TEST
@@ -175,7 +171,7 @@ END_TEST
 
 START_TEST (test_vector_pop_front)
 {
-    ck_assert(vector_pop_front(&vector));
+    vector_pop_front(&vector);
 
     for (int appended = 0; appended < 100; ++appended)
     {
@@ -185,7 +181,7 @@ START_TEST (test_vector_pop_front)
     for (int prev_appended = 99; prev_appended >= 0; --prev_appended)
     {
         ck_assert_mem_eq(vector_first(vector), &prev_appended, sizeof(int));
-        ck_assert(vector_pop_front(&vector));
+        vector_pop_front(&vector);
     }
 }
 END_TEST
@@ -228,7 +224,7 @@ START_TEST (test_vector_contains)
     ck_assert(vector_contains(vector, TMP_REF(int, 0)));
     ck_assert(vector_append_back(&vector, TMP_REF(int, 999)));
     ck_assert(vector_contains(vector, TMP_REF(int, 999)));
-    ck_assert(vector_pop_back(&vector));
+    vector_pop_back(&vector);
     ck_assert(!vector_contains(vector, TMP_REF(int, 999)));
 }
 END_TEST
@@ -286,14 +282,13 @@ END_TEST
 
 START_TEST (test_vector_remove)
 {
-    ck_assert_msg(vector_remove(&vector, 100),
-        "Removing element out of range successfully does nothing.");
+    vector_remove(&vector, 100);
 
     for (int i = 0; i < 20; ++i)
     {
         ck_assert(vector_append_back(&vector, &i));
     }
-    ck_assert(vector_remove(&vector, 5));
+    vector_remove(&vector, 5);
     ck_assert_uint_eq(vector_size(vector), 19);
     
     for (int i = 5; i < 19; ++i)
@@ -318,12 +313,12 @@ START_TEST (test_vector_binary_insert)
     bool ordered = true;
     int curr = 0;
     int prev = *(int*)vector_first(vector);
-    ck_assert(vector_pop_front(&vector));
+   vector_pop_front(&vector);
 
     while (ordered && (0 < vector_size(vector)))
     {
         curr = *(int*)vector_first(vector);
-        ck_assert(vector_pop_front(&vector));
+        vector_pop_front(&vector);
         ordered = prev <= curr;
         prev = curr;
     }

@@ -7,7 +7,30 @@
 
 #define TMP_REF(type, value) (type[1]){value}
 
+typedef enum vector_error_t
+{
+    VECTOR_CREATE_ERROR,
+    VECTOR_GROW_ALLOC_ERROR,
+    VECTOR_SHRINK_ALLOC_ERROR,
+    VECTOR_ERROR_LAST
+}
+vector_error_t;
+
 typedef struct vector_t vector_t;
+
+/*
+* Extends vector behavior on allocation error encounter.
+* @vector - location of the vector pointer.
+* @param - user provided argument for error handler callback.
+*/
+typedef void (*vector_error_callback_t)(vector_t **vector, vector_error_t error, void *param);
+typedef struct vector_error_handler_t
+{
+    vector_error_callback_t callback;
+    void *param;
+}
+vector_error_handler_t;
+
 typedef struct vector_opts_t
 {
     size_t esize; /* size of the element */
@@ -15,8 +38,10 @@ typedef struct vector_opts_t
     float grow_factor;
     float grow_threshold;
     float shrink_threshold;
+    vector_error_handler_t error_handler;
 }
 vector_opts_t;
+
 
 /*
 * Callback types
@@ -61,6 +86,12 @@ vector_t *vector_create_(const vector_opts_t *opts);
 * (Allocation may fail).
 */
 vector_t *vector_clone(const vector_t *vector);
+
+
+/*
+* Copies range [offset, offset + length - 1] elements into a destination pointer.
+*/
+void vector_copy(void *dest, const vector_t *vector, size_t offset, size_t length);
 
 
 /*
@@ -171,9 +202,8 @@ bool vector_append_back(vector_t **vector, const void *value);
 /*
 * Removes element at tail of the vector, shrinking vector on demand.
 * May update provided vector pointer.
-* (Allocation may fail, so returning operation status)
 */
-bool vector_pop_back(vector_t **vector);
+void vector_pop_back(vector_t **vector);
 
 
 /*
@@ -189,23 +219,22 @@ bool vector_append_front(vector_t **vector, const void *value);
 * Removes element from vector's head by shifting one element backwards
 * and shrinking vector on demand.
 * May update provided vector pointer.
-* (Allocation may fail, so returning operation status)
 */
-bool vector_pop_front(vector_t **vector);
+void vector_pop_front(vector_t **vector);
 
 
 /*
 * Removes element at given `index`.
 * May fail on realloc.
 */
-bool vector_remove(vector_t **vector, size_t index);
+void vector_remove(vector_t **vector, size_t index);
 
 
 /*
 * Removes range of elements of `amount` length at given `index`.
 * May fail on realloc.
 */
-bool vector_remove_range(vector_t **vector, size_t index, size_t amount);
+void vector_remove_range(vector_t **vector, size_t index, size_t amount);
 
 
 /*
@@ -231,6 +260,6 @@ bool vector_swap_ranges(vector_t **vector, size_t idx_a, size_t len_a, size_t id
 /*
 * Reverse order of elements in the vector 
 */
-void vector_reverse(vector_t **vector);
+bool vector_reverse(vector_t **vector);
 
 #endif/*_VECTOR_H_*/
