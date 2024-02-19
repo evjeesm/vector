@@ -5,11 +5,23 @@
 #include <stddef.h>  /* size_t */
 #include <sys/types.h> /* ssize_t */
 
+#ifdef MOCK_MALLOC
+    #define malloc xmalloc
+    #define realloc xrealloc
+    #define free xfree
+    extern void *xmalloc(size_t size);
+    extern void *xrealloc(void *ptr, size_t size);
+    extern void xfree(void *ptr);
+    extern const size_t c_header_size;
+#endif
+
 #define TMP_REF(type, value) (type[1]){value}
 
 typedef enum vector_error_t
 {
     VECTOR_CREATE_ERROR,
+    VECTOR_OVERFLOW_ERROR,
+    VECTOR_CLONE_ERROR,
     VECTOR_GROW_ALLOC_ERROR,
     VECTOR_SHRINK_ALLOC_ERROR,
     VECTOR_ERROR_LAST
@@ -62,7 +74,7 @@ typedef int (*compare_t) (const void *value, const void *element, void *param);
     _Pragma("GCC diagnostic ignored \"-Woverride-init\"") \
     vec_ptr = vector_create_(&(vector_opts_t){ \
         .esize = sizeof(int), \
-        .initial_cap=10, \
+        .initial_cap = 10, \
         .shrink_threshold = 0.25f, \
         .grow_threshold = 0.75f, \
         .grow_factor = 1.5f, \

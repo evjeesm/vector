@@ -26,7 +26,6 @@
 } while(0)
 
 #define VECTOR_INC(vector_pp) VECTOR_GROW(vector_pp, 1)
-
 #define VECTOR_DEC(vector_pp) VECTOR_SHRINK(vector_pp, 1)
 
 struct vector_t
@@ -36,6 +35,10 @@ struct vector_t
     size_t capacity;
     char memory[];
 };
+
+#ifdef MOCK_MALLOC
+const size_t c_header_size = sizeof(vector_t);
+#endif
 
 static bool equal_bytes(const void *a, const void *b, void *param);
 static size_t vector_has_to_grow(const vector_t *vector, size_t amount_to_add);
@@ -57,13 +60,27 @@ vector_t *vector_create_(const vector_opts_t *opts)
     size_t next_cap = opts->initial_cap * opts->grow_factor;
     size_t grow_at = opts->initial_cap * opts->grow_threshold;
     size_t next_shrink_at = next_cap * opts->shrink_threshold;
+    size_t alloc_size = opts->initial_cap * opts->esize;
+    vector_t *vec = NULL;
 
     assert(next_shrink_at <= grow_at);
 
-    vector_t *vec = (vector_t *) malloc(sizeof(vector_t) + opts->initial_cap * opts->esize);
+    vector_error_callback_t error_cbk = (opts->error_handler.callback
+        ? opts->error_handler.callback
+        : default_error_callback);
+
+    if (alloc_size / opts->esize != opts->initial_cap
+        || (alloc_size + sizeof(vector_t) < alloc_size))
+    {
+        error_cbk(&vec, VECTOR_OVERFLOW_ERROR, opts->error_handler.param);
+        return NULL;
+    }
+
+    vec = (vector_t *) malloc(sizeof(vector_t) + opts->initial_cap * opts->esize);
     if (!vec)
     {
-        VECTOR_HANDLE_ERROR(&vec, VECTOR_CREATE_ERROR);
+        error_cbk(&vec, VECTOR_CREATE_ERROR, opts->error_handler.param);
+
         return NULL;
     }
     *vec = (vector_t){
@@ -84,7 +101,7 @@ vector_t *vector_clone(const vector_t *vector)
     vector_t *clone = (vector_t *) malloc(alloc_size);
     if (!clone)
     {
-        VECTOR_HANDLE_ERROR(&clone, VECTOR_CREATE_ERROR);
+        VECTOR_HANDLE_ERROR((vector_t **)&vector, VECTOR_CLONE_ERROR);
         return NULL;
     }
     memcpy(clone, vector, alloc_size);
