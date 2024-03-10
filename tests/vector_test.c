@@ -4,10 +4,10 @@
 
 #define BOOL_STR(value) (value ? "`true`" : "`false`")
 
-static int cmp(const void *a, const void *b, void *param)
+static ssize_t cmp(const void *a, const void *b, void *param)
 {
     (void)param;
-    return *(int*)a - *(int*)b;
+    return (ssize_t) *(int*)a - *(int*)b;
 }
 
 static bool pred(const void *a, const void *b, void *param)
@@ -313,7 +313,7 @@ START_TEST (test_vector_binary_insert)
     bool ordered = true;
     int curr = 0;
     int prev = *(int*)vector_first(vector);
-   vector_pop_front(&vector);
+    vector_pop_front(&vector);
 
     while (ordered && (0 < vector_size(vector)))
     {

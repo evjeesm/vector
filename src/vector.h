@@ -59,7 +59,7 @@ vector_opts_t;
 * Callback types
 */
 typedef bool (*predicate_t) (const void *value, const void *element, void *param);
-typedef int (*compare_t) (const void *value, const void *element, void *param);
+typedef ssize_t (*compare_t) (const void *value, const void *element, void *param);
 
 /*
 * The wrapper for `vector_create_` function that provides default values.

@@ -572,7 +572,7 @@ static void memswap(char *restrict a, char *restrict b, size_t size)
     }
     tmp;
 
-    for (int i = 0; i < size / sizeof(tmp); ++i)
+    for (size_t i = 0; i < size / sizeof(tmp); ++i)
     {
         tmp._word = *(size_t*)a;
         *(size_t*)a = *(size_t*)b;
@@ -580,7 +580,7 @@ static void memswap(char *restrict a, char *restrict b, size_t size)
         a += sizeof(tmp);
         b += sizeof(tmp);
     }
-    for (int i = 0; i < size % sizeof(tmp); ++i, ++a, ++b)
+    for (size_t i = 0; i < size % sizeof(tmp); ++i, ++a, ++b)
     {
         tmp._bytes[0] = *a;
         *a = *b;
