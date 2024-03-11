@@ -123,6 +123,10 @@ void vector_clear(vector_t *vector);
 */
 size_t vector_size(const vector_t *vector);
 
+/*
+* Reports current element size.
+*/
+size_t vector_element_size(const vector_t *vector);
 
 /*
 * Reports current capacity of the vector.
@@ -201,6 +205,13 @@ bool vector_insert_fill(vector_t **vector, size_t index, size_t amount, const vo
 * (Allocation may fail, so returning operation status)
 */
 bool vector_binary_insert(vector_t **vector, compare_t cmp, const void *value, void *param, size_t *index);
+
+
+/*
+* Reserves a place for a single element using binary search.
+* returns -1 in case of failure or positive index of the reserved place.
+*/
+ssize_t vector_binary_reserve(vector_t **vector, compare_t cmp, const void *value, void *param);
 
 
 /*

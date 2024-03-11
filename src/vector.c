@@ -133,6 +133,10 @@ size_t vector_size(const vector_t *vector)
     return vector->size;
 }
 
+size_t vector_element_size(const vector_t *vector)
+{
+    return vector->opts.esize;
+}
 
 size_t vector_capacity(const vector_t *vector)
 {
@@ -242,6 +246,19 @@ bool vector_binary_insert(vector_t **vector, compare_t cmp, const void *value, v
         : 0;
     if (index) *index = place;
     return vector_insert_at(vector, place, value);
+}
+
+
+ssize_t vector_binary_reserve(vector_t **vector, compare_t cmp, const void *value, void *param)
+{
+    size_t size = vector_size(*vector);
+    size_t place = (0 != size)
+        ? binary_find_insert_place(*vector, cmp, value, param, 0, size - 1)
+        : 0;
+
+    VECTOR_INC(vector);
+    if (!make_space_for_range(*vector, place, 1)) return -1;
+    return place;
 }
 
 
