@@ -28,6 +28,15 @@
 #define VECTOR_INC(vector_pp) VECTOR_GROW(vector_pp, 1)
 #define VECTOR_DEC(vector_pp) VECTOR_SHRINK(vector_pp, 1)
 
+#ifndef NDEBUG
+#define DEBUG(code) code
+#else
+#define DEBUG(code)
+#endif
+
+#define ASSERT_OVERFLOW(esize, capacity, data_size, alloc_size, message) \
+    assert((data_size / esize == capacity && alloc_size > data_size) && message);
+
 struct vector_t
 {
     vector_opts_t opts;
@@ -60,44 +69,47 @@ vector_t *vector_create_(const vector_opts_t *opts)
     size_t next_cap = opts->initial_cap * opts->grow_factor;
     size_t grow_at = opts->initial_cap * opts->grow_threshold;
     size_t next_shrink_at = next_cap * opts->shrink_threshold;
-    size_t alloc_size = opts->initial_cap * opts->esize;
+    size_t data_size = opts->initial_cap * opts->esize;
+    size_t alloc_size = sizeof(vector_t) + opts->data_offset + data_size;
+
     vector_t *vec = NULL;
 
+    DEBUG( fprintf(stderr, "alloc_size %zu, data_size %zu\n", alloc_size, data_size); )
+
     assert(next_shrink_at <= grow_at);
+    ASSERT_OVERFLOW(opts->esize, opts->initial_cap, data_size, alloc_size, "allocation size overflow!");
 
     vector_error_callback_t error_cbk = (opts->error_handler.callback
         ? opts->error_handler.callback
         : default_error_callback);
 
-    if (alloc_size / opts->esize != opts->initial_cap
-        || (alloc_size + sizeof(vector_t) < alloc_size))
-    {
-        error_cbk(&vec, VECTOR_OVERFLOW_ERROR, opts->error_handler.param);
-        return NULL;
-    }
-
-    vec = (vector_t *) malloc(sizeof(vector_t) + opts->initial_cap * opts->esize);
+    vec = (vector_t *) malloc(alloc_size);
     if (!vec)
     {
         error_cbk(&vec, VECTOR_CREATE_ERROR, opts->error_handler.param);
-
         return NULL;
     }
+
     *vec = (vector_t){
         .opts = *opts,
         .capacity = opts->initial_cap,
     };
-    if (!vec->opts.error_handler.callback)
-    {
-        vec->opts.error_handler.callback = default_error_callback;
-    }
+
+    vec->opts.error_handler.callback = error_cbk;
     return vec;
+}
+
+
+void* vector_extended_header(const vector_t *vector)
+{
+    assert((vector->opts.data_offset != 0) && "trying to access extended header that wasn't alloc'd");
+    return (void*)vector->memory;
 }
 
 
 vector_t *vector_clone(const vector_t *vector)
 {
-    size_t alloc_size = sizeof(vector_t) + vector->capacity * vector->opts.esize;
+    size_t alloc_size = sizeof(vector_t) + vector->opts.data_offset + vector->capacity * vector->opts.esize;
     vector_t *clone = (vector_t *) malloc(alloc_size);
     if (!clone)
     {
@@ -133,10 +145,12 @@ size_t vector_size(const vector_t *vector)
     return vector->size;
 }
 
+
 size_t vector_element_size(const vector_t *vector)
 {
     return vector->opts.esize;
 }
+
 
 size_t vector_capacity(const vector_t *vector)
 {
@@ -186,7 +200,7 @@ void *vector_last(const vector_t *vector)
 void *vector_get(const vector_t *vector, size_t index)
 {
     if (vector->size == 0 || index >= vector->size) return NULL;
-    const void *dest = vector->memory + index * vector->opts.esize;
+    const void *dest = vector->memory + vector->opts.data_offset + index * vector->opts.esize;
     return (void*)dest;
 }
 
@@ -319,7 +333,13 @@ bool vector_truncate(vector_t **vector, size_t capacity)
         ? (*vector)->opts.initial_cap
         : capacity;
 
-    vector_t *vec = (vector_t*) realloc(*vector, sizeof(vector_t) + capacity * (*vector)->opts.esize);
+    vector_opts_t *opts = &(*vector)->opts;
+    size_t data_size = capacity * (*vector)->opts.esize;
+    size_t alloc_size = sizeof(vector_t) + (*vector)->opts.data_offset + data_size;
+
+    ASSERT_OVERFLOW(opts->esize, capacity, data_size, alloc_size, "allocation size overflow!");
+
+    vector_t *vec = (vector_t*) realloc(*vector, alloc_size);
     if (!vec) return false;
 
     vec->capacity = capacity;
@@ -519,12 +539,14 @@ static bool make_space_for_range(vector_t *vector, size_t index, size_t amount)
 
     if (index < vector->size)
     {
-        char *from = vector->memory + vector->opts.esize * index;
+        char *from = vector->memory + vector->opts.data_offset + vector->opts.esize * index;
         char *to = from + vector->opts.esize * amount;
 
         memmove(to, from, vector->opts.esize * (vector->size - index));
     }
+
     vector->size += amount;
+
     return true;
 }
 
@@ -605,6 +627,7 @@ static void memswap(char *restrict a, char *restrict b, size_t size)
     }
 }
 
+
 static bool has_enough_space_for(vector_t *vector, size_t amount)
 {
     return (vector->capacity - vector->size) >= amount;
@@ -624,6 +647,6 @@ static void default_error_callback(vector_t **vector, vector_error_t error, void
         default: operation = "UNKNOWN";
     }
 
-    fprintf(stderr, "Allocation error occured.\nvector at (%p) on %s\nabort()\n", *vector, operation);
+    fprintf(stderr, "Allocation error occured.\nvector at (%p) on %s\nabort()\n", (void*)*vector, operation);
     abort();
 }

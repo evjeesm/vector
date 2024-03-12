@@ -65,10 +65,17 @@ void teardown(void)
 }
 
 
-START_TEST (test_vector_overflow)
+START_TEST (test_vector_data_size_overflow_assert)
 {
     vector_t *vec;
-    vector_create(vec, .initial_cap = (-1ul / sizeof(int)) - 256);
+    vector_create(vec, .initial_cap = (-1ul / sizeof(int) + 1));
+}
+END_TEST
+
+START_TEST (test_vector_alloc_size_overflow_assert)
+{
+    vector_t *vec;
+    vector_create(vec, .initial_cap = (-1ul / sizeof(int) - 5));
 }
 END_TEST
 
@@ -130,8 +137,13 @@ Suite * vector_other_suite(void)
     tc_core = tcase_create("Core");
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
-#if CK_FORK != no
-    tcase_add_test_raise_signal(tc_core, test_vector_overflow, SIGABRT);
+
+/*
+ * Test assertions when overflow occures
+ */
+#ifdef CK_FORK
+    tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
 #endif
     tcase_add_test(tc_core, test_vector_out_of_memory_grow);
     tcase_add_test(tc_core, test_vector_out_of_memory_shrink);

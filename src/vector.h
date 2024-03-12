@@ -20,7 +20,6 @@
 typedef enum vector_error_t
 {
     VECTOR_CREATE_ERROR,
-    VECTOR_OVERFLOW_ERROR,
     VECTOR_CLONE_ERROR,
     VECTOR_GROW_ALLOC_ERROR,
     VECTOR_SHRINK_ALLOC_ERROR,
@@ -45,6 +44,7 @@ vector_error_handler_t;
 
 typedef struct vector_opts_t
 {
+    size_t data_offset; /* beginning of the data array relative to `memory` field */
     size_t esize; /* size of the element */
     size_t initial_cap;
     float grow_factor;
@@ -73,6 +73,7 @@ typedef ssize_t (*compare_t) (const void *value, const void *element, void *para
     _Pragma("GCC diagnostic push") \
     _Pragma("GCC diagnostic ignored \"-Woverride-init\"") \
     vec_ptr = vector_create_(&(vector_opts_t){ \
+        .data_offset = 0, \
         .esize = sizeof(int), \
         .initial_cap = 10, \
         .shrink_threshold = 0.25f, \
@@ -92,6 +93,11 @@ typedef ssize_t (*compare_t) (const void *value, const void *element, void *para
 */
 vector_t *vector_create_(const vector_opts_t *opts);
 
+
+/*
+* Function returns pointer to reserved space after vector's control struct 
+*/
+void* vector_extended_header(const vector_t *vector);
 
 /*
 * Makes a copy of the whole vector.
