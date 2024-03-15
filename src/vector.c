@@ -419,6 +419,8 @@ bool vector_reverse(vector_t **vector)
         vector_destroy(reversed);
         return false;
     }
+
+    vector_destroy(*vector);
     *vector = reversed;
     return true;
 }

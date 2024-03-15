@@ -85,7 +85,7 @@ Suite * vector_other_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
     tcase_add_test(tc_core, test_vector_swap_ranges);
-#if CK_FORK != no
+#ifdef CK_FORK
     tcase_add_test_raise_signal(tc_core, test_vector_swap_ranges_messed_order, SIGABRT);
 #endif
     tcase_add_test(tc_core, test_vector_reverse);

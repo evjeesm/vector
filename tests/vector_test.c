@@ -326,6 +326,21 @@ START_TEST (test_vector_binary_insert)
 }
 END_TEST
 
+
+START_TEST (test_vector_binary_insert_random)
+{
+    srand(3011);
+    int random;
+
+    for (int i = 0; i < 100; ++i)
+    {
+        random = rand();
+        vector_binary_insert(&vector, cmp, &random, NULL, NULL);
+    }
+}
+END_TEST
+
+
 START_TEST (test_vector_binary_find)
 {
     int table[] = {10, 23, 31, 1, 4, 34, 71, 15, 18, 5, 45, 99, 2, 0, 71, 22};
@@ -421,6 +436,7 @@ Suite * vector_suite(void)
     tcase_add_test(tc_core, test_vector_insert_at);
     tcase_add_test(tc_core, test_vector_remove);
     tcase_add_test(tc_core, test_vector_binary_insert);
+    tcase_add_test(tc_core, test_vector_binary_insert_random);
     tcase_add_test(tc_core, test_vector_binary_find);
     tcase_add_test(tc_core, test_vector_insert_fill_inbetween);
 
