@@ -33,6 +33,7 @@ static void teardown(void)
     vector_destroy(vector);
 }
 
+
 START_TEST (test_vector_create)
 {
     ck_assert_ptr_nonnull(vector);
@@ -40,6 +41,7 @@ START_TEST (test_vector_create)
     ck_assert_uint_eq(vector_capacity(vector), 10);
 }
 END_TEST
+
 
 START_TEST (test_vector_clone)
 {
@@ -54,6 +56,7 @@ START_TEST (test_vector_clone)
 }
 END_TEST
 
+
 START_TEST (test_vector_append_single)
 {
     bool status = vector_append_back(&vector, TMP_REF(int, 1));
@@ -66,11 +69,13 @@ START_TEST (test_vector_append_single)
 }
 END_TEST
 
+
 START_TEST (test_vector_pop_empty)
 {
     vector_pop_back(&vector);
 }
 END_TEST
+
 
 START_TEST (test_vector_pop_single)
 {
@@ -80,6 +85,7 @@ START_TEST (test_vector_pop_single)
     ck_assert_uint_eq(vector_size(vector), 0);
 }
 END_TEST
+
 
 START_TEST (test_vector_first)
 {
@@ -99,6 +105,7 @@ START_TEST (test_vector_first)
     ck_assert_ptr_eq(vector_first(vector), elem);
 }
 END_TEST
+
 
 START_TEST (test_vector_last)
 {
@@ -120,6 +127,8 @@ START_TEST (test_vector_last)
 }
 END_TEST
 
+
+
 START_TEST (test_vector_get)
 {
     ck_assert_ptr_null(vector_get(vector, 0));
@@ -132,6 +141,8 @@ START_TEST (test_vector_get)
     ck_assert_mem_eq(vector_get(vector, 1), TMP_REF(int, 999), sizeof(int));
 }
 END_TEST
+
+
 
 START_TEST (test_vector_set)
 {
@@ -155,6 +166,7 @@ START_TEST (test_vector_set)
 }
 END_TEST
 
+
 START_TEST (test_vector_append_front)
 {
     for (int appended = 0; appended < 100; ++appended)
@@ -168,6 +180,7 @@ START_TEST (test_vector_append_front)
     ck_assert_uint_eq(vector_size(vector), 100);
 }
 END_TEST
+
 
 START_TEST (test_vector_pop_front)
 {
@@ -185,6 +198,7 @@ START_TEST (test_vector_pop_front)
     }
 }
 END_TEST
+
 
 START_TEST (test_vector_truncate)
 {
@@ -204,6 +218,7 @@ START_TEST (test_vector_truncate)
 }
 END_TEST
 
+
 START_TEST (test_vector_clear)
 {
     for (int i = 0; i < 20; ++i)
@@ -217,6 +232,7 @@ START_TEST (test_vector_clear)
 }
 END_TEST
 
+
 START_TEST (test_vector_contains)
 {
     ck_assert(!vector_contains(vector, TMP_REF(int, 0)));
@@ -228,6 +244,7 @@ START_TEST (test_vector_contains)
     ck_assert(!vector_contains(vector, TMP_REF(int, 999)));
 }
 END_TEST
+
 
 START_TEST (test_vector_find)
 {
@@ -253,6 +270,7 @@ START_TEST (test_vector_find)
     ck_assert_mem_eq(p, TMP_REF(int, 30), sizeof(int));
 }
 END_TEST
+
 
 START_TEST (test_vector_insert_at)
 {
@@ -280,6 +298,7 @@ START_TEST (test_vector_insert_at)
 }
 END_TEST
 
+
 START_TEST (test_vector_remove)
 {
     vector_remove(&vector, 100);
@@ -297,6 +316,7 @@ START_TEST (test_vector_remove)
     }
 }
 END_TEST
+
 
 START_TEST (test_vector_binary_insert)
 {
@@ -359,6 +379,7 @@ START_TEST (test_vector_binary_find)
 }
 END_TEST
 
+
 START_TEST (test_vector_insert_fill)
 {
     bool status = vector_insert_fill(&vector, 0, 10, TMP_REF(int, 999));
@@ -374,6 +395,7 @@ START_TEST (test_vector_insert_fill)
     }
 }
 END_TEST
+
 
 START_TEST (test_vector_insert_fill_inbetween)
 {
@@ -444,6 +466,7 @@ Suite * vector_suite(void)
 
     return s;
 }
+
 
 int main(void)
 {
