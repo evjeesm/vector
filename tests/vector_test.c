@@ -4,17 +4,6 @@
 
 #define BOOL_STR(value) (value ? "`true`" : "`false`")
 
-static ssize_t cmp(const void *a, const void *b, void *param)
-{
-    (void)param;
-    return (ssize_t) *(int*)a - *(int*)b;
-}
-
-static bool pred(const void *a, const void *b, void *param)
-{
-    return *(int*)a == *(int*)b;
-}
-
 static vector_t *vector;
 
 static void setup_empty(void)
@@ -35,6 +24,22 @@ START_TEST (test_vector_create)
 {
     ck_assert_ptr_nonnull(vector);
     ck_assert_uint_eq(vector_capacity(vector), 10);
+    ck_assert_uint_eq(vector_initial_capacity(vector), 10);
+}
+END_TEST
+
+
+START_TEST (test_vector_truncate)
+{
+    const size_t new_cap = 1024;
+    ck_assert(vector_truncate(&vector, new_cap));
+    ck_assert_uint_eq(vector_capacity(vector), new_cap);
+
+    vector_set(vector, new_cap - 1, TMP_REF(int, 999)); /* set last element after truncation */
+    ck_assert_mem_eq(vector_get(vector, new_cap - 1), TMP_REF(int, 999), sizeof(int)); /* check memory */
+
+    ck_assert(vector_truncate(&vector, 0)); /* truncate to zero is allowed */
+    ck_assert_uint_eq(vector_capacity(vector), 0);
 }
 END_TEST
 
@@ -51,6 +56,7 @@ Suite * vector_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup_empty, teardown);
     tcase_add_test(tc_core, test_vector_create);
+    tcase_add_test(tc_core, test_vector_truncate);
     suite_add_tcase(s, tc_core);
 
     return s;

@@ -46,6 +46,7 @@ void xfree(void *ptr)
 
 static void test_error_callback(vector_t **vector, vector_error_t error, void *param)
 {
+    (void) param;
     alloc_error = true;
     error_type = error;
 }
