@@ -79,52 +79,6 @@ START_TEST (test_vector_alloc_size_overflow_assert)
 }
 END_TEST
 
-START_TEST (test_vector_out_of_memory_grow)
-{
-    limit = (c_header_size + 10 * sizeof(int)) /* initial capacity */
-          + (c_header_size + 15 * sizeof(int)); /* grown */
-
-    size_t iter_will_fail = 15 * 0.75;
-
-    for (int i = 1; i < iter_will_fail; ++i)
-    {
-        ck_assert(vector_append_back(&vector, TMP_REF(int, 1)));
-        ck_assert(!alloc_error);
-    }
-
-    ck_assert(vector_append_back(&vector, TMP_REF(int, 1))); /* operation succeeded because size < capacity */
-    ck_assert(alloc_error);
-    ck_assert_int_eq(error_type, VECTOR_GROW_ALLOC_ERROR); 
-}
-END_TEST
-
-START_TEST (test_vector_out_of_memory_shrink)
-{
-    limit = (c_header_size + 10 * sizeof(int)) /* initial capacity */
-          + (c_header_size + 15 * sizeof(int)) /* grown */
-          + (c_header_size + 10 * sizeof(int)) /* shrink back to initial */;
-
-    size_t first_grow = 10 * 0.75;
-
-    for (int i = 1; i <= first_grow; ++i)
-    {
-        ck_assert(vector_append_back(&vector, TMP_REF(int, 1)));
-        ck_assert(!alloc_error);
-    }
-    
-    size_t first_shrink = 15 * 0.25;
-
-    while (vector_size(vector) > first_shrink)
-    {
-        vector_pop_back(&vector);
-        ck_assert(!alloc_error);
-    }
-
-    vector_pop_back(&vector);
-    ck_assert(alloc_error);
-    ck_assert_int_eq(error_type, VECTOR_SHRINK_ALLOC_ERROR); 
-}
-END_TEST
 
 Suite * vector_other_suite(void)
 {
@@ -145,8 +99,6 @@ Suite * vector_other_suite(void)
     tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
 #endif
-    tcase_add_test(tc_core, test_vector_out_of_memory_grow);
-    tcase_add_test(tc_core, test_vector_out_of_memory_shrink);
     suite_add_tcase(s, tc_core);
 
     return s;

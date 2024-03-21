@@ -19,10 +19,7 @@
 
 typedef enum vector_error_t
 {
-    VECTOR_CREATE_ERROR,
-    VECTOR_CLONE_ERROR,
-    VECTOR_GROW_ALLOC_ERROR,
-    VECTOR_SHRINK_ALLOC_ERROR,
+    VECTOR_ALLOC_ERROR = 0,
     VECTOR_ERROR_LAST
 }
 vector_error_t;
@@ -45,11 +42,8 @@ vector_error_handler_t;
 typedef struct vector_opts_t
 {
     size_t data_offset; /* beginning of the data array relative to `memory` field */
-    size_t esize; /* size of the element */
+    size_t element_size; /* size of the element */
     size_t initial_cap;
-    float grow_factor;
-    float grow_threshold;
-    float shrink_threshold;
     vector_error_handler_t error_handler;
 }
 vector_opts_t;
@@ -63,22 +57,14 @@ typedef ssize_t (*compare_t) (const void *value, const void *element, void *para
 
 /*
 * The wrapper for `vector_create_` function that provides default values.
-* Usecase:
-*    vector_create(vec,
-*       .esize = sizeof(float),
-*       .initial_cap = 64,
-*       .grow_factor = 2.f);
 */
 #define vector_create(vec_ptr, ...) {\
     _Pragma("GCC diagnostic push") \
     _Pragma("GCC diagnostic ignored \"-Woverride-init\"") \
     vec_ptr = vector_create_(&(vector_opts_t){ \
         .data_offset = 0, \
-        .esize = sizeof(int), \
+        .element_size = sizeof(int), \
         .initial_cap = 10, \
-        .shrink_threshold = 0.25f, \
-        .grow_threshold = 0.75f, \
-        .grow_factor = 1.5f, \
         __VA_ARGS__ \
     }); \
     _Pragma("GCC diagnostic pop") \
@@ -95,9 +81,16 @@ vector_t *vector_create_(const vector_opts_t *opts);
 
 
 /*
+* Deallocates vector. After the call pointer will be invalidated.
+*/
+void vector_destroy(vector_t *vector);
+
+
+/*
 * Function returns pointer to reserved space after vector's control struct 
 */
-void* vector_extended_header(const vector_t *vector);
+void* vector_get_ext_header(const vector_t *vector);
+
 
 /*
 * Makes a copy of the whole vector.
@@ -111,23 +104,6 @@ vector_t *vector_clone(const vector_t *vector);
 */
 void vector_copy(void *dest, const vector_t *vector, size_t offset, size_t length);
 
-
-/*
-* Deallocates vector. After the call pointer will be invalidated.
-*/
-void vector_destroy(vector_t *vector);
-
-
-/*
-* Removes all of the elements of the vector. But not performs any grow/shrink operations.
-*/
-void vector_clear(vector_t *vector);
-
-
-/*
-* Reports current amount of elements containing within the vector.
-*/
-size_t vector_size(const vector_t *vector);
 
 /*
 * Reports current element size.
@@ -151,7 +127,7 @@ bool vector_contains(const vector_t *vector, const void *value);
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
 */
-void *vector_find(const vector_t *vector, const void *value, predicate_t predicate, void *param);
+void *vector_linear_find(const vector_t *vector, const void *value, const size_t limit, predicate_t predicate, void *param);
 
 
 /*
@@ -159,21 +135,7 @@ void *vector_find(const vector_t *vector, const void *value, predicate_t predica
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
 */
-void *vector_binary_find(const vector_t *vector, compare_t cmp, const void *value, void *param);
-
-
-/*
-* Returns pointer for the first element in the vector or
-* null if vector is empty.
-*/
-void *vector_first(const vector_t *vector);
-
-
-/*
-* Returns pointer for the last element in the vector or
-* null if vector is empty.
-*/
-void *vector_last(const vector_t *vector);
+void *vector_binary_find(const vector_t *vector, const void *value, const size_t limit, compare_t cmp, void *param);
 
 
 /*
@@ -186,23 +148,19 @@ void *vector_get(const vector_t *vector, size_t index);
 /*
 * Sets element at given `index` to a `value`.
 * If `value` is a null pointer, then element will be filled with zeroes.
-* May fail if index is invalid.
 */
-bool vector_set(vector_t *vector, size_t index, const void *value);
+void vector_set(vector_t *vector, size_t index, const void *value);
 
 
 /*
-* Inserts new element at given `index`, shifting one element forward
-* from that index.
-* (Allocation may fail, so returning operation status)
+* Copies element's state at `index` across `amount` of elements including index.
+*
+*   | 0 | 1 | 2 | 3 |
+*   |   | X |       | index = 1
+*   |   | X | X | X | amount = 3
+*
 */
-bool vector_insert_at(vector_t **vector, size_t index, const void *value);
-
-
-/*
-* Fills vector range with `amount` copies of same value at `index`.
-*/
-bool vector_insert_fill(vector_t **vector, size_t index, size_t amount, const void *value);
+void vector_spread(vector_t *vector, size_t index, size_t amount);
 
 
 /*
@@ -210,60 +168,7 @@ bool vector_insert_fill(vector_t **vector, size_t index, size_t amount, const vo
 * that contained in the vector are ordered in same way.
 * (Allocation may fail, so returning operation status)
 */
-bool vector_binary_insert(vector_t **vector, compare_t cmp, const void *value, void *param, size_t *index);
-
-
-/*
-* Reserves a place for a single element using binary search.
-* returns -1 in case of failure or positive index of the reserved place.
-*/
-ssize_t vector_binary_reserve(vector_t **vector, compare_t cmp, const void *value, void *param);
-
-
-/*
-* Appends element at vector's tail, growing vector on demand.
-* Updates provided pointer to a new one when relocation happen.
-* (Allocation may fail, so returning operation status)
-*/
-bool vector_append_back(vector_t **vector, const void *value);
-
-
-/*
-* Removes element at tail of the vector, shrinking vector on demand.
-* May update provided vector pointer.
-*/
-void vector_pop_back(vector_t **vector);
-
-
-/*
-* Appends element at vector's head by shifting one element forward 
-* and growing vector on demand.
-* Updates provided pointer to a new one when relocation happen.
-* (Allocation may fail, so returning operation status)
-*/
-bool vector_append_front(vector_t **vector, const void *value);
-
-
-/*
-* Removes element from vector's head by shifting one element backwards
-* and shrinking vector on demand.
-* May update provided vector pointer.
-*/
-void vector_pop_front(vector_t **vector);
-
-
-/*
-* Removes element at given `index`.
-* May fail on realloc.
-*/
-void vector_remove(vector_t **vector, size_t index);
-
-
-/*
-* Removes range of elements of `amount` length at given `index`.
-* May fail on realloc.
-*/
-void vector_remove_range(vector_t **vector, size_t index, size_t amount);
+bool vector_binary_insert(vector_t **vector, const void *value, const size_t limit, compare_t cmp, void *param, size_t *index);
 
 
 /*
@@ -279,16 +184,5 @@ bool vector_truncate(vector_t **vector, size_t capacity);
 */
 void vector_swap(vector_t *vector, size_t index_a, size_t index_b);
 
-
-/*
-* 
-*/
-bool vector_swap_ranges(vector_t **vector, size_t idx_a, size_t len_a, size_t idx_b, size_t len_b);
-
-
-/*
-* Reverse order of elements in the vector 
-*/
-bool vector_reverse(vector_t **vector);
 
 #endif/*_VECTOR_H_*/
