@@ -187,6 +187,13 @@ void vector_spread(vector_t *const vector, const size_t index, const size_t amou
 
 
 /*
+* Shifting length elements at `offset` by `shift` times in direction of a sign.
+* TODO
+*/
+void vector_shift(vector_t *const vector, const size_t offset, const size_t length, const ssize_t shift);
+
+
+/*
 * Swaps values of elements designated by indicies.
 */
 void vector_swap(vector_t *const vector, const size_t index_a, const size_t index_b);
