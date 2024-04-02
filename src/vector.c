@@ -29,12 +29,14 @@ struct vector_t
 **                            */
 
 static size_t calculate_alloc_size(const vector_opts_t *const opts, const size_t capacity);
-static bool equal_bytes(const void *a, const void *b, void *param);
+
 static void memswap(char *restrict a, char *restrict b, size_t size);
 static void default_error_callback(const vector_t *const *const vector,
         const vector_error_t error, void *param);
 static void *binary_find(const vector_t *const vector, const void *const value,
-        const ssize_t start, const ssize_t end, const compare_t cmp, void *param);
+        const size_t start, const size_t end, const compare_t cmp, void *param);
+static size_t binary_find_insert_place(const vector_t *const vector, const void *value,
+        const size_t start, const size_t end, const compare_t cmp, void *param);
 
 /**                          ***
 * === API Implementation   === *
@@ -100,7 +102,7 @@ vector_t *vector_clone(const vector_t *const vector)
 }
 
 
-void vector_copy(char *const dest, const vector_t *const vector, const size_t offset, const size_t length)
+void vector_copy(const vector_t *const vector, char *const dest, const size_t offset, const size_t length)
 {
     assert(dest);
     assert(vector);
@@ -110,8 +112,18 @@ void vector_copy(char *const dest, const vector_t *const vector, const size_t of
 }
 
 
-void vector_part_copy(char *dest,
-        const vector_t *const vector,
+void vector_move(const vector_t *const vector, char *dest, const size_t offset, const size_t length)
+{
+    assert(dest);
+    assert(vector);
+    assert((offset + length <= vector_capacity(vector)) && "`offset + length` exceeds vector's capacity!");
+
+    memmove(dest, vector_get(vector, offset), length * (vector_element_size(vector)));
+}
+
+
+void vector_part_copy(const vector_t *const vector,
+        char *dest,
         const size_t offset,
         const size_t length,
         const size_t part_offset,
@@ -167,6 +179,12 @@ void *vector_linear_find(const vector_t *const vector, const void *const value, 
 }
 
 
+bool equal_bytes(const void *const value, const void *const element, void *param)
+{
+    return 0 == memcmp(value, element, (size_t)param);
+}
+
+
 void *vector_binary_find(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param)
 {
     assert(vector);
@@ -175,6 +193,30 @@ void *vector_binary_find(const vector_t *const vector, const void *const value, 
 
     assert((limit <= vector_capacity(vector)) && "Limit out of capacity bounds!");
     return binary_find(vector, value, 0, limit, cmp, param);
+}
+
+
+size_t vector_binary_find_insert_place(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param)
+{
+    assert(vector);
+    assert(value);
+    assert(cmp);
+
+    assert((limit <= vector_capacity(vector)) && "Limit out of capacity bounds!");
+    return binary_find_insert_place(vector, value, 0, limit, cmp, param);
+}
+
+
+ssize_t cmp_lex_asc(const void *value, const void *element, void *param)
+{
+
+    return memcmp(value, element, (size_t)param);
+}
+
+
+ssize_t cmp_lex_dsc(const void *value, const void *element, void *param)
+{
+    return memcmp(element, value, (size_t)param);
 }
 
 
@@ -216,14 +258,27 @@ void vector_spread(vector_t *const vector, const size_t index, const size_t amou
     for (; (elements_set + elements_set) <= amount; elements_set += elements_set)
     {
         void *dest = vector_get(vector, index + elements_set);
-        vector_copy(dest, vector, index, elements_set);
+        vector_copy(vector, dest, index, elements_set);
     }
     /* copy rest that left */
     for (; elements_set < amount; ++elements_set)
     {
         void *dest = vector_get(vector, index + elements_set);
-        vector_copy(dest, vector, index + elements_set - 1, 1);
+        vector_copy(vector, dest, index + elements_set - 1, 1);
     }
+}
+
+
+void vector_shift(vector_t *const vector, const size_t offset, const size_t length, const ssize_t shift)
+{
+    assert(vector);
+    assert(shift != 0);
+    const size_t capacity = vector_capacity(vector);
+    assert((offset < capacity) && "Offset out of bounds.");
+    assert((offset + shift >= 0) && "Shifted range underflows allocated buffer");
+    assert((offset + shift + length <= capacity) && "Shifted range exceedes capacity");
+
+    vector_move(vector, vector_get(vector, offset + shift), offset, length);
 }
 
 
@@ -272,16 +327,10 @@ static size_t calculate_alloc_size(const vector_opts_t *const opts, const size_t
 }
 
 
-static bool equal_bytes(const void *a, const void *b, void *param)
-{
-    return 0 == memcmp(a, b, (size_t)param);
-}
-
-
 static size_t binary_find_insert_place(const vector_t *const vector,
         const void *value,
-        const ssize_t start,
-        const ssize_t end,
+        const size_t start,
+        const size_t end,
         const compare_t cmp,
         void *param)
 {
@@ -290,7 +339,7 @@ static size_t binary_find_insert_place(const vector_t *const vector,
         return start;
     }
 
-    const ssize_t middle = (start + end) / 2;
+    const size_t middle = (start + end) / 2;
     const void *middle_value = vector_get(vector, middle);
 
     if (0 == cmp(value, middle_value, param))
@@ -309,8 +358,8 @@ static size_t binary_find_insert_place(const vector_t *const vector,
 
 static void *binary_find(const vector_t *const vector,
         const void *const value,
-        const ssize_t start,
-        const ssize_t end,
+        const size_t start,
+        const size_t end,
         const compare_t cmp,
         void *param)
 {
@@ -319,7 +368,7 @@ static void *binary_find(const vector_t *const vector,
         return NULL;
     }
 
-    const ssize_t middle = (start + end) / 2;
+    const size_t middle = (start + end) / 2;
     void *middle_value = vector_get(vector, middle);
 
     if (0 == cmp(value, middle_value, param))

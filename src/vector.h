@@ -105,9 +105,15 @@ bool vector_truncate(vector_t **const vector, const size_t capacity);
 
 
 /*
-* Copies range [offset, offset + length) elements into a destination pointer.
+* Copies range [offset, offset + length) elements into a destination pointer. Destination pointer can point to vector's buffer.
 */
-void vector_copy(char *dest, const vector_t *const vector, const size_t offset, const size_t length);
+void vector_copy(const vector_t *const vector, char *dest, const size_t offset, const size_t length);
+
+
+/*
+* Works as `vector_copy` but supports overlapping regions.
+*/
+void vector_move(const vector_t *const vector, char *dest, const size_t offset, const size_t length);
 
 
 /*
@@ -115,8 +121,8 @@ void vector_copy(char *dest, const vector_t *const vector, const size_t offset, 
 * where part of the element described by `part_offset` and `part_length` in bytes.
 * All parts stored in a contiguous destination array one next to another.
 */
-void vector_part_copy(char *dest,
-        const vector_t *const vector,
+void vector_part_copy(const vector_t *const vector,
+        char *dest,
         const size_t offset,
         const size_t length,
         const size_t part_offset,
@@ -150,11 +156,39 @@ void *vector_linear_find(const vector_t *const vector, const void *const value, 
 
 
 /*
+* Predicate for byte comparison,
+* param is used to pass element size by value (explicit cast to void* required)
+*/
+bool equal_bytes(const void *const value, const void *const element, void *param);
+
+
+/*
 * Binary search for a value in the vector with parametrized compare function.
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
 */
 void *vector_binary_find(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param);
+
+
+/*
+* Binary search that returns index of the insert position for a new value
+* that satisfies vector's ordering.
+*/
+size_t vector_binary_find_insert_place(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param);
+
+
+/*
+* Lexicographic comparison in ascending order.
+* param is used to pass element size by value (explicit cast to void* required)
+*/
+ssize_t cmp_lex_asc(const void *const value, const void *const element, void *param);
+
+
+/*
+* Lexicographic comparison in descending order.
+* param is used to pass element size by value (explicit cast to void* required)
+*/
+ssize_t cmp_lex_dsc(const void *const value, const void *const element, void *param);
 
 
 /*
@@ -188,7 +222,7 @@ void vector_spread(vector_t *const vector, const size_t index, const size_t amou
 
 /*
 * Shifting length elements at `offset` by `shift` times in direction of a sign.
-* TODO
+* Data will be overriden by shifted range.
 */
 void vector_shift(vector_t *const vector, const size_t offset, const size_t length, const ssize_t shift);
 
