@@ -54,7 +54,7 @@ void vector_create_(vector_t **const vector, const vector_opts_t *const opts)
         ? opts->error_handler.callback
         : (const vector_error_callback_t) default_error_callback);
 
-    vec = (vector_t *) malloc(alloc_size);
+    vec = (vector_t *) vector_alloc(alloc_size);
     if (!vec)
     {
         error_cbk(&vec, VECTOR_ALLOC_ERROR, opts->error_handler.param);
@@ -74,7 +74,7 @@ void vector_create_(vector_t **const vector, const vector_opts_t *const opts)
 void vector_destroy(vector_t *const vector)
 {
     assert(vector);
-    free(vector);
+    vector_free(vector);
 }
 
 
@@ -91,7 +91,7 @@ vector_t *vector_clone(const vector_t *const vector)
     assert(vector);
 
     const size_t alloc_size = calculate_alloc_size(&vector->opts, vector_capacity(vector));
-    vector_t *clone = (vector_t *) malloc(alloc_size);
+    vector_t *clone = (vector_t *) vector_alloc(alloc_size);
     if (!clone)
     {
         VECTOR_HANDLE_ERROR((vector_t **)&vector, VECTOR_ALLOC_ERROR);
@@ -289,7 +289,7 @@ bool vector_truncate(vector_t **const vector, const size_t capacity)
     const vector_opts_t *opts = &(*vector)->opts;
     const size_t alloc_size = calculate_alloc_size(opts, capacity);
 
-    vector_t *vec = (vector_t*) realloc(*vector, alloc_size);
+    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size);
     if (!vec)
     {
         VECTOR_HANDLE_ERROR(vector, VECTOR_ALLOC_ERROR);
@@ -313,6 +313,23 @@ void vector_swap(vector_t *const vector, const size_t index_a, const size_t inde
     memswap(a, b, vector_element_size(vector));
 }
 
+
+inline void *vector_alloc(const size_t alloc_size)
+{
+    return malloc(alloc_size);
+}
+
+
+inline void *vector_realloc(void *ptr, const size_t alloc_size)
+{
+    return realloc(ptr, alloc_size);
+}
+
+
+inline void vector_free(void *ptr)
+{
+    free(ptr);
+}
 
 /**                       **
 * === Static Functions === *

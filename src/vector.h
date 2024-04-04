@@ -5,15 +5,6 @@
 #include <stddef.h>  /* size_t */
 #include <sys/types.h> /* ssize_t */
 
-#ifdef MOCK_MALLOC
-    #define malloc xmalloc
-    #define realloc xrealloc
-    #define free xfree
-    extern void *xmalloc(size_t size);
-    extern void *xrealloc(void *ptr, size_t size);
-    extern void xfree(void *ptr);
-#endif
-
 #define TMP_REF(type, value) (type[1]){value}
 
 typedef enum vector_error_t
@@ -231,6 +222,16 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
 * Swaps values of elements designated by indicies.
 */
 void vector_swap(vector_t *const vector, const size_t index_a, const size_t index_b);
+
+
+/*
+* Allocator functions.
+*/
+void *vector_alloc(const size_t alloc_size);
+
+void *vector_realloc(void *ptr, const size_t alloc_size);
+
+void vector_free(void *ptr);
 
 
 #endif/*_VECTOR_H_*/

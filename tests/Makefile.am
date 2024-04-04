@@ -10,8 +10,8 @@ vector_test_CFLAGS = @CHECK_CFLAGS@
 vector_test_LDADD = $(top_builddir)/src/libvector.la @CHECK_LIBS@
 
 vector_test_failures_SOURCES = vector_test_failures.c $(top_builddir)/src/vector.h
-vector_test_failures_CFLAGS = @CHECK_CFLAGS@ -DMOCK_MALLOC
-vector_test_failures_LDADD = $(top_builddir)/src/libvector_mock.la @CHECK_LIBS@
+vector_test_failures_CFLAGS = @CHECK_CFLAGS@
+vector_test_failures_LDADD = $(top_builddir)/src/libvector.la @CHECK_LIBS@
 
 # VALGRIND_SUPPRESSIONS_FILES = my-project.supp
 # EXTRA_DIST = my-project.supp
