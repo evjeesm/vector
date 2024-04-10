@@ -314,19 +314,19 @@ void vector_swap(vector_t *const vector, const size_t index_a, const size_t inde
 }
 
 
-inline void *vector_alloc(const size_t alloc_size)
+__attribute__((weak)) void *vector_alloc(const size_t alloc_size)
 {
     return malloc(alloc_size);
 }
 
 
-inline void *vector_realloc(void *ptr, const size_t alloc_size)
+__attribute__((weak)) void *vector_realloc(void *ptr, const size_t alloc_size)
 {
     return realloc(ptr, alloc_size);
 }
 
 
-inline void vector_free(void *ptr)
+__attribute__((weak)) void vector_free(void *ptr)
 {
     free(ptr);
 }

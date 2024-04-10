@@ -23,6 +23,7 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign 1.11.2])
 AM_PROG_AR
 LT_INIT
 AC_PROG_CC
+AC_PROG_CPP
 
 # Checks for libraries.
 PKG_CHECK_MODULES([CHECK], [check >= 0.9.6])
@@ -31,6 +32,7 @@ PKG_CHECK_MODULES([CHECK], [check >= 0.9.6])
 AC_CHECK_HEADERS([stddef.h stdlib.h string.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
+AC_C_RESTRICT
 AC_CHECK_HEADER_STDBOOL
 AC_TYPE_SIZE_T
 AC_TYPE_SSIZE_T

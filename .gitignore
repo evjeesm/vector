@@ -1,0 +1,10 @@
+*
+
+
+!src/
+!tests/
+!*.c
+!*.h
+
+!.gitignore
+config.h

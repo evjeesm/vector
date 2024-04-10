@@ -1,4 +1,13 @@
+noinst_LTLIBRARIES = libvector_funcs.la
+lib_LTLIBRARIES = libvector.la libvector_static.la
 
-lib_LTLIBRARIES = libvector.la
-libvector_la_SOURCES = vector.c vector.h
-libvector_la_LDFLAGS = -lm
+libvector_funcs_la_SOURCES = vector.c vector.h
+
+libvector_la_SOURCES = 
+libvector_la_LDFLAGS = -shared
+libvector_la_LIBADD = libvector_funcs.la
+
+libvector_static_la_SOURCES = 
+libvector_static_la_LDFLAGS= -static
+libvector_static_la_LIBADD = libvector_funcs.la
+
