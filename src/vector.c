@@ -275,7 +275,7 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
     assert(shift != 0);
     const size_t capacity = vector_capacity(vector);
     assert((offset < capacity) && "Offset out of bounds.");
-    assert((offset + shift >= 0) && "Shifted range underflows allocated buffer");
+    assert(((ssize_t)offset + shift >= 0) && "Shifted range underflows allocated buffer");
     assert((offset + shift + length <= capacity) && "Shifted range exceedes capacity");
 
     vector_move(vector, vector_get(vector, offset + shift), offset, length);
