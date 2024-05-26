@@ -9,4 +9,7 @@
 !*.ac
 
 !.gitignore
+!.clangd
+!autogen.sh
+
 config.h

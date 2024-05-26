@@ -21,7 +21,7 @@ typedef struct vector_t vector_t;
 *   vector - location of the vector pointer.
 *   param - user provided argument for error handler callback.
 */
-typedef void (*vector_error_callback_t)(vector_t **vector, vector_error_t error, void *param);
+typedef void (*vector_error_callback_t)(vector_t **vector, vector_error_t error, void *const param);
 typedef struct vector_error_handler_t
 {
     vector_error_callback_t callback;
@@ -41,8 +41,8 @@ vector_opts_t;
 /*
 * Callback types
 */
-typedef bool (*predicate_t) (const void *const value, const void *const element, void *param);
-typedef ssize_t (*compare_t) (const void *const value, const void *const element, void *param);
+typedef bool (*predicate_t) (const void *const element, void *const param);
+typedef ssize_t (*compare_t) (const void *const value, const void *const element, void *const param);
 
 /*
 * The wrapper for `vector_create_` function that provides default values.
@@ -143,14 +143,7 @@ size_t vector_initial_capacity(const vector_t *const vector);
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
 */
-void *vector_linear_find(const vector_t *const vector, const void *const value, const size_t limit, const predicate_t predicate, void *param);
-
-
-/*
-* Predicate for byte comparison,
-* param is used to pass element size by value (explicit cast to void* required)
-*/
-bool equal_bytes(const void *const value, const void *const element, void *param);
+void *vector_linear_find(const vector_t *const vector, const size_t limit, const predicate_t predicate, void *const param);
 
 
 /*
@@ -172,14 +165,14 @@ size_t vector_binary_find_insert_place(const vector_t *const vector, const void 
 * Lexicographic comparison in ascending order.
 * param is used to pass element size by value (explicit cast to void* required)
 */
-ssize_t cmp_lex_asc(const void *const value, const void *const element, void *param);
+ssize_t cmp_lex_asc(const void *const value, const void *const element, void *const param);
 
 
 /*
 * Lexicographic comparison in descending order.
 * param is used to pass element size by value (explicit cast to void* required)
 */
-ssize_t cmp_lex_dsc(const void *const value, const void *const element, void *param);
+ssize_t cmp_lex_dsc(const void *const value, const void *const element, void *const param);
 
 
 /*

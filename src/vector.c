@@ -159,10 +159,9 @@ size_t vector_initial_capacity(const vector_t *const vector)
 }
 
 
-void *vector_linear_find(const vector_t *const vector, const void *const value, const size_t limit, const predicate_t predicate, void *param)
+void *vector_linear_find(const vector_t *const vector, const size_t limit, const predicate_t predicate, void *param)
 {
     assert(vector);
-    assert(value);
     assert(predicate);
 
     assert((limit <= vector_capacity(vector)) && "Vector out of capacity bounds!");
@@ -170,18 +169,12 @@ void *vector_linear_find(const vector_t *const vector, const void *const value, 
     for (size_t i = 0; i < limit; ++i)
     {
         void *element = vector_get(vector, i);
-        if (predicate(value, element, param))
+        if (predicate(element, param))
         {
             return element;
         }
     }
     return NULL;
-}
-
-
-bool equal_bytes(const void *const value, const void *const element, void *param)
-{
-    return 0 == memcmp(value, element, (size_t)param);
 }
 
 

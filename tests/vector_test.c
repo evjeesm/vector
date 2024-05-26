@@ -244,21 +244,41 @@ START_TEST (test_vector_part_copy)
 END_TEST
 
 
+static bool greater_then(const void *const element, void *const param)
+{
+    const int *elem = (int*)element;
+    const int *value = (int*)param;
+    return *elem > *value;
+}
+
+typedef struct
+{
+    int min, max;
+}
+in_range_t;
+
+static bool in_range_excl(const void *const element, void *const param)
+{
+    const int *el = element;
+    in_range_t *in_range = param;
+
+    return in_range->min < *el && *el < in_range->max;
+}
+
 START_TEST (test_vector_linear_find)
 {
     const size_t capacity = vector_capacity(vector);
     const int data[] = {45, 20, -33, 91, 63, 9, 500, 1, 0, 7};
     memcpy(vector_get(vector, 0), data, sizeof(int) * capacity);
 
-    for (size_t i = 0; i < capacity; ++i)
-    {
-        void *element = vector_get(vector, i);
-        void *found = vector_linear_find(vector, element, capacity, equal_bytes, (void*)sizeof(int));
+    void *found = vector_linear_find(vector, capacity, greater_then, TMP_REF(int, 90));
+    ck_assert_int_eq(*(int*)found, 91);
 
-        ck_assert(found);
-        ck_assert_int_eq(*(int*)element, *(int*)found);
-        ck_assert_ptr_eq(element, found);
-    }
+    found = vector_linear_find(vector, capacity, greater_then, TMP_REF(int, 500));
+    ck_assert_ptr_null(found);
+
+    found = vector_linear_find(vector, capacity, in_range_excl, &(in_range_t){.min = 45, .max = 91});
+    ck_assert_int_eq(*(int*)found, 63);
 }
 END_TEST
 
@@ -291,7 +311,6 @@ END_TEST
 
 START_TEST (test_vector_binary_find_lex)
 {
-    const size_t capacity = vector_capacity(vector);
     const size_t words = 5;
     const size_t word_len = 3;
 
