@@ -83,6 +83,12 @@ void* vector_get_ext_header(const vector_t *const vector);
 
 
 /*
+* Access data_offset property for extensions.
+*/
+size_t vector_data_offset(const vector_t *const vector);
+
+
+/*
 * Makes a copy of the whole vector.
 * (Allocation may fail).
 */

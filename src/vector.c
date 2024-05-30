@@ -78,11 +78,18 @@ void vector_destroy(vector_t *const vector)
 }
 
 
-void* vector_get_ext_header(const vector_t *vector)
+void* vector_get_ext_header(const vector_t *const vector)
 {
     assert(vector);
     assert((vector->opts.data_offset != 0) && "trying to access extended header that wasn't alloc'd");
     return (void*)vector->memory;
+}
+
+
+size_t vector_data_offset(const vector_t *const vector)
+{
+    assert(vector);
+    return vector->opts.data_offset;
 }
 
 
