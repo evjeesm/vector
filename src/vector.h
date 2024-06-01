@@ -21,7 +21,7 @@ typedef struct vector_t vector_t;
 *   vector - location of the vector pointer.
 *   param - user provided argument for error handler callback.
 */
-typedef void (*vector_error_callback_t)(vector_t **vector, vector_error_t error, void *const param);
+typedef void (*vector_error_callback_t)(const vector_t *const *const vector, const vector_error_t error, void *const param);
 typedef struct vector_error_handler_t
 {
     vector_error_callback_t callback;
@@ -97,8 +97,9 @@ vector_t *vector_clone(const vector_t *const vector);
 
 /*
 * Truncates vector to a desired capacity, wiping out elements beyond new capacity bounds.
+* Takes third parameter which denotes error type.
 */
-bool vector_truncate(vector_t **const vector, const size_t capacity);
+bool vector_truncate(vector_t **const vector, const size_t capacity, const vector_error_t error);
 
 
 /*

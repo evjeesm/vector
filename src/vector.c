@@ -282,7 +282,7 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
 }
 
 
-bool vector_truncate(vector_t **const vector, const size_t capacity)
+bool vector_truncate(vector_t **const vector, const size_t capacity, const vector_error_t error)
 {
     assert(vector && *vector);
 
@@ -292,7 +292,7 @@ bool vector_truncate(vector_t **const vector, const size_t capacity)
     vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size);
     if (!vec)
     {
-        VECTOR_HANDLE_ERROR(vector, VECTOR_ALLOC_ERROR);
+        VECTOR_HANDLE_ERROR(vector, error);
         return false;
     }
 

@@ -106,7 +106,7 @@ START_TEST (test_vector_truncate)
     size_t expected_cap = 1024;
     const int expected_value = 999;
 
-    ck_assert(vector_truncate(&vector, expected_cap));
+    ck_assert(vector_truncate(&vector, expected_cap, VECTOR_ALLOC_ERROR));
     ck_assert_uint_eq(vector_capacity(vector), expected_cap);
 
     /* set last element after truncation */
@@ -114,7 +114,7 @@ START_TEST (test_vector_truncate)
     ck_assert_int_eq(*(int*) vector_get(vector, expected_cap - 1), expected_value);
 
     expected_cap = 0; /* truncate to zero is allowed */
-    ck_assert(vector_truncate(&vector, expected_cap));
+    ck_assert(vector_truncate(&vector, expected_cap, VECTOR_ALLOC_ERROR));
     ck_assert_uint_eq(vector_capacity(vector), expected_cap);
 }
 END_TEST
