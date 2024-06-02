@@ -1,20 +1,18 @@
 #include <check.h>
 #include <stdlib.h>
 #include <signal.h>
+#include <stdio.h>
 
 #include "../src/vector.h"
 
+#define HEADER_SIZE 24
 #define MOCK_MEMORY_MAX 256 * sizeof(int)
-
-static vector_t *vector;
 
 static char memory[MOCK_MEMORY_MAX];
 static size_t limit = MOCK_MEMORY_MAX;
 static size_t allocd = 0;
-static bool alloc_error;
-static vector_error_t error_type;
 
-void* xmalloc(size_t size)
+void* vector_alloc(size_t size)
 {
     if (allocd + size > limit)
     {
@@ -26,7 +24,7 @@ void* xmalloc(size_t size)
     return block;
 }
 
-void *xrealloc(void *pts, size_t size)
+void *vector_realloc(void *pts, size_t size)
 {
     if (allocd + size > limit)
     {
@@ -39,44 +37,67 @@ void *xrealloc(void *pts, size_t size)
     return block;
 }
 
-void xfree(void *ptr)
+void vector_free(void *ptr)
 {
     (void) ptr;
-}
-
-static void test_error_callback(vector_t **vector, vector_error_t error, void *param)
-{
-    (void) param;
-    alloc_error = true;
-    error_type = error;
-}
-
-void setup(void)
-{
-    alloc_error = false;
-    allocd = 0;
-    vector_create(vector,
-        .error_handler = {.callback = test_error_callback}
-    );
-}
-
-void teardown(void)
-{
-    vector_destroy(vector);
 }
 
 
 START_TEST (test_vector_data_size_overflow_assert)
 {
     vector_t *vec;
-    vector_create(vec, .initial_cap = (-1ul / sizeof(int) + 1));
+    vector_create(vec,
+        .element_size = sizeof(int),
+        .initial_cap = (-1ul / sizeof(int) + 1)
+    );
 }
 END_TEST
+
 
 START_TEST (test_vector_alloc_size_overflow_assert)
 {
     vector_t *vec;
-    vector_create(vec, .initial_cap = (-1ul / sizeof(int) - 5));
+    vector_create(vec,
+        .element_size = sizeof(int),
+        .initial_cap = (-1ul / sizeof(int) - 5)
+    );
+}
+END_TEST
+
+
+START_TEST (test_vector_alloc_failure)
+{
+    vector_t *vec;
+    vector_create(vec,
+        .element_size = sizeof(int),
+        .initial_cap = (MOCK_MEMORY_MAX / sizeof(int))
+    ); /* exceedes maximum */
+
+    /* default error handler is called */
+}
+END_TEST
+
+
+START_TEST (test_vector_alloc_manual_error_handling)
+{
+    vector_t *vec;
+    vector_error_t error = VECTOR_NO_ERROR;
+    vector_create_manual_errhdl(vec, &error,
+        .element_size = sizeof(int),
+        .initial_cap = MOCK_MEMORY_MAX,
+    );
+
+    ck_assert(error == VECTOR_ALLOC_ERROR);
+
+    error = VECTOR_NO_ERROR;
+    vector_create_manual_errhdl(vec, &error,
+        .element_size = sizeof(int),
+        .initial_cap = 200
+    );
+
+    ck_assert(error == VECTOR_NO_ERROR);
+
+    vector_destroy(vec);
 }
 END_TEST
 
@@ -91,15 +112,14 @@ Suite * vector_other_suite(void)
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_checked_fixture(tc_core, setup, teardown);
-
-/*
- * Test assertions when overflow occures
- */
-#ifdef CK_FORK
+    /*
+     * Test assertions when overflow occures
+     */
     tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
-#endif
+    tcase_add_test_raise_signal(tc_core, test_vector_alloc_failure, SIGABRT);
+    tcase_add_test(tc_core, test_vector_alloc_manual_error_handling);
+
     suite_add_tcase(s, tc_core);
 
     return s;

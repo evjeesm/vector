@@ -6,10 +6,13 @@
 #include <sys/types.h> /* ssize_t */
 
 #define TMP_REF(type, value) (type[1]){value}
+#define MANUAL_ERROR_HANDLER(error_out) { .callback = manual_error_callback, .param = error_out }
+#define DEFAULT_ERROR_HANDLER { .callback = default_error_callback }
 
 typedef enum vector_error_t
 {
-    VECTOR_ALLOC_ERROR = 0,
+    VECTOR_NO_ERROR = 0,
+    VECTOR_ALLOC_ERROR,
     VECTOR_ERROR_LAST
 }
 vector_error_t;
@@ -18,10 +21,11 @@ typedef struct vector_t vector_t;
 
 /*
 * Extends vector behavior on allocation error encounter.
-*   vector - location of the vector pointer.
+*   error - enum value denoting error code.
 *   param - user provided argument for error handler callback.
 */
-typedef void (*vector_error_callback_t)(const vector_t *const *const vector, const vector_error_t error, void *const param);
+typedef void (*vector_error_callback_t)(const vector_error_t error, void *const param);
+
 typedef struct vector_error_handler_t
 {
     vector_error_callback_t callback;
@@ -38,6 +42,7 @@ typedef struct vector_opts_t
 }
 vector_opts_t;
 
+
 /*
 * Callback types
 */
@@ -46,18 +51,25 @@ typedef ssize_t (*compare_t) (const void *const value, const void *const element
 
 /*
 * The wrapper for `vector_create_` function that provides default values.
+* Caller required to provide `element_size`!
 */
 #define vector_create(vector_p, ...) {\
     _Pragma("GCC diagnostic push") \
     _Pragma("GCC diagnostic ignored \"-Woverride-init\"") \
     vector_create_(&vector_p, &(vector_opts_t){ \
         .data_offset = 0, \
-        .element_size = sizeof(int), \
         .initial_cap = 10, \
+        .error_handler = DEFAULT_ERROR_HANDLER, \
         __VA_ARGS__ \
     }); \
     _Pragma("GCC diagnostic pop") \
 }
+
+#define vector_create_manual_errhdl(vector_p, error_out, ...) \
+    vector_create(vector_p, \
+        .error_handler = MANUAL_ERROR_HANDLER(error_out), \
+        __VA_ARGS__ \
+    )
 
 /*
 * Vector constructor function that initializes vector
@@ -225,7 +237,7 @@ void vector_swap(vector_t *const vector, const size_t index_a, const size_t inde
 
 
 /*
-* Allocator functions.
+* Allocator functions:
 */
 void *vector_alloc(const size_t alloc_size);
 
@@ -233,5 +245,11 @@ void *vector_realloc(void *ptr, const size_t alloc_size);
 
 void vector_free(void *ptr);
 
+/*
+* Error callbacks:
+*/
+void default_error_callback(const vector_error_t error, void *const param);
+
+void manual_error_callback(const vector_error_t error, void *const param);
 
 #endif/*_VECTOR_H_*/

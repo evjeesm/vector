@@ -44,13 +44,14 @@ END_TEST
 START_TEST (test_vector_get_set)
 {
     int array[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    const int size = (int)(sizeof(array)/sizeof(array[0]));
 
-    for (int i = 0; i < sizeof(array)/sizeof(array[0]); ++i)
+    for (int i = 0; i < size; ++i)
     {
         vector_set(vector, i, &array[i]);
     }
 
-    for (int i = 0; i < sizeof(array)/sizeof(array[0]); ++i)
+    for (int i = 0; i < size; ++i)
     {
         int *element = (int*) vector_get(vector, i);
         ck_assert_int_eq(*element, array[i]);
@@ -141,7 +142,7 @@ END_TEST
 
 START_TEST (test_vector_move)
 {
-    const size_t capacity = vector_capacity(vector);
+    const int capacity = (int)vector_capacity(vector);
 
     /* fill with indices */
     for (int i = 0; i < capacity; ++i)
@@ -166,7 +167,7 @@ END_TEST
 
 START_TEST (test_vector_shift)
 {
-    const size_t capacity = vector_capacity(vector);
+    const int capacity = (int)vector_capacity(vector);
 
     /* fill half with indices */
     for (int i = 0; i < capacity/2; ++i)
