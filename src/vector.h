@@ -6,8 +6,12 @@
 #include <sys/types.h> /* ssize_t */
 
 #define TMP_REF(type, value) (type[1]){value}
-#define MANUAL_ERROR_HANDLER(error_out) { .callback = vector_manual_error_callback, .param = error_out }
-#define DEFAULT_ERROR_HANDLER { .callback = vector_default_error_callback }
+
+#define VECTOR_MANUAL_ERROR_HANDLER(error_out) \
+    { .callback = vector_manual_error_callback, .param = error_out }
+
+#define VECTOR_DEFAULT_ERROR_HANDLER \
+    { .callback = vector_default_error_callback }
 
 typedef enum vector_error_t
 {
@@ -59,7 +63,7 @@ typedef ssize_t (*compare_t) (const void *const value, const void *const element
     vector_create_(&vector_p, &(vector_opts_t){ \
         .data_offset = 0, \
         .initial_cap = 10, \
-        .error_handler = DEFAULT_ERROR_HANDLER, \
+        .error_handler = VECTOR_DEFAULT_ERROR_HANDLER, \
         __VA_ARGS__ \
     }); \
     _Pragma("GCC diagnostic pop") \
@@ -67,7 +71,7 @@ typedef ssize_t (*compare_t) (const void *const value, const void *const element
 
 #define vector_create_manual_errhdl(vector_p, error_out, ...) \
     vector_create(vector_p, \
-        .error_handler = MANUAL_ERROR_HANDLER(error_out), \
+        .error_handler = VECTOR_MANUAL_ERROR_HANDLER(error_out), \
         __VA_ARGS__ \
     )
 
