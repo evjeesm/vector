@@ -62,6 +62,7 @@ void vector_create_(vector_t **const vector, const vector_opts_t *const opts)
 {
     assert(vector);
     assert(opts);
+    assert(opts->element_size);
 
     const size_t alloc_size = calculate_alloc_size(opts->element_size,
             opts->initial_cap,
