@@ -24,8 +24,9 @@ void* vector_alloc(size_t size)
     return block;
 }
 
-void *vector_realloc(void *pts, size_t size)
+void *vector_realloc(void *ptr, size_t size)
 {
+    (void) ptr;
     if (allocd + size > limit)
     {
         return NULL;

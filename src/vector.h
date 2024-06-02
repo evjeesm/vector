@@ -6,8 +6,8 @@
 #include <sys/types.h> /* ssize_t */
 
 #define TMP_REF(type, value) (type[1]){value}
-#define MANUAL_ERROR_HANDLER(error_out) { .callback = manual_error_callback, .param = error_out }
-#define DEFAULT_ERROR_HANDLER { .callback = default_error_callback }
+#define MANUAL_ERROR_HANDLER(error_out) { .callback = vector_manual_error_callback, .param = error_out }
+#define DEFAULT_ERROR_HANDLER { .callback = vector_default_error_callback }
 
 typedef enum vector_error_t
 {
@@ -248,8 +248,8 @@ void vector_free(void *ptr);
 /*
 * Error callbacks:
 */
-void default_error_callback(const vector_error_t error, void *const param);
+void vector_default_error_callback(const vector_error_t error, void *const param);
 
-void manual_error_callback(const vector_error_t error, void *const param);
+void vector_manual_error_callback(const vector_error_t error, void *const param);
 
 #endif/*_VECTOR_H_*/

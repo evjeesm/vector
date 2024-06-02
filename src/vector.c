@@ -343,7 +343,7 @@ __attribute__((weak)) void vector_free(void *ptr)
 }
 
 
-void default_error_callback(const vector_error_t error, void *const param)
+void vector_default_error_callback(const vector_error_t error, void *const param)
 {
     (void) param;
     (void) error;
@@ -353,7 +353,7 @@ void default_error_callback(const vector_error_t error, void *const param)
 }
 
 
-void manual_error_callback(const vector_error_t error, void *const param)
+void vector_manual_error_callback(const vector_error_t error, void *const param)
 {
     vector_error_t* error_out = param;
     *error_out = error;
