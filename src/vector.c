@@ -137,7 +137,7 @@ void vector_move(const vector_t *const vector, char *dest, const size_t offset, 
 {
     assert(dest);
     assert(vector);
-    assert((offset + length <= vector_capacity(vector)) && "`offset + length` exceeds vector's capacity!");
+    assert((offset + length <= vector->capacity) && "`offset + length` exceeds vector's capacity!");
 
     memmove(dest, vector_get(vector, offset), length * (vector->element_size));
 }
@@ -185,7 +185,7 @@ void *vector_linear_find(const vector_t *const vector, const size_t limit, const
     assert(vector);
     assert(predicate);
 
-    assert((limit <= vector_capacity(vector)) && "Vector out of capacity bounds!");
+    assert((limit <= vector->capacity) && "Vector out of capacity bounds!");
 
     for (size_t i = 0; i < limit; ++i)
     {
