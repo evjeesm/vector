@@ -105,17 +105,32 @@ size_t vector_data_offset(const vector_t *const vector);
 
 
 /*
+* Access error_handler property of the vector.
+*/
+const vector_error_handler_t *vector_error_handler(const vector_t *const vector);
+
+
+#define vector_clone(vector_p) \
+    vector_clone_errlocal(vector_p, vector_error_handler(vector_p)->param)
+
+/*
 * Makes a copy of the whole vector.
 * (Allocation may fail).
 */
-vector_t *vector_clone(const vector_t *const vector);
+vector_t *vector_clone_errlocal(const vector_t *const vector, void *const error_param);
 
 
 /*
-* Truncates vector to a desired capacity, wiping out elements beyond new capacity bounds.
+* Using error_handler.param as argument to error callback.
+*/
+#define vector_resize(vector_pp, capacity, error) \
+    vector_resize_errlocal(vector_pp, capacity, error, vector_error_handler(*vector_pp)->param)
+
+/*
+* Resizes vector to a desired capacity, wiping out elements beyond new capacity bounds.
 * Takes third parameter which denotes error type.
 */
-bool vector_truncate(vector_t **const vector, const size_t capacity, const vector_error_t error);
+bool vector_resize_errlocal(vector_t **const vector, const size_t capacity, const vector_error_t error, void *const error_param);
 
 
 /*

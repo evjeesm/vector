@@ -11,8 +11,11 @@
 #define DEBUG(code)
 #endif
 
-#define VECTOR_HANDLE_ERROR(vector_pp, error) \
-    (*vector_pp)->error_handler.callback(error, (*vector_pp)->error_handler.param)
+/*
+* Handle error by providing local param
+*/
+#define VECTOR_HANDLE_ERROR(vector_pp, error, param) \
+    (*vector_pp)->error_handler.callback(error, param)
 
 #define ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, message) \
     assert((data_size / element_size == capacity && alloc_size > data_size) && message);
@@ -53,6 +56,7 @@ static size_t binary_find_insert_place (const vector_t *const vector,
         const compare_t cmp,
         void *const param);
 
+static bool truncate(vector_t **const vector, const size_t capacity, const vector_error_t error, void *const param);
 
 /**                          ***
 * === API Implementation   === *
@@ -107,7 +111,14 @@ size_t vector_data_offset(const vector_t *const vector)
 }
 
 
-vector_t *vector_clone(const vector_t *const vector)
+const vector_error_handler_t *vector_error_handler(const vector_t *const vector)
+{
+    assert(vector);
+    return &(vector->error_handler);
+}
+
+
+vector_t *vector_clone_errlocal(const vector_t *const vector, void *const error_param)
 {
     assert(vector);
 
@@ -115,7 +126,7 @@ vector_t *vector_clone(const vector_t *const vector)
     vector_t *clone = (vector_t *) vector_alloc(alloc_size);
     if (!clone)
     {
-        VECTOR_HANDLE_ERROR(&vector, VECTOR_ALLOC_ERROR);
+        VECTOR_HANDLE_ERROR(&vector, VECTOR_ALLOC_ERROR, vector_error_handler(vector)->param);
         return NULL;
     }
     memcpy(clone, vector, alloc_size);
@@ -295,22 +306,10 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
 }
 
 
-bool vector_truncate(vector_t **const vector, const size_t capacity, const vector_error_t error)
+bool vector_resize_errlocal(vector_t **const vector, const size_t capacity, const vector_error_t error, void *const error_param)
 {
-    assert(vector && *vector);
-
-    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, capacity, (*vector)->data_offset);
-
-    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size);
-    if (!vec)
-    {
-        VECTOR_HANDLE_ERROR(vector, error);
-        return false;
-    }
-
-    vec->capacity = capacity;
-    *vector = vec;
-    return true;
+    assert(vector);
+    return truncate(vector, capacity, error, error_param);
 }
 
 
@@ -456,3 +455,21 @@ static void memswap(char *restrict a, char *restrict b, const size_t size)
     }
 }
 
+
+static bool truncate(vector_t **const vector, const size_t capacity, const vector_error_t error, void *const param)
+{
+    assert(vector && *vector);
+
+    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, capacity, (*vector)->data_offset);
+
+    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size);
+    if (!vec)
+    {
+        VECTOR_HANDLE_ERROR(vector, error, param);
+        return false;
+    }
+
+    vec->capacity = capacity;
+    *vector = vec;
+    return true;
+}
