@@ -102,12 +102,12 @@ START_TEST (test_vector_clone)
 END_TEST
 
 
-START_TEST (test_vector_truncate)
+START_TEST (test_vector_resize)
 {
     size_t expected_cap = 1024;
     const int expected_value = 999;
 
-    ck_assert(vector_truncate(&vector, expected_cap, VECTOR_ALLOC_ERROR));
+    ck_assert(vector_resize(&vector, expected_cap, VECTOR_ALLOC_ERROR));
     ck_assert_uint_eq(vector_capacity(vector), expected_cap);
 
     /* set last element after truncation */
@@ -115,7 +115,7 @@ START_TEST (test_vector_truncate)
     ck_assert_int_eq(*(int*) vector_get(vector, expected_cap - 1), expected_value);
 
     expected_cap = 0; /* truncate to zero is allowed */
-    ck_assert(vector_truncate(&vector, expected_cap, VECTOR_ALLOC_ERROR));
+    ck_assert(vector_resize(&vector, expected_cap, VECTOR_ALLOC_ERROR));
     ck_assert_uint_eq(vector_capacity(vector), expected_cap);
 }
 END_TEST
@@ -391,7 +391,7 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_get_set);
     tcase_add_test(tc_core, test_vector_set_zero);
     tcase_add_test(tc_core, test_vector_clone);
-    tcase_add_test(tc_core, test_vector_truncate);
+    tcase_add_test(tc_core, test_vector_resize);
     tcase_add_test(tc_core, test_vector_copy);
     tcase_add_test(tc_core, test_vector_move);
     tcase_add_test(tc_core, test_vector_shift);
