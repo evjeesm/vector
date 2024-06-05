@@ -14,8 +14,8 @@
 /*
 * Handle error by providing local param
 */
-#define VECTOR_HANDLE_ERROR(vector_pp, error, param) \
-    (*vector_pp)->error_handler.callback(error, param)
+#define VECTOR_HANDLE_ERROR(vector_pp, error, error_out) \
+    (*vector_pp)->error_handler.callback(error, error_out)
 
 #define ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, message) \
     assert((data_size / element_size == capacity && alloc_size > data_size) && message);
@@ -56,7 +56,14 @@ static size_t binary_find_insert_place (const vector_t *const vector,
         const compare_t cmp,
         void *const param);
 
-static bool truncate(vector_t **const vector, const size_t capacity, const vector_error_t error, void *const param);
+static bool truncate(vector_t **const vector, 
+        const size_t capacity,
+        const vector_error_t error,
+        void *const param);
+
+static void set_last_error(vector_t *const vector,
+        const vector_error_t last_error);
+
 
 /**                          ***
 * === API Implementation   === *
@@ -75,7 +82,8 @@ void vector_create_(vector_t **const vector, const vector_opts_t *const opts)
     *vector = (vector_t *) vector_alloc(alloc_size);
     if (!*vector)
     {
-        opts->error_handler.callback(VECTOR_ALLOC_ERROR, opts->error_handler.param);
+        /* call may abort execution of the program */
+        opts->error_callback(VECTOR_ALLOC_ERROR, opts->error_out);
         return;
     }
 
@@ -84,7 +92,7 @@ void vector_create_(vector_t **const vector, const vector_opts_t *const opts)
         .element_size = opts->element_size,
         .initial_cap = opts->initial_cap,
         .capacity = opts->initial_cap,
-        .error_handler = opts->error_handler
+        .error_handler = { .callback = opts->error_callback }
     };
 }
 
@@ -93,6 +101,13 @@ void vector_destroy(vector_t *const vector)
 {
     assert(vector);
     vector_free(vector);
+}
+
+
+vector_error_t vector_last_error(const vector_t *const vector)
+{
+    assert(vector);
+    return vector->error_handler.last_error;
 }
 
 
@@ -111,22 +126,16 @@ size_t vector_data_offset(const vector_t *const vector)
 }
 
 
-const vector_error_handler_t *vector_error_handler(const vector_t *const vector)
+vector_t *vector_clone(vector_t *const vector)
 {
     assert(vector);
-    return &(vector->error_handler);
-}
-
-
-vector_t *vector_clone_errlocal(const vector_t *const vector, void *const error_param)
-{
-    assert(vector);
+    set_last_error(vector, VECTOR_NO_ERROR);
 
     const size_t alloc_size = calculate_alloc_size(vector->element_size, vector->capacity, vector->data_offset);
     vector_t *clone = (vector_t *) vector_alloc(alloc_size);
     if (!clone)
     {
-        VECTOR_HANDLE_ERROR(&vector, VECTOR_ALLOC_ERROR, vector_error_handler(vector)->param);
+        VECTOR_HANDLE_ERROR(&vector, VECTOR_ALLOC_ERROR, &(vector->error_handler.last_error));
         return NULL;
     }
     memcpy(clone, vector, alloc_size);
@@ -306,10 +315,10 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
 }
 
 
-bool vector_resize_errlocal(vector_t **const vector, const size_t capacity, const vector_error_t error, void *const error_param)
+bool vector_resize(vector_t **const vector, const size_t capacity, const vector_error_t error)
 {
     assert(vector);
-    return truncate(vector, capacity, error, error_param);
+    return truncate(vector, capacity, error, &(*vector)->error_handler.last_error);
 }
 
 
@@ -472,4 +481,10 @@ static bool truncate(vector_t **const vector, const size_t capacity, const vecto
     vec->capacity = capacity;
     *vector = vec;
     return true;
+}
+
+
+static void set_last_error(vector_t *const vector, const vector_error_t last_error)
+{
+    vector->error_handler.last_error = last_error;
 }
