@@ -59,7 +59,9 @@ START_TEST (test_vector_data_size_overflow_assert)
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = (-1ul / sizeof(int) + 1)
-    );
+    ); 
+
+    (void) vec;
 }
 END_TEST
 
@@ -70,6 +72,7 @@ START_TEST (test_vector_alloc_size_overflow_assert)
         .element_size = sizeof(int),
         .initial_cap = (-1ul / sizeof(int) - 5)
     );
+    (void) vec;
 }
 END_TEST
 
@@ -118,6 +121,7 @@ Suite * vector_other_suite(void)
     tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
     tcase_add_test(tc_core, test_vector_resize);
+    tcase_add_test(tc_core, test_vector_alloc_failure);
 
     suite_add_tcase(s, tc_core);
 
