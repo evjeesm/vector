@@ -11,12 +11,6 @@
 #define DEBUG(code)
 #endif
 
-/*
-* Handle error by providing local param
-*/
-#define VECTOR_HANDLE_ERROR(vector_pp, error, error_out) \
-    (*vector_pp)->error_handler.callback(error, error_out)
-
 #define ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, message) \
     assert((data_size / element_size == capacity && alloc_size > data_size) && message);
 
@@ -26,7 +20,6 @@ struct vector_t
     size_t element_size;
     size_t initial_cap;
     size_t capacity;
-    vector_error_handler_t error_handler;
     char memory[];
 };
 
@@ -56,44 +49,35 @@ static size_t binary_find_insert_place (const vector_t *const vector,
         const compare_t cmp,
         void *const param);
 
-static bool truncate(vector_t **const vector, 
-        const size_t capacity,
-        const vector_error_t error,
-        void *const param);
-
-static void set_last_error(vector_t *const vector,
-        const vector_error_t last_error);
-
 
 /**                          ***
 * === API Implementation   === *
 **                            */
 
-void vector_create_(vector_t **const vector, const vector_opts_t *const opts)
+vector_t *vector_create_(const vector_opts_t *const opts)
 {
-    assert(vector);
     assert(opts);
     assert(opts->element_size);
 
     const size_t alloc_size = calculate_alloc_size(opts->element_size,
             opts->initial_cap,
             opts->data_offset);
-
-    *vector = (vector_t *) vector_alloc(alloc_size);
-    if (!*vector)
+    
+    vector_t *vector = (vector_t *) vector_alloc(alloc_size);
+    if (!vector)
     {
         /* call may abort execution of the program */
-        opts->error_callback(VECTOR_ALLOC_ERROR, opts->error_out);
-        return;
+        return NULL;
     }
 
-    (**vector) = (vector_t) {
+    (*vector) = (vector_t) {
         .data_offset = opts->data_offset,
         .element_size = opts->element_size,
         .initial_cap = opts->initial_cap,
         .capacity = opts->initial_cap,
-        .error_handler = { .callback = opts->error_callback }
     };
+
+    return vector;
 }
 
 
@@ -101,13 +85,6 @@ void vector_destroy(vector_t *const vector)
 {
     assert(vector);
     vector_free(vector);
-}
-
-
-vector_error_t vector_last_error(const vector_t *const vector)
-{
-    assert(vector);
-    return vector->error_handler.last_error;
 }
 
 
@@ -126,16 +103,14 @@ size_t vector_data_offset(const vector_t *const vector)
 }
 
 
-vector_t *vector_clone(vector_t *const vector)
+vector_t *vector_clone(const vector_t *const vector)
 {
     assert(vector);
-    set_last_error(vector, VECTOR_NO_ERROR);
 
     const size_t alloc_size = calculate_alloc_size(vector->element_size, vector->capacity, vector->data_offset);
     vector_t *clone = (vector_t *) vector_alloc(alloc_size);
     if (!clone)
     {
-        VECTOR_HANDLE_ERROR(&vector, VECTOR_ALLOC_ERROR, &(vector->error_handler.last_error));
         return NULL;
     }
     memcpy(clone, vector, alloc_size);
@@ -315,10 +290,21 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
 }
 
 
-bool vector_resize(vector_t **const vector, const size_t capacity, const vector_error_t error)
+vector_status_t vector_resize(vector_t **const vector, const size_t capacity, const vector_status_t error)
 {
-    assert(vector);
-    return truncate(vector, capacity, error, &(*vector)->error_handler.last_error);
+    assert(vector && *vector);
+
+    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, capacity, (*vector)->data_offset);
+
+    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size);
+    if (!vec)
+    {
+        return error;
+    }
+
+    vec->capacity = capacity;
+    *vector = vec;
+    return VECTOR_SUCCESS;
 }
 
 
@@ -349,23 +335,6 @@ __attribute__((weak)) void *vector_realloc(void *ptr, const size_t alloc_size)
 __attribute__((weak)) void vector_free(void *ptr)
 {
     free(ptr);
-}
-
-
-void vector_default_error_callback(const vector_error_t error, void *const param)
-{
-    (void) param;
-    (void) error;
-
-    fprintf(stderr, "Vector :: Allocation error occured! abort()\n");
-    abort();
-}
-
-
-void vector_manual_error_callback(const vector_error_t error, void *const param)
-{
-    vector_error_t* error_out = param;
-    *error_out = error;
 }
 
 
@@ -462,29 +431,4 @@ static void memswap(char *restrict a, char *restrict b, const size_t size)
         *a = *b;
         *b = tmp._bytes[0];
     }
-}
-
-
-static bool truncate(vector_t **const vector, const size_t capacity, const vector_error_t error, void *const param)
-{
-    assert(vector && *vector);
-
-    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, capacity, (*vector)->data_offset);
-
-    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size);
-    if (!vec)
-    {
-        VECTOR_HANDLE_ERROR(vector, error, param);
-        return false;
-    }
-
-    vec->capacity = capacity;
-    *vector = vec;
-    return true;
-}
-
-
-static void set_last_error(vector_t *const vector, const vector_error_t last_error)
-{
-    vector->error_handler.last_error = last_error;
 }

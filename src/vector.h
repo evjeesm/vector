@@ -7,40 +7,23 @@
 
 #define TMP_REF(type, value) (type[1]){value}
 
-typedef enum vector_error_t
-{
-    VECTOR_NO_ERROR = 0,
-    VECTOR_ALLOC_ERROR,
-    VECTOR_ERROR_LAST
-}
-vector_error_t;
-
 typedef struct vector_t vector_t;
-
-/*
-* Extends vector behavior on allocation error encounter.
-*   error - enum value denoting error code.
-*   param - user provided argument for error handler callback.
-*/
-typedef void (*vector_error_callback_t)(const vector_error_t error, void *const param);
-
-typedef struct vector_error_handler_t
-{
-    vector_error_callback_t callback;
-    vector_error_t last_error;
-}
-vector_error_handler_t;
 
 typedef struct vector_opts_t
 {
     size_t data_offset;  /* beginning of the data array relative to `memory` field */
     size_t element_size; /* size of the element */
     size_t initial_cap;  /* will be preallocated */
-    vector_error_callback_t error_callback; /* choose between default or manual */
-    vector_error_t *error_out; /* denotes output address for an error (manual) */
 }
 vector_opts_t;
 
+typedef enum vector_status_t
+{
+    VECTOR_SUCCESS = 0,
+    VECTOR_ALLOC_ERROR,
+    VECTOR_STATUS_LAST
+}
+vector_status_t;
 
 /*
 * Callback types
@@ -52,27 +35,14 @@ typedef ssize_t (*compare_t) (const void *const value, const void *const element
 * The wrapper for `vector_create_` function that provides default values.
 * Caller required to provide `element_size`!
 */
-#define vector_create(vector_p, ...) \
-    _Pragma("GCC diagnostic push") \
-    _Pragma("GCC diagnostic ignored \"-Woverride-init\"") \
-    vector_create_(&vector_p, \
+#define vector_create(...) \
+    vector_create_( \
         &(vector_opts_t) { \
             .initial_cap = 10, \
-            .error_callback = vector_default_error_callback, \
             __VA_ARGS__ \
         }\
-    ); \
-    _Pragma("GCC diagnostic pop") \
+    )\
 
-
-#define vector_create_manual_errhdl(vector_p, error_ptr, ...) do{\
-    *error_ptr = VECTOR_NO_ERROR; \
-    vector_create(vector_p, \
-        .error_callback = vector_manual_error_callback, \
-        .error_out = error_ptr, \
-        __VA_ARGS__ \
-    ) \
-    } while(0)
 
 /*
 * Vector constructor function that initializes vector
@@ -80,19 +50,13 @@ typedef ssize_t (*compare_t) (const void *const value, const void *const element
 * Space for `initial_cap` elements will be reserved.
 * In case of allocation fail null pointer will be returned via `vector` argument.
 */
-void vector_create_(vector_t **const vector, const vector_opts_t *const opts);
+vector_t *vector_create_(const vector_opts_t *const opts);
 
 
 /*
 * Deallocates vector. A pointer will be invalidated after the call.
 */
 void vector_destroy(vector_t *const vector);
-
-
-/*
-* Return error code stored in the header.
-*/
-vector_error_t vector_last_error(const vector_t *const vector);
 
 
 /*
@@ -113,14 +77,14 @@ size_t vector_data_offset(const vector_t *const vector);
 * Makes a copy of the whole vector.
 * (Allocation may fail).
 */
-vector_t *vector_clone(vector_t *const vector);
+vector_t *vector_clone(const vector_t *const vector);
 
 
 /*
 * Resizes vector to a desired capacity, wiping out elements beyond new capacity bounds.
-* Takes third parameter which denotes error type.
+* Takes third parameter which denotes error type that will be returned if resize fails.
 */
-bool vector_resize(vector_t **const vector, const size_t capacity, const vector_error_t error);
+vector_status_t vector_resize(vector_t **const vector, const size_t capacity, const vector_status_t error);
 
 
 /*
@@ -253,12 +217,5 @@ void *vector_alloc(const size_t alloc_size);
 void *vector_realloc(void *ptr, const size_t alloc_size);
 
 void vector_free(void *ptr);
-
-/*
-* Error callbacks:
-*/
-void vector_default_error_callback(const vector_error_t error, void *const param);
-
-void vector_manual_error_callback(const vector_error_t error, void *const param);
 
 #endif/*_VECTOR_H_*/

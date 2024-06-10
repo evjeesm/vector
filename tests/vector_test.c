@@ -8,10 +8,11 @@ static vector_t *vector;
 
 static void setup_empty(void)
 {
-    vector_create(vector,
+    vector = vector_create(
        .element_size = sizeof(int),
        .initial_cap = 10
     );
+    ck_assert_ptr_nonnull(vector);
 }
 
 static void teardown(void)
@@ -28,6 +29,7 @@ static void random_fill(vector_t *const vector, const size_t size)
         vector_set(vector, i, &value);
     }
 }
+
 
 START_TEST (test_vector_create)
 {
@@ -107,7 +109,7 @@ START_TEST (test_vector_resize)
     size_t expected_cap = 1024;
     const int expected_value = 999;
 
-    ck_assert(vector_resize(&vector, expected_cap, VECTOR_ALLOC_ERROR));
+    ck_assert_uint_eq(VECTOR_SUCCESS, vector_resize(&vector, expected_cap, VECTOR_ALLOC_ERROR));
     ck_assert_uint_eq(vector_capacity(vector), expected_cap);
 
     /* set last element after truncation */
@@ -115,7 +117,7 @@ START_TEST (test_vector_resize)
     ck_assert_int_eq(*(int*) vector_get(vector, expected_cap - 1), expected_value);
 
     expected_cap = 0; /* truncate to zero is allowed */
-    ck_assert(vector_resize(&vector, expected_cap, VECTOR_ALLOC_ERROR));
+    ck_assert_uint_eq(VECTOR_SUCCESS, vector_resize(&vector, expected_cap, VECTOR_ALLOC_ERROR));
     ck_assert_uint_eq(vector_capacity(vector), expected_cap);
 }
 END_TEST

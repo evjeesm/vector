@@ -56,8 +56,7 @@ void teardown(void)
 
 START_TEST (test_vector_data_size_overflow_assert)
 {
-    vector_t *vec;
-    vector_create(vec,
+    vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = (-1ul / sizeof(int) + 1)
     );
@@ -67,8 +66,7 @@ END_TEST
 
 START_TEST (test_vector_alloc_size_overflow_assert)
 {
-    vector_t *vec;
-    vector_create(vec,
+    vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = (-1ul / sizeof(int) - 5)
     );
@@ -78,38 +76,29 @@ END_TEST
 
 START_TEST (test_vector_alloc_failure)
 {
-    vector_t *vec;
-    vector_create(vec,
+    vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = (MOCK_MEMORY_MAX / sizeof(int))
     ); /* exceedes maximum */
-
-    /* default error handler is called */
+    
+    ck_assert_ptr_null(vec);
 }
 END_TEST
 
 
-START_TEST (test_vector_alloc_manual_error_handling)
+START_TEST (test_vector_resize)
 {
-    vector_t *vec;
-    vector_error_t error;
-    vector_create_manual_errhdl(vec, &error,
-        .element_size = sizeof(int),
-        .initial_cap = limit,
-    );
-
-    ck_assert(error == VECTOR_ALLOC_ERROR);
-
-    vector_create_manual_errhdl(vec, &error,
+    vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = 10
     );
 
-    ck_assert(error == VECTOR_NO_ERROR);
+    ck_assert_uint_eq(VECTOR_SUCCESS, vector_resize(&vec, 11, 999));
+    ck_assert_uint_eq(VECTOR_ALLOC_ERROR, vector_resize(&vec, limit, VECTOR_ALLOC_ERROR));
+
     vector_destroy(vec);
 }
 END_TEST
-
 
 Suite * vector_other_suite(void)
 {
@@ -128,8 +117,7 @@ Suite * vector_other_suite(void)
      */
     tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
-    tcase_add_test_raise_signal(tc_core, test_vector_alloc_failure, SIGABRT);
-    tcase_add_test(tc_core, test_vector_alloc_manual_error_handling);
+    tcase_add_test(tc_core, test_vector_resize);
 
     suite_add_tcase(s, tc_core);
 
