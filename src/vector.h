@@ -32,6 +32,13 @@ typedef bool (*predicate_t) (const void *const element, void *const param);
 typedef ssize_t (*compare_t) (const void *const value, const void *const element, void *const param);
 
 /*
+* Any value other then zero breaks iteration over elements.
+*/
+typedef int (*foreach_t) (const void *const element, void *const param);
+typedef int (*aggregate_t) (const void *const element, void *const acc, void *const param);
+typedef int (*transform_t) (void *const element, void *const param);
+
+/*
 * The wrapper for `vector_create_` function that provides default values.
 * Caller required to provide `element_size`!
 */
@@ -207,6 +214,27 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
 * Swaps values of elements designated by indicies.
 */
 void vector_swap(vector_t *const vector, const size_t index_a, const size_t index_b);
+
+
+/*
+* Run nonmodifying function on 'limit' elements of the vector.
+* Return zero on success, or nonzero value - user defined status code.
+*/
+int vector_foreach(const vector_t *const vector, const size_t limit, const foreach_t func, void *const param);
+
+
+/*
+* Run nonmodifying function on 'limit' elements of the vector reducing them into `acc`.
+* Return zero on success, or nonzero value - user defined status code.
+*/
+int vector_aggregate(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param);
+
+
+/*
+* Run modifying function on 'limit' elements of the vector.
+* Return zero on success, or nonzero value - user defined status code.
+*/
+int vector_transform(vector_t *const vector, const size_t limit, const transform_t func, void *const param);
 
 
 /*

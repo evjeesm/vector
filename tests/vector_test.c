@@ -1,4 +1,5 @@
 #include <check.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
@@ -378,6 +379,88 @@ START_TEST (test_vector_spread)
 END_TEST
 
 
+#define MAXBUFSIZE 256
+struct buf
+{
+    size_t size;
+    char buf[MAXBUFSIZE];
+};
+
+int to_string(const void *const el, void *const param)
+{
+    struct buf *buf = param;
+    buf->size += sprintf(buf->buf + buf->size, "%d, ", *(int*)el);
+    return 0;
+}
+
+START_TEST (test_vector_foreach)
+{
+    /* fill vector */
+    const int capacity = vector_capacity(vector);
+    for (int i = 0; i < capacity; ++i)
+    {
+        vector_set(vector, i, &i);
+    }
+
+    struct buf buf = {0};
+    int status = vector_foreach(vector, capacity, to_string, &buf);
+
+    ck_assert(0 == status);
+    ck_assert_uint_eq(30, buf.size);
+    ck_assert_mem_eq(buf.buf, "0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ", buf.size);
+}
+END_TEST
+
+
+int add_value(void *const el, void *const param)
+{
+    *(int*)el += *(int*)param;
+    return 0;
+}
+
+START_TEST (test_vector_transform)
+{
+    /* fill vector */
+    const int capacity = vector_capacity(vector);
+    for (int i = 0; i < capacity; ++i)
+    {
+        vector_set(vector, i, &i);
+    }
+
+    int value = 5;
+    int status = vector_transform(vector, capacity, add_value, &value);
+    ck_assert(0 == status);
+
+    for (int i = 0; i < capacity; ++i)
+    {
+        ck_assert_int_eq(i + value, *(int*) vector_get(vector, i));
+    }
+}
+
+
+int sum(const void *const el, void *const acc, void *const param)
+{
+    (void) param;
+    *(int*) acc += *(int*) el;
+    return 0;
+}
+
+START_TEST (test_vector_aggregate)
+{
+    /* fill vector */
+    const int capacity = vector_capacity(vector);
+    for (int i = 0; i < capacity; ++i)
+    {
+        vector_set(vector, i, &i);
+    }
+
+    int total = 0;
+    int status = vector_aggregate(vector, capacity, sum, &total, NULL);
+    ck_assert(0 == status);
+    ck_assert_int_eq(total, 45);
+}
+
+
 Suite *vector_suite(void)
 {
     Suite *s;
@@ -404,6 +487,9 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_binary_find);
     tcase_add_test(tc_core, test_vector_binary_find_lex);
     tcase_add_test(tc_core, test_vector_binary_find_insert_place);
+    tcase_add_test(tc_core, test_vector_foreach);
+    tcase_add_test(tc_core, test_vector_transform);
+    tcase_add_test(tc_core, test_vector_aggregate);
 
     suite_add_tcase(s, tc_core);
 

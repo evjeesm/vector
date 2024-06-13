@@ -320,6 +320,48 @@ void vector_swap(vector_t *const vector, const size_t index_a, const size_t inde
 }
 
 
+int vector_foreach(const vector_t *const vector, const size_t limit, const foreach_t func, void *const param)
+{
+    assert(vector);
+    assert(limit && limit <= vector->capacity);
+    assert(func);
+
+    for (size_t i = 0; i < limit; ++i)
+    {
+        int status = func(vector_get(vector, i), param);
+        if (status) return status;
+    }
+
+    return 0;
+}
+
+
+int vector_aggregate(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param)
+{
+    assert(vector);
+    assert(limit && limit <= vector->capacity);
+    assert(func);
+
+    for (size_t i = 0; i < limit; ++i)
+    {
+        int status = func(vector_get(vector, i), acc, param);
+        if (status) return status;
+    }
+
+    return 0;
+}
+
+
+int vector_transform(vector_t *const vector, const size_t limit, const transform_t func, void *const param)
+{
+    assert(vector);
+    assert(limit && limit <= vector->capacity);
+    assert(func);
+
+    return vector_foreach(vector, limit, (foreach_t)func, param);
+}
+
+
 __attribute__((weak)) void *vector_alloc(const size_t alloc_size)
 {
     return malloc(alloc_size);
