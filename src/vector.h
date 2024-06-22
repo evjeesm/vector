@@ -246,4 +246,15 @@ void *vector_realloc(void *ptr, const size_t alloc_size);
 
 void vector_free(void *ptr);
 
+
+/*
+* Utility functions:
+*/
+
+/*
+* Function calculates size of the element
+* while respecting requirement for alignment.
+*/
+size_t calc_aligned_size(const size_t size, const size_t alignment);
+
 #endif/*_VECTOR_H_*/

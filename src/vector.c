@@ -380,6 +380,12 @@ __attribute__((weak)) void vector_free(void *ptr)
 }
 
 
+size_t calc_aligned_size(const size_t size, const size_t alignment)
+{
+    return (size + alignment - 1) / alignment * alignment;
+}
+
+
 /**                       **
 * === Static Functions === *
 **                        */
