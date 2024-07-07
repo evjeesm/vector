@@ -14,8 +14,11 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: autogen
+      run: ./autogen.sh
+    
     - name: configure
-      run: ./configure
+      run: ./configure -Wall -Wextra -Wno-override-init -O2
 
     - name: Install dependencies
       run: make
