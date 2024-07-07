@@ -168,10 +168,30 @@ size_t vector_capacity(const vector_t *const vector)
 }
 
 
+size_t vector_capacity_bytes(const vector_t *const vector)
+{
+    assert(vector);
+    return vector->capacity * vector->element_size;
+}
+
+
 size_t vector_initial_capacity(const vector_t *const vector)
 {
     assert(vector);
     return vector->initial_cap;
+}
+
+
+size_t vector_initial_capacity_bytes(const vector_t *const vector)
+{
+    assert(vector);
+    return vector->initial_cap * vector->element_size;
+}
+
+
+char *vector_data(const vector_t *const vector)
+{
+    return (char*) vector->memory + vector->data_offset;
 }
 
 

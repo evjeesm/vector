@@ -132,9 +132,29 @@ size_t vector_capacity(const vector_t *const vector);
 
 
 /*
+* Reports current capacity of the vector in bytes
+*/
+size_t vector_capacity_bytes(const vector_t *const vector);
+
+
+/*
 * Reports initial capacity of the vector.
 */
 size_t vector_initial_capacity(const vector_t *const vector);
+
+
+/*
+* Reports initial capacity of the vector in bytes.
+*/
+size_t vector_initial_capacity_bytes(const vector_t *const vector);
+
+
+/*
+* Returns a pointer to the beginning of element data buffer.
+* WARNING: Does not assert when capacity is zero.
+*          Intended to be used for pointer arithmetics in derived containers.
+*/
+char *vector_data(const vector_t *const vector);
 
 
 /*
