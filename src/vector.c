@@ -1,4 +1,5 @@
 #include "vector.h"
+#include "memswap.h"
 
 #include <assert.h> /* assert */
 #include <stdio.h>  /* fprintf */
@@ -30,10 +31,6 @@ struct vector_t
 static size_t calculate_alloc_size (const size_t element_size,
         const size_t capacity,
         const size_t data_offset);
-
-static void memswap (char *restrict a,
-        char *restrict b,
-        const size_t size);
 
 static void *binary_find (const vector_t *const vector,
         const void *const value,
@@ -477,20 +474,3 @@ static void *binary_find(const vector_t *const vector,
 }
 
 
-static void memswap(char *restrict a, char *restrict b, const size_t size)
-{
-    for (size_t i = 0; i < size / sizeof(size_t); ++i)
-    {
-        *(size_t*)a ^= *(size_t*)b;
-        *(size_t*)b ^= *(size_t*)a;
-        *(size_t*)a ^= *(size_t*)b;
-        a += sizeof(size_t);
-        b += sizeof(size_t);
-    }
-    for (size_t i = 0; i < size % sizeof(size_t); ++i, ++a, ++b)
-    {
-        *a ^= *b;
-        *b ^= *a;
-        *a ^= *b;
-    }
-}

@@ -1,5 +1,8 @@
 *
 
+# submodules
+!.gitmodules
+!memory
 
 !src/
 !tests/
