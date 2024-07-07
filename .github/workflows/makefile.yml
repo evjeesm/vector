@@ -22,13 +22,18 @@ jobs:
 
     - name: Install check
       run: sudo apt-get install check
-    
+
+    - name: Pull & update submodules recursively
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+
     - name: autogen
       run: ./autogen.sh
     
     - name: configure
       run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O2'
-      
+
     - name: Install dependencies
       run: make
 
