@@ -5,7 +5,7 @@ bin_PROGRAMS = polimorph
 polimorph_SOURCES = polimorph.c
 polimorph_LDADD = libvector_static.la
 
-libvector_funcs_la_SOURCES = vector.c vector.h
+libvector_funcs_la_SOURCES = vector.c memswap.c vector.h
 
 libvector_la_SOURCES = 
 libvector_la_LDFLAGS = -shared
