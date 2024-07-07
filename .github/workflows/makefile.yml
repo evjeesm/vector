@@ -14,6 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install autoconf-archive
+    - run: sudo apt-get install autoconf-archive
+
+    - name: Install valgrind
+    - run: sudo apt-get install valgrind
+    
     - name: autogen
       run: ./autogen.sh
     
@@ -25,6 +31,9 @@ jobs:
 
     - name: Run check
       run: make check
+
+    - name: Run valgrind check
+      run: make check-valgrind
 
     - name: Run distcheck
       run: make distcheck
