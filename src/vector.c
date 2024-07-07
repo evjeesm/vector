@@ -479,24 +479,18 @@ static void *binary_find(const vector_t *const vector,
 
 static void memswap(char *restrict a, char *restrict b, const size_t size)
 {
-    union {
-        size_t _word;
-        char _bytes[sizeof(size_t)];
-    }
-    tmp;
-
-    for (size_t i = 0; i < size / sizeof(tmp); ++i)
+    for (size_t i = 0; i < size / sizeof(size_t); ++i)
     {
-        tmp._word = *(size_t*)a;
-        *(size_t*)a = *(size_t*)b;
-        *(size_t*)b = tmp._word;
-        a += sizeof(tmp);
-        b += sizeof(tmp);
+        *(size_t*)a ^= *(size_t*)b;
+        *(size_t*)b ^= *(size_t*)a;
+        *(size_t*)a ^= *(size_t*)b;
+        a += sizeof(size_t);
+        b += sizeof(size_t);
     }
-    for (size_t i = 0; i < size % sizeof(tmp); ++i, ++a, ++b)
+    for (size_t i = 0; i < size % sizeof(size_t); ++i, ++a, ++b)
     {
-        tmp._bytes[0] = *a;
-        *a = *b;
-        *b = tmp._bytes[0];
+        *a ^= *b;
+        *b ^= *a;
+        *a ^= *b;
     }
 }
