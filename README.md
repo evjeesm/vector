@@ -41,7 +41,7 @@ Compiles to *static* archive and/or *shared* object.
   $ git clone https://githib.com/EvgeniSemenov/vector.git vector; cd vector
   ```
 - run `./autogen.sh`
-- run `./configure <YOUR COMPILATION FLAGS>` for instance `-Wall -Wextra -O3 -DNDEBUG`
+- run `./configure CFLAGS="<YOUR COMPILATION FLAGS>"` for instance `-Wall -Wextra -O3 -DNDEBUG`
 - run `make check`
   whole thing will be compiled and tested with *check*
 - compiled artefacts will be stored in `./src/.libs/`
