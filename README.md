@@ -8,7 +8,7 @@ Does not perform auto scaling and tracking of stored elements
 Also, memory alignment specifics are in total responsibility of the end user.
 Uses `stdlib.h` allocation mechanism by default, but that behavior can be tweaked.
 
-Compiles to *static* archive and/or *shared* object. 
+Compiles to *static* archive and/or *shared* object.
 
 ## Supported platforms
 - GNU Linux
@@ -31,27 +31,21 @@ Compiles to *static* archive and/or *shared* object.
   - string.h
 
 ## Building
-- install **Build Tools** dependencies.
-  - on **debian**:
+- install **Build Tools** dependencies:
+  on **debian**:
     ```sh
     $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool check valgrind
     ```
-- clone the repository
+- clone the repository:
   ```sh
   $ git clone https://githib.com/EvgeniSemenov/vector.git vector; cd vector
   ```
-- run `./autogen.sh`
+- run `./autogen.sh` if you do any changes to `configuration.ac` file.
 - run `./configure CFLAGS="<YOUR COMPILATION FLAGS>"` for instance `-Wall -Wextra -O3 -DNDEBUG`
-- run `make check`
-  whole thing will be compiled and tested with *check*
-- compiled artefacts will be stored in `./src/.libs/`
-
-Currently, I am not providing installation options.
-The Main reason is that - as I am working in parallel on large hierarchy of libraries, 
-its preferable for me to have a single source of truth, no discrepancy in versions
-(change in one project automatically reflected in others), reduced compilation time.
-
-So each library I use is stored once on my system and softlinked with other projects.
+- run `make check`, whole thing will be compiled and tested with *check*
+- compiled artifacts will be stored in `./src/.libs/`.
+  I do recommend using symlinks to that folder instead of installing library during development,
+  this way I can be sure that all parts of my projects are synced.
 
 ## Usage
 link against `libvector_static.a` or `libvector.so`
