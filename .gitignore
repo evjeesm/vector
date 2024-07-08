@@ -12,6 +12,7 @@
 !*.h
 !*.am
 !*.ac
+!*.in
 !configure
 
 !.gitignore
