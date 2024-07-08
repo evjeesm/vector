@@ -3,6 +3,8 @@
 # submodules
 !.gitmodules
 !memory
+!build-aux
+!build-aux/**
 
 !src/
 !tests/
