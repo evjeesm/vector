@@ -2,7 +2,7 @@
 
 # submodules
 !.gitmodules
-!memory
+
 !build-aux
 !build-aux/**
 !m4
