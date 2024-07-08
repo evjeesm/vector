@@ -10,6 +10,7 @@
 !*.h
 !*.am
 !*.ac
+!configure
 
 !.gitignore
 !.clangd
