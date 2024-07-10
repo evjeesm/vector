@@ -16,8 +16,8 @@ jobs:
       with:
         submodules: true
 
-    - name: Install autoconf-archive
-      run: sudo apt-get install autoconf-archive
+    # - name: Install autoconf-archive
+    #   run: sudo apt-get install autoconf-archive
 
     - name: Install valgrind
       run: sudo apt-get install valgrind
