@@ -16,8 +16,8 @@ jobs:
       with:
         submodules: true
 
-    # - name: Install autoconf-archive
-    #   run: sudo apt-get install autoconf-archive
+    - name: Install autoconf-archive
+      run: sudo apt-get install autoconf-archive
 
     - name: Install valgrind
       run: sudo apt-get install valgrind
@@ -30,9 +30,6 @@ jobs:
         git submodule update --init --recursive
         git submodule update --recursive --remote
 
-    # - name: autogen
-    #   run: ./autogen.sh
-    
     - name: configure
       run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O2'
 
