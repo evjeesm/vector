@@ -13,17 +13,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: autoconf-archive valgrind check 
+        version: 1.0
       with:
         submodules: true
-
-    - name: Install autoconf-archive
-      run: sudo apt-get install autoconf-archive
-
-    - name: Install valgrind
-      run: sudo apt-get install valgrind
-
-    - name: Install check
-      run: sudo apt-get install check
 
     - name: Pull & update submodules recursively
       run: |
