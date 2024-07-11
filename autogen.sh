@@ -1,6 +1,6 @@
 #!/bin/sh
 
 
- autoreconf -fv || exit 1;
+ autoreconf -fvi || exit 1;
 
 
