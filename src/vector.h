@@ -97,13 +97,19 @@ vector_status_t vector_resize(vector_t **const vector, const size_t capacity, co
 /*
 * Copies range [offset, offset + length) elements into a destination pointer. Destination pointer can point to vector's buffer.
 */
-void vector_copy(const vector_t *const vector, char *dest, const size_t offset, const size_t length);
+void vector_copy(const vector_t *const vector,
+        char *dest,
+        const size_t offset,
+        const size_t length);
 
 
 /*
 * Works as `vector_copy` but supports overlapping regions.
 */
-void vector_move(const vector_t *const vector, char *dest, const size_t offset, const size_t length);
+void vector_move(const vector_t *const vector,
+        char *dest,
+        const size_t offset,
+        const size_t length);
 
 
 /*
@@ -162,7 +168,10 @@ char *vector_data(const vector_t *const vector);
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
 */
-void *vector_linear_find(const vector_t *const vector, const size_t limit, const predicate_t predicate, void *const param);
+void *vector_linear_find(const vector_t *const vector,
+        const size_t limit,
+        const predicate_t predicate,
+        void *const param);
 
 
 /*
@@ -170,7 +179,21 @@ void *vector_linear_find(const vector_t *const vector, const size_t limit, const
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
 */
-void *vector_binary_find(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *const param);
+void *vector_binary_find(const vector_t *const vector,
+        const void *const value,
+        const size_t limit,
+        const compare_t cmp,
+        void *const param);
+
+
+/*
+* Binary search, returns index of the element that matches or (-1) when not found.
+*/
+ssize_t vector_binary_find_index(const vector_t *const vector,
+        const void *const value,
+        const size_t limit,
+        const compare_t cmp,
+        void *const param);
 
 
 /*
@@ -220,7 +243,10 @@ void vector_spread(vector_t *const vector, const size_t index, const size_t amou
 * Shifting length elements at `offset` by `shift` times in direction of a sign.
 * Data will be overriden by shifted range.
 */
-void vector_shift(vector_t *const vector, const size_t offset, const size_t length, const ssize_t shift);
+void vector_shift(vector_t *const vector,
+        const size_t offset,
+        const size_t length,
+        const ssize_t shift);
 
 
 /*
@@ -233,21 +259,31 @@ void vector_swap(vector_t *const vector, const size_t index_a, const size_t inde
 * Run nonmodifying function on 'limit' elements of the vector.
 * Return zero on success, or nonzero value - user defined status code.
 */
-int vector_foreach(const vector_t *const vector, const size_t limit, const foreach_t func, void *const param);
+int vector_foreach(const vector_t *const vector,
+        const size_t limit,
+        const foreach_t func,
+        void *const param);
 
 
 /*
 * Run nonmodifying function on 'limit' elements of the vector reducing them into `acc`.
 * Return zero on success, or nonzero value - user defined status code.
 */
-int vector_aggregate(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param);
+int vector_aggregate(const vector_t *const vector,
+        const size_t limit,
+        const aggregate_t func,
+        void *const acc,
+        void *const param);
 
 
 /*
 * Run modifying function on 'limit' elements of the vector.
 * Return zero on success, or nonzero value - user defined status code.
 */
-int vector_transform(vector_t *const vector, const size_t limit, const transform_t func, void *const param);
+int vector_transform(vector_t *const vector,
+        const size_t limit,
+        const transform_t func,
+        void *const param);
 
 
 /*

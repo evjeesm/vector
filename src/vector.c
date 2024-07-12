@@ -39,12 +39,12 @@ static void *binary_find (const vector_t *const vector,
         const compare_t cmp,
         void *const param);
 
-static size_t binary_find_insert_place (const vector_t *const vector,
+static ssize_t binary_find_index (const vector_t *const vector,
         const void *const value,
         const size_t start,
         const size_t end,
         const compare_t cmp,
-        void *const param);
+        void *param);
 
 
 /**                          ***
@@ -211,7 +211,11 @@ void *vector_linear_find(const vector_t *const vector, const size_t limit, const
 }
 
 
-void *vector_binary_find(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param)
+void *vector_binary_find(const vector_t *const vector,
+        const void *const value,
+        const size_t limit,
+        const compare_t cmp,
+        void *param)
 {
     assert(vector);
     assert(value);
@@ -219,6 +223,21 @@ void *vector_binary_find(const vector_t *const vector, const void *const value, 
 
     assert((limit <= vector->capacity) && "Limit out of capacity bounds!");
     return binary_find(vector, value, 0, limit, cmp, param);
+}
+
+
+ssize_t vector_binary_find_index(const vector_t *const vector,
+        const void *const value,
+        const size_t limit,
+        const compare_t cmp,
+        void *const param)
+{
+    assert(vector);
+    assert(value);
+    assert(cmp);
+
+    assert((limit <= vector->capacity) && "Limit out of capacity bounds!");
+    return binary_find_index(vector, value, 0, limit, cmp, param);
 }
 
 
@@ -434,3 +453,30 @@ static void *binary_find(const vector_t *const vector,
 }
 
 
+static ssize_t binary_find_index(const vector_t *const vector,
+        const void *const value,
+        const size_t start,
+        const size_t end,
+        const compare_t cmp,
+        void *param)
+{
+    if (start == end)
+    {
+        return -1;
+    }
+
+    const size_t middle = (start + end) / 2;
+    void *middle_value = vector_get(vector, middle);
+
+    if (0 == cmp(value, middle_value, param))
+    {
+        return middle;
+    }
+
+    if (0 < cmp(value, middle_value, param))
+    {
+        return binary_find_index(vector, value, middle + 1, end, cmp, param);
+    }
+
+    return binary_find_index(vector, value, start, middle, cmp, param);
+}
