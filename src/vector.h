@@ -170,14 +170,7 @@ void *vector_linear_find(const vector_t *const vector, const size_t limit, const
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
 */
-void *vector_binary_find(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param);
-
-
-/*
-* Binary search that returns index of the insert position for a new value
-* that satisfies vector's ordering.
-*/
-size_t vector_binary_find_insert_place(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param);
+void *vector_binary_find(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *const param);
 
 
 /*

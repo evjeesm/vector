@@ -222,17 +222,6 @@ void *vector_binary_find(const vector_t *const vector, const void *const value, 
 }
 
 
-size_t vector_binary_find_insert_place(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param)
-{
-    assert(vector);
-    assert(value);
-    assert(cmp);
-
-    assert((limit <= vector->capacity) && "Limit out of capacity bounds!");
-    return binary_find_insert_place(vector, value, 0, limit, cmp, param);
-}
-
-
 ssize_t cmp_lex_asc(const void *value, const void *element, void *param)
 {
 
@@ -413,35 +402,6 @@ static size_t calculate_alloc_size(const size_t element_size, const size_t capac
     const size_t alloc_size = sizeof(vector_t) + data_offset + data_size;
     ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, "allocation size overflow!");
     return alloc_size;
-}
-
-
-static size_t binary_find_insert_place(const vector_t *const vector,
-        const void *value,
-        const size_t start,
-        const size_t end,
-        const compare_t cmp,
-        void *param)
-{
-    if (start == end)
-    {
-        return start;
-    }
-
-    const size_t middle = (start + end) / 2;
-    const void *middle_value = vector_get(vector, middle);
-
-    if (0 == cmp(value, middle_value, param))
-    {
-        return middle + 1;
-    }
-
-    if (0 < cmp(value, middle_value, param))
-    {
-        return binary_find_insert_place(vector, value, middle + 1, end, cmp, param);
-    }
-
-    return binary_find_insert_place(vector, value, start, middle, cmp, param);
 }
 
 

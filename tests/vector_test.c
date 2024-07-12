@@ -337,29 +337,6 @@ START_TEST (test_vector_binary_find_lex)
 END_TEST
 
 
-START_TEST (test_vector_binary_find_insert_place)
-{
-    const size_t capacity = vector_capacity(vector);
-    const int data[] = {-100, -1, 0, 10, 12, 20, 21, 30, 34, 60};
-    memcpy(vector_get(vector, 0), data, sizeof(int) * capacity);
-    
-    size_t index = 0;
-
-    index = vector_binary_find_insert_place(vector, TMP_REF(int, -200), capacity, cmp_int_asc, NULL);
-    ck_assert_uint_eq(0, index);
-
-    index = vector_binary_find_insert_place(vector, TMP_REF(int, -20), capacity, cmp_int_asc, NULL);
-    ck_assert_uint_eq(1, index);
-
-    index = vector_binary_find_insert_place(vector, TMP_REF(int, 0), capacity, cmp_int_asc, NULL);
-    ck_assert_uint_eq(3, index); /* skips equal numbers according to current cmp implementation */
-
-    index = vector_binary_find_insert_place(vector, TMP_REF(int, 1), capacity, cmp_int_asc, NULL);
-    ck_assert_uint_eq(3, index);
-}
-END_TEST
-
-
 START_TEST (test_vector_spread)
 {
     const size_t capacity = vector_capacity(vector);
@@ -486,7 +463,6 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_linear_find);
     tcase_add_test(tc_core, test_vector_binary_find);
     tcase_add_test(tc_core, test_vector_binary_find_lex);
-    tcase_add_test(tc_core, test_vector_binary_find_insert_place);
     tcase_add_test(tc_core, test_vector_foreach);
     tcase_add_test(tc_core, test_vector_transform);
     tcase_add_test(tc_core, test_vector_aggregate);
