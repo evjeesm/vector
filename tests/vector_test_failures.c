@@ -5,48 +5,56 @@
 
 #include "../src/vector.h"
 
-#define HEADER_SIZE 24
 #define MOCK_MEMORY_MAX 256 * sizeof(int)
 
-static char memory[MOCK_MEMORY_MAX];
-static size_t limit = MOCK_MEMORY_MAX;
-static size_t allocd = 0;
-
-void* vector_alloc(size_t size)
+typedef struct mock_alloc
 {
-    if (allocd + size > limit)
+    char memory[MOCK_MEMORY_MAX];
+    size_t limit;
+    size_t allocd;
+}
+mock_alloc_t;
+
+
+void* vector_alloc(size_t size, void *const param)
+{
+    mock_alloc_t *alloc = param;
+    if (alloc->allocd + size > alloc->limit)
     {
         return NULL;
     }
     
-    void *block = &memory[allocd];
-    allocd += size;
+    void *block = &alloc->memory[alloc->allocd];
+    alloc->allocd += size;
     return block;
 }
 
-void *vector_realloc(void *ptr, size_t size)
+
+void *vector_realloc(void *ptr, size_t size, void *const param)
 {
+    mock_alloc_t *alloc = param;
     (void) ptr;
-    if (allocd + size > limit)
+    if (alloc->allocd + size > alloc->limit)
     {
         return NULL;
     }
     
-    void *block = &memory[allocd];
-    memcpy(block, &memory[0], allocd);
-    allocd += size;
+    void *block = &alloc->memory[alloc->allocd];
+    memcpy(block, &alloc->memory[0], alloc->allocd);
+    alloc->allocd += size;
     return block;
 }
 
-void vector_free(void *ptr)
+
+void vector_free(void *ptr, void *const param)
 {
+    // not actually freeing for the sake of a test.
+    (void) param;
     (void) ptr;
 }
 
 void setup(void)
 {
-    allocd = 0;
-    memset(memory, 0, limit);
 }
 
 void teardown(void)
@@ -56,9 +64,11 @@ void teardown(void)
 
 START_TEST (test_vector_data_size_overflow_assert)
 {
+    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
-        .initial_cap = (-1ul / sizeof(int) + 1)
+        .initial_cap = (-1ul / sizeof(int) + 1),
+        .alloc_param = &alloc,
     ); 
 
     (void) vec;
@@ -68,9 +78,11 @@ END_TEST
 
 START_TEST (test_vector_alloc_size_overflow_assert)
 {
+    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
-        .initial_cap = (-1ul / sizeof(int) - 5)
+        .initial_cap = (-1ul / sizeof(int) - 5),
+        .alloc_param = &alloc,
     );
     (void) vec;
 }
@@ -79,9 +91,11 @@ END_TEST
 
 START_TEST (test_vector_alloc_failure)
 {
+    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
-        .initial_cap = (MOCK_MEMORY_MAX / sizeof(int))
+        .initial_cap = (MOCK_MEMORY_MAX / sizeof(int)),
+        .alloc_param = &alloc,
     ); /* exceedes maximum */
     
     ck_assert_ptr_null(vec);
@@ -91,13 +105,15 @@ END_TEST
 
 START_TEST (test_vector_resize)
 {
+    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
-        .initial_cap = 10
+        .initial_cap = 10,
+        .alloc_param = &alloc,
     );
 
     ck_assert_uint_eq(VECTOR_SUCCESS, vector_resize(&vec, 11, 999));
-    ck_assert_uint_eq(VECTOR_ALLOC_ERROR, vector_resize(&vec, limit, VECTOR_ALLOC_ERROR));
+    ck_assert_uint_eq(VECTOR_ALLOC_ERROR, vector_resize(&vec, alloc.limit, VECTOR_ALLOC_ERROR));
 
     vector_destroy(vec);
 }

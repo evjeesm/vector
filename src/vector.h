@@ -14,6 +14,7 @@ typedef struct vector_opts_t
     size_t data_offset;  /* beginning of the data array relative to `memory` field */
     size_t element_size; /* size of the element */
     size_t initial_cap;  /* will be preallocated */
+    void *alloc_param;   /* custom allocator */
 }
 vector_opts_t;
 
@@ -289,11 +290,11 @@ int vector_transform(vector_t *const vector,
 /*
 * Allocator functions:
 */
-void *vector_alloc(const size_t alloc_size);
+void *vector_alloc(const size_t alloc_size, void *const param);
 
-void *vector_realloc(void *ptr, const size_t alloc_size);
+void *vector_realloc(void *ptr, const size_t alloc_size, void *const param);
 
-void vector_free(void *ptr);
+void vector_free(void *ptr, void *const param);
 
 
 /*

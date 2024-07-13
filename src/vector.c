@@ -21,6 +21,7 @@ struct vector_t
     size_t element_size;
     size_t initial_cap;
     size_t capacity;
+    void *alloc_param;
     char memory[];
 };
 
@@ -60,7 +61,7 @@ vector_t *vector_create_(const vector_opts_t *const opts)
             opts->initial_cap,
             opts->data_offset);
     
-    vector_t *vector = (vector_t *) vector_alloc(alloc_size);
+    vector_t *vector = (vector_t *) vector_alloc(alloc_size, opts->alloc_param);
     if (!vector)
     {
         /* call may abort execution of the program */
@@ -72,6 +73,7 @@ vector_t *vector_create_(const vector_opts_t *const opts)
         .element_size = opts->element_size,
         .initial_cap = opts->initial_cap,
         .capacity = opts->initial_cap,
+        .alloc_param = opts->alloc_param,
     };
 
     return vector;
@@ -81,7 +83,7 @@ vector_t *vector_create_(const vector_opts_t *const opts)
 void vector_destroy(vector_t *const vector)
 {
     assert(vector);
-    vector_free(vector);
+    vector_free(vector, vector->alloc_param);
 }
 
 
@@ -105,7 +107,8 @@ vector_t *vector_clone(const vector_t *const vector)
     assert(vector);
 
     const size_t alloc_size = calculate_alloc_size(vector->element_size, vector->capacity, vector->data_offset);
-    vector_t *clone = (vector_t *) vector_alloc(alloc_size);
+    // inheriting original vectors allocation method
+    vector_t *clone = (vector_t *) vector_alloc(alloc_size, vector->alloc_param);
     if (!clone)
     {
         return NULL;
@@ -321,7 +324,7 @@ vector_status_t vector_resize(vector_t **const vector, const size_t capacity, co
 
     const size_t alloc_size = calculate_alloc_size((*vector)->element_size, capacity, (*vector)->data_offset);
 
-    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size);
+    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size, (*vector)->alloc_param);
     if (!vec)
     {
         return error;
@@ -387,20 +390,23 @@ int vector_transform(vector_t *const vector, const size_t limit, const transform
 }
 
 
-__attribute__((weak)) void *vector_alloc(const size_t alloc_size)
+__attribute__((weak)) void *vector_alloc(const size_t alloc_size, void *const param)
 {
+    (void)param;
     return malloc(alloc_size);
 }
 
 
-__attribute__((weak)) void *vector_realloc(void *ptr, const size_t alloc_size)
+__attribute__((weak)) void *vector_realloc(void *ptr, const size_t alloc_size, void *const param)
 {
+    (void)param;
     return realloc(ptr, alloc_size);
 }
 
 
-__attribute__((weak)) void vector_free(void *ptr)
+__attribute__((weak)) void vector_free(void *ptr, void *const param)
 {
+    (void)param;
     free(ptr);
 }
 
