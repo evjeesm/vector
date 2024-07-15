@@ -6,3 +6,5 @@ debug-vector-test: ./src/libvector.la ./tests/vector_test
 
 debug-vector-test-failures: ./src/libvector.la ./tests/vector_test_failures
 	LD_LIBRARY_PATH=./src/.libs:/usr/local/lib CK_FORK=no gdb -tui ./tests/.libs/vector_test_failures
+
+
