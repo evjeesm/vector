@@ -17,4 +17,6 @@ autoreconf -fvi || exit 1;
 
 ./configure CC=x86_64-w64-mingw32-gcc CFLAGS='-Wall -Wextra -O3 -Wno-override-init' CHECK_FLAGS="-I$(pwd)/build-aux/check/__inst/include/" CHECK_LIBS="$(pwd)/build-aux/check/__inst/bin/libcheck-0.dll" --host=x86_64-w64-mingw32
 
+make clean
+
 ./patch-test-driver.sh
