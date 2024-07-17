@@ -8,7 +8,8 @@ on:
 
 env:
   CC: x86_64-w64-mingw32-gcc
-  CFLAGS: -Wall -Wextra -O0 -Wno-override-init
+  CFLAGS: -Wall -Wextra -O0 -Wno-override-init -I${{ github.workspace }}/build-aux/check/__inst/include
+
   CHECK_LIBS:    ${{ github.workspace }}/build-aux/check/__inst/bin/libcheck-0.dll
   CHECK_FLAGS: -I${{ github.workspace }}/build-aux/check/__inst/include
 
@@ -21,21 +22,17 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: true
-    # - uses: awalsh128/cache-apt-pkgs-action@latest
-    #   with:
-    #     packages: autoconf-archive wine valgrind check
-    #     version: 1.0
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: autoconf-archive wine valgrind check
+        version: 1.0
 
     - name: Install mingw compiler
-      run: sudo apt-get install gcc-mingw-w64-x86-64 autoconf-archive wine valgrind check
-
+      run: sudo apt-get install gcc-mingw-w64-x86-64
     - name: Pull & update submodules recursively
       run: |
         git submodule update --init --recursive
         git submodule update --recursive --remote
-
-    - name: Pwd
-      run: echo "$(pwd)"
 
     - name: Regenerate build files
       run: ./autogen.sh
