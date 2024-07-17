@@ -10,7 +10,8 @@ make
 make check
 make install
 
-echo "Leaving $(pwd)"; cd -;
+echo "Leaving $(pwd)";
+cd ../../;
 
 autoreconf -fvi || exit 1;
 
