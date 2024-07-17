@@ -9,8 +9,8 @@ on:
 env:
   CC: x86_64-w64-mingw32-gcc
   CFLAGS: -Wall -Wextra -O0 -Wno-override-init
-  CHECK_LIBS:    ${{ github.workspace }}/build-aux/check/__inst/bin/libcheck-0.dll
-  CHECK_FLAGS: -I${{ github.workspace }}/build-aux/check/__inst/include
+  # CHECK_LIBS:    ${{ github.workspace }}/build-aux/check/__inst/bin/libcheck-0.dll
+  # CHECK_FLAGS: -I${{ github.workspace }}/build-aux/check/__inst/include
 
 jobs:
   build:
