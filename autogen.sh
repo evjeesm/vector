@@ -5,7 +5,7 @@ git clone https://github.com/libcheck/check.git build-aux/check
 cd build-aux/check
 autoreconf -i || exit 1;
 
-./configure CFLAGS='-Wall -Wextra -O3' --enable-subunit=no --host x86_64-w64-mingw32 --prefix=$(pwd)/__inst
+./configure CFLAGS='-Wall -Wextra' --enable-subunit=no --host x86_64-w64-mingw32 --prefix=$(pwd)/__inst
 make install
 
 echo "Leaving $(pwd)"; cd -;
