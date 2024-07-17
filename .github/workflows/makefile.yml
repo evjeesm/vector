@@ -25,6 +25,9 @@ jobs:
         git submodule update --init --recursive
         git submodule update --recursive --remote
 
+   - name: Pwd
+     run: echo "$(pwd)"
+
     - name: Regenerate build files
       run: ./autogen.sh
 
