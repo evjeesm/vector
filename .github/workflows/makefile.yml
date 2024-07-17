@@ -31,11 +31,14 @@ jobs:
 
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: autoconf-archive winehq-stable valgrind check
+        packages: autoconf-archive wine winehq-stable valgrind check
         version: 1.0
 
-    - name: Wine version
-      run: wine64 --version
+    - name: Wine Install
+      run: |
+        sudo apt update
+        sudo apt install --install-recommends winehq-stable -y
+        echo wine --version
 
     - name: Install mingw compiler
       run: sudo apt-get install gcc-mingw-w64-x86-64
