@@ -8,10 +8,9 @@ on:
 
 env:
   CC: x86_64-w64-mingw32-gcc
-  CFLAGS: -Wall -Wextra -O0 -Wno-override-init -I${{ github.workspace }}/build-aux/check/__inst/include
-
+  CFLAGS: -Wall -Wextra -O0 -Wno-override-init
   CHECK_LIBS:    ${{ github.workspace }}/build-aux/check/__inst/bin/libcheck-0.dll
-  CHECK_FLAGS: -I${{ github.workspace }}/build-aux/check/__inst/include
+  CHECK_CFLAGS: -I${{ github.workspace }}/build-aux/check/__inst/include
 
 jobs:
   build:
@@ -42,6 +41,13 @@ jobs:
         ./configure --host=x86_64-w64-mingw32
         make clean
 
+    - name: Archive test logs
+      uses: actions/upload-artifact@v4
+      with:
+        name: check-logs
+        path: tests/*.log
+        retention-days: 5
+
     - name: Install dependencies
       run: make
 
@@ -51,12 +57,7 @@ jobs:
     - name: Run valgrind check
       run: make check-valgrind
 
-    - name: Archive test logs
-      uses: actions/upload-artifact@v4
-      with:
-        name: check-logs
-        path: tests/*.log
-        retention-days: 5
+
 
     - name: Run distcheck
       run: make distcheck
