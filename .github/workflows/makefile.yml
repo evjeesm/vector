@@ -6,6 +6,12 @@ on:
   pull_request:
     branches: [ "main", "mingw" ]
 
+env:
+  CC: x86_64-w64-mingw32-gcc
+  CFLAGS: -Wall -Wextra -O0 -Wno-override-init
+  CHECK_LIBS:    ${{ github.workspace }}/build-aux/check/__inst/bin/libcheck-0.dll
+  CHECK_FLAGS: -I${{ github.workspace }}/build-aux/check/__inst/include
+
 jobs:
   build:
 
@@ -22,7 +28,7 @@ jobs:
 
     - name: Install mingw compiler
       run: sudo apt-get install gcc-mingw-w64-x86-64
-  
+
     - name: Pull & update submodules recursively
       run: |
         git submodule update --init --recursive
@@ -36,14 +42,14 @@ jobs:
 
     - name: Configure
       run: |
-        ./configure CC=x86_64-w64-mingw32-gcc CFLAGS='-Wall -Wextra -O3 -Wno-override-init' CHECK_FLAGS="-I$(pwd)/build-aux/check/__inst/include/" CHECK_LIBS="$(pwd)/build-aux/check/__inst/bin/libcheck-0.dll" --host=x86_64-w64-mingw32
+        ./configure --host=x86_64-w64-mingw32
         make clean
 
     - name: Install dependencies
       run: make
 
     - name: Run check
-      run: CHECK_FLAGS="-I$(pwd)/build-aux/check/__inst/include/" CHECK_LIBS="$(pwd)/build-aux/check/__inst/bin/libcheck-0.dll" make check
+      run: make check
 
     - name: Run valgrind check
       run: make check-valgrind
