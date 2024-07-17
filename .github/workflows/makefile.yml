@@ -21,9 +21,16 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: true
+
+    - name: Prepare Wine Installation
+      run: sudo dpkg --add-architecture i386
+      run: sudo mkdir -pm755 /etc/apt/keyrings
+      run: sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
+      run: sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: autoconf-archive wine valgrind check
+        packages: autoconf-archive winehq-stable valgrind check
         version: 1.0
 
     - name: Wine version
