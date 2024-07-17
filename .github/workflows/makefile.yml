@@ -28,9 +28,6 @@ jobs:
     - name: Regenerate build files
       run: ./autogen.sh
 
-    - name: configure
-      run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O2'
-
     - name: Install dependencies
       run: make
 
