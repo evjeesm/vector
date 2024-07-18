@@ -42,9 +42,12 @@ jobs:
 
     - name: Archive test logs
       uses: actions/upload-artifact@v4
+      if: failure()
       with:
         name: check-logs
-        path: tests/*.log
+        path: |
+          *.log
+          tests/*.log
         retention-days: 5
 
     - name: Run distcheck
