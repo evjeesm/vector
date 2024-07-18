@@ -15,7 +15,7 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-20.04
 
     steps:
     - uses: actions/checkout@v4
@@ -27,11 +27,11 @@ jobs:
           sudo dpkg --add-architecture i386
           sudo mkdir -pm755 /etc/apt/keyrings
           sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/jammy/winehq-jammy.sources
+          sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/focal/winehq-focal.sources
 
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: autoconf-archive wine winehq-stable valgrind check
+        packages: autoconf-archive wine32 wine64 winehq-stable valgrind check
         version: 1.0
 
     - name: Wine Install
