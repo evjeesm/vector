@@ -2,9 +2,9 @@ name: Windows MSYS2 CI
 
 on:
   push:
-    branches: [ "win" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "win" ]
+    branches: [ "main" ]
 
 env:
   CFLAGS: -Wall -Wextra -Wno-override-init -O2
