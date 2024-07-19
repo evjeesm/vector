@@ -8,17 +8,26 @@ on:
 
 jobs:
   build:
+    runs-on: windows-latest
 
-    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: msys2 {0}
 
     steps:
+    - run: git config --global core.autocrlf input
+    - uses: msys2/setup-msys2@v2
+      with:
+        update: true
+        install: >-
+          curl
+          git
+          check
+          valgrind
+          autoconf-archive
     - uses: actions/checkout@v4
       with:
         submodules: true
-    - uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: autoconf-archive valgrind check 
-        version: 1.0
 
     - name: Pull & update submodules recursively
       run: |
