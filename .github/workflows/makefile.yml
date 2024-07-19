@@ -21,8 +21,7 @@ jobs:
         install: >-
           curl
           git
-          check
-          valgrind
+          mingw-w64-check
           autoconf-archive
 
     - run: git config --global core.autocrlf input
