@@ -6,11 +6,13 @@ on:
   pull_request:
     branches: [ "win" ]
 
+env:
+  CFLAGS : '-Wall -Wextra -Wno-override-init -O2' --host x86_64-w64-mingw32
+
 jobs:
   build:
     runs-on: windows-latest
-    env:
-      CFLAGS : '-Wall -Wextra -Wno-override-init -O2' --host x86_64-w64-mingw32
+    
     defaults:
       run:
         shell: msys2 {0}
