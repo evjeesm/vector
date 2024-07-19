@@ -41,7 +41,7 @@ jobs:
       run: ./autogen.sh
 
     - name: configure
-      run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O2' --host = ${{ MSYSTEM_CHOST }}
+      run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O2' --host = x86_64-w64-mingw32
 
     - name: Install dependencies
       run: make
