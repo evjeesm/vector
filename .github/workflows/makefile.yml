@@ -22,6 +22,7 @@ jobs:
         install: >-
           curl
           git
+          mingw-w64-gcc
           mingw-w64-ucrt-x86_64-check
           autotools
           autoconf-archive
