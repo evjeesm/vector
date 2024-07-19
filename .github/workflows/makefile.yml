@@ -15,7 +15,6 @@ jobs:
         shell: msys2 {0}
 
     steps:
-    - run: git config --global core.autocrlf input
     - uses: msys2/setup-msys2@v2
       with:
         update: true
@@ -25,6 +24,8 @@ jobs:
           check
           valgrind
           autoconf-archive
+
+    - run: git config --global core.autocrlf input
     - uses: actions/checkout@v4
       with:
         submodules: true
