@@ -17,7 +17,7 @@ AX_VALGRIND_CHECK
 AC_CONFIG_SRCDIR([src/vector.c])
 
 AM_INIT_AUTOMAKE([-Wall -Werror foreign 1.11.2])
-AM_CONDITIONAL(MINGW, test "$host" = x86_64-w64-mingw32)
+AM_CONDITIONAL(MINGW, test "$MSYSTEM_CHOST" = x86_64-w64-mingw32)
 
 # Checks for programs.
 AM_PROG_AR
