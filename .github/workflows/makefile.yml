@@ -17,11 +17,12 @@ jobs:
     steps:
     - uses: msys2/setup-msys2@v2
       with:
+        msystem: ucrt64
         update: true
         install: >-
           curl
           git
-          mingw-w64-check
+          mingw-w64-ucrt-x86_64-check
           autoconf-archive
 
     - run: git config --global core.autocrlf input
