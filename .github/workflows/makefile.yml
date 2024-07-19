@@ -9,7 +9,8 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-
+    env:
+      CFLAGS : '-Wall -Wextra -Wno-override-init -O2' --host x86_64-w64-mingw32
     defaults:
       run:
         shell: msys2 {0}
@@ -41,7 +42,7 @@ jobs:
       run: ./autogen.sh
 
     - name: configure
-      run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O2' --host x86_64-w64-mingw32
+      run: ./configure
 
     - name: Install dependencies
       run: make
