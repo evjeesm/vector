@@ -1,39 +1,24 @@
-name: Makefile CI
+name: Linux Debian CI
 
 on:
   push:
-    branches: [ "win" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "win" ]
-
-env:
-  CFLAGS: -Wall -Wextra -Wno-override-init -O2
+    branches: [ "main" ]
 
 jobs:
   build:
-    runs-on: windows-latest
 
-    defaults:
-      run:
-        shell: msys2 {0}
+    runs-on: ubuntu-latest
 
     steps:
-    - uses: msys2/setup-msys2@v2
-      with:
-        msystem: ucrt64
-        update: true
-        install: >-
-          curl
-          git
-          mingw-w64-ucrt-x86_64-gcc
-          mingw-w64-ucrt-x86_64-check
-          autotools
-          autoconf-archive
-
-    - run: git config --global core.autocrlf input
     - uses: actions/checkout@v4
       with:
         submodules: true
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: autoconf-archive valgrind check 
+        version: 1.0
 
     - name: Pull & update submodules recursively
       run: |
@@ -44,7 +29,7 @@ jobs:
       run: ./autogen.sh
 
     - name: configure
-      run: ./configure
+      run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O2'
 
     - name: Install dependencies
       run: make
