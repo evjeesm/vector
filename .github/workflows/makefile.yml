@@ -23,6 +23,7 @@ jobs:
           curl
           git
           mingw-w64-ucrt-x86_64-check
+          autoconf2.72
           autoconf-archive
 
     - run: git config --global core.autocrlf input
