@@ -1,11 +1,11 @@
 # Vector - extendable base for contiguous dynamic arrays.
 Classic style library. (vector_t implementation is not exposed in the header file)
 
-![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg)
-[![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?token=PU8RFD6Z4T)](https://codecov.io/github/evjeesm/vector)
 
-
-![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg)
+| Platforms | CI/CD |
+|---|---|
+| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?token=PU8RFD6Z4T)](https://codecov.io/github/evjeesm/vector) |
+| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) |
 
 Provides facilities for implementing any kinds of random access containers.
 Does not perform auto scaling and tracking of stored elements 
