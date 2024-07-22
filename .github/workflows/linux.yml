@@ -2,7 +2,7 @@ name: Linux Debian CI
 
 on:
   push:
-    branches: [ "main", "cov" ]
+    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
