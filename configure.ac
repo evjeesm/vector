@@ -16,8 +16,6 @@ AX_VALGRIND_CHECK
 # unique source file -- primitive safety check
 AC_CONFIG_SRCDIR([src/vector.c])
 
-AX_CODE_COVERAGE
-
 AM_INIT_AUTOMAKE([-Wall -Wportability foreign 1.11.2])
 AM_CONDITIONAL(MINGW, [test "$MSYSTEM_CHOST" = x86_64-w64-mingw32 || "$host" = x86_64-w64-mingw32])
 
@@ -26,6 +24,7 @@ AM_PROG_AR
 LT_INIT
 AC_PROG_CC
 AC_PROG_CPP
+AC_PROG_AWK
 
 # Checks for libraries.
 PKG_CHECK_MODULES([CHECK], [check >= 0.9.6])
@@ -46,6 +45,8 @@ AC_CHECK_FUNCS([memmove memset])
 
 # Output files 
 AC_CONFIG_HEADERS([config.h])
+
+AX_CODE_COVERAGE
 
 AC_CONFIG_FILES([Makefile
                  src/Makefile
