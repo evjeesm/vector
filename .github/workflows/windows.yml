@@ -6,8 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  CFLAGS: -Wall -Wextra -Wno-override-init -O0 --coverage
 
 jobs:
   build:
@@ -45,7 +43,7 @@ jobs:
       run: ./autogen.sh
 
     - name: configure
-      run: ./configure --enable-code-coverage
+      run: ./configure CFLAGS='-Wall -Wextra -Wno-override-init -O0 --coverage' --enable-code-coverage
 
     - name: Install dependencies
       run: make
