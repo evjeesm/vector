@@ -29,6 +29,7 @@ jobs:
           mingw-w64-ucrt-x86_64-check
           autotools
           autoconf-archive
+          lcov
 
     - run: git config --global core.autocrlf input
     - uses: actions/checkout@v4
