@@ -12,12 +12,11 @@ Compiles to *static* archive and/or *shared* object.
 
 ## Supported platforms
 
-| Platforms | CI/CD |
-|---|---|
-| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) |
-| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) |
+| Platforms | CI/CD | COVERAGE |
+|---|---|---|
+| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector) |
+| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
 
- [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?token=PU8RFD6Z4T)](https://codecov.io/github/evjeesm/vector)
 
 ## Dependencies
 **Build Tools**:
