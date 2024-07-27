@@ -1,12 +1,6 @@
 # Vector - extendable base for contiguous dynamic arrays.
 Classic style library. (vector_t implementation is not exposed in the header file)
 
-
-| Platforms | CI/CD |
-|---|---|
-| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?token=PU8RFD6Z4T)](https://codecov.io/github/evjeesm/vector) |
-| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) |
-
 Provides facilities for implementing any kinds of random access containers.
 Does not perform auto scaling and tracking of stored elements 
 (all these functionalities have to be implemented in derived containers by design)
@@ -17,8 +11,13 @@ Uses `stdlib.h` allocation mechanism by default, but that behavior can be tweake
 Compiles to *static* archive and/or *shared* object.
 
 ## Supported platforms
-- GNU Linux
-- Windows
+
+| Platforms | CI/CD |
+|---|---|
+| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) |
+| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) |
+
+ [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?token=PU8RFD6Z4T)](https://codecov.io/github/evjeesm/vector)
 
 ## Dependencies
 **Build Tools**:
