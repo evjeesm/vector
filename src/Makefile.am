@@ -1,5 +1,9 @@
 noinst_LTLIBRARIES = libvector_funcs.la
 libvector_funcs_la_SOURCES = vector.c vector.h memswap.c memswap.h
+libvector_funcs_la_LIBS = $(CODE_COVERAGE_LIBS)
+libvector_funcs_la_CPPFLAGS = $(CODE_COVERAGE_CPPFLAGS) -I$(top_srcdir)/vector/src
+libvector_funcs_la_CFLAGS = $(CODE_COVERAGE_CFLAGS)
+libvector_funcs_la_CXXFLAGS = $(CODE_COVERAGE_CXXFLAGS)
 
 lib_LTLIBRARIES = libvector_static.la
 
