@@ -10,6 +10,8 @@ Uses `stdlib.h` allocation mechanism by default, but that behavior can be tweake
 
 Compiles to *static* archive and/or *shared* object.
 
+![vector-scheme](docs/vector-scheme.svg)
+
 ## Supported platforms
 
 | Platforms | CI/CD | COVERAGE |

@@ -1,11 +1,14 @@
 *
 
+
 # submodules
 !.gitmodules
 !memory
 
 !src
 !tests
+!docs
+!*.svg
 !*.c
 !*.h
 !*.am
@@ -16,3 +19,4 @@
 !autogen.sh
 
 config.h
+aminclude_static.am
