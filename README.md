@@ -61,23 +61,23 @@ Provides api for array manipulations with extendability in mind.
 
 - Install **Build System** dependencies:  
     - On **Debian** / **Ubuntu**:  
-      - In your faforite shell run:  
+      - In your fav shell run:  
         ```sh
         $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool \
             check valgrind lcov
         ```
-    - On **Windows**:
-      - install [msys2](https://www.msys2.org/) environment.
-      - in msys2 shell run:
+    - On **Windows**:  
+      - install [msys2](https://www.msys2.org/) environment.  
+      - in msys2 shell run:  
         ```msys2
         $ pacman -S curl git mingw-w64-ucrt-x86_64-gcc \
             mingw-264-ucrt-x86_64-check \
             autotools autoconf-archive lcov
         ```
-        Set up git newline \n to \r\n convertion (windows style)  
+        Set up git newline \n to \r\n convertion (windows style):  
         ```msys2
         $ git config --global core.autocrlf input
-      ```
+        ```
 
 
 - Clone the repository:  
