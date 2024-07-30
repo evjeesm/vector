@@ -14,16 +14,12 @@ Compiles to *static* archive and/or *shared* object.
 
 ## Supported platforms
 
-<style>
-    table {
-        width: 100%;
-    }
-</style>
+<div align="center">
 | Platforms | CI/CD | COVERAGE |
 |---|---|---|
 | Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector) |
 | Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
-
+</div>
 
 ## Dependencies
 **Build Tools**:
