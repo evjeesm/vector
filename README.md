@@ -14,6 +14,11 @@ Compiles to *static* archive and/or *shared* object.
 
 ## Supported platforms
 
+<style>
+    table {
+        width: 100%;
+    }
+</style>
 | Platforms | CI/CD | COVERAGE |
 |---|---|---|
 | Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector) |
