@@ -44,10 +44,10 @@ Provides api for array manipulations with extendability in mind.
   - gcc
   - make
   - autotools:  
-    automake >= 1.11.2  
-    autoconf  
-    autoconf-archive - install separately (for valgrind support)  
-    libtool  
+      automake >= 1.11.2  
+      autoconf  
+      autoconf-archive - install separately (for valgrind support)  
+      libtool  
   - check - testing framework
   - valgrind - for memory leak checks
   - lcov - for code coverage analizing
@@ -61,38 +61,40 @@ Provides api for array manipulations with extendability in mind.
 
 ## Build Process
 
-- install **Build System** dependencies:  
-  on **Debian** or **Ubuntu**:
-    ```sh
-    $ sudo apt-get install gcc make automake \
-        autoconf autoconf-archive libtool \
-        check valgrind lcov
-    ```
-  on **windows**:
-    - install [msys2](https://www.msys2.org/) environment.
-    - in msys2 shell run
-    ```msys2
-    $ pacman -S curl git mingw-w64-ucrt-x86_64-gcc \
-        mingw-264-ucrt-x86_64-check \
-        autotools autoconf-archive lcov
-    ```
-    Set up git newline \n to \r\n convertion (windows style)  
-    ```msys2
-    $ git config --global core.autocrlf input
-    ```
+- Install **Build System** dependencies:  
+    On **Debian** / **Ubuntu**:  
+      - In your faforite shell run:  
+        ```sh
+        $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool \
+            check valgrind lcov
+        ```
+    On **Windows**:
+      - install [msys2](https://www.msys2.org/) environment.
+      - in msys2 shell run:
+        ```msys2
+        $ pacman -S curl git mingw-w64-ucrt-x86_64-gcc \
+            mingw-264-ucrt-x86_64-check \
+            autotools autoconf-archive lcov
+        ```
+        Set up git newline \n to \r\n convertion (windows style)  
+        ```msys2
+        $ git config --global core.autocrlf input
+      ```
 
-- clone the repository:
+
+- Clone the repository:  
   ```sh
   $ git clone https://githib.com/evjeesm/vector.git vector; cd vector;
   $ git submodules update --init --recursive;
   ```
-- run `./autogen.sh`
-- run `./configure CFLAGS="<YOUR COMPILATION FLAGS>" --prefix=/path/to/install/folder/`
-- run `make` to build whole project.
-- run `make check` to run tests with *check*
-- run `make check-valgrind` for running *check* with valgrind
-- If no errors occured during *check* you can safely install library in your desired prefix path you specified at configure step.
-  run `make install`
+- Run `./autogen.sh`
+- Run `./configure CFLAGS="<YOUR COMPILATION FLAGS>" --prefix=/path/to/install/folder/`
+- Run `make` to build whole project.
+- Run `make check` to run tests with *check*
+- Run `make check-valgrind` for running *check* with valgrind
+- If no errors occured during *check* you can safely install library  
+  in your desired prefix path that you specified at configure step.  
+  Run `make install`
 
 
 ## Usage
