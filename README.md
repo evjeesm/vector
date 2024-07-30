@@ -60,13 +60,13 @@ Provides api for array manipulations with extendability in mind.
 ## Build Process
 
 - Install **Build System** dependencies:  
-    On **Debian** / **Ubuntu**:  
+    - On **Debian** / **Ubuntu**:  
       - In your faforite shell run:  
         ```sh
         $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool \
             check valgrind lcov
         ```
-    On **Windows**:
+    - On **Windows**:
       - install [msys2](https://www.msys2.org/) environment.
       - in msys2 shell run:
         ```msys2
