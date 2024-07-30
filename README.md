@@ -28,10 +28,8 @@ Provides api for array manipulations with extendability in mind.
 
 | Platforms | CI/CD | COVERAGE |
 |---|---|---|
-| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) \
-| [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector) |
-| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) \
-| [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
+| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector) |
+| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
 
 </div>
 
