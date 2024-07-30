@@ -1,24 +1,24 @@
 # Vector - extendable base for contiguous dynamic arrays.
 
-Classic opaque type library. (`vector_t` impl is not exposed in headers)
+Classic opaque type library. (`vector_t` impl is not exposed in headers)  
 Contains a `vector_t` - base ADT for dynamic arrays.
 
-The design allows for development of derived random access containers with ease.
-Provides api for array manipulations with extendability in mind.
+The design allows for development of derived random access containers with ease.  
+Provides api for array manipulations with extendability in mind.  
 
 ## Implementation details
 
-- Does not perform auto scaling and tracking of stored elements.
-  (all these functionalities have to be implemented in derived containers by design)
+- Does not perform auto scaling and tracking of stored elements.  
+  (all these functionalities have to be implemented in derived containers by design)  
 
-- Memory alignment is up to user.
-  Element of the vector are laid out one after another without padding.
-  You can add byte padding manually in struct of the element type.
-  Also you are able set `data_offset` to add padding between control struct and contents of the vector.
-  If you dislike how memory alignment is done, see next point.
+- Memory alignment is up to user.  
+  Element of the vector are laid out one after another without padding.  
+  You can add byte padding manually in struct of the element type.  
+  Also you are able set `data_offset` to add padding between control struct and contents of the vector.  
+  If you dislike how memory alignment is done, see next point.  
 
-- Default allocation strategy is a standard heap allocation, but can be altered.
-  You can use memalign instead of malloc for instance or custom allocator of your preference.
+- Default allocation strategy is a standard heap allocation, but can be altered.  
+  You can use memalign instead of malloc for instance or custom allocator of your preference.  
 
 ---
 
@@ -40,24 +40,26 @@ Provides api for array manipulations with extendability in mind.
 
 ## Dependencies
 
-**Build System**:
+### Build System
   - gcc
   - make
-  - autotools:
-    - automake >= 1.11.2
-    - autoconf
-    - autoconf-archive - install separately (for valgrind support)
-    - libtool
+  - autotools:  
+    automake >= 1.11.2  
+    autoconf  
+    autoconf-archive - install separately (for valgrind support)  
+    libtool  
   - check - testing framework
   - valgrind - for memory leak checks
   - lcov - for code coverage analizing
 
-**Std Libraries**:
-  - stdlib.h
-  - string.h
+### Libraries
+    stdlib  
+    string  
+    stdbool  
+    [memswap](memory/memswap.h)  
 
 
-## Building
+## Build Process
 
 - install **Build System** dependencies:
   on **debian** or **ubuntu**:
@@ -74,7 +76,7 @@ Provides api for array manipulations with extendability in mind.
 
 - clone the repository:
   ```sh
-  $ git clone https://githib.com/EvgeniSemenov/vector.git vector; cd vector;
+  $ git clone https://githib.com/evjeesm/vector.git vector; cd vector;
   $ git submodules update --init --recursive;
   ```
 - run `./autogen.sh`
@@ -88,12 +90,10 @@ Provides api for array manipulations with extendability in mind.
 
 ## Usage
 
-Link against `libvector_static.a` or `libvector.so` on **linux**.
-If you on **Windows** platform link to `libvector_static.dll`.
-
+Link against `libvector_static.a` or `libvector.so` on **linux**.  
+If you on **Windows** platform link to `libvector_static.dll`.  
 
 ### Minimal Example
-
 
 ```c
 #include "vector.h"
