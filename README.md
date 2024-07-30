@@ -1,30 +1,46 @@
 # Vector - extendable base for contiguous dynamic arrays.
-Classic style library. (vector_t implementation is not exposed in the header file)
 
-Provides facilities for implementing any kinds of random access containers.
-Does not perform auto scaling and tracking of stored elements 
-(all these functionalities have to be implemented in derived containers by design)
+Classic opaque type library. (`vector_t` impl is not exposed in headers)
+Contains a `vector_t` - base ADT for dynamic arrays.
 
-Also, memory alignment specifics are in total responsibility of the end user.
-Uses `stdlib.h` allocation mechanism by default, but that behavior can be tweaked.
+The design allows for development of derived random access containers with ease.
+Provides api for array manipulations with extendability in mind.
 
-Compiles to *static* archive and/or *shared* object.
+## Implementation details
 
-![vector-scheme](docs/vector-scheme.svg)
+- Does not perform auto scaling and tracking of stored elements.
+  (all these functionalities have to be implemented in derived containers by design)
+
+- Memory alignment is up to user.
+  Element of the vector are laid out one after another without padding.
+  You can add byte padding manually in struct of the element type.
+  Also you are able set `data_offset` to add padding between control struct and contents of the vector.
+  If you dislike how memory alignment is done, see next point.
+
+- Default allocation strategy is a standard heap allocation, but can be altered.
+  You can use memalign instead of malloc for instance or custom allocator of your preference.
+
+---
 
 ## Supported platforms
 
 <div align="center">
-  
+
 | Platforms | CI/CD | COVERAGE |
 |---|---|---|
-| Linux | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector) |
-| Windows | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
+| Linux | ![check-linux](actions/workflows/linux.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector) |
+| Windows | ![check-windows](actions/workflows/windows.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
 
 </div>
 
+## Memory layout
+
+![vector-scheme](docs/vector-scheme.svg)
+
+
 ## Dependencies
-**Build Tools**:
+
+**Build System**:
   - gcc
   - make
   - autotools:
@@ -33,34 +49,52 @@ Compiles to *static* archive and/or *shared* object.
     - autoconf-archive - install separately (for valgrind support)
     - libtool
   - check - testing framework
-  - valgrind (optionally) - for memory leak checks
+  - valgrind - for memory leak checks
+  - lcov - for code coverage analizing
 
 **Std Libraries**:
   - stdlib.h
   - string.h
 
+
 ## Building
-- install **Build Tools** dependencies:
-  on **debian**:
+
+- install **Build System** dependencies:
+  on **debian** or **ubuntu**:
     ```sh
-    $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool check valgrind
+    $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool check valgrind lcov
     ```
+  on **windows**:
+    - install [msys2](https://www.msys2.org/) environment.
+    - in msys2 shell run
+    ```msys2
+    $ pacman -S curl git mingw-w64-ucrt-x86_64-gcc mingw-264-ucrt-x86_64-check autotools autoconf-archive lcov
+    $ git config --global core.autocrlf input       # convert \n to \r\n (windows style)
+    ```
+
 - clone the repository:
   ```sh
   $ git clone https://githib.com/EvgeniSemenov/vector.git vector; cd vector;
   $ git submodules update --init --recursive;
   ```
-- run `./autogen.sh` if you do any changes to `configuration.ac` file.
-- run `./configure CFLAGS="<YOUR COMPILATION FLAGS>"` for instance `-Wall -Wextra -O3 -DNDEBUG`
-- run `make check`, whole thing will be compiled and tested with *check*
-- compiled artifacts will be stored in `./src/.libs/`.
-  I do recommend using symlinks to that folder instead of installing library during development,
-  this way I can be sure that all parts of my projects are synced.
+- run `./autogen.sh`
+- run `./configure CFLAGS="<YOUR COMPILATION FLAGS>" --prefix=/path/to/install/folder/`
+- run `make` to build whole project.
+- run `make check` to run tests with *check*
+- run `make check-valgrind` for running *check* with valgrind
+- If no errors occured during *check* you can safely install library in your desired prefix path you specified at configure step.
+  run `make install`
+
 
 ## Usage
-link against `libvector_static.a` or `libvector.so`
+
+Link against `libvector_static.a` or `libvector.so` on **linux**.
+If you on **Windows** platform link to `libvector_static.dll`.
+
 
 ### Minimal Example
+
+
 ```c
 #include "vector.h"
 int main(void)
