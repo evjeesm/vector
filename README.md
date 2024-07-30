@@ -58,22 +58,29 @@ Provides api for array manipulations with extendability in mind.
   stdlib  
   string  
   stdbool  
-  [memswap](memory/memswap.h)  
+  [memswap](../memory/memswap.h)  
 
 
 ## Build Process
 
-- install **Build System** dependencies:
-  on **debian** or **ubuntu**:
+- install **Build System** dependencies:  
+  on **Debian** or **Ubuntu**:
     ```sh
-    $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool check valgrind lcov
+    $ sudo apt-get install gcc make automake \
+        autoconf autoconf-archive libtool \
+        check valgrind lcov
     ```
   on **windows**:
     - install [msys2](https://www.msys2.org/) environment.
     - in msys2 shell run
     ```msys2
-    $ pacman -S curl git mingw-w64-ucrt-x86_64-gcc mingw-264-ucrt-x86_64-check autotools autoconf-archive lcov
-    $ git config --global core.autocrlf input       # convert \n to \r\n (windows style)
+    $ pacman -S curl git mingw-w64-ucrt-x86_64-gcc \
+        mingw-264-ucrt-x86_64-check \
+        autotools autoconf-archive lcov
+    ```
+    Set up git newline \n to \r\n convertion (windows style)  
+    ```msys2
+    $ git config --global core.autocrlf input
     ```
 
 - clone the repository:
