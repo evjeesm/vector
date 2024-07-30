@@ -20,8 +20,6 @@ Provides api for array manipulations with extendability in mind.
 - Default allocation strategy is a standard heap allocation, but can be altered.  
   You can use memalign instead of malloc for instance or custom allocator of your preference.  
 
----
-
 ## Supported platforms
 
 <div align="center">
