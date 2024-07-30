@@ -14,7 +14,7 @@ Compiles to *static* archive and/or *shared* object.
 
 ## Supported platforms
 
-<div align="center" style="width:100%; display=flex; justify-content=stretch;">
+<div align="center">
   
 | Platforms | CI/CD | COVERAGE |
 |---|---|---|
