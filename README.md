@@ -63,36 +63,47 @@ Provides api for array manipulations with extendability in mind.
     - On **Debian** / **Ubuntu**:  
       - In your fav shell run:  
         ```sh
-        $ sudo apt-get install gcc make automake autoconf autoconf-archive libtool \
+        sudo apt-get install gcc make automake autoconf autoconf-archive libtool \
             check valgrind lcov
         ```
     - On **Windows**:  
-      - install [msys2](https://www.msys2.org/) environment.  
-      - in msys2 shell run:  
+      - Install [msys2](https://www.msys2.org/) environment.  
+      - In msys2 shell run:  
         ```msys2
-        $ pacman -S curl git mingw-w64-ucrt-x86_64-gcc \
+        pacman -S curl git mingw-w64-ucrt-x86_64-gcc \
             mingw-264-ucrt-x86_64-check \
             autotools autoconf-archive lcov
         ```
         Set up git newline \n to \r\n convertion (windows style):  
         ```msys2
-        $ git config --global core.autocrlf input
+        git config --global core.autocrlf input
         ```
 
 
 - Clone the repository:  
   ```sh
-  $ git clone https://githib.com/evjeesm/vector.git vector; cd vector;
-  $ git submodules update --init --recursive;
+  git clone https://githib.com/evjeesm/vector.git vector; cd vector;
+  git submodules update --init --recursive;
   ```
-- Run `./autogen.sh`
-- Run `./configure CFLAGS="<YOUR COMPILATION FLAGS>" --prefix=/path/to/install/folder/`
-- Run `make` to build whole project.
-- Run `make check` to run tests with *check*
-- Run `make check-valgrind` for running *check* with valgrind
+- Configure project:  
+  ```sh
+  ./autogen.sh && ./configure CFLAGS=<YOUR COMPILATION FLAGS> --prefix=</path/to/install/folder/>
+  ```
+- Build project: (use -j<threads> option for multithreaded building)
+  ```sh
+  make
+  ```
+- Run Tests:
+  ```sh
+  make check
+  make check-valgrind    # optional memory check
+  ```
 - If no errors occured during *check* you can safely install library  
   in your desired prefix path that you specified at configure step.  
-  Run `make install`
+  Procede to installation:  
+  ```sh
+  make install
+  ```
 
 
 ## Usage
