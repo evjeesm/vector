@@ -33,7 +33,7 @@ Provides api for array manipulations with extendability in mind.
 
 ## Memory layout
 
-![vector-scheme](docs/vector-scheme.svg)
+![vector-scheme](https://github.com/evjeesm/vector/docs/vector-scheme.svg)
 
 ## Dependencies
 
