@@ -1,3 +1,7 @@
+/** \file vector.c
+ * A brief file description.
+ * A more elaborated file description.
+ */
 #include "vector.h"
 #include "memswap.h"
 
@@ -25,14 +29,18 @@ struct vector_t
     char memory[];
 };
 
-/**                          ***
+/*                             *
 * === Forward Declarations === *
-**                            */
+*                             */
 
+/*! Calculates allocation size for the vector.
+ */
 static size_t calculate_alloc_size (const size_t element_size,
         const size_t capacity,
         const size_t data_offset);
 
+/*! Perform binary search on a vectors range.
+ */
 static void *binary_find (const vector_t *const vector,
         const void *const value,
         const size_t start,
@@ -48,9 +56,9 @@ static ssize_t binary_find_index (const vector_t *const vector,
         void *param);
 
 
-/**                          ***
+/*                             *
 * === API Implementation   === *
-**                            */
+*                             */
 
 vector_t *vector_create_(const vector_opts_t *const opts)
 {

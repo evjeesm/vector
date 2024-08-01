@@ -1,3 +1,7 @@
+/*! \file vector.h
+ * A brief file description.
+ * A more elaborated file description.
+ */
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
 
@@ -11,10 +15,10 @@ typedef struct vector_t vector_t;
 
 typedef struct vector_opts_t
 {
-    size_t data_offset;  /* beginning of the data array relative to `memory` field */
-    size_t element_size; /* size of the element */
-    size_t initial_cap;  /* will be preallocated */
-    void *alloc_param;   /* custom allocator */
+    size_t data_offset;  /*!< Beginning of the data array relative to \ref "vector_t::memory" "memory field" */
+    size_t element_size; /*!< Size of the element */
+    size_t initial_cap;  /*!< Will be preallocated */
+    void *alloc_param;   /*!< Custom allocator */
 }
 vector_opts_t;
 
@@ -39,9 +43,10 @@ typedef int (*foreach_t) (const void *const element, void *const param);
 typedef int (*aggregate_t) (const void *const element, void *const acc, void *const param);
 typedef int (*transform_t) (void *const element, void *const param);
 
-/*
-* The wrapper for `vector_create_` function that provides default values.
-* Caller required to provide `element_size`!
+/*!
+* A wrapper for a \ref vector_create_() ["vector_create"]
+* Provides default values.
+* \param[in] element_size    specifies size of an element. required!
 */
 #define vector_create(...) \
     vector_create_( \
@@ -52,7 +57,7 @@ typedef int (*transform_t) (void *const element, void *const param);
     )\
 
 
-/*
+/*!
 * Vector constructor function that initializes vector
 * with properties packed in opts struct.
 * Space for `initial_cap` elements will be reserved.
@@ -61,7 +66,7 @@ typedef int (*transform_t) (void *const element, void *const param);
 vector_t *vector_create_(const vector_opts_t *const opts);
 
 
-/*
+/*!
 * Deallocates vector. A pointer will be invalidated after the call.
 */
 void vector_destroy(vector_t *const vector);
