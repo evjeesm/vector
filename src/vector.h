@@ -1,9 +1,9 @@
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
 
-#include <stdbool.h>    /**< bool, true, false */
-#include <stddef.h>     /**< size_t */
-#include <sys/types.h>  /**< ssize_t */
+#include <stdbool.h>    /* bool, true, false */
+#include <stddef.h>     /* size_t */
+#include <sys/types.h>  /* ssize_t */
 
 /**
  * @brief Create temporary typed reference.
@@ -95,9 +95,9 @@ typedef int (*transform_t) (void *const element, void *const param);
 
 
 /**
-* A wrapper for a \ref vector_create_() ["vector_create"]
+* A wrapper for a @ref vector_create_
 * Provides default values.
-* \param[in] element_size    specifies size of an element. required!
+* \param[in] element_size required!
 */
 #define vector_create(...) \
     vector_create_( \
@@ -111,7 +111,7 @@ typedef int (*transform_t) (void *const element, void *const param);
 /**
 * Vector constructor function that initializes vector
 * with properties packed in opts struct.
-* Space for `initial_cap` elements will be reserved.
+* Space for @a initial_cap elements will be reserved.
 * In case of allocation fail null pointer will be returned via `vector` argument.
 */
 vector_t *vector_create_(const vector_opts_t *const opts);
@@ -343,15 +343,40 @@ int vector_transform(vector_t *const vector,
         void *const param);
 
 
+/** @addtogroup Allocation @{ */
 /**
-* Allocator functions:
-*/
+ * @brief Allocates memory chunk of \a alloc_size.
+ *
+ * @param[in]     alloc_size  Allocation size in bytes
+ * @param[in,out] param       Optional allocator parameter. @see vector_t::alloc_param
+ *
+ * @returns allocated memory chunk or @c NULL pointer on failure.
+ */
 void *vector_alloc(const size_t alloc_size, void *const param);
 
+/**
+ * @brief Reallocates already allocated memory chunk in order to change allocation size.
+ *
+ * > [!warning]
+ * > This operation can move whole chunk to a completely different location.
+ * > Make sure you update 
+ *
+ * @param[in]     ptr         Pointer to a memory chunk previously allocated with current allocator!
+ * @param[in]     alloc_size  Allocation size in bytes
+ * @param[in,out] param       Optional allocator parameter. @see vector_t::alloc_param
+ *
+ * @returns allocated memory chunk or @c NULL pointer on failure.
+ */
 void *vector_realloc(void *ptr, const size_t alloc_size, void *const param);
 
+/**
+* @brief Free allocation that was previously allocated.
+*
+* @param[in]     ptr         Pointer to a memory chunk previously allocated with current allocator!
+* @param[in,out] param       Optional allocator parameter. @see vector_t::alloc_param
+*/
 void vector_free(void *ptr, void *const param);
-
+/** @} */
 
 /**
 * Utility functions:
