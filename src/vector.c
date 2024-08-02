@@ -6,12 +6,20 @@
 #include <stdlib.h> /** malloc, realloc, free */
 #include <string.h> /** memcpy, memset */
 
+/**
+ * @brief Mark code for debug only, so it will be stripped out in Release mode
+ */
 #ifndef NDEBUG
 #define DEBUG(code) code
 #else
 #define DEBUG(code)
 #endif
 
+/**
+ * @brief Assert for detectiong overflow of the allocation size.
+ *
+ * Less likely to happen.
+ */
 #define ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, message) \
     assert((data_size / element_size == capacity && alloc_size > data_size) && message);
 
@@ -54,7 +62,7 @@ static void *binary_find (const vector_t *const vector,
         void *const param);
 
 /**
-* Performs binary search on a vectors range.
+* @brief Performs binary search on a vectors range.
 *
 * @returns index of the found element on success or -1 otherwise.
 */

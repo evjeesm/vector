@@ -31,7 +31,7 @@
 typedef struct vector_t vector_t;
 
 /**
-* @brief Vector options
+* @brief Vector options.
 *
 * Parameters that are passed to a @ref vector_create_ function,
 * they provide all information needed for vector creation.
@@ -66,10 +66,10 @@ vector_status_t;
 /**
 * @brief Predicate, tells if traversed element matches user's criteria.
 *
-* @param[in] element   Points to an element inside a vector.
-* @param[in] param     Additional parameter from user, if you don't need it, pass @c NULL.
+* @param[in] element Points to an element inside a vector.
+* @param[in] param   Additional parameter from user, if you don't need it, pass @c NULL.
 *
-* @returns             @c true - element matches, otherwise @c false
+* @returns           @c true - element matches, otherwise @c false
 */
 typedef bool (*predicate_t) (const void *const element, void *const param);
 
@@ -78,9 +78,9 @@ typedef bool (*predicate_t) (const void *const element, void *const param);
 *
 * @see binary_find
 *
-* @param[in] value     Comparison reference value.
-* @param[in] element   Points to an element inside a vector.
-* @param[in] param     Additional parameter from user, if you don't need it, pass @c NULL.
+* @param[in] value   Comparison reference value.
+* @param[in] element Points to an element inside a vector.
+* @param[in] param   Additional parameter from user, if you don't need it, pass @c NULL.
 */
 typedef ssize_t (*compare_t) (const void *const value, const void *const element, void *const param);
 
@@ -90,10 +90,10 @@ typedef ssize_t (*compare_t) (const void *const value, const void *const element
 * This operation will be performed on each element of the vector,
 * until one of the calls retuned non-zero value.
 *
-* @param[in]      element    points to an element in a processed vector.
-* @param[in,out]  param      user defined parameter that for scaling.
+* @param[in]      element Points to an element in a processed vector.
+* @param[in,out]  param   User defined parameter that for scaling.
 *
-* @returns User defined code, non-zero code results in loop break.
+* @returns                User defined code, non-zero code results in loop break.
 */
 typedef int (*foreach_t) (const void *const element, void *const param);
 
@@ -104,11 +104,11 @@ typedef int (*foreach_t) (const void *const element, void *const param);
 * until one of the calls retuned non-zero value.
 * Reduces vector into a @c acc parameter, non-destructive operation.
 *
-* @param[in]      element    points to an element in a processed vector.
-* @param[in,out]  acc        accumulator that stores end result.
-* @param[in,out]  param      user defined parameter that for scaling.
+* @param[in]      element Points to an element in a processed vector.
+* @param[in,out]  acc     Accumulator that stores end result.
+* @param[in,out]  param   User defined parameter that for scaling.
 *
-* @returns User defined code, non-zero code results in loop break.
+* @returns                User defined code, non-zero code results in loop break.
 */
 typedef int (*aggregate_t) (const void *const element, void *const acc, void *const param);
 
@@ -119,19 +119,34 @@ typedef int (*aggregate_t) (const void *const element, void *const acc, void *co
 * until one of the calls retuned non-zero value.
 * Destructive operation, designed to mutate vector elements.
 *
-* @param[in]      element    points to an element in a processed vector.
-* @param[in,out]  param      user defined parameter that for scaling.
+* @param[in]      element Points to an element in a processed vector.
+* @param[in,out]  param   User defined parameter that for scaling.
 *
-* @returns User defined code, non-zero code results in loop break.
+* @returns                User defined code, non-zero code results in loop break.
 */
 typedef int (*transform_t) (void *const element, void *const param);
 /** @} */
 
+/** @addtogroup Vector API
+ *  @brief Main vectors methods.
+ *  @{
+ */
 
 /**
-* A wrapper for a @ref vector_create_
+* @brief Vector constructor.
+*
+* Preferable way to invoke vector constructor.
 * Provides default values.
-* \param[in] element_size required!
+*
+* @par Usage
+* @code{c}
+* vector_t *vector = vector_create(.element_size = sizeof(int), .initial_cap = 100);
+* @endcode
+*
+* @warning @ref vector_opts_t::element_size "element_size" is mandatory!
+*
+* @relatedalso vector_t
+* @see vector_create_
 */
 #define vector_create(...) \
     vector_create_( \
@@ -143,50 +158,104 @@ typedef int (*transform_t) (void *const element, void *const param);
 
 
 /**
+* @brief Vector contructor.
+*
 * Vector constructor function that initializes vector
 * with properties packed in opts struct.
 * Space for @a initial_cap elements will be reserved.
-* In case of allocation fail null pointer will be returned via `vector` argument.
+* In case of allocation fail null pointer will be returned via @c vector argument.
+*
+* @relatedalso vector_t
+* @param[in] opts Options according to which vector will be created.
+* @returns        Fresh new instance of the vector or @c NULL if allocation failed.
+*
+* @relatedalso vector_t
 */
 vector_t *vector_create_(const vector_opts_t *const opts);
 
 
 /**
-* Deallocates vector. A pointer will be invalidated after the call.
+* @brief Deallocates vector.
+*
+* A pointer will be invalidated after the call.
+*
+* @relatedalso vector_t
+* @param[in] vector Vector pointer that will be deallocated.
+*
+* @relatedalso vector_t
 */
 void vector_destroy(vector_t *const vector);
 
 
 /**
-* Function returns pointer to reserved space after vector's control struct.
+* @brief Provides a location where user can put a header for the derived class.
+*
+* Function returns a pointer to reserved space after vector's control struct.
 * Space for the header extension has to be preallocated on vector creation,
-* size of this region is specified by `data_offset` property in `opts` struct.
+* size of this region is specified by @ref vector_t::data_offset property in @ref vector_opts_t struct.
+*
+* @param[in] vector Pointer to vector.
+* @returns Pointer to @ref vector_t::memory
+*
+* @relatedalso vector_t
 */
 void* vector_get_ext_header(const vector_t *const vector);
 
 
 /**
-* Access data_offset property for extensions.
+* @brief Access @ref vector_t::data_offset property for extensions.
+*
+* @param[in] vector Pointer to vector.
+* @returns          Data offset in bytes
+*
+* @relatedalso vector_t
 */
 size_t vector_data_offset(const vector_t *const vector);
 
 
 /**
-* Makes a copy of the whole vector.
+* @brief Duplicate vector.
+*
+* Makes an exact copy of the whole vector.
 * (Allocation may fail).
+*
+* @param[in] vector Vector prototype to be copied.
+* @returns          Copy of the vector on success, @c NULL pointer otherwise.
+*
+* @relatedalso vector_t
 */
 vector_t *vector_clone(const vector_t *const vector);
 
 
 /**
+* @brief Performs allocation resize.
+*
 * Resizes vector to a desired capacity, wiping out elements beyond new capacity bounds.
 * Takes third parameter which denotes error type that will be returned if resize fails.
+*
+* @param[in] vector   Reference to vectors pointer.
+* @param[in] capacity Desired vectors capacity.
+* @param[in] error    Extension feature, error status code that will be returned upon allocation failure.
+*
+* @returns            Operation status.
+*
+* @relatedalso vector_t
 */
 vector_status_t vector_resize(vector_t **const vector, const size_t capacity, const vector_status_t error);
 
 
 /**
-* Copies range [offset, offset + length) elements into a destination pointer. Destination pointer can point to vector's buffer.
+* @brief Copy element range to other location.
+*
+* Copies range [offset, offset + length) elements into a destination pointer.
+* Destination pointer can point to vector's buffer.
+*
+* @param[in]  vector Pointer to vector instance.
+* @param[out] dest   Destination pointer.
+* @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
+* @param[in]  length Size of the coping range in elements.
+*
+* @relatedalso vector_t
 */
 void vector_copy(const vector_t *const vector,
         char *dest,
@@ -195,7 +264,16 @@ void vector_copy(const vector_t *const vector,
 
 
 /**
-* Works as `vector_copy` but supports overlapping regions.
+* @brief Moves range of the vector elements to another location.
+*
+* Works as @ref vector_copy, but supports overlapping regions.
+*
+* @param[in]  vector Pointer to vector instance.
+* @param[out] dest   Destination pointer.
+* @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
+* @param[in]  length Size of the coping range in elements.
+*
+* @relatedalso vector_t
 */
 void vector_move(const vector_t *const vector,
         char *dest,
@@ -204,9 +282,21 @@ void vector_move(const vector_t *const vector,
 
 
 /**
+* @brief Partial copying.
+*
 * Partial copy of the elements in a range [offset, offset + length],
-* where part of the element described by `part_offset` and `part_length` in bytes.
+* where part of the element described by @c part_offset and @c part_length in bytes.
 * All parts stored in a contiguous destination array one next to another.
+*
+* @param[in]  vector     Pointer to vector instance.
+* @param[out] dest       Destination pointer.
+* @param[in]  offset     Offset in @ref vector_t::element_size "elements" (begin index).
+* @param[in] length      Size of the coping range in elements.
+* @param[in] part_offset Offset in bytes inside an element,
+*                        begining of the portion to copy.
+* @param[in] part_length Length of the copying portion in bytes.
+*
+* @relatedalso vector_t
 */
 void vector_part_copy(const vector_t *const vector,
         char *dest,
@@ -217,47 +307,89 @@ void vector_part_copy(const vector_t *const vector,
 
 
 /**
-* Reports current element size.
+* @brief Reports current element size.
+*
+* @param[in] vector Pointer to a vector instance.
+* @returns          Element size in bytes.
+*
+* @relatedalso vector_t
 */
 size_t vector_element_size(const vector_t *const vector);
 
 
 /**
-* Reports current capacity of the vector.
+* @brief Reports current capacity of the vector.
+*
+* @param[in] vector Pointer to a vector instance.
+* @returns          Amount of elements currently allocated.
+*
+* @relatedalso vector_t
 */
 size_t vector_capacity(const vector_t *const vector);
 
 
 /**
-* Reports current capacity of the vector in bytes
+* @brief Reports current capacity of the vector in bytes
+*
+* @param[in] vector Pointer to a vector instance.
+* @returns          Amount of bytes currently allocated for elements.
+*
+* @relatedalso vector_t
 */
 size_t vector_capacity_bytes(const vector_t *const vector);
 
 
 /**
-* Reports initial capacity of the vector.
+* @brief Reports initial capacity of the vector.
+* @todo may be removed
+* @param[in] vector Pointer to a vector instance.
+* @returns          Amount of elements initially allocated.
+*
+* @relatedalso vector_t
 */
 size_t vector_initial_capacity(const vector_t *const vector);
 
 
 /**
-* Reports initial capacity of the vector in bytes.
+* @brief Reports initial capacity of the vector in bytes.
+* @todo may be removed later
+* @param[in] vector Pointer to a vector instance.
+* @returns          Amount of bytes initially allocated for elements.
+*
+* @relatedalso vector_t
 */
 size_t vector_initial_capacity_bytes(const vector_t *const vector);
 
 
 /**
-* Returns a pointer to the beginning of element data buffer.
-* WARNING: Does not assert when capacity is zero.
-*          Intended to be used for pointer arithmetics in derived containers.
+* @brief Gives a pointer to a location where elements' data begins.
+*
+* @warning
+* Does not assert when capacity is zero.
+* Intended to be used for pointer arithmetics in derived containers.
+*
+* @param[in] vector Pointer to a vector instance.
+* @returns          Location where elements are stored.
+*
+* @relatedalso vector_t
 */
 char *vector_data(const vector_t *const vector);
 
 
 /**
+* @brief Simple linear search for unordered data.
+*
 * Linear search for a value in the vector with parametrized predicate.
 * If no matching element found returns null pointer,
 * otherwise pointer to a legit location in vector's memory span.
+*
+* @param[in] vector    Pointer to a vector instance.
+* @param[in] limit     Iteration limit before break.
+* @param[in] predicate Condition for desired element to be found.
+* @param[in] param     User defined parameter, passed to @c predicate.
+* @returns             Pointer to a found element.
+*
+* @relatedalso vector_t
 */
 void *vector_linear_find(const vector_t *const vector,
         const size_t limit,
@@ -266,9 +398,17 @@ void *vector_linear_find(const vector_t *const vector,
 
 
 /**
-* Binary search for a value in the vector with parametrized compare function.
-* If no matching element found returns null pointer,
-* otherwise pointer to a legit location in vector's memory span.
+* @brief Run binary search on the vector.
+* @details @copydetails binary_find
+*
+* @param[in] vector Pointer to a vector instance.
+* @param[in] value  Reference value to be compared to elements.
+* @param[in] limit  Iteration limit before break.
+* @param[in] cmp    Condition for desired element to be found.
+* @param[in] param  User defined parameter, passed to @c predicate.
+* @returns          Pointer to a found element.
+*
+* @relatedalso vector_t
 */
 void *vector_binary_find(const vector_t *const vector,
         const void *const value,
@@ -278,7 +418,17 @@ void *vector_binary_find(const vector_t *const vector,
 
 
 /**
-* Binary search, returns index of the element that matches or (-1) when not found.
+* @brief Run binary search on the vector.
+* @details @copydetails binary_find_index
+*
+* @param[in] vector Pointer to a vector instance.
+* @param[in] value  Reference value to be compared to elements.
+* @param[in] limit  Iteration limit before break.
+* @param[in] cmp    Condition for desired element to be found.
+* @param[in] param  User defined parameter, passed to @c predicate.
+* @returns          Index of found element or @c NULL if none.
+*
+* @relatedalso vector_t
 */
 ssize_t vector_binary_find_index(const vector_t *const vector,
         const void *const value,
@@ -288,51 +438,73 @@ ssize_t vector_binary_find_index(const vector_t *const vector,
 
 
 /**
-* Lexicographic comparison in ascending order.
-* param is used to pass element size by value (explicit cast to void* required)
-*/
-ssize_t cmp_lex_asc(const void *const value, const void *const element, void *const param);
-
-
-/**
-* Lexicographic comparison in descending order.
-* param is used to pass element size by value (explicit cast to void* required)
-*/
-ssize_t cmp_lex_dsc(const void *const value, const void *const element, void *const param);
-
-
-/**
-* Returns pointer for the element at `index`.
+* @brief Returns pointer for the element at @c index.
+*
+* @param[in] vector Pointer to a vector instance.
+* @param[in] index  Denotes an element to be overriden by @c value.
+*
+* @returns          A pointer to a vector element at @c index.
+*
+* @relatedalso vector_t
 */
 void *vector_get(const vector_t *const vector, const size_t index);
 
 
 /**
-* Sets element at given `index` to a `value`.
+* @brief Sets element at given @c index to a @c value.
+*
+* @param[in] vector Pointer to a vector instance.
+* @param[in] index  Denotes an element to be overriden by @c value.
+* @param[in] value  Value to be stored at the @c index.
+*
+* @relatedalso vector_t
 */
 void vector_set(vector_t *const vector, const size_t index, const void *const value);
 
 
 /**
-* Sets element at given `index` to a zero value.
+* @brief Sets element at given @c index to a zero value.
+*
+* @param[in] vector Pointer to a vector instance.
+* @param[in] index  Denotes an element to be zeroed.
+*
+* @relatedalso vector_t
 */
 void vector_set_zero(vector_t *const vector, const size_t index);
 
 
 /**
-* Copies element's state at `index` across `amount` of elements including index.
+* @brief Duplicates existing element across range.
 *
+* Copies element at `index` across `amount` of elements including index.
+* @verbatim
 *   | 0 | 1 | 2 | 3 |
 *   |   | X |       | index = 1
 *   |   | X | X | X | amount = 3
+* @endverbatim
+* @param[in] vector Pointer to a vector instance.
+* @param[in] index  Index at which perform spread.
+* @param[in] amount Length of the spread range. (1 - has no effect)
 *
+* @relatedalso vector_t
 */
 void vector_spread(vector_t *const vector, const size_t index, const size_t amount);
 
 
 /**
-* Shifting length elements at `offset` by `shift` times in direction of a sign.
+* @brief Shift range of elements.
+*
+* Shifting @c length elements at @c offset by @c shift times in direction of a sign.
 * Data will be overriden by shifted range.
+*
+* shift < 0 => left; shift > 0 => right;
+*
+* @param[in] vector Pointer to vector instance.
+* @param[in] offset Offset in @ref vector_t::element_size "elements" (begin index).
+* @param[in] length Size of the shifting range in elements.
+* @param[in] shift  Direction and steps to shift in elements.
+*
+* @relatedalso vector_t
 */
 void vector_shift(vector_t *const vector,
         const size_t offset,
@@ -341,14 +513,31 @@ void vector_shift(vector_t *const vector,
 
 
 /**
-* Swaps values of elements designated by indicies.
+* @brief Swaps values of elements designated by indicies.
+*
+* @warning index_a should differ from index_b
+*
+* @param[in] vector  Pointer to vector instance.
+* @param[in] index_a Designator of the first element.
+* @param[in] index_b Designarot of the second element.
+*
+* @relatedalso vector_t
 */
 void vector_swap(vector_t *const vector, const size_t index_a, const size_t index_b);
 
 
 /**
-* Run nonmodifying function on 'limit' elements of the vector.
-* Return zero on success, or nonzero value - user defined status code.
+* @brief Perform immutable action on each element of the vector.
+*
+* Run non-modifying @c func on @c limit elements of the vector.
+*
+* @param[in] vector     Pointer to vector instance.
+* @param[in] limit      Limit maximum iterations.
+* @param[in] func       Action to be performed.
+* @param[in,out] param  User defined parameter, passed to func.
+* @returns              Zero on success, or nonzero value - user defined status code.
+*
+* @relatedalso vector_t
 */
 int vector_foreach(const vector_t *const vector,
         const size_t limit,
@@ -357,8 +546,19 @@ int vector_foreach(const vector_t *const vector,
 
 
 /**
-* Run nonmodifying function on 'limit' elements of the vector reducing them into `acc`.
+* @brief Perform immutable accamulating action on each element of the vector.
+*
+* Run nonmodifying function on @c limit elements of the vector reducing them into @c acc.
 * Return zero on success, or nonzero value - user defined status code.
+*
+* @param[in] vector     Pointer to vector instance.
+* @param[in] limit      Limit maximum iterations.
+* @param[in] func       Action to be performed.
+* @param[out] acc       Accamulator that stores calculation result.
+* @param[in,out] param  User defined parameter, passed to func.
+* @returns              Zero on success, or nonzero value - user defined status code.
+*
+* @relatedalso vector_t
 */
 int vector_aggregate(const vector_t *const vector,
         const size_t limit,
@@ -368,8 +568,16 @@ int vector_aggregate(const vector_t *const vector,
 
 
 /**
-* Run modifying function on 'limit' elements of the vector.
-* Return zero on success, or nonzero value - user defined status code.
+* @brief Perform mutable transformation on each element of the vector.
+*
+* Run modifying function on @c limit elements of the vector.
+*
+* @param[in] vector     Pointer to vector instance.
+* @param[in] limit      Limit maximum iterations.
+* @param[in] func       Action to be performed.
+* @param[in,out] param  User defined parameter, passed to func.
+* @returns              Zero on success, or nonzero value - user defined status code.
+* @relatedalso vector_t
 */
 int vector_transform(vector_t *const vector,
         const size_t limit,
@@ -399,9 +607,9 @@ void *vector_alloc(const size_t alloc_size, void *const param);
 /**
  * @brief Reallocates already allocated memory chunk in order to change allocation size.
  *
- * > [!warning]
- * > This operation can move whole chunk to a completely different location.
- * > Make sure you update 
+ * @warning
+ * This operation can move whole chunk to a completely different location.
+ * Make sure you update 
  *
  * @param[in]     ptr         Pointer to a memory chunk previously allocated with current allocator!
  * @param[in]     alloc_size  Allocation size in bytes
@@ -414,8 +622,8 @@ void *vector_realloc(void *ptr, const size_t alloc_size, void *const param);
 /**
 * @brief Free allocation that was previously allocated.
 *
-* @param[in]     ptr         Pointer to a memory chunk previously allocated with current allocator!
-* @param[in,out] param       Optional allocator parameter. @see vector_t::alloc_param
+* @param[in]     ptr   Pointer to a memory chunk previously allocated with current allocator!
+* @param[in,out] param Optional allocator parameter. @see vector_t::alloc_param
 */
 void vector_free(void *ptr, void *const param);
 /** @} */
@@ -431,11 +639,27 @@ void vector_free(void *ptr, void *const param);
 * @param[in] size       Required data size
 * @param[in] alignment  To multiple of which the size has to be aligned 
 *
-* @returns @c size aligned by @c alignment
-* @post aligned_size >= size
+* @returns @c size aligned by @c alignment, where aligned size >= size
 */
 size_t calc_aligned_size(const size_t size, const size_t alignment);
 
+/**
+* @brief Performs comparison in lexicographical ascending order.
+*
+* @see compare_t
+*/
+ssize_t cmp_lex_asc(const void *const value, const void *const element, void *const param);
+
+
+/**
+* @brief Performs comparison in lexicographical descending order.
+*
+* @see compare_t
+*/
+ssize_t cmp_lex_dsc(const void *const value, const void *const element, void *const param);
+
 /** @} */
+
+/** @} @noop Vector API */
 
 #endif/*_VECTOR_H_*/
