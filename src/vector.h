@@ -60,7 +60,7 @@ vector_status_t;
 
 /** @addtogroup Callbacks
  *  @{
-*   @brief callbacks that used by search functions 
+*   @brief Callbacks used by various API funcions.
 */
 
 /**
@@ -84,13 +84,47 @@ typedef bool (*predicate_t) (const void *const element, void *const param);
 */
 typedef ssize_t (*compare_t) (const void *const value, const void *const element, void *const param);
 
-/*
-* Any value other then zero breaks iteration over elements.
+/**
+* @brief Callback determines an operation for @ref vector_foreach.
+*
+* This operation will be performed on each element of the vector,
+* until one of the calls retuned non-zero value.
+*
+* @param[in]      element    points to an element in a processed vector.
+* @param[in,out]  param      user defined parameter that for scaling.
+*
+* @returns User defined code, non-zero code results in loop break.
 */
 typedef int (*foreach_t) (const void *const element, void *const param);
-typedef int (*aggregate_t) (const void *const element, void *const acc, void *const param);
-typedef int (*transform_t) (void *const element, void *const param);
 
+/**
+* @brief Callback determines an operation for @ref vector_aggregate.
+*
+* This operation will be performed on each element of the vector,
+* until one of the calls retuned non-zero value.
+* Reduces vector into a @c acc parameter, non-destructive operation.
+*
+* @param[in]      element    points to an element in a processed vector.
+* @param[in,out]  acc        accumulator that stores end result.
+* @param[in,out]  param      user defined parameter that for scaling.
+*
+* @returns User defined code, non-zero code results in loop break.
+*/
+typedef int (*aggregate_t) (const void *const element, void *const acc, void *const param);
+
+/**
+* @brief Callback determines an operation for @ref vector_transform.
+*
+* This operation will be performed on each element of the vector,
+* until one of the calls retuned non-zero value.
+* Destructive operation, designed to mutate vector elements.
+*
+* @param[in]      element    points to an element in a processed vector.
+* @param[in,out]  param      user defined parameter that for scaling.
+*
+* @returns User defined code, non-zero code results in loop break.
+*/
+typedef int (*transform_t) (void *const element, void *const param);
 /** @} */
 
 
@@ -343,7 +377,13 @@ int vector_transform(vector_t *const vector,
         void *const param);
 
 
-/** @addtogroup Allocation 
+/** @addtogroup Allocation
+ * @brief Allocator functions.
+ *
+ * These are @a weak @a symbols that can be overridden by the user.
+ * You can customize how you allocate underling memory for the vector.
+ * By passing @ref vector_t::alloc_param you can go even farther and
+ * customize allocation process per vector instance.
  * @{
  */
 /**
@@ -380,14 +420,22 @@ void *vector_realloc(void *ptr, const size_t alloc_size, void *const param);
 void vector_free(void *ptr, void *const param);
 /** @} */
 
-/**
-* Utility functions:
+/** @addtogroup Utilities
+* @brief Commonly used internally and by inherited classes
+* @{
 */
 
 /**
-* Function calculates size of the element
-* while respecting requirement for alignment.
+* @brief Function calculates size of the element while respecting requirement for alignment.
+*
+* @param[in] size       Required data size
+* @param[in] alignment  To multiple of which the size has to be aligned 
+*
+* @returns @c size aligned by @c alignment
+* @post aligned_size >= size
 */
 size_t calc_aligned_size(const size_t size, const size_t alignment);
+
+/** @} */
 
 #endif/*_VECTOR_H_*/
