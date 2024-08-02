@@ -63,6 +63,7 @@ jobs:
     - name: Update documentation
       run: |
         git checkout docs
+        git pull origin docs
         git merge --squash -m "Updating documentation sources"
         doxygen doxyconf
         git add docs
