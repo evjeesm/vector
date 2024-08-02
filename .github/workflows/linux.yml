@@ -17,7 +17,7 @@ jobs:
         submodules: true
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: autoconf-archive valgrind check lcov
+        packages: autoconf-archive valgrind check lcov doxygen
         version: 1.0
 
     - name: Pull & update submodules recursively
@@ -46,7 +46,7 @@ jobs:
         flags: debian
         name:  Linux Debian CI
         token: ${{ secrets.CODECOV_TOKEN }}
-
+  
     - name: Archive test logs
       uses: actions/upload-artifact@v4
       if: failure()
@@ -59,3 +59,13 @@ jobs:
 
     - name: Run distcheck
       run: make distcheck
+
+    - name: Update documentation
+      run: |
+        git checkout docs
+        git merge --squash -m "Updating documentation sources"
+        doxygen doxyconf
+        git add docs
+        git commit -m "Updating docs"
+        git push origin docs
+        
