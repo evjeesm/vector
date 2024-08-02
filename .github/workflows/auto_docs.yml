@@ -1,0 +1,42 @@
+name: Auto Docs
+
+on:
+  workflow_call:
+    inputs:
+      source-branch:
+        description: 'The branch to merge from'
+        required: true
+        type: string
+      target-branch:
+        description: 'The branch to merge into'
+        required: true
+        type: string
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        submodules: true
+    - uses: awalsh128/cache-apt-pkgs-action@latest
+      with:
+        packages: doxygen
+        version: 1.0
+    
+    - name: Configure git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Fetch all branches
+      run: git fetch --all
+
+    - name: Checkout target branch
+      run: git checkout ${{ inputs.target-branch }}
+
+    - name: Merge source branch into target branch
+      run: git merge ${{ inputs.source-branch }}
+
+    - name: Push changes to target branch
+      run: git push origin ${{ inputs.target-branch }}
