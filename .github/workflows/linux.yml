@@ -63,10 +63,10 @@ jobs:
     - name: Update documentation
       run: |
         git checkout docs
-        git pull origin docs
+        git pull --rebase origin docs
         git merge --squash -m "Updating documentation sources"
         doxygen doxyconf
-        git add docs
+        git add .
         git commit -m "Updating docs"
         git push origin docs
         
