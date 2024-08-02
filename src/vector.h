@@ -38,10 +38,10 @@ typedef struct vector_t vector_t;
 */
 typedef struct vector_opts_t
 {
-    size_t data_offset;  /**< @copybrief vector_t::data_offset */
-    size_t element_size; /**< @copybrief vector_t::element_size */
-    size_t initial_cap;  /**< Amount of elements that will be preallocated on @ref vector_create_ "vector creation". */
-    void *alloc_param;   /**< @copybrief vector_t::alloc_param */
+    size_t data_offset;  /**< @brief @copybrief vector_t::data_offset */
+    size_t element_size; /**< @brief @copybrief vector_t::element_size */
+    size_t initial_cap;  /**< @brief Amount of elements that will be preallocated on @ref vector_create_ "vector creation". */
+    void *alloc_param;   /**< @brief @copybrief vector_t::alloc_param */
 }
 vector_opts_t;
 
