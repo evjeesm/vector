@@ -61,10 +61,9 @@ jobs:
       run: make distcheck
 
     - name: Update documentation
-      uses: actions/checkout@v4
-      with:
-        token: ${DOCUMENTATION_TOKEN}
       run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git checkout docs
         git pull --ff origin docs
         git merge --squash main
@@ -73,4 +72,3 @@ jobs:
         git add .
         git commit -m "Updating docs"
         git push origin docs
-        
