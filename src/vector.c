@@ -17,11 +17,11 @@
 
 struct vector_t
 {
-    size_t data_offset; /**< Amount of bytes reserved for derived container's header */
-    size_t element_size;/**< Size of the underling element type */
-    size_t initial_cap; /**< TODO: maybe removed, because wastefull in some cases. */
-    size_t capacity;    /**< Current amount of allocated elements */
-    void *alloc_param;  /**< Parameter that holds non-default allocator's data */
+    size_t data_offset; /**< @brief Amount of bytes reserved for derived container's header */
+    size_t element_size;/**< @brief Size of the underling element type */
+    size_t initial_cap; /**< @brief @todo maybe removed, because wastefull in some cases. */
+    size_t capacity;    /**< @brief Current amount of allocated elements */
+    void *alloc_param;  /**< @brief Parameter that holds non-default allocator's data */
     char memory[];
     /**<
     * @brief Beginning of the vector's data.
