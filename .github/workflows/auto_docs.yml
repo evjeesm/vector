@@ -36,7 +36,7 @@ jobs:
       run: git switch ${{ inputs.target-branch }}
 
     - name: Merge source branch into target branch
-      run: git merge --strategy=ort ${{ inputs.source-branch }}
+      run: git merge ${{ inputs.source-branch }} --strategy=ort --allow-unrelated-histories
 
     - name: Push changes to target branch
       run: git push origin ${{ inputs.target-branch }}
