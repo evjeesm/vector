@@ -343,7 +343,9 @@ int vector_transform(vector_t *const vector,
         void *const param);
 
 
-/** @addtogroup Allocation @{ */
+/** @addtogroup Allocation 
+ * @{
+ */
 /**
  * @brief Allocates memory chunk of \a alloc_size.
  *
