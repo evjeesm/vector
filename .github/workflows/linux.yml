@@ -64,7 +64,7 @@ jobs:
       run: |
         git checkout docs
         git pull --ff origin docs
-        git merge --squash 
+        git merge --squash main
         git commit -m "Updating documentation sources"
         doxygen doxyconf
         git add .
