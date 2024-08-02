@@ -1,9 +1,9 @@
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
 
-#include <stdbool.h>    /** bool, true, false */
-#include <stddef.h>     /** size_t */
-#include <sys/types.h>  /** ssize_t */
+#include <stdbool.h>    /**< bool, true, false */
+#include <stddef.h>     /**< size_t */
+#include <sys/types.h>  /**< ssize_t */
 
 /**
  * @brief Create temporary typed reference.
@@ -15,10 +15,11 @@
 #define TMP_REF(type, value) (type[1]){value}
 
 /**
-* @brief Vector control structure type,
+* @brief Vector control structure type
 *
 * Designed to be passed by reference.
-* Functions that can cause reallocation of the vector,
+*
+* Functions that can cause reallocation of the vector
 * must take a double pointer to a vector,
 * this way vector pointer will be updated.
 *
@@ -57,7 +58,8 @@ typedef enum vector_status_t
 }
 vector_status_t;
 
-/** @group Callbacks
+/** @addtogroup Callbacks
+ *  @{
 *   @brief callbacks that used by search functions 
 */
 
@@ -89,7 +91,7 @@ typedef int (*foreach_t) (const void *const element, void *const param);
 typedef int (*aggregate_t) (const void *const element, void *const acc, void *const param);
 typedef int (*transform_t) (void *const element, void *const param);
 
-/** @endgroup */
+/** @} */
 
 
 /**
