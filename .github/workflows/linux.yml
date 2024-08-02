@@ -59,3 +59,12 @@ jobs:
 
     - name: Run distcheck
       run: make distcheck
+  
+  # Build and upload documentation
+  call-auto-docs:
+      uses: ./.github/workflows/auto_docs.yml
+      with:
+        source-branch: 'main'
+        target-branch: 'docs'
+      permissions:
+        contents: write
