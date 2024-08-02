@@ -33,7 +33,7 @@ jobs:
       run: git fetch --all
 
     - name: Checkout target branch
-      run: git checkout ${{ inputs.target-branch }}
+      run: git switch ${{ inputs.target-branch }}
 
     - name: Merge source branch into target branch
       run: git merge ${{ inputs.source-branch }}
