@@ -60,12 +60,15 @@ jobs:
     - name: Run distcheck
       run: make distcheck
 
-    - name: Update documentation
+    - name: git-checkout
+      uses: actions/checkout@v4
+      with:
+        branch: docs
+
+    - name: Update documentation sources
       run: |
         git config user.name "github-actions[bot]"
         git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git checkout docs
-        git pull --ff origin docs
         git merge --squash main
         git commit -m "Updating documentation sources"
         doxygen doxyconf
