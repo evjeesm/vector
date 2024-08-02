@@ -1,4 +1,4 @@
-# Vector - extendable base for contiguous dynamic arrays.
+# Vector
 
 Classic opaque type library. (`vector_t` impl is not exposed in headers)  
 Contains a `vector_t` - base ADT for dynamic arrays.
