@@ -20,21 +20,18 @@ Provides api for array manipulations with extendability in mind.
 - Default allocation strategy is a standard heap allocation, but can be altered.  
   You can use memalign instead of malloc for instance or custom allocator of your preference.
 
-## Supported platforms
+[See Full Documentation](https://evjeesm.github.io/vector)
 
-<div align="center">
+## Supported platforms
 
 | Platforms | CI/CD                                                                                       | COVERAGE                                                                                                                      |
 | --------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | Linux     | ![check-linux](https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg)     | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector)  |
 | Windows   | ![check-windows](https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg) | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
 
-</div>
-
 ## Memory layout
 
-![vector-scheme](https://github.com/evjeesm/vector/docs/vector-scheme.svg)
-
+![vector-scheme](vector-scheme.svg)
 ## Dependencies
 
 ### Build System
@@ -75,7 +72,7 @@ Provides api for array manipulations with extendability in mind.
           mingw-264-ucrt-x86_64-check \
           autotools autoconf-archive lcov
       ```
-      Set up git newline \n to \r\n convertion (windows style):
+      Set up git newline `\n` to `\r\n` convertion (windows style):
       ```msys2
       git config --global core.autocrlf input
       ```
