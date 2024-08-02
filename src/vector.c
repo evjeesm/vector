@@ -1,14 +1,10 @@
-/** \file vector.c
- * A brief file description.
- * A more elaborated file description.
- */
 #include "vector.h"
 #include "memswap.h"
 
-#include <assert.h> /* assert */
-#include <stdio.h>  /* fprintf */
-#include <stdlib.h> /* malloc, realloc, free */
-#include <string.h> /* memcpy, memset */
+#include <assert.h> /** assert */
+#include <stdio.h>  /** fprintf */
+#include <stdlib.h> /** malloc, realloc, free */
+#include <string.h> /** memcpy, memset */
 
 #ifndef NDEBUG
 #define DEBUG(code) code
@@ -21,26 +17,35 @@
 
 struct vector_t
 {
-    size_t data_offset;
-    size_t element_size;
-    size_t initial_cap;
-    size_t capacity;
-    void *alloc_param;
+    size_t data_offset; /**< Amount of bytes reserved for derived container's header */
+    size_t element_size;/**< Size of the underling element type */
+    size_t initial_cap; /**< TODO: maybe removed, because wastefull in some cases. */
+    size_t capacity;    /**< Current amount of allocated elements */
+    void *alloc_param;  /**< Parameter that holds non-default allocator's data */
     char memory[];
+    /**<
+    * @brief Beginning of the vector's data.
+    *
+    * Must be offsetted by @ref vector_t::data_offset "data_offset" to get to elements 
+    */
 };
 
 /*                             *
 * === Forward Declarations === *
 *                             */
 
-/*! Calculates allocation size for the vector.
- */
+/**
+* Calculates allocation size for the vector.
+*/
 static size_t calculate_alloc_size (const size_t element_size,
         const size_t capacity,
         const size_t data_offset);
 
-/*! Perform binary search on a vectors range.
- */
+/**
+* @brief Performs binary search on a vectors range.
+*
+* @returns pointer to the found element on success or NULL otherwise.
+*/
 static void *binary_find (const vector_t *const vector,
         const void *const value,
         const size_t start,
@@ -48,6 +53,11 @@ static void *binary_find (const vector_t *const vector,
         const compare_t cmp,
         void *const param);
 
+/**
+* Performs binary search on a vectors range.
+*
+* @returns index of the found element on success or -1 otherwise.
+*/
 static ssize_t binary_find_index (const vector_t *const vector,
         const void *const value,
         const size_t start,
@@ -398,21 +408,21 @@ int vector_transform(vector_t *const vector, const size_t limit, const transform
 }
 
 
-__attribute__((weak)) void *vector_alloc(const size_t alloc_size, void *const param)
+void * __attribute__((weak)) vector_alloc(const size_t alloc_size, void *const param)
 {
     (void)param;
     return malloc(alloc_size);
 }
 
 
-__attribute__((weak)) void *vector_realloc(void *ptr, const size_t alloc_size, void *const param)
+void * __attribute__((weak)) vector_realloc(void *ptr, const size_t alloc_size, void *const param)
 {
     (void)param;
     return realloc(ptr, alloc_size);
 }
 
 
-__attribute__((weak)) void vector_free(void *ptr, void *const param)
+void __attribute__((weak)) vector_free(void *ptr, void *const param)
 {
     (void)param;
     free(ptr);
@@ -425,9 +435,9 @@ size_t calc_aligned_size(const size_t size, const size_t alignment)
 }
 
 
-/**                       **
+/*                        **
 * === Static Functions === *
-**                        */
+*                         */
 
 static size_t calculate_alloc_size(const size_t element_size, const size_t capacity, const size_t data_offset)
 {
