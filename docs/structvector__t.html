@@ -1,3 +1,4 @@
+<!-- HTML header for doxygen 1.11.0-->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 <head>
@@ -21,6 +22,12 @@
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeDarkModeToggle.init()
+</script>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -99,8 +106,7 @@ $(function(){initNavTree('structvector__t.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Data Fields</a> &#124;
-<a href="#related">Related Symbols</a>  </div>
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle"><div class="title">vector_t Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -135,95 +141,6 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a2c7a23fb3c2197cc5557b8543ffdb2f7" id="r_a2c7a23fb3c2197cc5557b8543ffdb2f7"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c7a23fb3c2197cc5557b8543ffdb2f7">memory</a> []</td></tr>
 <tr class="memdesc:a2c7a23fb3c2197cc5557b8543ffdb2f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Beginning of the vector's data.  <br /></td></tr>
 <tr class="separator:a2c7a23fb3c2197cc5557b8543ffdb2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="related" name="related"></a>
-Related Symbols</h2></td></tr>
-<tr><td class="ititle" colspan="2"><p>(Note that these are not member symbols.) </p>
-</td></tr>
-<tr class="memitem:a160b0d4b8d0836eda9a50bfa71514de8" id="r_a160b0d4b8d0836eda9a50bfa71514de8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a160b0d4b8d0836eda9a50bfa71514de8">vector_create</a>(...)</td></tr>
-<tr class="memdesc:a160b0d4b8d0836eda9a50bfa71514de8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector constructor.  <br /></td></tr>
-<tr class="separator:a160b0d4b8d0836eda9a50bfa71514de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae9c418efba1bbeb20a8becffe6a09b75" id="r_gae9c418efba1bbeb20a8becffe6a09b75"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector__t.html">vector_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a> (const <a class="el" href="structvector__opts__t.html">vector_opts_t</a> *const opts)</td></tr>
-<tr class="memdesc:gae9c418efba1bbeb20a8becffe6a09b75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vector contructor.  <br /></td></tr>
-<tr class="separator:gae9c418efba1bbeb20a8becffe6a09b75"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae0c0da17ad9469e47ef376a82b6493f3" id="r_gae0c0da17ad9469e47ef376a82b6493f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a> (<a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:gae0c0da17ad9469e47ef376a82b6493f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deallocates vector.  <br /></td></tr>
-<tr class="separator:gae0c0da17ad9469e47ef376a82b6493f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafc2e34dbacffe6480af8681fbf46e808" id="r_gafc2e34dbacffe6480af8681fbf46e808"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gafc2e34dbacffe6480af8681fbf46e808">vector_get_ext_header</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:gafc2e34dbacffe6480af8681fbf46e808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a location where user can put a header for the derived class.  <br /></td></tr>
-<tr class="separator:gafc2e34dbacffe6480af8681fbf46e808"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga435ecb8dca435624d8d277feb6b2cc80" id="r_ga435ecb8dca435624d8d277feb6b2cc80"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga435ecb8dca435624d8d277feb6b2cc80">vector_data_offset</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:ga435ecb8dca435624d8d277feb6b2cc80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access <a class="el" href="#ab0fb2acbeb3bf70cb7dc348958b76990">vector_t::data_offset</a> property for extensions.  <br /></td></tr>
-<tr class="separator:ga435ecb8dca435624d8d277feb6b2cc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7243756372efd57714853efaf7521358" id="r_ga7243756372efd57714853efaf7521358"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector__t.html">vector_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga7243756372efd57714853efaf7521358">vector_clone</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:ga7243756372efd57714853efaf7521358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate vector.  <br /></td></tr>
-<tr class="separator:ga7243756372efd57714853efaf7521358"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6e5077303af4dfe720af5a0608553922" id="r_ga6e5077303af4dfe720af5a0608553922"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ab79a65b74cda0380395a1ece246f54c6">vector_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga6e5077303af4dfe720af5a0608553922">vector_resize</a> (<a class="el" href="structvector__t.html">vector_t</a> **const vector, const size_t <a class="el" href="#a81e18fd00e94087a8f04b657ffc34c04">capacity</a>, const <a class="el" href="vector_8h.html#ab79a65b74cda0380395a1ece246f54c6">vector_status_t</a> error)</td></tr>
-<tr class="memdesc:ga6e5077303af4dfe720af5a0608553922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs allocation resize.  <br /></td></tr>
-<tr class="separator:ga6e5077303af4dfe720af5a0608553922"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabf21611afbbdda61da4ffa361fc783dc" id="r_gabf21611afbbdda61da4ffa361fc783dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gabf21611afbbdda61da4ffa361fc783dc">vector_copy</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, char *dest, const size_t offset, const size_t length)</td></tr>
-<tr class="memdesc:gabf21611afbbdda61da4ffa361fc783dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy element range to other location.  <br /></td></tr>
-<tr class="separator:gabf21611afbbdda61da4ffa361fc783dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa94c547c9488b4f9dce5eb01067c2ae1" id="r_gaa94c547c9488b4f9dce5eb01067c2ae1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gaa94c547c9488b4f9dce5eb01067c2ae1">vector_move</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, char *dest, const size_t offset, const size_t length)</td></tr>
-<tr class="memdesc:gaa94c547c9488b4f9dce5eb01067c2ae1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves range of the vector elements to another location.  <br /></td></tr>
-<tr class="separator:gaa94c547c9488b4f9dce5eb01067c2ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga39836c927f0e0fc79dbf39728972d08e" id="r_ga39836c927f0e0fc79dbf39728972d08e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga39836c927f0e0fc79dbf39728972d08e">vector_part_copy</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</td></tr>
-<tr class="memdesc:ga39836c927f0e0fc79dbf39728972d08e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Partial copying.  <br /></td></tr>
-<tr class="separator:ga39836c927f0e0fc79dbf39728972d08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaae93d7f0c056c1d11d3232a7a7aa5e09" id="r_gaae93d7f0c056c1d11d3232a7a7aa5e09"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gaae93d7f0c056c1d11d3232a7a7aa5e09">vector_element_size</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:gaae93d7f0c056c1d11d3232a7a7aa5e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports current element size.  <br /></td></tr>
-<tr class="separator:gaae93d7f0c056c1d11d3232a7a7aa5e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab24bd801f91d4ae1ac79b54430b0409f" id="r_gab24bd801f91d4ae1ac79b54430b0409f"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gab24bd801f91d4ae1ac79b54430b0409f">vector_capacity</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:gab24bd801f91d4ae1ac79b54430b0409f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports current capacity of the vector.  <br /></td></tr>
-<tr class="separator:gab24bd801f91d4ae1ac79b54430b0409f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3bfc1317eaeaee9b29a452c4fa41e4b3" id="r_ga3bfc1317eaeaee9b29a452c4fa41e4b3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga3bfc1317eaeaee9b29a452c4fa41e4b3">vector_capacity_bytes</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:ga3bfc1317eaeaee9b29a452c4fa41e4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports current capacity of the vector in bytes.  <br /></td></tr>
-<tr class="separator:ga3bfc1317eaeaee9b29a452c4fa41e4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8920a1d7d9d5db65a90e0e27b112ed2e" id="r_ga8920a1d7d9d5db65a90e0e27b112ed2e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga8920a1d7d9d5db65a90e0e27b112ed2e">vector_initial_capacity</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:ga8920a1d7d9d5db65a90e0e27b112ed2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports initial capacity of the vector.  <br /></td></tr>
-<tr class="separator:ga8920a1d7d9d5db65a90e0e27b112ed2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaed053eb4d25253b5f69b9712212d9e62" id="r_gaed053eb4d25253b5f69b9712212d9e62"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gaed053eb4d25253b5f69b9712212d9e62">vector_initial_capacity_bytes</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:gaed053eb4d25253b5f69b9712212d9e62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports initial capacity of the vector in bytes.  <br /></td></tr>
-<tr class="separator:gaed053eb4d25253b5f69b9712212d9e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac4d24b2cc8c8c44d36107b9a0fffea35" id="r_gac4d24b2cc8c8c44d36107b9a0fffea35"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gac4d24b2cc8c8c44d36107b9a0fffea35">vector_data</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:gac4d24b2cc8c8c44d36107b9a0fffea35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives a pointer to a location where elements' data begins.  <br /></td></tr>
-<tr class="separator:gac4d24b2cc8c8c44d36107b9a0fffea35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga184f04299040b2bfd8c03ef22abc7b8b" id="r_ga184f04299040b2bfd8c03ef22abc7b8b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga184f04299040b2bfd8c03ef22abc7b8b">vector_linear_find</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t limit, const <a class="el" href="group__Callbacks.html#ga61d45c5be2935b552d99c0c74b7973ef">predicate_t</a> predicate, void *const param)</td></tr>
-<tr class="memdesc:ga184f04299040b2bfd8c03ef22abc7b8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple linear search for unordered data.  <br /></td></tr>
-<tr class="separator:ga184f04299040b2bfd8c03ef22abc7b8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5081815905cf71570856aef717659463" id="r_ga5081815905cf71570856aef717659463"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga5081815905cf71570856aef717659463">vector_binary_find</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const void *const value, const size_t limit, const <a class="el" href="group__Callbacks.html#gae47f476ece20d219ac1d39c71110e553">compare_t</a> cmp, void *const param)</td></tr>
-<tr class="memdesc:ga5081815905cf71570856aef717659463"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run binary search on the vector.  <br /></td></tr>
-<tr class="separator:ga5081815905cf71570856aef717659463"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaae3cfb2691a50da87169b5e057169782" id="r_gaae3cfb2691a50da87169b5e057169782"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gaae3cfb2691a50da87169b5e057169782">vector_binary_find_index</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const void *const value, const size_t limit, const <a class="el" href="group__Callbacks.html#gae47f476ece20d219ac1d39c71110e553">compare_t</a> cmp, void *const param)</td></tr>
-<tr class="memdesc:gaae3cfb2691a50da87169b5e057169782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run binary search on the vector.  <br /></td></tr>
-<tr class="separator:gaae3cfb2691a50da87169b5e057169782"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9437d9506a3b2799f595c88b82f160b3" id="r_ga9437d9506a3b2799f595c88b82f160b3"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3">vector_get</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t index)</td></tr>
-<tr class="memdesc:ga9437d9506a3b2799f595c88b82f160b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns pointer for the element at <code>index</code>.  <br /></td></tr>
-<tr class="separator:ga9437d9506a3b2799f595c88b82f160b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab3a5e466261d31ee9edd77a5eb280030" id="r_gab3a5e466261d31ee9edd77a5eb280030"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gab3a5e466261d31ee9edd77a5eb280030">vector_set</a> (<a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t index, const void *const value)</td></tr>
-<tr class="memdesc:gab3a5e466261d31ee9edd77a5eb280030"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets element at given <code>index</code> to a <code>value</code>.  <br /></td></tr>
-<tr class="separator:gab3a5e466261d31ee9edd77a5eb280030"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf3eaea4a3a47741f46eae9ae6e984ef2" id="r_gaf3eaea4a3a47741f46eae9ae6e984ef2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gaf3eaea4a3a47741f46eae9ae6e984ef2">vector_set_zero</a> (<a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t index)</td></tr>
-<tr class="memdesc:gaf3eaea4a3a47741f46eae9ae6e984ef2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets element at given <code>index</code> to a zero value.  <br /></td></tr>
-<tr class="separator:gaf3eaea4a3a47741f46eae9ae6e984ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6312527827ba72441feeef4fc4047f94" id="r_ga6312527827ba72441feeef4fc4047f94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga6312527827ba72441feeef4fc4047f94">vector_spread</a> (<a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t index, const size_t amount)</td></tr>
-<tr class="memdesc:ga6312527827ba72441feeef4fc4047f94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicates existing element across range.  <br /></td></tr>
-<tr class="separator:ga6312527827ba72441feeef4fc4047f94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1f4cbce56499e81a048ac6454cd5bb69" id="r_ga1f4cbce56499e81a048ac6454cd5bb69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga1f4cbce56499e81a048ac6454cd5bb69">vector_shift</a> (<a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t offset, const size_t length, const ssize_t shift)</td></tr>
-<tr class="memdesc:ga1f4cbce56499e81a048ac6454cd5bb69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shift range of elements.  <br /></td></tr>
-<tr class="separator:ga1f4cbce56499e81a048ac6454cd5bb69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf395f309bc15469998a8c14fc925b5b6" id="r_gaf395f309bc15469998a8c14fc925b5b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gaf395f309bc15469998a8c14fc925b5b6">vector_swap</a> (<a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t index_a, const size_t index_b)</td></tr>
-<tr class="memdesc:gaf395f309bc15469998a8c14fc925b5b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps values of elements designated by indicies.  <br /></td></tr>
-<tr class="separator:gaf395f309bc15469998a8c14fc925b5b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga988880baa4fe32fb6d4299daf1a29a1f" id="r_ga988880baa4fe32fb6d4299daf1a29a1f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t limit, const <a class="el" href="group__Callbacks.html#ga2a12fb990fb59f84ca1920d78d867aa6">foreach_t</a> func, void *const param)</td></tr>
-<tr class="memdesc:ga988880baa4fe32fb6d4299daf1a29a1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform immutable action on each element of the vector.  <br /></td></tr>
-<tr class="separator:ga988880baa4fe32fb6d4299daf1a29a1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1a193e06f6700de896628631b8569740" id="r_ga1a193e06f6700de896628631b8569740"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t limit, const <a class="el" href="group__Callbacks.html#ga89204e5e91ceae8be993751982edb299">aggregate_t</a> func, void *const acc, void *const param)</td></tr>
-<tr class="memdesc:ga1a193e06f6700de896628631b8569740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform immutable accamulating action on each element of the vector.  <br /></td></tr>
-<tr class="separator:ga1a193e06f6700de896628631b8569740"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga176c007bd441e4469a28ba47ca952dfb" id="r_ga176c007bd441e4469a28ba47ca952dfb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a> (<a class="el" href="structvector__t.html">vector_t</a> *const vector, const size_t limit, const <a class="el" href="group__Callbacks.html#ga3b3896688782a9a532d27c5d841c0e79">transform_t</a> func, void *const param)</td></tr>
-<tr class="memdesc:ga176c007bd441e4469a28ba47ca952dfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform mutable transformation on each element of the vector.  <br /></td></tr>
-<tr class="separator:ga176c007bd441e4469a28ba47ca952dfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Vector control structure type. </p>
@@ -234,53 +151,7 @@ Related Symbols</h2></td></tr>
 </div><!-- fragment --> </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00028">28</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-</div><h2 class="groupheader">Friends And Related Symbol Documentation</h2>
-<a id="a160b0d4b8d0836eda9a50bfa71514de8" name="a160b0d4b8d0836eda9a50bfa71514de8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a160b0d4b8d0836eda9a50bfa71514de8">&#9670;&#160;</a></span>vector_create</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define vector_create</td>
-          <td>(</td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">related</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    <a class="code hl_function" href="group__Vector.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a>( \</div>
-<div class="line">        &amp;(<a class="code hl_struct" href="structvector__opts__t.html">vector_opts_t</a>) { \</div>
-<div class="line">            .initial_cap = 10, \</div>
-<div class="line">            __VA_ARGS__ \</div>
-<div class="line">        }\</div>
-<div class="line">    )\</div>
-<div class="ttc" id="agroup__Vector_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="group__Vector.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_t::vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00083">vector.c:83</a></div></div>
-<div class="ttc" id="astructvector__opts__t_html"><div class="ttname"><a href="structvector__opts__t.html">vector_opts_t</a></div><div class="ttdoc">Vector options.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00041">vector.h:42</a></div></div>
-</div><!-- fragment -->
-<p>Vector constructor. </p>
-<p>Preferable way to invoke vector constructor. Provides default values.</p>
-<dl class="section user"><dt>Usage</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="structvector__t.html">vector_t</a> *vector = <a class="code hl_define" href="#a160b0d4b8d0836eda9a50bfa71514de8">vector_create</a>(.<a class="code hl_variable" href="#ada42e4f54768423800961ae3e815406d">element_size</a> = <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>), .<a class="code hl_variable" href="#ac2a9b3a5c2b8dc9cdd3995b771056ece">initial_cap</a> = 100);</div>
-<div class="ttc" id="astructvector__t_html_a160b0d4b8d0836eda9a50bfa71514de8"><div class="ttname"><a href="#a160b0d4b8d0836eda9a50bfa71514de8">vector_t::vector_create</a></div><div class="ttdeci">#define vector_create(...)</div><div class="ttdoc">Vector constructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00153">vector.h:153</a></div></div>
-<div class="ttc" id="astructvector__t_html_ac2a9b3a5c2b8dc9cdd3995b771056ece"><div class="ttname"><a href="#ac2a9b3a5c2b8dc9cdd3995b771056ece">vector_t::initial_cap</a></div><div class="ttdeci">size_t initial_cap</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00032">vector.c:32</a></div></div>
-<div class="ttc" id="astructvector__t_html_ada42e4f54768423800961ae3e815406d"><div class="ttname"><a href="#ada42e4f54768423800961ae3e815406d">vector_t::element_size</a></div><div class="ttdeci">size_t element_size</div><div class="ttdoc">Size of the underling element type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00031">vector.c:31</a></div></div>
-</div><!-- fragment --></dd></dl>
-<dl class="section warning"><dt>Warning</dt><dd><a class="el" href="structvector__opts__t.html#a18f1f3e195d1c4a691e232b1fcaec0c1">element_size</a> is mandatory!</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="group__Vector.html#gae9c418efba1bbeb20a8becffe6a09b75" title="Vector contructor.">vector_create_</a> </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00153">153</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Field Documentation</h2>
+</div><h2 class="groupheader">Field Documentation</h2>
 <a id="ab0fb2acbeb3bf70cb7dc348958b76990" name="ab0fb2acbeb3bf70cb7dc348958b76990"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab0fb2acbeb3bf70cb7dc348958b76990">&#9670;&#160;</a></span>data_offset</h2>
 

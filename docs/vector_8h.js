@@ -2,6 +2,7 @@ var vector_8h =
 [
     [ "vector_opts_t", "structvector__opts__t.html", "structvector__opts__t" ],
     [ "TMP_REF", "vector_8h.html#ad92ce696967261588cab3848dfe73c02", null ],
+    [ "vector_create", "group__Vector.html#ga160b0d4b8d0836eda9a50bfa71514de8", null ],
     [ "predicate_t", "group__Callbacks.html#ga61d45c5be2935b552d99c0c74b7973ef", null ],
     [ "compare_t", "group__Callbacks.html#gae47f476ece20d219ac1d39c71110e553", null ],
     [ "foreach_t", "group__Callbacks.html#ga2a12fb990fb59f84ca1920d78d867aa6", null ],
