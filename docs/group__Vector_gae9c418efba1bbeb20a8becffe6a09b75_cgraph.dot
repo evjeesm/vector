@@ -1,0 +1,12 @@
+digraph "vector_t::vector_create_"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Mononoki",fontsize="10",labelfontname="Mononoki",labelfontsize="10"];
+  node [fontname="Mononoki",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="vector_t::vector_create_",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Vector contructor."];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Mononoki"];
+  Node2 [label="vector_alloc",height=0.2,width=0.4,color="black",URL="$group__Allocation.html#ga89098aef4a81474d9302ba1f8b1474b8",tooltip="Allocates memory chunk of alloc_size."];
+}

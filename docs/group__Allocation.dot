@@ -1,0 +1,10 @@
+digraph "Allocation"
+{
+  bgcolor="transparent";
+  edge [fontname="Mononoki",fontsize="10",labelfontname="Mononoki",labelfontsize="10"];
+  node [fontname="Mononoki",fontsize="10",shape=box];
+  rankdir=LR;
+  Node2 [label="API",height=0.2,width=0.4,color="black",URL="$group__Vector.html",tooltip="Main vectors methods."];
+  Node1 [label="Allocation",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Allocator functions."];
+  Node2->Node1 [shape=plaintext, dir="back", style="solid"];
+}

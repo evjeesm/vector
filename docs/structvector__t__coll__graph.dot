@@ -1,0 +1,9 @@
+digraph "vector_t"
+{
+ // INTERACTIVE_SVG=YES
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname="Mononoki",fontsize="10",labelfontname="Mononoki",labelfontsize="10"];
+  node [fontname="Mononoki",fontsize="10",shape=record];
+  Node1 [label="{vector_t\n|+ data_offset\l+ element_size\l+ initial_cap\l+ capacity\l+ alloc_param\l+ memory\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Vector control structure type."];
+}

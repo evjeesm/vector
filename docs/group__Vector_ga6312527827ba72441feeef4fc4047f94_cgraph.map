@@ -1,5 +1,0 @@
-<map id="vector_t::vector_spread" name="vector_t::vector_spread">
-<area shape="rect" id="node1" title="Duplicates existing element across range." alt="" coords="5,31,188,57"/>
-<area shape="rect" id="node2" href="$group__Vector.html#gabf21611afbbdda61da4ffa361fc783dc" title="Copy element range to other location." alt="" coords="236,5,405,32"/>
-<area shape="rect" id="node3" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="453,31,616,57"/>
-</map>
