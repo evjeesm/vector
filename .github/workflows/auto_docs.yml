@@ -47,7 +47,7 @@ jobs:
         git submodule update --recursive --remote
 
     - name: Merge source branch into target branch
-      run: git merge ${{ inputs.source-branch }} --allow-unrelated-histories --commit -X theirs
+      run: git merge ${{ inputs.source-branch }} --allow-unrelated-histories --commit -s ours
 
     - name: Regenerate Docs
       run: |
