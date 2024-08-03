@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['generator_0',['Doxygen generator',['../md_doxygen-awesome-css_2docs_2customization.html#autotoc_md15',1,'']]],
-  ['git_20submodule_1',['Git submodule',['../index.html#autotoc_md35',1,'']]],
-  ['graphviz_2',['Diagrams with Graphviz',['../md_doxygen-awesome-css_2docs_2tricks.html#tricks-graphviz',1,'']]]
+  ['implementation_20details_0',['Implementation details',['../index.html#autotoc_md1',1,'']]],
+  ['initial_5fcap_1',['initial_cap',['../structvector__t.html#ac2a9b3a5c2b8dc9cdd3995b771056ece',1,'vector_t::initial_cap'],['../structvector__opts__t.html#a3bcfe6caf89c0029a925d0be842abc23',1,'vector_opts_t::initial_cap']]]
 ];
