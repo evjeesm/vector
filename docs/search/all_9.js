@@ -5,5 +5,5 @@ var searchData=
   ['minimal_20example_2',['Minimal Example',['..//home/runner/work/vector/vector/README.md#autotoc_md10',1,'']]],
   ['mode_3',['Disable Dark Mode',['../md_doxygen-awesome-css_2docs_2tricks.html#tricks-darkmode',1,'']]],
   ['mode_20toggle_4',['Dark Mode Toggle',['../md_doxygen-awesome-css_2docs_2extensions.html#extension-dark-mode-toggle',1,'']]],
-  ['motivation_5',['Motivation',['../index.html#autotoc_md15',1,'']]]
+  ['motivation_5',['Motivation',['../index.html#autotoc_md31',1,'']]]
 ];

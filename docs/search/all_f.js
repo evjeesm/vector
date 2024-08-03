@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['variables_0',['CSS-Variables',['../md_doxygen-awesome-css_2docs_2customization.html#autotoc_md39',1,'']]],
-  ['variables_1',['Available variables',['../md_doxygen-awesome-css_2docs_2customization.html#autotoc_md41',1,'']]],
+  ['variables_0',['CSS-Variables',['../md_doxygen-awesome-css_2docs_2customization.html#autotoc_md12',1,'']]],
+  ['variables_1',['Available variables',['../md_doxygen-awesome-css_2docs_2customization.html#autotoc_md14',1,'']]],
   ['vector_2ec_2',['vector.c',['../vector_8c.html',1,'']]],
   ['vector_2eh_3',['vector.h',['../vector_8h.html',1,'']]],
   ['vector_5faggregate_4',['vector_aggregate',['../group__Vector.html#ga1a193e06f6700de896628631b8569740',1,'vector_t::vector_aggregate()'],['../group__Vector.html#ga1a193e06f6700de896628631b8569740',1,'vector_aggregate(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param):&#160;vector.c'],['../group__Vector.html#ga1a193e06f6700de896628631b8569740',1,'vector_aggregate(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param):&#160;vector.c']]],
