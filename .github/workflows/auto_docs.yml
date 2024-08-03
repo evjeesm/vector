@@ -19,10 +19,15 @@ jobs:
     - uses: actions/checkout@v4
       with:
         submodules: true
-    - uses: awalsh128/cache-apt-pkgs-action@latest
-      with:
-        packages: doxygen
-        version: 1.0
+
+    - name: Install Doxygen
+      run: |
+        wget https://www.doxygen.nl/files/doxygen-1.11.0.linux.bin.tar.gz
+        tar -x -gz -f doxygen-1.11.0.linux.bin.tar.gz
+        cd doxygen-1.11.0
+        sudo make install
+        cd ..
+        rm -rf doxygen-1.11.0
 
     - name: Configure git
       run: |
