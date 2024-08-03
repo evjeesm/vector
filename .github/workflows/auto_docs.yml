@@ -23,14 +23,17 @@ jobs:
       with:
         packages: doxygen
         version: 1.0
-    
+
     - name: Configure git
       run: |
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
 
-    - name: Fetch all branches
-      run: git fetch --all
+    - name: Checkout source branch
+      run: git switch ${{ inputs.source-branch }}
+
+    - name: Pull source branch
+      run: git pull origin ${{ inputs.source-branch }}
 
     - name: Checkout target branch
       run: git switch ${{ inputs.target-branch }}
