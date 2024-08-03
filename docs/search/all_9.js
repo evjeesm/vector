@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['platforms_0',['Supported platforms',['../index.html#autotoc_md2',1,'']]],
-  ['predicate_5ft_1',['predicate_t',['../group__Callbacks.html#ga61d45c5be2935b552d99c0c74b7973ef',1,'vector.h']]],
-  ['process_2',['Build Process',['../index.html#autotoc_md7',1,'']]]
+  ['memory_0',['memory',['../structvector__t.html#a2c7a23fb3c2197cc5557b8543ffdb2f7',1,'vector_t']]],
+  ['memory_20layout_1',['Memory layout',['..//home/runner/work/vector/vector/README.md#autotoc_md4',1,'']]],
+  ['minimal_20example_2',['Minimal Example',['..//home/runner/work/vector/vector/README.md#autotoc_md10',1,'']]],
+  ['mode_3',['Disable Dark Mode',['../md_doxygen-awesome-css_2docs_2tricks.html#tricks-darkmode',1,'']]],
+  ['mode_20toggle_4',['Dark Mode Toggle',['../md_doxygen-awesome-css_2docs_2extensions.html#extension-dark-mode-toggle',1,'']]],
+  ['motivation_5',['Motivation',['../index.html#autotoc_md15',1,'']]]
 ];

@@ -1,0 +1,8 @@
+<map id="vector_t::vector_binary_find" name="vector_t::vector_binary_find">
+<area shape="rect" id="Node000001" title="Run binary search on the vector." alt="" coords="5,29,208,55"/>
+<area shape="rect" id="Node000002" href="$vector_8c.html#afec86be827dcdde96c62016b77630a7c" title="Performs binary search on a vectors range." alt="" coords="256,29,351,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,39,243,39,243,45,208,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="280,30,275,21,277,11,287,5,303,3,323,6,331,15,327,18,320,11,303,8,289,10,282,15,280,20,284,28"/>
+<area shape="rect" id="Node000003" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="399,29,489,55"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="351,39,385,39,385,45,351,45"/>
+</map>

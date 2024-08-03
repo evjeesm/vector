@@ -1,5 +1,7 @@
 <map id="vector_t::vector_create_" name="vector_t::vector_create_">
-<area shape="rect" id="Node000001" title="Vector contructor." alt="" coords="5,5,184,31"/>
-<area shape="rect" id="Node000002" href="$group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658" title="Allocates memory chunk of alloc_size." alt="" coords="232,5,333,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,15,218,15,218,21,184,21"/>
+<area shape="rect" id="Node000001" title="Vector contructor." alt="" coords="5,31,184,56"/>
+<area shape="rect" id="Node000002" href="$vector_8c.html#a50c131cdbcfc769f4bbe9a68912207ca" title=" " alt="" coords="232,5,384,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,30,218,26,218,31,184,35"/>
+<area shape="rect" id="Node000003" href="$group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658" title="Allocates memory chunk of alloc_size." alt="" coords="257,55,359,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,51,243,57,243,63,184,56"/>
 </map>

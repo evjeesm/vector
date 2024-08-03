@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['supported_20platforms_0',['Supported platforms',['../index.html#autotoc_md2',1,'']]],
-  ['system_1',['Build System',['../index.html#autotoc_md5',1,'']]]
+  ['navigation_0',['Page Navigation',['../md_doxygen-awesome-css_2docs_2extensions.html#extension-page-navigation',1,'']]],
+  ['npm_20xpm_20dependency_1',['npm/xpm dependency',['../index.html#autotoc_md20',1,'']]]
 ];

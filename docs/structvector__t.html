@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -156,7 +158,7 @@ Related Symbols</h2></td></tr>
 <tr class="memitem:ga7243756372efd57714853efaf7521358" id="r_ga7243756372efd57714853efaf7521358"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector__t.html">vector_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga7243756372efd57714853efaf7521358">vector_clone</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
 <tr class="memdesc:ga7243756372efd57714853efaf7521358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate vector.  <br /></td></tr>
 <tr class="separator:ga7243756372efd57714853efaf7521358"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6e5077303af4dfe720af5a0608553922" id="r_ga6e5077303af4dfe720af5a0608553922"><td class="memItemLeft" align="right" valign="top">vector_status_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga6e5077303af4dfe720af5a0608553922">vector_resize</a> (<a class="el" href="structvector__t.html">vector_t</a> **const vector, const size_t <a class="el" href="#a81e18fd00e94087a8f04b657ffc34c04">capacity</a>, const vector_status_t error)</td></tr>
+<tr class="memitem:ga6e5077303af4dfe720af5a0608553922" id="r_ga6e5077303af4dfe720af5a0608553922"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ab79a65b74cda0380395a1ece246f54c6">vector_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#ga6e5077303af4dfe720af5a0608553922">vector_resize</a> (<a class="el" href="structvector__t.html">vector_t</a> **const vector, const size_t <a class="el" href="#a81e18fd00e94087a8f04b657ffc34c04">capacity</a>, const <a class="el" href="vector_8h.html#ab79a65b74cda0380395a1ece246f54c6">vector_status_t</a> error)</td></tr>
 <tr class="memdesc:ga6e5077303af4dfe720af5a0608553922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs allocation resize.  <br /></td></tr>
 <tr class="separator:ga6e5077303af4dfe720af5a0608553922"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabf21611afbbdda61da4ffa361fc783dc" id="r_gabf21611afbbdda61da4ffa361fc783dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector.html#gabf21611afbbdda61da4ffa361fc783dc">vector_copy</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, char *dest, const size_t offset, const size_t length)</td></tr>
@@ -228,10 +230,10 @@ Related Symbols</h2></td></tr>
 <p>Designed to be passed by reference.</p>
 <p>Functions that can cause reallocation of the vector must take a double pointer to a vector, this way vector pointer will be updated.</p>
 <dl class="section user"><dt>Example of vector declaration:</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="structvector__t.html">vector_t</a> *vector;</div>
-<div class="ttc" id="astructvector__t_html"><div class="ttname"><a href="structvector__t.html">vector_t</a></div><div class="ttdoc">Vector control structure type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00026">vector.c:27</a></div></div>
+<div class="ttc" id="astructvector__t_html"><div class="ttname"><a href="structvector__t.html">vector_t</a></div><div class="ttdoc">Vector control structure type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00028">vector.c:29</a></div></div>
 </div><!-- fragment --> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00026">26</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00028">28</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 </div><h2 class="groupheader">Friends And Related Symbol Documentation</h2>
 <a id="a160b0d4b8d0836eda9a50bfa71514de8" name="a160b0d4b8d0836eda9a50bfa71514de8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a160b0d4b8d0836eda9a50bfa71514de8">&#9670;&#160;</a></span>vector_create</h2>
@@ -261,20 +263,20 @@ Related Symbols</h2></td></tr>
 <div class="line">            __VA_ARGS__ \</div>
 <div class="line">        }\</div>
 <div class="line">    )\</div>
-<div class="ttc" id="agroup__Vector_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="group__Vector.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_t::vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00081">vector.c:81</a></div></div>
-<div class="ttc" id="astructvector__opts__t_html"><div class="ttname"><a href="structvector__opts__t.html">vector_opts_t</a></div><div class="ttdoc">Vector options.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00039">vector.h:40</a></div></div>
+<div class="ttc" id="agroup__Vector_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="group__Vector.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_t::vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00083">vector.c:83</a></div></div>
+<div class="ttc" id="astructvector__opts__t_html"><div class="ttname"><a href="structvector__opts__t.html">vector_opts_t</a></div><div class="ttdoc">Vector options.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00041">vector.h:42</a></div></div>
 </div><!-- fragment -->
 <p>Vector constructor. </p>
 <p>Preferable way to invoke vector constructor. Provides default values.</p>
 <dl class="section user"><dt>Usage</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="structvector__t.html">vector_t</a> *vector = <a class="code hl_define" href="#a160b0d4b8d0836eda9a50bfa71514de8">vector_create</a>(.<a class="code hl_variable" href="#ada42e4f54768423800961ae3e815406d">element_size</a> = <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>), .<a class="code hl_variable" href="#ac2a9b3a5c2b8dc9cdd3995b771056ece">initial_cap</a> = 100);</div>
-<div class="ttc" id="astructvector__t_html_a160b0d4b8d0836eda9a50bfa71514de8"><div class="ttname"><a href="#a160b0d4b8d0836eda9a50bfa71514de8">vector_t::vector_create</a></div><div class="ttdeci">#define vector_create(...)</div><div class="ttdoc">Vector constructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00151">vector.h:151</a></div></div>
-<div class="ttc" id="astructvector__t_html_ac2a9b3a5c2b8dc9cdd3995b771056ece"><div class="ttname"><a href="#ac2a9b3a5c2b8dc9cdd3995b771056ece">vector_t::initial_cap</a></div><div class="ttdeci">size_t initial_cap</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00030">vector.c:30</a></div></div>
-<div class="ttc" id="astructvector__t_html_ada42e4f54768423800961ae3e815406d"><div class="ttname"><a href="#ada42e4f54768423800961ae3e815406d">vector_t::element_size</a></div><div class="ttdeci">size_t element_size</div><div class="ttdoc">Size of the underling element type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00029">vector.c:29</a></div></div>
+<div class="ttc" id="astructvector__t_html_a160b0d4b8d0836eda9a50bfa71514de8"><div class="ttname"><a href="#a160b0d4b8d0836eda9a50bfa71514de8">vector_t::vector_create</a></div><div class="ttdeci">#define vector_create(...)</div><div class="ttdoc">Vector constructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00153">vector.h:153</a></div></div>
+<div class="ttc" id="astructvector__t_html_ac2a9b3a5c2b8dc9cdd3995b771056ece"><div class="ttname"><a href="#ac2a9b3a5c2b8dc9cdd3995b771056ece">vector_t::initial_cap</a></div><div class="ttdeci">size_t initial_cap</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00032">vector.c:32</a></div></div>
+<div class="ttc" id="astructvector__t_html_ada42e4f54768423800961ae3e815406d"><div class="ttname"><a href="#ada42e4f54768423800961ae3e815406d">vector_t::element_size</a></div><div class="ttdeci">size_t element_size</div><div class="ttdoc">Size of the underling element type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00031">vector.c:31</a></div></div>
 </div><!-- fragment --></dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd><a class="el" href="structvector__opts__t.html#a18f1f3e195d1c4a691e232b1fcaec0c1">element_size</a> is mandatory!</dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="group__Vector.html#gae9c418efba1bbeb20a8becffe6a09b75" title="Vector contructor.">vector_create_</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00151">151</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00153">153</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -293,7 +295,7 @@ Related Symbols</h2></td></tr>
 
 <p>Amount of bytes reserved for derived container's header. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00028">28</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00030">30</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -311,7 +313,7 @@ Related Symbols</h2></td></tr>
 
 <p>Size of the underling element type. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00029">29</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00031">31</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -328,7 +330,7 @@ Related Symbols</h2></td></tr>
 </div><div class="memdoc">
 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo</a></b></dt><dd>maybe removed, because wastefull in some cases. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00030">30</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00032">32</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -346,7 +348,7 @@ Related Symbols</h2></td></tr>
 
 <p>Current amount of allocated elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00031">31</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00033">33</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -364,7 +366,7 @@ Related Symbols</h2></td></tr>
 
 <p>Parameter that holds non-default allocator's data. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00032">32</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00034">34</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -383,7 +385,7 @@ Related Symbols</h2></td></tr>
 <p>Beginning of the vector's data. </p>
 <p>Must be offsetted by <a class="el" href="#ab0fb2acbeb3bf70cb7dc348958b76990">data_offset</a> to get to elements </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00033">33</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00035">35</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>

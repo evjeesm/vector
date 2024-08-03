@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.11.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Vector: Vector</title>
+<title>Vector: Doxygen Awesome</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -96,125 +98,127 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">Vector </div></div>
+  <div class="headertitle"><div class="title">Doxygen Awesome </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> Classic opaque type library. (<code><a class="el" href="structvector__t.html" title="Vector control structure type.">vector_t</a></code> impl is not exposed in headers) <br  />
- Contains a <code><a class="el" href="structvector__t.html" title="Vector control structure type.">vector_t</a></code> - base ADT for dynamic arrays.</p>
-<p>The design allows for development of derived random access containers with ease. <br  />
- Provides api for array manipulations with extendability in mind.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Implementation details</h1>
+<div class="textblock"><p><a class="anchor" id="md_doxygen-awesome-css_2README"></a> <a href="https://github.com/jothepro/doxygen-awesome-css/releases/latest"><img src="https://img.shields.io/github/v/release/jothepro/doxygen-awesome-css" alt="GitHub release (latest by date)" class="inline"/></a> <a href="https://github.com/jothepro/doxygen-awesome-css/blob/main/LICENSE"><img src="https://img.shields.io/github/license/jothepro/doxygen-awesome-css" alt="GitHub" class="inline"/></a> <img src="https://img.shields.io/github/stars/jothepro/doxygen-awesome-css" alt="GitHub Repo stars" class="inline"/></p>
+<div class="title_screenshot"></div><div class="title_screenshot"><img src="img/screenshot.png" alt="Screenshot of Doxygen Awesome CSS" class="inline"/></div><div class="title_screenshot"></div><p><b>Doxygen Awesome</b> is a custom CSS theme for Doxygen HTML documentation with lots of customization parameters.</p>
+<h1><a class="anchor" id="autotoc_md15"></a>
+Motivation</h1>
+<p>I really like how the Doxygen HTML documentation is structured! But IMHO it looks a bit outdated.</p>
+<p>This theme is an attempt to update the visuals of Doxygen without changing its overall layout too much.</p>
+<h1><a class="anchor" id="autotoc_md16"></a>
+Features</h1>
 <ul>
-<li>Does not perform auto scaling and tracking of stored elements. <br  />
- (all these functionalities have to be implemented in derived containers by design)</li>
-<li>Memory alignment is up to user. <br  />
- Element of the vector are laid out one after another without padding. <br  />
- You can add byte padding manually in struct of the element type. <br  />
- Also you are able set <code>data_offset</code> to add padding between control struct and contents of the vector. <br  />
- If you dislike how memory alignment is done, see next point.</li>
-<li>Default allocation strategy is a standard heap allocation, but can be altered. <br  />
- You can use memalign instead of malloc for instance or custom allocator of your preference.</li>
+<li>🌈 Clean, modern design</li>
+<li>🚀 Heavily customizable by adjusting CSS variables</li>
+<li>🧩 No changes to the HTML structure of Doxygen are required</li>
+<li>📱 Improved mobile usability</li>
+<li>🌘 Dark mode support!</li>
+<li>🥇 Works best with <b>doxygen 1.9.1</b> - <b>1.9.4</b> and <b>1.9.6</b> - <b>1.10.0</b></li>
 </ul>
-<p><a href="https://evjeesm.github.io/vector">See Full Documentation</a></p>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Supported platforms</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Platforms   </th><th class="markdownTableHeadNone">CI/CD   </th><th class="markdownTableHeadNone">COVERAGE    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Linux   </td><td class="markdownTableBodyNone"><img src="https://github.com/evjeesm/vector/actions/workflows/linux.yml/badge.svg" alt="check-linux" style="pointer-events: none;" class="inline"/>   </td><td class="markdownTableBodyNone"><a href="https://codecov.io/github/evjeesm/vector"><img src="https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian" alt="codecov" style="pointer-events: none;" class="inline"/></a>    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Windows   </td><td class="markdownTableBodyNone"><img src="https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg" alt="check-windows" style="pointer-events: none;" class="inline"/>   </td><td class="markdownTableBodyNone"><a href="https://codecov.io/github/evjeesm/vector"><img src="https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows" alt="codecov" style="pointer-events: none;" class="inline"/></a>   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Memory layout</h1>
-<p><img src="vector-scheme.svg" alt="" style="pointer-events: none;" class="inline" title="vector-scheme"/>     </p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Dependencies</h1>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Build System</h2>
+<h1><a class="anchor" id="autotoc_md17"></a>
+Examples</h1>
+<p>Some websites using this theme:</p>
 <ul>
-<li>gcc</li>
-<li>make</li>
-<li>autotools: <br  />
- automake &gt;= 1.11.2 <br  />
- autoconf <br  />
- autoconf-archive - install separately (for valgrind support) <br  />
- libtool</li>
-<li>check - testing framework</li>
-<li>valgrind - for memory leak checks</li>
-<li>lcov - for code coverage analizing</li>
+<li><a href="https://jothepro.github.io/doxygen-awesome-css/">Documentation of this repository</a></li>
+<li><a href="https://docs.wxwidgets.org/3.2/">wxWidgets</a></li>
+<li><a href="https://docs.opencv.org/5.x/">OpenCV 5.x</a></li>
+<li><a href="https://docs.zephyrproject.org/latest/doxygen/html/index.html">Zephyr</a></li>
+<li><a href="https://mwiesenberger.github.io/feltor/dg/html/modules.html">FELTOR</a></li>
+<li><a href="https://leomccormack.github.io/Spatial_Audio_Framework/index.html">Spatial Audio Framework (SAF)</a></li>
+<li><a href="https://www.randolf.ca/c++/docs/">Randolf Richardson's C++ classes</a></li>
+<li><a href="https://jothepro.github.io/libCloudSync/">libCloudSync</a></li>
+<li><a href="https://a4z.github.io/libsl3/">libsl3</a></li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Libraries</h2>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Installation</h1>
+<p>To use the theme when generating your documentation, bring the required CSS and JS files from this repository into your project.</p>
+<p>This can be done in several ways:</p>
 <ul>
-<li>stdlib</li>
-<li>string</li>
-<li>stdbool</li>
-<li>sys/types</li>
-<li><a href="https://github.com/evjeesm/memory/blob/d7960a02c33ef956b9c915f3791fbdd6afdb0335/memswap.h">memswap</a></li>
+<li>manually copying the files</li>
+<li>adding the project as a Git submodule</li>
+<li>adding the project as a npm/xpm dependency</li>
+<li>installing the theme system-wide</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md7"></a>
-Build Process</h1>
-<ul>
-<li>Install <b>Build System</b> dependencies:<ul>
-<li>On <b>Debian</b> / <b>Ubuntu</b>:<ul>
-<li>In your fav shell run: <div class="fragment"><div class="line">sudo apt-get install gcc make automake autoconf autoconf-archive libtool \</div>
-<div class="line">    check valgrind lcov</div>
-</div><!-- fragment --></li>
-</ul>
-</li>
-<li>On <b>Windows</b>:<ul>
-<li>Install <a href="https://www.msys2.org/">msys2</a> environment.</li>
-<li>In msys2 shell run: <div class="fragment"><div class="line">2</div>
-<div class="line">     pacman -S curl git mingw-w64-ucrt-x86_64-gcc \</div>
-<div class="line">         mingw-264-ucrt-x86_64-check \</div>
-<div class="line">         autotools autoconf-archive lcov</div>
-</div><!-- fragment --> Set up git newline <code>\n</code> to <code>\r\n</code> convertion (windows style): <div class="fragment"><div class="line">2</div>
-<div class="line">     git config --global core.autocrlf input</div>
-</div><!-- fragment --></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Clone the repository: <div class="fragment"><div class="line">git clone https://github.com/evjeesm/vector.git vector; cd vector;</div>
-<div class="line">git submodule update --init --recursive;</div>
-</div><!-- fragment --></li>
-<li>Configure project: <div class="fragment"><div class="line">./autogen.sh &amp;&amp; ./configure CFLAGS=&lt;YOUR COMPILATION FLAGS&gt; --prefix=&lt;/path/to/install/folder/&gt;</div>
-</div><!-- fragment --></li>
-<li>Build project: (use -j&lt;threads&gt; option for multithreaded building) <div class="fragment"><div class="line">make</div>
-</div><!-- fragment --></li>
-<li>Run Tests: <div class="fragment"><div class="line">make check</div>
-<div class="line">make check-valgrind    # optional memory check</div>
-</div><!-- fragment --></li>
-<li>If no errors occured during <em>check</em> you can safely install library <br  />
- in your desired prefix path that you specified at configure step. <br  />
- Procede to installation: <div class="fragment"><div class="line">make install</div>
-</div><!-- fragment --></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Usage</h1>
-<p>Link against <code>libvector_static.a</code> or <code>libvector.so</code> on <b>linux</b>. <br  />
- If you on <b>Windows</b> platform link to <code>libvector_static.dll</code>.</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Minimal Example</h2>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;vector.h&quot;</span></div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code hl_struct" href="structvector__t.html">vector_t</a> *vector = vector_create(.element_size = <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div>
-<div class="line">    <span class="keywordtype">int</span> a = 69;</div>
-<div class="line">    <a class="code hl_function" href="group__Vector.html#gab3a5e466261d31ee9edd77a5eb280030">vector_set</a>(&amp;vector, 0, &amp;a);</div>
-<div class="line">    <a class="code hl_function" href="group__Vector.html#gab3a5e466261d31ee9edd77a5eb280030">vector_set</a>(&amp;vector, 1, TMP_REF(<span class="keywordtype">int</span>, 42));</div>
+<p>All theme files are located in the root of this repository and start with the prefix <code>doxygen-awesome-</code>. You may not need all of them. Follow the install instructions to figure out what files are required for your setup.</p>
+<h2><a class="anchor" id="autotoc_md19"></a>
+Git submodule</h2>
+<p>For projects that use git, add the repository as a submodule and check out the desired release:</p>
+<div class="fragment"><div class="line">git submodule add https://github.com/jothepro/doxygen-awesome-css.git</div>
+<div class="line">cd doxygen-awesome-css</div>
+<div class="line">git checkout v2.3.3</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
+npm/xpm dependency</h2>
+<p>In the npm ecosystem, this project can be added as a development dependency to your project:</p>
+<div class="fragment"><div class="line">cd your-project</div>
+<div class="line">npm install https://github.com/jothepro/doxygen-awesome-css#v2.3.3 --save-dev</div>
 <div class="line"> </div>
-<div class="line">    <a class="code hl_function" href="group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3">vector_get</a>(vector, 1, &amp;a); <span class="comment">// a = 42</span></div>
-<div class="line">    <a class="code hl_function" href="group__Vector.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a>(vector);</div>
-<div class="line">}</div>
-<div class="ttc" id="agroup__Vector_html_ga9437d9506a3b2799f595c88b82f160b3"><div class="ttname"><a href="group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3">vector_get</a></div><div class="ttdeci">void * vector_get(const vector_t *const vector, const size_t index)</div><div class="ttdoc">Returns pointer for the element at index.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00286">vector.c:286</a></div></div>
-<div class="ttc" id="agroup__Vector_html_gab3a5e466261d31ee9edd77a5eb280030"><div class="ttname"><a href="group__Vector.html#gab3a5e466261d31ee9edd77a5eb280030">vector_set</a></div><div class="ttdeci">void vector_set(vector_t *const vector, const size_t index, const void *const value)</div><div class="ttdoc">Sets element at given index to a value.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00295">vector.c:295</a></div></div>
-<div class="ttc" id="agroup__Vector_html_gae0c0da17ad9469e47ef376a82b6493f3"><div class="ttname"><a href="group__Vector.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a></div><div class="ttdeci">void vector_destroy(vector_t *const vector)</div><div class="ttdoc">Deallocates vector.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00109">vector.c:109</a></div></div>
-<div class="ttc" id="astructvector__t_html"><div class="ttname"><a href="structvector__t.html">vector_t</a></div><div class="ttdoc">Vector control structure type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00026">vector.c:27</a></div></div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+<div class="line">ls -l node_module/@jothepro/doxygen-awesome-css</div>
+</div><!-- fragment --><p>Similarly, in the <a href="https://xpack.github.io">xPack</a> ecosystem, this project can be added as a development dependency to an <a href="https://xpack.github.io/xpm/"><code>xpm</code></a> managed project.</p>
+<h2><a class="anchor" id="autotoc_md21"></a>
+System-wide</h2>
+<p>You can even install the theme system-wide by running <code>make install</code>. The files will be installed to <code>/usr/local/share/</code> by default, but you can customize the install location with <code>make PREFIX=/my/custom/path install</code>.</p>
+<h2><a class="anchor" id="autotoc_md22"></a>
+Choosing a layout</h2>
+<p>There are two layout options. Choose one of them and configure Doxygen accordingly:</p>
+<div class="tabbed"></div><div class="tabbed"><ul>
+<li><p class="startli"><b class="tab-title">Base Theme</b></p><div class="darkmode_inverted_image"> <img src="img/theme-variants-base.drawio.svg" alt="" style="pointer-events: none;" class="inline"/> </div><p> Comes with the typical Doxygen titlebar. Optionally the treeview in the sidebar can be enabled.</p>
+<p class="startli">Required files: <code>doxygen-awesome.css</code></p>
+<p class="startli">Required <code>Doxyfile</code> configuration: </p><div class="fragment"><div class="line">GENERATE_TREEVIEW      = YES # optional. Also works without treeview</div>
+<div class="line">DISABLE_INDEX = NO</div>
+<div class="line">FULL_SIDEBAR = NO</div>
+<div class="line">HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css</div>
+<div class="line">HTML_COLORSTYLE        = LIGHT # required with Doxygen &gt;= 1.9.5</div>
+</div><!-- fragment --></li>
+<li><p class="startli"><b class="tab-title">Sidebar-Only Theme</b></p><div class="darkmode_inverted_image"> <img src="img/theme-variants-sidebar-only.drawio.svg" alt="" style="pointer-events: none;" class="inline"/> </div><p> Hides the top titlebar to give more space to the content. The treeview must be enabled in order for this theme to work.</p>
+<p class="startli">Required files: <code>doxygen-awesome.css</code>, <code>doxygen-awesome-sidebar-only.css</code></p>
+<p class="startli">Required <code>Doxyfile</code> configuration: </p><div class="fragment"><div class="line">GENERATE_TREEVIEW      = YES # required!</div>
+<div class="line">DISABLE_INDEX          = NO</div>
+<div class="line">FULL_SIDEBAR           = NO</div>
+<div class="line">HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css \</div>
+<div class="line">                        doxygen-awesome-css/doxygen-awesome-sidebar-only.css</div>
+<div class="line">HTML_COLORSTYLE        = LIGHT # required with Doxygen &gt;= 1.9.5</div>
+</div><!-- fragment --></li>
+</ul>
+</div><div class="tabbed"></div><p><br  />
+</p>
+<dl class="section warning"><dt>Warning</dt><dd><ul>
+<li>This theme is not compatible with the <code>FULL_SIDEBAR = YES</code> option provided by Doxygen!</li>
+<li><code>HTML_COLORSTYLE</code> must be set to <code>LIGHT</code> since Doxygen 1.9.5!</li>
+</ul>
+</dd></dl>
+<h2><a class="anchor" id="autotoc_md23"></a>
+Further installation instructions</h2>
+<ul>
+<li><a class="el" href="md_doxygen-awesome-css_2docs_2extensions.html">Installing extensions</a></li>
+<li><a class="el" href="md_doxygen-awesome-css_2docs_2customization.html">Customizing the theme (colors, spacing, border-radius, ...)</a></li>
+<li><a class="el" href="md_doxygen-awesome-css_2docs_2tricks.html">Tips and Tricks for further configuration</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md24"></a>
+Browser support</h1>
+<p>Tested with</p>
+<ul>
+<li>Chrome 119, Chrome 119 for Android, Chrome 119 for iOS</li>
+<li>Safari 17, Safari for iOS 16</li>
+<li>Firefox 118, Firefox 120 for Android, Firefox 119 for iOS</li>
+<li>Edge 119</li>
+<li>Opera 108</li>
+</ul>
+<p>The theme does not strive to be backward compatible with (significantly) older browser versions.</p>
+<h1><a class="anchor" id="autotoc_md25"></a>
+Credits</h1>
+<p>Thanks for all the bug reports and inspiring feedback on GitHub!</p>
+<p>Special thanks to all the contributors: <br  />
+<br  />
+ <a href="https://github.com/jothepro/doxygen-awesome-css/graphs/contributors"><img src="https://contrib.rocks/image?repo=jothepro/doxygen-awesome-css" alt="" class="inline"/> </a></p>
+<div class="section_buttons"></div><div class="section_buttons"><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadRight">Read Next    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight"><a class="el" href="md_doxygen-awesome-css_2docs_2extensions.html">Extensions</a>   </td></tr>
+</table>
+</div><div class="section_buttons"></div> </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
 </div><!-- doc-content -->

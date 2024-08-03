@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vector_0',['Vector',['../index.html',1,'']]]
+  ['doxygen_20awesome_0',['Doxygen Awesome',['../index.html',1,'']]]
 ];

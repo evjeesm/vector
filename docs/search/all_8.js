@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['memory_0',['memory',['../structvector__t.html#a2c7a23fb3c2197cc5557b8543ffdb2f7',1,'vector_t']]],
-  ['memory_20layout_1',['Memory layout',['../index.html#autotoc_md3',1,'']]],
-  ['minimal_20example_2',['Minimal Example',['../index.html#autotoc_md9',1,'']]]
+  ['layout_0',['layout',['../index.html#autotoc_md22',1,'Choosing a layout'],['..//home/runner/work/vector/vector/README.md#autotoc_md4',1,'Memory layout']]],
+  ['libraries_1',['Libraries',['..//home/runner/work/vector/vector/README.md#autotoc_md7',1,'']]],
+  ['linking_2',['Paragraph Linking',['../md_doxygen-awesome-css_2docs_2extensions.html#extension-para',1,'']]],
+  ['list_3',['Todo List',['../todo.html',1,'']]]
 ];

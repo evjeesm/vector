@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['list_0',['Todo List',['../todo.html',1,'']]]
+  ['awesome_0',['Doxygen Awesome',['../index.html',1,'']]]
 ];

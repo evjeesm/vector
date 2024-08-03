@@ -25,16 +25,49 @@
 var NAVTREE =
 [
   [ "Vector", "index.html", [
-    [ "Implementation details", "index.html#autotoc_md1", null ],
-    [ "Supported platforms", "index.html#autotoc_md2", null ],
-    [ "Memory layout", "index.html#autotoc_md3", null ],
-    [ "Dependencies", "index.html#autotoc_md4", [
-      [ "Build System", "index.html#autotoc_md5", null ],
-      [ "Libraries", "index.html#autotoc_md6", null ]
+    [ "Doxygen Awesome", "index.html", "index" ],
+    [ "Customization", "md_doxygen-awesome-css_2docs_2customization.html", [
+      [ "CSS-Variables", "md_doxygen-awesome-css_2docs_2customization.html#autotoc_md39", [
+        [ "Setup", "md_doxygen-awesome-css_2docs_2customization.html#autotoc_md40", null ],
+        [ "Available variables", "md_doxygen-awesome-css_2docs_2customization.html#autotoc_md41", null ]
+      ] ],
+      [ "Doxygen generator", "md_doxygen-awesome-css_2docs_2customization.html#autotoc_md42", null ],
+      [ "Share your customizations", "md_doxygen-awesome-css_2docs_2customization.html#autotoc_md43", null ]
     ] ],
-    [ "Build Process", "index.html#autotoc_md7", null ],
-    [ "Usage", "index.html#autotoc_md8", [
-      [ "Minimal Example", "index.html#autotoc_md9", null ]
+    [ "Extensions", "md_doxygen-awesome-css_2docs_2extensions.html", [
+      [ "Dark Mode Toggle", "md_doxygen-awesome-css_2docs_2extensions.html#extension-dark-mode-toggle", [
+        [ "Installation", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md27", null ],
+        [ "Customizing", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md28", null ]
+      ] ],
+      [ "Fragment Copy Button", "md_doxygen-awesome-css_2docs_2extensions.html#extension-copy-button", [
+        [ "Installation", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md29", null ],
+        [ "Customizing", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md30", null ]
+      ] ],
+      [ "Paragraph Linking", "md_doxygen-awesome-css_2docs_2extensions.html#extension-para", [
+        [ "Installation", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md31", null ],
+        [ "Customizing", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md32", null ]
+      ] ],
+      [ "Interactive TOC", "md_doxygen-awesome-css_2docs_2extensions.html#extension-toc", [
+        [ "Installation", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md33", null ],
+        [ "Customizing", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md34", null ]
+      ] ],
+      [ "Tabs", "md_doxygen-awesome-css_2docs_2extensions.html#extension-tabs", [
+        [ "Installation", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md35", null ],
+        [ "Usage", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md36", null ]
+      ] ],
+      [ "Page Navigation", "md_doxygen-awesome-css_2docs_2extensions.html#extension-page-navigation", [
+        [ "Installation", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md37", null ],
+        [ "Usage", "md_doxygen-awesome-css_2docs_2extensions.html#autotoc_md38", null ]
+      ] ]
+    ] ],
+    [ "Tips & Tricks", "md_doxygen-awesome-css_2docs_2tricks.html", [
+      [ "Diagrams with Graphviz", "md_doxygen-awesome-css_2docs_2tricks.html#tricks-graphviz", null ],
+      [ "Disable Dark Mode", "md_doxygen-awesome-css_2docs_2tricks.html#tricks-darkmode", null ],
+      [ "Choosing Sidebar Width", "md_doxygen-awesome-css_2docs_2tricks.html#tricks-sidebar", null ],
+      [ "Formatting Tables", "md_doxygen-awesome-css_2docs_2tricks.html#tricks-tables", [
+        [ "Centering", "md_doxygen-awesome-css_2docs_2tricks.html#autotoc_md11", null ],
+        [ "Full Width", "md_doxygen-awesome-css_2docs_2tricks.html#autotoc_md12", null ]
+      ] ]
     ] ],
     [ "Todo List", "todo.html", null ],
     [ "Topics", "topics.html", "topics" ],
@@ -49,7 +82,15 @@ var NAVTREE =
       ] ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "Globals", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Functions", "globals_func.html", null ],
+        [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", null ],
+        [ "Macros", "globals_defs.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
