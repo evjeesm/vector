@@ -1049,7 +1049,8 @@ RECURSIVE              = YES
 # Note that relative paths are relative to the directory from which doxygen is
 # run.
 
-EXCLUDE                = memory \
+EXCLUDE                = doxygen-awesome-css \
+                         memory \
                          tests \
                          examples \
                          config.h
