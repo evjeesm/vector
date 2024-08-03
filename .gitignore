@@ -1,0 +1,22 @@
+*
+
+
+# submodules
+!.gitmodules
+!memory
+
+!src
+!tests
+!examples
+!*.svg
+!*.c
+!*.h
+!*.am
+!*.ac
+
+!.gitignore
+!.clangd
+!autogen.sh
+
+config.h
+aminclude_static.am

@@ -1,0 +1,4 @@
+[submodule "memory"]
+	path = memory
+	url = git@github.com:evjeesm/memory
+	branch = main
