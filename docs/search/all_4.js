@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['foreach_5ft_12',['foreach_t',['../group__Callbacks.html#ga2a12fb990fb59f84ca1920d78d867aa6',1,'vector.h']]]
+  ['element_5fsize_0',['element_size',['../structvector__t.html#ada42e4f54768423800961ae3e815406d',1,'vector_t::element_size'],['../structvector__opts__t.html#a18f1f3e195d1c4a691e232b1fcaec0c1',1,'vector_opts_t::element_size']]],
+  ['example_1',['Minimal Example',['../index.html#autotoc_md9',1,'']]]
 ];

@@ -3,7 +3,18 @@ digraph "vector_t"
  // INTERACTIVE_SVG=YES
  // LATEX_PDF_SIZE
   bgcolor="transparent";
-  edge [fontname="Mononoki",fontsize="10",labelfontname="Mononoki",labelfontsize="10"];
-  node [fontname="Mononoki",fontsize="10",shape=record];
-  Node1 [label="{vector_t\n|+ data_offset\l+ element_size\l+ initial_cap\l+ capacity\l+ alloc_param\l+ memory\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Vector control structure type."];
+  edge [fontname=Mononoki,fontsize=10,labelfontname=Mononoki,labelfontsize=10];
+  node [fontname=Mononoki,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [id="Node000001",shape=plain,label=<<TABLE CELLBORDER="0" BORDER="1"><TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">vector_t</TD></TR>
+<HR/>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">data_offset<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">element_size<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">initial_cap<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">capacity<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">alloc_param<BR ALIGN="LEFT"/></TD></TR>
+<TR><TD VALIGN="top" CELLPADDING="1" CELLSPACING="0">+</TD><TD VALIGN="top" ALIGN="LEFT" CELLPADDING="1" CELLSPACING="0">memory<BR ALIGN="LEFT"/></TD></TR>
+<HR/>
+<TR><TD COLSPAN="2" CELLPADDING="1" CELLSPACING="0">&nbsp;</TD></TR>
+</TABLE>>
+,height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Vector control structure type."];
 }

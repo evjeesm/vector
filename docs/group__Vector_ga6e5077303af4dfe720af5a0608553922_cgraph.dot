@@ -3,10 +3,10 @@ digraph "vector_t::vector_resize"
  // INTERACTIVE_SVG=YES
  // LATEX_PDF_SIZE
   bgcolor="transparent";
-  edge [fontname="Mononoki",fontsize="10",labelfontname="Mononoki",labelfontsize="10"];
-  node [fontname="Mononoki",fontsize="10",shape=record];
+  edge [fontname=Mononoki,fontsize=10,labelfontname=Mononoki,labelfontsize=10];
+  node [fontname=Mononoki,fontsize=10,shape=box,height=0.2,width=0.4];
   rankdir="LR";
-  Node1 [label="vector_t::vector_resize",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Performs allocation resize."];
-  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Mononoki"];
-  Node2 [label="vector_realloc",height=0.2,width=0.4,color="black",URL="$group__Allocation.html#ga2a637cdf2cd27685082c78edd4b07951",tooltip="Reallocates already allocated memory chunk in order to change allocation size."];
+  Node1 [id="Node000001",label="vector_t::vector_resize",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip="Performs allocation resize."];
+  Node1 -> Node2 [id="edge1_Node000001_Node000002",color="steelblue1",style="solid",tooltip=" "];
+  Node2 [id="Node000002",label="vector_realloc",height=0.2,width=0.4,color="grey40", fillcolor="white", style="filled",URL="$group__Allocation.html#ga6bc2c0ee8e64283e06259c3edc6c6022",tooltip="Reallocates already allocated memory chunk in order to change allocation size."];
 }

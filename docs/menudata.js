@@ -25,7 +25,7 @@
 var menudata={children:[
 {text:"Main Page",url:"index.html"},
 {text:"Related Pages",url:"pages.html"},
-{text:"Modules",url:"modules.html"},
+{text:"Topics",url:"topics.html"},
 {text:"Data Structures",url:"annotated.html",children:[
 {text:"Data Structures",url:"annotated.html"},
 {text:"Data Structure Index",url:"classes.html"},
@@ -40,6 +40,6 @@ var menudata={children:[
 {text:"v",url:"functions.html#index_v"}]},
 {text:"Functions",url:"functions_func.html"},
 {text:"Variables",url:"functions_vars.html"},
-{text:"Related Functions",url:"functions_rela.html"}]}]},
+{text:"Related Symbols",url:"functions_rela.html"}]}]},
 {text:"Files",url:"files.html",children:[
 {text:"File List",url:"files.html"}]}]}

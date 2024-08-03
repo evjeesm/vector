@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['element_5fsize_11',['element_size',['../structvector__t.html#ada42e4f54768423800961ae3e815406d',1,'vector_t::element_size()'],['../structvector__opts__t.html#a18f1f3e195d1c4a691e232b1fcaec0c1',1,'vector_opts_t::element_size()']]]
+  ['data_5foffset_0',['data_offset',['../structvector__t.html#ab0fb2acbeb3bf70cb7dc348958b76990',1,'vector_t::data_offset'],['../structvector__opts__t.html#a5e3487546230439b703036a86b7eace1',1,'vector_opts_t::data_offset']]],
+  ['dependencies_1',['Dependencies',['../index.html#autotoc_md4',1,'']]],
+  ['details_2',['Implementation details',['../index.html#autotoc_md1',1,'']]]
 ];
