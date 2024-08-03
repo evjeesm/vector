@@ -12,7 +12,7 @@ on:
         required: true
         type: string
 jobs:
-  rebase:
+  merge:
     runs-on: ubuntu-latest
 
     steps:
@@ -35,12 +35,12 @@ jobs:
     - name: Checkout target branch
       run: git switch ${{ inputs.target-branch }}
 
-    - name: Rebase target branch onto source branch
-      run: git rebase ${{ inputs.source-branch }}
+    - name: Merge source branch into target branch
+      run: git merge ${{ inputs.source-branch }} --allow-unrelated-histories --commit -X theirs
 
     - name: Regenerate Docs
       run: |
-        rm -rf docs/*
+        rm -rf docs
         doxygen doxyconf
 
     - name: Commit Docs
