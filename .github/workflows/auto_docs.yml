@@ -35,6 +35,9 @@ jobs:
     - name: Checkout target branch
       run: git switch ${{ inputs.target-branch }}
 
+    - name: Pull target branch
+      run: git pull origin ${{ input.target-branch }}
+
     - name: Rebase target branch onto source branch
       run: git rebase ${{ inputs.source-branch }}
 
