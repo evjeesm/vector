@@ -20,11 +20,6 @@ jobs:
       with:
         submodules: true
 
-    - name: Update & pull submodules recursively
-      run: |
-        git submodule update --init --recursive
-        git submodule update --recursive --remote
-
     - name: Install Doxygen
       run: |
         sudo apt-get install graphviz
@@ -45,6 +40,11 @@ jobs:
 
     - name: Checkout target branch
       run: git switch ${{ inputs.target-branch }}
+
+    - name: Update & pull submodules recursively
+      run: |
+        git submodule update --init --recursive
+        git submodule update --recursive --remote
 
     - name: Merge source branch into target branch
       run: git merge ${{ inputs.source-branch }} --allow-unrelated-histories --commit -X theirs
