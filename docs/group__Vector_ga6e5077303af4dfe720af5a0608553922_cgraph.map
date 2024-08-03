@@ -1,0 +1,4 @@
+<map id="vector_t::vector_resize" name="vector_t::vector_resize">
+<area shape="rect" id="node1" title="Performs allocation resize." alt="" coords="5,5,188,32"/>
+<area shape="rect" id="node2" href="$group__Allocation.html#ga6bc2c0ee8e64283e06259c3edc6c6022" title="Reallocates already allocated memory chunk in order to change allocation size." alt="" coords="236,5,356,32"/>
+</map>
