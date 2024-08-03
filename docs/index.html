@@ -138,7 +138,7 @@ Supported platforms</h1>
 </table>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Memory layout</h1>
-<p><img src="vector-scheme.svg" alt="" style="pointer-events: none;" class="inline" title="vector-scheme"/>     </p>
+<p><img src="imgs/vector-scheme.svg" alt="vector-scheme" style="pointer-events: none;" class="inline"/> </p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Dependencies</h1>
 <h2><a class="anchor" id="autotoc_md5"></a>
@@ -176,12 +176,10 @@ Build Process</h1>
 </li>
 <li>On <b>Windows</b>:<ul>
 <li>Install <a href="https://www.msys2.org/">msys2</a> environment.</li>
-<li>In msys2 shell run: <div class="fragment"><div class="line">2</div>
-<div class="line">     pacman -S curl git mingw-w64-ucrt-x86_64-gcc \</div>
-<div class="line">         mingw-264-ucrt-x86_64-check \</div>
-<div class="line">         autotools autoconf-archive lcov</div>
-</div><!-- fragment --> Set up git newline <code>\n</code> to <code>\r\n</code> convertion (windows style): <div class="fragment"><div class="line">2</div>
-<div class="line">     git config --global core.autocrlf input</div>
+<li>In msys2 shell run: <div class="fragment"><div class="line">pacman -S curl git mingw-w64-ucrt-x86_64-gcc \</div>
+<div class="line">    mingw-264-ucrt-x86_64-check \</div>
+<div class="line">    autotools autoconf-archive lcov</div>
+</div><!-- fragment --> Set up git newline <code>\n</code> to <code>\r\n</code> convertion (windows style): <div class="fragment"><div class="line">git config --global core.autocrlf input</div>
 </div><!-- fragment --></li>
 </ul>
 </li>
