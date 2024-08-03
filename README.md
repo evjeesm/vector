@@ -31,7 +31,7 @@ Provides api for array manipulations with extendability in mind.
 
 ## Memory layout
 
-![vector-scheme](vector-scheme.svg)
+![vector-scheme](imgs/vector-scheme.svg)
 ## Dependencies
 
 ### Build System

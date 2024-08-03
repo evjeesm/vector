@@ -8,6 +8,7 @@
 !src
 !tests
 !examples
+!imgs
 !*.svg
 !*.c
 !*.h
