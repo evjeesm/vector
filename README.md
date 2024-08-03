@@ -112,6 +112,7 @@ If you on **Windows** platform link to `libvector_static.dll`.
 
 ```c
 #include "vector.h"
+
 int main(void)
 {
     vector_t *vector = vector_create(.element_size = sizeof(int));
