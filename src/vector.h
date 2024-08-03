@@ -147,7 +147,6 @@ typedef int (*transform_t) (void *const element, void *const param);
 *
 * @warning @ref vector_opts_t::element_size "element_size" is mandatory!
 *
-* @relatedalso vector_t
 * @see vector_create_
 */
 #define vector_create(...) \
@@ -167,11 +166,9 @@ typedef int (*transform_t) (void *const element, void *const param);
 * Space for @a initial_cap elements will be reserved.
 * In case of allocation fail null pointer will be returned via @c vector argument.
 *
-* @relatedalso vector_t
 * @param[in] opts Options according to which vector will be created.
 * @returns        Fresh new instance of the vector or @c NULL if allocation failed.
 *
-* @relatedalso vector_t
 */
 vector_t *vector_create_(const vector_opts_t *const opts);
 
@@ -181,10 +178,8 @@ vector_t *vector_create_(const vector_opts_t *const opts);
 *
 * A pointer will be invalidated after the call.
 *
-* @relatedalso vector_t
 * @param[in] vector Vector pointer that will be deallocated.
 *
-* @relatedalso vector_t
 */
 void vector_destroy(vector_t *const vector);
 
@@ -199,7 +194,6 @@ void vector_destroy(vector_t *const vector);
 * @param[in] vector Pointer to vector.
 * @returns Pointer to @ref vector_t::memory
 *
-* @relatedalso vector_t
 */
 void* vector_get_ext_header(const vector_t *const vector);
 
@@ -210,7 +204,6 @@ void* vector_get_ext_header(const vector_t *const vector);
 * @param[in] vector Pointer to vector.
 * @returns          Data offset in bytes
 *
-* @relatedalso vector_t
 */
 size_t vector_data_offset(const vector_t *const vector);
 
@@ -224,7 +217,6 @@ size_t vector_data_offset(const vector_t *const vector);
 * @param[in] vector Vector prototype to be copied.
 * @returns          Copy of the vector on success, @c NULL pointer otherwise.
 *
-* @relatedalso vector_t
 */
 vector_t *vector_clone(const vector_t *const vector);
 
@@ -241,7 +233,6 @@ vector_t *vector_clone(const vector_t *const vector);
 *
 * @returns            Operation status.
 *
-* @relatedalso vector_t
 */
 vector_status_t vector_resize(vector_t **const vector, const size_t capacity, const vector_status_t error);
 
@@ -257,7 +248,6 @@ vector_status_t vector_resize(vector_t **const vector, const size_t capacity, co
 * @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
 * @param[in]  length Size of the coping range in elements.
 *
-* @relatedalso vector_t
 */
 void vector_copy(const vector_t *const vector,
         char *dest,
@@ -275,7 +265,6 @@ void vector_copy(const vector_t *const vector,
 * @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
 * @param[in]  length Size of the coping range in elements.
 *
-* @relatedalso vector_t
 */
 void vector_move(const vector_t *const vector,
         char *dest,
@@ -298,7 +287,6 @@ void vector_move(const vector_t *const vector,
 *                        begining of the portion to copy.
 * @param[in] part_length Length of the copying portion in bytes.
 *
-* @relatedalso vector_t
 */
 void vector_part_copy(const vector_t *const vector,
         char *dest,
@@ -314,7 +302,6 @@ void vector_part_copy(const vector_t *const vector,
 * @param[in] vector Pointer to a vector instance.
 * @returns          Element size in bytes.
 *
-* @relatedalso vector_t
 */
 size_t vector_element_size(const vector_t *const vector);
 
@@ -325,7 +312,6 @@ size_t vector_element_size(const vector_t *const vector);
 * @param[in] vector Pointer to a vector instance.
 * @returns          Amount of elements currently allocated.
 *
-* @relatedalso vector_t
 */
 size_t vector_capacity(const vector_t *const vector);
 
@@ -336,7 +322,6 @@ size_t vector_capacity(const vector_t *const vector);
 * @param[in] vector Pointer to a vector instance.
 * @returns          Amount of bytes currently allocated for elements.
 *
-* @relatedalso vector_t
 */
 size_t vector_capacity_bytes(const vector_t *const vector);
 
@@ -347,7 +332,6 @@ size_t vector_capacity_bytes(const vector_t *const vector);
 * @param[in] vector Pointer to a vector instance.
 * @returns          Amount of elements initially allocated.
 *
-* @relatedalso vector_t
 */
 size_t vector_initial_capacity(const vector_t *const vector);
 
@@ -358,7 +342,6 @@ size_t vector_initial_capacity(const vector_t *const vector);
 * @param[in] vector Pointer to a vector instance.
 * @returns          Amount of bytes initially allocated for elements.
 *
-* @relatedalso vector_t
 */
 size_t vector_initial_capacity_bytes(const vector_t *const vector);
 
@@ -373,7 +356,6 @@ size_t vector_initial_capacity_bytes(const vector_t *const vector);
 * @param[in] vector Pointer to a vector instance.
 * @returns          Location where elements are stored.
 *
-* @relatedalso vector_t
 */
 char *vector_data(const vector_t *const vector);
 
@@ -391,7 +373,6 @@ char *vector_data(const vector_t *const vector);
 * @param[in] param     User defined parameter, passed to @c predicate.
 * @returns             Pointer to a found element.
 *
-* @relatedalso vector_t
 */
 void *vector_linear_find(const vector_t *const vector,
         const size_t limit,
@@ -410,7 +391,6 @@ void *vector_linear_find(const vector_t *const vector,
 * @param[in] param  User defined parameter, passed to @c predicate.
 * @returns          Pointer to a found element.
 *
-* @relatedalso vector_t
 */
 void *vector_binary_find(const vector_t *const vector,
         const void *const value,
@@ -430,7 +410,6 @@ void *vector_binary_find(const vector_t *const vector,
 * @param[in] param  User defined parameter, passed to @c predicate.
 * @returns          Index of found element or @c NULL if none.
 *
-* @relatedalso vector_t
 */
 ssize_t vector_binary_find_index(const vector_t *const vector,
         const void *const value,
@@ -447,7 +426,6 @@ ssize_t vector_binary_find_index(const vector_t *const vector,
 *
 * @returns          A pointer to a vector element at @c index.
 *
-* @relatedalso vector_t
 */
 void *vector_get(const vector_t *const vector, const size_t index);
 
@@ -459,7 +437,6 @@ void *vector_get(const vector_t *const vector, const size_t index);
 * @param[in] index  Denotes an element to be overriden by @c value.
 * @param[in] value  Value to be stored at the @c index.
 *
-* @relatedalso vector_t
 */
 void vector_set(vector_t *const vector, const size_t index, const void *const value);
 
@@ -470,7 +447,6 @@ void vector_set(vector_t *const vector, const size_t index, const void *const va
 * @param[in] vector Pointer to a vector instance.
 * @param[in] index  Denotes an element to be zeroed.
 *
-* @relatedalso vector_t
 */
 void vector_set_zero(vector_t *const vector, const size_t index);
 
@@ -488,7 +464,6 @@ void vector_set_zero(vector_t *const vector, const size_t index);
 * @param[in] index  Index at which perform spread.
 * @param[in] amount Length of the spread range. (1 - has no effect)
 *
-* @relatedalso vector_t
 */
 void vector_spread(vector_t *const vector, const size_t index, const size_t amount);
 
@@ -506,7 +481,6 @@ void vector_spread(vector_t *const vector, const size_t index, const size_t amou
 * @param[in] length Size of the shifting range in elements.
 * @param[in] shift  Direction and steps to shift in elements.
 *
-* @relatedalso vector_t
 */
 void vector_shift(vector_t *const vector,
         const size_t offset,
@@ -523,7 +497,6 @@ void vector_shift(vector_t *const vector,
 * @param[in] index_a Designator of the first element.
 * @param[in] index_b Designarot of the second element.
 *
-* @relatedalso vector_t
 */
 void vector_swap(vector_t *const vector, const size_t index_a, const size_t index_b);
 
@@ -539,7 +512,6 @@ void vector_swap(vector_t *const vector, const size_t index_a, const size_t inde
 * @param[in,out] param  User defined parameter, passed to func.
 * @returns              Zero on success, or nonzero value - user defined status code.
 *
-* @relatedalso vector_t
 */
 int vector_foreach(const vector_t *const vector,
         const size_t limit,
@@ -560,7 +532,6 @@ int vector_foreach(const vector_t *const vector,
 * @param[in,out] param  User defined parameter, passed to func.
 * @returns              Zero on success, or nonzero value - user defined status code.
 *
-* @relatedalso vector_t
 */
 int vector_aggregate(const vector_t *const vector,
         const size_t limit,
@@ -579,7 +550,6 @@ int vector_aggregate(const vector_t *const vector,
 * @param[in] func       Action to be performed.
 * @param[in,out] param  User defined parameter, passed to func.
 * @returns              Zero on success, or nonzero value - user defined status code.
-* @relatedalso vector_t
 */
 int vector_transform(vector_t *const vector,
         const size_t limit,
