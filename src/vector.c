@@ -1,3 +1,5 @@
+/** @file vector.c */
+
 #include "vector.h"
 #include "memswap.h"
 
