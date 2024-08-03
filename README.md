@@ -31,7 +31,7 @@ Provides api for array manipulations with extendability in mind.
 
 ## Memory layout
 
-![vector-scheme](vector-scheme.svg)
+![vector-scheme](imgs/vector-scheme.svg)
 ## Dependencies
 
 ### Build System
@@ -68,13 +68,13 @@ Provides api for array manipulations with extendability in mind.
   - On **Windows**:
     - Install [msys2](https://www.msys2.org/) environment.
     - In msys2 shell run:
-      ```msys2
+      ```sh
       pacman -S curl git mingw-w64-ucrt-x86_64-gcc \
           mingw-264-ucrt-x86_64-check \
           autotools autoconf-archive lcov
       ```
       Set up git newline `\n` to `\r\n` convertion (windows style):
-      ```msys2
+      ```sh
       git config --global core.autocrlf input
       ```
 

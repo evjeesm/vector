@@ -52,7 +52,7 @@ jobs:
     - name: Regenerate Docs
       run: |
         rm -rf docs          # Clean docs folder
-        doxygen doxyconf     # Run doxygen with config
+        doxygen doxygen/doxyconf     # Run doxygen with config
         touch docs/.nojekyll # disable Jekyll framework
 
     - name: Commit Docs
