@@ -35,8 +35,18 @@ jobs:
     - name: Checkout target branch
       run: git switch ${{ inputs.target-branch }}
 
-    - name: Merge source branch into target branch
+    - name: Rebase target branch onto source branch
       run: git rebase ${{ inputs.source-branch }}
+
+    - name: Regenerate Docs
+      run: |
+        rm -rf docs/*
+        doxygen doxyconf
+
+    - name: Commit Docs
+      run: |
+        git add -f docs
+        git commit -m "AutoDocs Update"
 
     - name: Push changes to target branch
       run: git push origin ${{ inputs.target-branch }}
