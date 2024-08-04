@@ -57,7 +57,7 @@ jobs:
 
     - name: Commit Docs
       run: |
-        git add -f docs
+        git add -f docs *.tag
         git commit -m "AutoDocs Update"
 
     - name: Push changes to target branch
