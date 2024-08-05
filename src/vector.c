@@ -1,4 +1,8 @@
-/** @file vector.c */
+/**
+* @file
+* @author Evgeni Semenov
+* @brief Implementation of the vector
+*/
 
 #include "vector.h"
 #include "memswap.h"
