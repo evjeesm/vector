@@ -44,119 +44,119 @@
     <member kind="function">
       <type>vector_t *</type>
       <name>vector_create_</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gae9c418efba1bbeb20a8becffe6a09b75</anchor>
       <arglist>(const vector_opts_t *const opts)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_destroy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gae0c0da17ad9469e47ef376a82b6493f3</anchor>
       <arglist>(vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_get_ext_header</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gafc2e34dbacffe6480af8681fbf46e808</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_data_offset</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga435ecb8dca435624d8d277feb6b2cc80</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>vector_t *</type>
       <name>vector_clone</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga7243756372efd57714853efaf7521358</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_copy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
       <arglist>(const vector_t *const vector, char *const dest, const size_t offset, const size_t length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_move</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_part_copy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_element_size</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaae93d7f0c056c1d11d3232a7a7aa5e09</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_capacity</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gab24bd801f91d4ae1ac79b54430b0409f</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_capacity_bytes</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga3bfc1317eaeaee9b29a452c4fa41e4b3</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_initial_capacity</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga8920a1d7d9d5db65a90e0e27b112ed2e</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_initial_capacity_bytes</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaed053eb4d25253b5f69b9712212d9e62</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
       <name>vector_data</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gac4d24b2cc8c8c44d36107b9a0fffea35</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_linear_find</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga184f04299040b2bfd8c03ef22abc7b8b</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const predicate_t predicate, void *param)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_binary_find</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga5081815905cf71570856aef717659463</anchor>
       <arglist>(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *param)</arglist>
     </member>
     <member kind="function">
       <type>ssize_t</type>
       <name>vector_binary_find_index</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaae3cfb2691a50da87169b5e057169782</anchor>
       <arglist>(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *const param)</arglist>
     </member>
@@ -177,70 +177,70 @@
     <member kind="function">
       <type>void *</type>
       <name>vector_get</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga9437d9506a3b2799f595c88b82f160b3</anchor>
       <arglist>(const vector_t *const vector, const size_t index)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_set</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gab3a5e466261d31ee9edd77a5eb280030</anchor>
       <arglist>(vector_t *const vector, const size_t index, const void *const value)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_set_zero</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaf3eaea4a3a47741f46eae9ae6e984ef2</anchor>
       <arglist>(vector_t *const vector, const size_t index)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_spread</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga6312527827ba72441feeef4fc4047f94</anchor>
       <arglist>(vector_t *const vector, const size_t index, const size_t amount)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_shift</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga1f4cbce56499e81a048ac6454cd5bb69</anchor>
       <arglist>(vector_t *const vector, const size_t offset, const size_t length, const ssize_t shift)</arglist>
     </member>
     <member kind="function">
       <type>vector_status_t</type>
       <name>vector_resize</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga6e5077303af4dfe720af5a0608553922</anchor>
       <arglist>(vector_t **const vector, const size_t capacity, const vector_status_t error)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_swap</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaf395f309bc15469998a8c14fc925b5b6</anchor>
       <arglist>(vector_t *const vector, const size_t index_a, const size_t index_b)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_foreach</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga988880baa4fe32fb6d4299daf1a29a1f</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const foreach_t func, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_aggregate</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga1a193e06f6700de896628631b8569740</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_transform</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga176c007bd441e4469a28ba47ca952dfb</anchor>
       <arglist>(vector_t *const vector, const size_t limit, const transform_t func, void *const param)</arglist>
     </member>
@@ -267,7 +267,7 @@
     <member kind="define">
       <type>#define</type>
       <name>vector_create</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga160b0d4b8d0836eda9a50bfa71514de8</anchor>
       <arglist>(...)</arglist>
     </member>
@@ -334,189 +334,189 @@
     <member kind="function">
       <type>vector_t *</type>
       <name>vector_create_</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gae9c418efba1bbeb20a8becffe6a09b75</anchor>
       <arglist>(const vector_opts_t *const opts)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_destroy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gae0c0da17ad9469e47ef376a82b6493f3</anchor>
       <arglist>(vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_get_ext_header</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gafc2e34dbacffe6480af8681fbf46e808</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_data_offset</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga435ecb8dca435624d8d277feb6b2cc80</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>vector_t *</type>
       <name>vector_clone</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga7243756372efd57714853efaf7521358</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>vector_status_t</type>
       <name>vector_resize</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga6e5077303af4dfe720af5a0608553922</anchor>
       <arglist>(vector_t **const vector, const size_t capacity, const vector_status_t error)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_copy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_move</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_part_copy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_element_size</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaae93d7f0c056c1d11d3232a7a7aa5e09</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_capacity</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gab24bd801f91d4ae1ac79b54430b0409f</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_capacity_bytes</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga3bfc1317eaeaee9b29a452c4fa41e4b3</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_initial_capacity</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga8920a1d7d9d5db65a90e0e27b112ed2e</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_initial_capacity_bytes</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaed053eb4d25253b5f69b9712212d9e62</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
       <name>vector_data</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gac4d24b2cc8c8c44d36107b9a0fffea35</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_linear_find</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga184f04299040b2bfd8c03ef22abc7b8b</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const predicate_t predicate, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_binary_find</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga5081815905cf71570856aef717659463</anchor>
       <arglist>(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>ssize_t</type>
       <name>vector_binary_find_index</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaae3cfb2691a50da87169b5e057169782</anchor>
       <arglist>(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_get</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga9437d9506a3b2799f595c88b82f160b3</anchor>
       <arglist>(const vector_t *const vector, const size_t index)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_set</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gab3a5e466261d31ee9edd77a5eb280030</anchor>
       <arglist>(vector_t *const vector, const size_t index, const void *const value)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_set_zero</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaf3eaea4a3a47741f46eae9ae6e984ef2</anchor>
       <arglist>(vector_t *const vector, const size_t index)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_spread</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga6312527827ba72441feeef4fc4047f94</anchor>
       <arglist>(vector_t *const vector, const size_t index, const size_t amount)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_shift</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga1f4cbce56499e81a048ac6454cd5bb69</anchor>
       <arglist>(vector_t *const vector, const size_t offset, const size_t length, const ssize_t shift)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_swap</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaf395f309bc15469998a8c14fc925b5b6</anchor>
       <arglist>(vector_t *const vector, const size_t index_a, const size_t index_b)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_foreach</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga988880baa4fe32fb6d4299daf1a29a1f</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const foreach_t func, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_aggregate</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga1a193e06f6700de896628631b8569740</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_transform</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga176c007bd441e4469a28ba47ca952dfb</anchor>
       <arglist>(vector_t *const vector, const size_t limit, const transform_t func, void *const param)</arglist>
     </member>
@@ -682,204 +682,204 @@
     </member>
   </compound>
   <compound kind="group">
-    <name>Vector</name>
-    <title>API&quot;</title>
-    <filename>group__Vector.html</filename>
+    <name>Vector_API</name>
+    <title>Vector API</title>
+    <filename>group__Vector__API.html</filename>
     <subgroup>Allocation</subgroup>
     <subgroup>Utilities</subgroup>
     <member kind="define">
       <type>#define</type>
       <name>vector_create</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga160b0d4b8d0836eda9a50bfa71514de8</anchor>
       <arglist>(...)</arglist>
     </member>
     <member kind="function">
       <type>vector_t *</type>
       <name>vector_create_</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gae9c418efba1bbeb20a8becffe6a09b75</anchor>
       <arglist>(const vector_opts_t *const opts)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_destroy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gae0c0da17ad9469e47ef376a82b6493f3</anchor>
       <arglist>(vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_get_ext_header</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gafc2e34dbacffe6480af8681fbf46e808</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_data_offset</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga435ecb8dca435624d8d277feb6b2cc80</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>vector_t *</type>
       <name>vector_clone</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga7243756372efd57714853efaf7521358</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>vector_status_t</type>
       <name>vector_resize</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga6e5077303af4dfe720af5a0608553922</anchor>
       <arglist>(vector_t **const vector, const size_t capacity, const vector_status_t error)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_copy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_move</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_part_copy</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_element_size</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaae93d7f0c056c1d11d3232a7a7aa5e09</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_capacity</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gab24bd801f91d4ae1ac79b54430b0409f</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_capacity_bytes</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga3bfc1317eaeaee9b29a452c4fa41e4b3</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_initial_capacity</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga8920a1d7d9d5db65a90e0e27b112ed2e</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_initial_capacity_bytes</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaed053eb4d25253b5f69b9712212d9e62</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>char *</type>
       <name>vector_data</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gac4d24b2cc8c8c44d36107b9a0fffea35</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_linear_find</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga184f04299040b2bfd8c03ef22abc7b8b</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const predicate_t predicate, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_binary_find</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga5081815905cf71570856aef717659463</anchor>
       <arglist>(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>ssize_t</type>
       <name>vector_binary_find_index</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaae3cfb2691a50da87169b5e057169782</anchor>
       <arglist>(const vector_t *const vector, const void *const value, const size_t limit, const compare_t cmp, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>void *</type>
       <name>vector_get</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga9437d9506a3b2799f595c88b82f160b3</anchor>
       <arglist>(const vector_t *const vector, const size_t index)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_set</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gab3a5e466261d31ee9edd77a5eb280030</anchor>
       <arglist>(vector_t *const vector, const size_t index, const void *const value)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_set_zero</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaf3eaea4a3a47741f46eae9ae6e984ef2</anchor>
       <arglist>(vector_t *const vector, const size_t index)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_spread</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga6312527827ba72441feeef4fc4047f94</anchor>
       <arglist>(vector_t *const vector, const size_t index, const size_t amount)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_shift</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga1f4cbce56499e81a048ac6454cd5bb69</anchor>
       <arglist>(vector_t *const vector, const size_t offset, const size_t length, const ssize_t shift)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
       <name>vector_swap</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>gaf395f309bc15469998a8c14fc925b5b6</anchor>
       <arglist>(vector_t *const vector, const size_t index_a, const size_t index_b)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_foreach</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga988880baa4fe32fb6d4299daf1a29a1f</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const foreach_t func, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_aggregate</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga1a193e06f6700de896628631b8569740</anchor>
       <arglist>(const vector_t *const vector, const size_t limit, const aggregate_t func, void *const acc, void *const param)</arglist>
     </member>
     <member kind="function">
       <type>int</type>
       <name>vector_transform</name>
-      <anchorfile>group__Vector.html</anchorfile>
+      <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga176c007bd441e4469a28ba47ca952dfb</anchor>
       <arglist>(vector_t *const vector, const size_t limit, const transform_t func, void *const param)</arglist>
     </member>

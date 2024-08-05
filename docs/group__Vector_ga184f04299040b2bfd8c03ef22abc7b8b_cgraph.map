@@ -1,5 +1,0 @@
-<map id="vector_linear_find" name="vector_linear_find">
-<area shape="rect" id="Node000001" title="Simple linear search for unordered data." alt="" coords="5,5,144,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="192,5,283,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="144,15,178,15,178,21,144,21"/>
-</map>

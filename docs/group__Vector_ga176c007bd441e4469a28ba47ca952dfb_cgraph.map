@@ -1,7 +1,0 @@
-<map id="vector_transform" name="vector_transform">
-<area shape="rect" id="Node000001" title="Perform mutable transformation on each element of the vector." alt="" coords="5,5,140,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga988880baa4fe32fb6d4299daf1a29a1f" title="Perform immutable action on each element of the vector." alt="" coords="188,5,307,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="140,15,174,15,174,21,140,21"/>
-<area shape="rect" id="Node000003" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="355,5,445,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="307,15,341,15,341,21,307,21"/>
-</map>

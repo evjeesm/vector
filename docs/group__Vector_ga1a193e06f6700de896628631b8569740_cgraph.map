@@ -1,5 +1,0 @@
-<map id="vector_aggregate" name="vector_aggregate">
-<area shape="rect" id="Node000001" title="Perform immutable accamulating action on each element of the vector." alt="" coords="5,5,141,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="189,5,280,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="141,15,176,15,176,21,141,21"/>
-</map>

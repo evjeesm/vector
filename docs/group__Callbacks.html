@@ -123,13 +123,13 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:gae47f476ece20d219ac1d39c71110e553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare, used to define traversal order.  <br /></td></tr>
 <tr class="separator:gae47f476ece20d219ac1d39c71110e553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2a12fb990fb59f84ca1920d78d867aa6" id="r_ga2a12fb990fb59f84ca1920d78d867aa6"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2a12fb990fb59f84ca1920d78d867aa6">foreach_t</a>) (const void *const element, void *const param)</td></tr>
-<tr class="memdesc:ga2a12fb990fb59f84ca1920d78d867aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>.  <br /></td></tr>
+<tr class="memdesc:ga2a12fb990fb59f84ca1920d78d867aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector__API.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>.  <br /></td></tr>
 <tr class="separator:ga2a12fb990fb59f84ca1920d78d867aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga89204e5e91ceae8be993751982edb299" id="r_ga89204e5e91ceae8be993751982edb299"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga89204e5e91ceae8be993751982edb299">aggregate_t</a>) (const void *const element, void *const acc, void *const param)</td></tr>
-<tr class="memdesc:ga89204e5e91ceae8be993751982edb299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>.  <br /></td></tr>
+<tr class="memdesc:ga89204e5e91ceae8be993751982edb299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector__API.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>.  <br /></td></tr>
 <tr class="separator:ga89204e5e91ceae8be993751982edb299"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3b3896688782a9a532d27c5d841c0e79" id="r_ga3b3896688782a9a532d27c5d841c0e79"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3b3896688782a9a532d27c5d841c0e79">transform_t</a>) (void *const element, void *const param)</td></tr>
-<tr class="memdesc:ga3b3896688782a9a532d27c5d841c0e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>.  <br /></td></tr>
+<tr class="memdesc:ga3b3896688782a9a532d27c5d841c0e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector__API.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>.  <br /></td></tr>
 <tr class="separator:ga3b3896688782a9a532d27c5d841c0e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -200,7 +200,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Callback determines an operation for <a class="el" href="group__Vector.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>. </p>
+<p>Callback determines an operation for <a class="el" href="group__Vector__API.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>. </p>
 <p>This operation will be performed on each element of the vector, until one of the calls retuned non-zero value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -227,7 +227,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Callback determines an operation for <a class="el" href="group__Vector.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>. </p>
+<p>Callback determines an operation for <a class="el" href="group__Vector__API.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>. </p>
 <p>This operation will be performed on each element of the vector, until one of the calls retuned non-zero value. Reduces vector into a <code>acc</code> parameter, non-destructive operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -255,7 +255,7 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Callback determines an operation for <a class="el" href="group__Vector.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>. </p>
+<p>Callback determines an operation for <a class="el" href="group__Vector__API.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>. </p>
 <p>This operation will be performed on each element of the vector, until one of the calls retuned non-zero value. Destructive operation, designed to mutate vector elements.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">

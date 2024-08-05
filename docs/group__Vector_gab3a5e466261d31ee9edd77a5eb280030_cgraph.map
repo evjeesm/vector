@@ -1,5 +1,0 @@
-<map id="vector_set" name="vector_set">
-<area shape="rect" id="Node000001" title="Sets element at given index to a value." alt="" coords="5,5,96,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="144,5,235,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,15,130,15,130,21,96,21"/>
-</map>

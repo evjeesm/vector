@@ -1,5 +1,0 @@
-<map id="vector_set_zero" name="vector_set_zero">
-<area shape="rect" id="Node000001" title="Sets element at given index to a zero value." alt="" coords="5,5,131,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="179,5,269,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,15,165,15,165,21,131,21"/>
-</map>

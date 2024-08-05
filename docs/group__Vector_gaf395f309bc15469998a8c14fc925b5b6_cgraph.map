@@ -1,5 +1,0 @@
-<map id="vector_swap" name="vector_swap">
-<area shape="rect" id="Node000001" title="Swaps values of elements designated by indicies." alt="" coords="5,5,109,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="157,5,248,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,15,143,15,143,21,109,21"/>
-</map>

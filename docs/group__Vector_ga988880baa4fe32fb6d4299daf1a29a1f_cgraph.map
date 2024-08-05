@@ -1,5 +1,0 @@
-<map id="vector_foreach" name="vector_foreach">
-<area shape="rect" id="Node000001" title="Perform immutable action on each element of the vector." alt="" coords="5,5,124,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="172,5,263,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,158,15,158,21,124,21"/>
-</map>

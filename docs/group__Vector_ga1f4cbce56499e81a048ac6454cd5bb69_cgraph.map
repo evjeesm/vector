@@ -1,8 +1,0 @@
-<map id="vector_shift" name="vector_shift">
-<area shape="rect" id="Node000001" title="Shift range of elements." alt="" coords="5,5,104,31"/>
-<area shape="rect" id="Node000002" href="$group__Vector.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="307,5,397,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,15,293,15,293,21,105,21"/>
-<area shape="rect" id="Node000003" href="$group__Vector.html#gaa94c547c9488b4f9dce5eb01067c2ae1" title="Moves range of the vector elements to another location." alt="" coords="152,31,259,56"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="105,24,139,29,138,35,104,29"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="259,31,293,25,294,31,260,37"/>
-</map>
