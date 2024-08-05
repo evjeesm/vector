@@ -1,6 +1,6 @@
 <map id="src/vector.c" name="src/vector.c">
-<area shape="rect" id="Node000001" title=" " alt="" coords="384,5,480,31"/>
-<area shape="rect" id="Node000002" href="$vector_8h.html" title=" " alt="" coords="121,79,196,104"/>
+<area shape="rect" id="Node000001" title="Implementation of the vector." alt="" coords="384,5,480,31"/>
+<area shape="rect" id="Node000002" href="$vector_8h.html" title="Public interface of the vector." alt="" coords="121,79,196,104"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="389,33,210,79,209,74,387,28"/>
 <area shape="rect" id="Node000006" href="$memswap_8h_source.html" title=" " alt="" coords="221,79,323,104"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="407,33,312,75,310,71,405,28"/>
