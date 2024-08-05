@@ -12,12 +12,12 @@
 #include <sys/types.h>  /* ssize_t */
 
 /**
- * @brief Create temporary typed reference.
- *
- * Used to create temporary reference to an object,
- * that need to be passed via pointer.
- * Life time of the referenced object is bounded by a scope in which it was defined.
- */
+* @brief Create temporary typed reference.
+*
+* Used to create temporary reference to an object,
+* that need to be passed via pointer.
+* Life time of the referenced object is bounded by a scope in which it was defined.
+*/
 #define TMP_REF(type, value) (type[1]){value}
 
 /**
@@ -64,10 +64,9 @@ typedef enum vector_status_t
 }
 vector_status_t;
 
-/** @addtogroup Callbacks
- *  @{
-*   @brief Callbacks used by various API funcions.
-*/
+/**
+* @addtogroup Callbacks
+* @brief Callbacks used by various API funcions. @{ */
 
 /**
 * @brief Predicate, tells if traversed element matches user's criteria.
@@ -133,7 +132,7 @@ typedef int (*aggregate_t) (const void *const element, void *const acc, void *co
 typedef int (*transform_t) (void *const element, void *const param);
 /** @} */
 
-/** @addtogroup Vector API
+/** @addtogroup "Vector API"
  *  @brief Main vectors methods.
  *  @{
  */
@@ -636,6 +635,6 @@ ssize_t cmp_lex_dsc(const void *const value, const void *const element, void *co
 
 /** @} */
 
-/** @} @noop Vector API */
+/** @} @noop "Vector API" */
 
 #endif/*_VECTOR_H_*/
