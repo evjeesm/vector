@@ -132,7 +132,7 @@ typedef int (*aggregate_t) (const void *const element, void *const acc, void *co
 typedef int (*transform_t) (void *const element, void *const param);
 /** @} */
 
-/** @addtogroup "Vector API"
+/** @addtogroup Vector_API Vector API
  *  @brief Main vectors methods.
  *  @{
  */
@@ -635,6 +635,6 @@ ssize_t cmp_lex_dsc(const void *const value, const void *const element, void *co
 
 /** @} */
 
-/** @} @noop "Vector API" */
+/** @} @noop Vector_API */
 
 #endif/*_VECTOR_H_*/
