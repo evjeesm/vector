@@ -683,7 +683,7 @@
   </compound>
   <compound kind="group">
     <name>Vector</name>
-    <title>API</title>
+    <title>API&quot;</title>
     <filename>group__Vector.html</filename>
     <subgroup>Allocation</subgroup>
     <subgroup>Utilities</subgroup>
