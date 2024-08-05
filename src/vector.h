@@ -1,4 +1,8 @@
-/** @file vector.h */
+/**
+* @file
+* @author Evgeni Semenov
+* @brief Public interface of the vector
+*/
 
 #ifndef _VECTOR_H_
 #define _VECTOR_H_
