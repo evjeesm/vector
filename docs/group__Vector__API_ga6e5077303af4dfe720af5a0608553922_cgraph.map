@@ -1,0 +1,7 @@
+<map id="vector_resize" name="vector_resize">
+<area shape="rect" id="Node000001" title="Performs allocation resize." alt="" coords="5,31,115,56"/>
+<area shape="rect" id="Node000002" href="$vector_8c.html#a50c131cdbcfc769f4bbe9a68912207ca" title=" " alt="" coords="163,5,315,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="115,33,149,28,149,33,115,38"/>
+<area shape="rect" id="Node000003" href="$group__Allocation.html#ga6bc2c0ee8e64283e06259c3edc6c6022" title="Reallocates already allocated memory chunk in order to change allocation size." alt="" coords="181,55,296,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,48,168,55,167,60,115,53"/>
+</map>
