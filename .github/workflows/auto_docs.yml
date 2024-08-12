@@ -63,8 +63,8 @@ jobs:
         git submodule update --init --recursive
         git submodule update --recursive --remote
 
-    - name: Merge source branch into target branch
-      run: git merge ${{ inputs.source-branch }} --allow-unrelated-histories --commit -X theirs
+    # - name: Merge source branch into target branch
+    #   run: git merge ${{ inputs.source-branch }} --allow-unrelated-histories --commit -X theirs
 
     - name: Regenerate Docs
       run: |
