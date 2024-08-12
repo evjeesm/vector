@@ -10,7 +10,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
@@ -24,12 +23,14 @@
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript">
     DoxygenAwesomeDarkModeToggle.init()
 </script>
-</head>
-<body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -123,26 +124,12 @@ $(function(){initNavTree('vector_8h.html',''); initResizable(true); });
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for vector.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="vector_8h__incl.png" border="0" usemap="#asrc_2vector_8h" alt=""/></div>
-<map name="asrc_2vector_8h" id="asrc_2vector_8h">
-<area shape="rect" title="Public interface of the vector." alt="" coords="101,5,198,31"/>
-<area shape="rect" title=" " alt="" coords="5,79,88,104"/>
-<area shape="poly" title=" " alt="" coords="134,33,76,73,73,68,131,28"/>
-<area shape="rect" title=" " alt="" coords="112,79,187,104"/>
-<area shape="poly" title=" " alt="" coords="152,31,152,65,147,65,147,31"/>
-<area shape="rect" title=" " alt="" coords="211,79,307,104"/>
-<area shape="poly" title=" " alt="" coords="168,28,231,69,228,73,165,33"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="vector_8h__incl.svg" width="323" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="vector_8h__dep__incl.png" border="0" usemap="#asrc_2vector_8hdep" alt=""/></div>
-<map name="asrc_2vector_8hdep" id="asrc_2vector_8hdep">
-<area shape="rect" title="Public interface of the vector." alt="" coords="5,5,103,31"/>
-<area shape="rect" href="vector_8c.html" title="Implementation of the vector." alt="" coords="6,79,102,104"/>
-<area shape="poly" title=" " alt="" coords="57,44,57,79,51,79,51,44"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="vector_8h__dep__incl.svg" width="118" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="vector_8h_source.html">Go to the source code of this file.</a></p>

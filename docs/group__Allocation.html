@@ -10,7 +10,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
@@ -24,12 +23,14 @@
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript">
     DoxygenAwesomeDarkModeToggle.init()
 </script>
-</head>
-<body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -116,11 +117,7 @@ $(function(){initNavTree('group__Allocation.html',''); initResizable(true); });
 <div class="dynheader">
 Collaboration diagram for Allocation:</div>
 <div class="dyncontent">
-<div class="center"><img src="group__Allocation.png" border="0" usemap="#agroup____Allocation" alt=""/></div>
-<map name="agroup____Allocation" id="agroup____Allocation">
-<area shape="rect" title="Allocator functions." alt="" coords="141,5,228,31"/>
-<area shape="rect" href="group__Vector__API.html" title="Main vectors methods." alt="" coords="5,5,93,31"/>
-</map>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Allocation.svg" width="243" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>

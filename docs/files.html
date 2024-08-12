@@ -10,7 +10,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="navtreedata.js"></script>
 <script type="text/javascript" src="navtree.js"></script>
@@ -24,12 +23,14 @@
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
 <!-- ... other metadata & script includes ... -->
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+</script>
 <script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
 <script type="text/javascript">
     DoxygenAwesomeDarkModeToggle.init()
 </script>
-</head>
-<body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
@@ -111,10 +112,8 @@ $(function(){initNavTree('files.html',''); initResizable(true); });
 <div class="textblock">Here is a list of all documented files with brief descriptions:</div><div class="directory">
 <div class="levels">[detail level <span onclick="javascript:dynsection.toggleLevel(1);">1</span><span onclick="javascript:dynsection.toggleLevel(2);">2</span>]</div><table class="directory">
 <tr id="row_0_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_0_" class="arrow" onclick="dynsection.toggleFolder('0_')">&#9660;</span><span id="img_0_" class="iconfopen" onclick="dynsection.toggleFolder('0_')">&#160;</span><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html" target="_self">src</a></td><td class="desc"></td></tr>
-<tr id="row_0_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="memswap_8c_source.html"><span class="icondoc"></span></a><b>memswap.c</b></td><td class="desc"></td></tr>
-<tr id="row_0_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="memswap_8h_source.html"><span class="icondoc"></span></a><b>memswap.h</b></td><td class="desc"></td></tr>
-<tr id="row_0_2_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="vector_8c_source.html"><span class="icondoc"></span></a><a class="el" href="vector_8c.html" target="_self">vector.c</a></td><td class="desc">Implementation of the vector </td></tr>
-<tr id="row_0_3_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="vector_8h_source.html"><span class="icondoc"></span></a><a class="el" href="vector_8h.html" target="_self">vector.h</a></td><td class="desc">Public interface of the vector </td></tr>
+<tr id="row_0_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="vector_8c_source.html"><span class="icondoc"></span></a><a class="el" href="vector_8c.html" target="_self">vector.c</a></td><td class="desc">Implementation of the vector </td></tr>
+<tr id="row_0_1_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><a href="vector_8h_source.html"><span class="icondoc"></span></a><a class="el" href="vector_8h.html" target="_self">vector.h</a></td><td class="desc">Public interface of the vector </td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
