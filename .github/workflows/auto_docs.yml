@@ -35,8 +35,10 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
 
-    - name: Fetch specific source branch
-      run: git fetch origin ${{ inputs.source-branch }}
+    - name: Fetch all branches
+      run: |
+        git fetch --all
+        git fetch origin
 
     - name: Checkout target branch
       run: git switch ${{ inputs.target-branch }}
