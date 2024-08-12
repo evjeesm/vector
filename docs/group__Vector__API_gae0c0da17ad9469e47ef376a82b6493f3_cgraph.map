@@ -1,0 +1,5 @@
+<map id="vector_destroy" name="vector_destroy">
+<area shape="rect" id="Node000001" title="Deallocates vector." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$group__Allocation.html#gacd97ea77de38db5fb50d9e8ba216a734" title="Free allocation that was previously allocated." alt="" coords="172,5,268,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,158,15,158,21,124,21"/>
+</map>

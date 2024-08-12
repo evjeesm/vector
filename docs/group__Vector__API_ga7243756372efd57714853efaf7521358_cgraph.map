@@ -1,0 +1,7 @@
+<map id="vector_clone" name="vector_clone">
+<area shape="rect" id="Node000001" title="Duplicate vector." alt="" coords="5,31,111,56"/>
+<area shape="rect" id="Node000002" href="$vector_8c.html#a50c131cdbcfc769f4bbe9a68912207ca" title=" " alt="" coords="159,5,311,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,33,144,28,145,34,111,38"/>
+<area shape="rect" id="Node000003" href="$group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658" title="Allocates memory chunk of alloc_size." alt="" coords="184,55,285,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,48,170,56,170,61,111,53"/>
+</map>
