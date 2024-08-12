@@ -63,7 +63,7 @@ jobs:
   # Build and upload documentation
   call-auto-docs:
       uses: ./.github/workflows/auto_docs.yml
-      if: ${{ github.ref_name == 'main' }} # if not triggered by pull request
+      # if: ${{ github.ref_name == 'main' }} # if not triggered by pull request
       with:
         source-branch: 'main'
         target-branch: 'docs'
