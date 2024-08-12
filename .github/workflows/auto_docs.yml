@@ -22,23 +22,30 @@ jobs:
       with:
         submodules: true
 
-    - name: Cache Doxygen
-      id: cache-doxygen
-      uses: actions/cache@v4
+    - name: Restore Doxygen
+      id: cache-doxygen-restore
+      uses: actions/cache/restore@v4
       with:
         path: |
           /usr/local/bin/doxygen
-          /usr/local/bin/dot
         key: doxygen-${{ env.DOXYGEN_VER }}
 
-    - name: Install Doxygen
-      if: steps.cache-doxygen.outputs.cache-hit != 'true'
+    - name: Install Doxygen if not cached
+      if: steps.cache-doxygen-restore.outputs.cache-hit != 'true'
       run: |
         sudo apt-get install graphviz
         wget "https://www.doxygen.nl/files/doxygen-$DOXYGEN_VER.linux.bin.tar.gz"
         tar -x -gz -f "doxygen-$DOXYGEN_VER.linux.bin.tar.gz"
         sudo make -C "doxygen-$DOXYGEN_VER" install
         rm -rf "doxygen-$DOXYGEN_VER"
+
+    - name: Save Doxygen
+      id: cache-doxygen-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          /usr/local/bin/doxygen
+        key: ${{ steps.cache-doxygen-restore.outputs.cache-primary-key }}
 
     - name: Configure git
       run: |
