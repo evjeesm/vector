@@ -29,7 +29,7 @@ jobs:
         path: |
           /usr/local/bin/doxygen
           /usr/local/bin/dot
-        key: "doxygen-$DOXYGEN_VER"
+        key: doxygen-${{ env.DOXYGEN_VER }}
 
     - name: Install Doxygen
       if: steps.cache-doxygen.outputs.cache-hit != 'true'
