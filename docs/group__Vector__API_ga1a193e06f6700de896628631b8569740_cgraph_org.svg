@@ -12,8 +12,8 @@
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title="Perform immutable accamulating action on each element of the vector.">
-<polygon fill="#999999" stroke="#666666" points="101,-19 0,-19 0,0 101,0 101,-19"/>
-<text text-anchor="middle" x="50.5" y="-7" font-family="Mononoki" font-size="10.00">vector_aggregate</text>
+<polygon fill="#999999" stroke="#666666" points="102,-19 0,-19 0,0 102,0 102,-19"/>
+<text text-anchor="middle" x="51" y="-7" font-family="Mononoki" font-size="10.00">vector_aggregate</text>
 </a>
 </g>
 </g>
@@ -21,8 +21,8 @@
 <g id="Node000002" class="node">
 <title>Node2</title>
 <g id="a_Node000002"><a xlink:href="group__Vector__API.html#ga9437d9506a3b2799f595c88b82f160b3" target="_top" xlink:title="Returns pointer for the element at index.">
-<polygon fill="white" stroke="#666666" points="206,-19 137,-19 137,0 206,0 206,-19"/>
-<text text-anchor="middle" x="171.5" y="-7" font-family="Mononoki" font-size="10.00">vector_get</text>
+<polygon fill="white" stroke="#666666" points="206,-19 138,-19 138,0 206,0 206,-19"/>
+<text text-anchor="middle" x="172" y="-7" font-family="Mononoki" font-size="10.00">vector_get</text>
 </a>
 </g>
 </g>
@@ -30,8 +30,8 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M101.28,-9.5C109.7,-9.5 118.38,-9.5 126.64,-9.5"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="126.81,-13 136.81,-9.5 126.81,-6 126.81,-13"/>
+<path fill="none" stroke="#63b8ff" d="M102.12,-9.5C110.61,-9.5 119.35,-9.5 127.65,-9.5"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="127.86,-13 137.86,-9.5 127.86,-6 127.86,-13"/>
 </a>
 </g>
 </g>

@@ -119,7 +119,7 @@ $(function(){initNavTree('group__Vector__API.html',''); initResizable(true); });
 <div class="dynheader">
 Collaboration diagram for Vector API:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API.svg" width="243" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API.svg" width="234" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="groups" name="groups"></a>
@@ -175,12 +175,6 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3bfc1317eaeaee9b29a452c4fa41e4b3" id="r_ga3bfc1317eaeaee9b29a452c4fa41e4b3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3bfc1317eaeaee9b29a452c4fa41e4b3">vector_capacity_bytes</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
 <tr class="memdesc:ga3bfc1317eaeaee9b29a452c4fa41e4b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports current capacity of the vector in bytes.  <br /></td></tr>
 <tr class="separator:ga3bfc1317eaeaee9b29a452c4fa41e4b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8920a1d7d9d5db65a90e0e27b112ed2e" id="r_ga8920a1d7d9d5db65a90e0e27b112ed2e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga8920a1d7d9d5db65a90e0e27b112ed2e">vector_initial_capacity</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:ga8920a1d7d9d5db65a90e0e27b112ed2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports initial capacity of the vector.  <br /></td></tr>
-<tr class="separator:ga8920a1d7d9d5db65a90e0e27b112ed2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaed053eb4d25253b5f69b9712212d9e62" id="r_gaed053eb4d25253b5f69b9712212d9e62"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaed053eb4d25253b5f69b9712212d9e62">vector_initial_capacity_bytes</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:gaed053eb4d25253b5f69b9712212d9e62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports initial capacity of the vector in bytes.  <br /></td></tr>
-<tr class="separator:gaed053eb4d25253b5f69b9712212d9e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac4d24b2cc8c8c44d36107b9a0fffea35" id="r_gac4d24b2cc8c8c44d36107b9a0fffea35"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gac4d24b2cc8c8c44d36107b9a0fffea35">vector_data</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
 <tr class="memdesc:gac4d24b2cc8c8c44d36107b9a0fffea35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gives a pointer to a location where elements' data begins.  <br /></td></tr>
 <tr class="separator:gac4d24b2cc8c8c44d36107b9a0fffea35"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,7 +238,7 @@ Functions</h2></td></tr>
 <div class="line">            __VA_ARGS__ \</div>
 <div class="line">        }\</div>
 <div class="line">    )\</div>
-<div class="ttc" id="agroup__Vector__API_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00087">vector.c:87</a></div></div>
+<div class="ttc" id="agroup__Vector__API_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00086">vector.c:86</a></div></div>
 <div class="ttc" id="astructvector__opts__t_html"><div class="ttname"><a href="structvector__opts__t.html">vector_opts_t</a></div><div class="ttdoc">Vector options.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00045">vector.h:46</a></div></div>
 </div><!-- fragment -->
 <p>Vector constructor. </p>
@@ -286,11 +280,11 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Fresh new instance of the vector or <code>NULL</code> if allocation failed. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00087">87</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00086">86</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gae9c418efba1bbeb20a8becffe6a09b75_cgraph.svg" width="342" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gae9c418efba1bbeb20a8becffe6a09b75_cgraph.svg" width="330" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -319,11 +313,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00115">115</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00113">113</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gae0c0da17ad9469e47ef376a82b6493f3_cgraph.svg" width="278" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gae0c0da17ad9469e47ef376a82b6493f3_cgraph.svg" width="274" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -353,7 +347,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to <a class="el" href="structvector__t.html#a2c7a23fb3c2197cc5557b8543ffdb2f7">vector_t::memory</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00122">122</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00120">120</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -381,7 +375,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Data offset in bytes </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00130">130</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00128">128</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -410,11 +404,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Copy of the vector on success, <code>NULL</code> pointer otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00137">137</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00135">135</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga7243756372efd57714853efaf7521358_cgraph.svg" width="328" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga7243756372efd57714853efaf7521358_cgraph.svg" width="316" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -455,11 +449,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Operation status. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00353">353</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00337">337</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga6e5077303af4dfe720af5a0608553922_cgraph.svg" width="335" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga6e5077303af4dfe720af5a0608553922_cgraph.svg" width="320" height="86"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -505,11 +499,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00153">153</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00151">151</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gabf21611afbbdda61da4ffa361fc783dc_cgraph.svg" width="250" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gabf21611afbbdda61da4ffa361fc783dc_cgraph.svg" width="251" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -555,11 +549,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00163">163</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00161">161</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaa94c547c9488b4f9dce5eb01067c2ae1_cgraph.svg" width="250" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaa94c547c9488b4f9dce5eb01067c2ae1_cgraph.svg" width="256" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -617,11 +611,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00173">173</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00171">171</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga39836c927f0e0fc79dbf39728972d08e_cgraph.svg" width="286" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga39836c927f0e0fc79dbf39728972d08e_cgraph.svg" width="284" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -650,7 +644,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Element size in bytes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00189">189</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00187">187</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -678,7 +672,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Amount of elements currently allocated. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00196">196</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00194">194</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -706,65 +700,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Amount of bytes currently allocated for elements. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00203">203</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
-</div>
-</div>
-<a id="ga8920a1d7d9d5db65a90e0e27b112ed2e" name="ga8920a1d7d9d5db65a90e0e27b112ed2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga8920a1d7d9d5db65a90e0e27b112ed2e">&#9670;&#160;</a></span>vector_initial_capacity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t vector_initial_capacity </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structvector__t.html">vector_t</a> *const</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reports initial capacity of the vector. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo</a></b></dt><dd>may be removed </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">vector</td><td>Pointer to a vector instance. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Amount of elements initially allocated. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00210">210</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
-</div>
-</div>
-<a id="gaed053eb4d25253b5f69b9712212d9e62" name="gaed053eb4d25253b5f69b9712212d9e62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaed053eb4d25253b5f69b9712212d9e62">&#9670;&#160;</a></span>vector_initial_capacity_bytes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t vector_initial_capacity_bytes </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structvector__t.html">vector_t</a> *const</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Reports initial capacity of the vector in bytes. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo</a></b></dt><dd>may be removed later </dd></dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">vector</td><td>Pointer to a vector instance. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>Amount of bytes initially allocated for elements. </dd></dl>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00217">217</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00201">201</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -793,7 +729,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Location where elements are stored. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00224">224</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00208">208</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -839,11 +775,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to a found element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00230">230</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00214">214</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga184f04299040b2bfd8c03ef22abc7b8b_cgraph.svg" width="299" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga184f04299040b2bfd8c03ef22abc7b8b_cgraph.svg" width="288" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -896,11 +832,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to a found element. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00249">249</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00233">233</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga5081815905cf71570856aef717659463_cgraph.svg" width="446" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga5081815905cf71570856aef717659463_cgraph.svg" width="435" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -953,11 +889,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Index of found element or <code>NULL</code> if none. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00264">264</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00248">248</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaae3cfb2691a50da87169b5e057169782_cgraph.svg" width="488" height="68"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaae3cfb2691a50da87169b5e057169782_cgraph.svg" width="478" height="68"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -991,7 +927,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to a vector element at <code>index</code>. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00292">292</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00276">276</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -1029,11 +965,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00301">301</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00285">285</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gab3a5e466261d31ee9edd77a5eb280030_cgraph.svg" width="243" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gab3a5e466261d31ee9edd77a5eb280030_cgraph.svg" width="240" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1066,11 +1002,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00309">309</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00293">293</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaf3eaea4a3a47741f46eae9ae6e984ef2_cgraph.svg" width="278" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaf3eaea4a3a47741f46eae9ae6e984ef2_cgraph.svg" width="275" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1112,11 +1048,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00317">317</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00301">301</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga6312527827ba72441feeef4fc4047f94_cgraph.svg" width="411" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga6312527827ba72441feeef4fc4047f94_cgraph.svg" width="414" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1163,11 +1099,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00341">341</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00325">325</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga1f4cbce56499e81a048ac6454cd5bb69_cgraph.svg" width="404" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga1f4cbce56499e81a048ac6454cd5bb69_cgraph.svg" width="403" height="62"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1207,11 +1143,11 @@ Here is the call graph for this function:</div>
   </dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00371">371</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00355">355</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaf395f309bc15469998a8c14fc925b5b6_cgraph.svg" width="250" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_gaf395f309bc15469998a8c14fc925b5b6_cgraph.svg" width="254" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1258,11 +1194,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zero on success, or nonzero value - user defined status code. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00383">383</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00367">367</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga988880baa4fe32fb6d4299daf1a29a1f_cgraph.svg" width="271" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga988880baa4fe32fb6d4299daf1a29a1f_cgraph.svg" width="268" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -1315,7 +1251,7 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zero on success, or nonzero value - user defined status code. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00399">399</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00383">383</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1366,11 +1302,11 @@ Here is the call graph for this function:</div>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Zero on success, or nonzero value - user defined status code. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00415">415</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00399">399</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga176c007bd441e4469a28ba47ca952dfb_cgraph.svg" width="454" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Vector__API_ga176c007bd441e4469a28ba47ca952dfb_cgraph.svg" width="451" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

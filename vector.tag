@@ -119,20 +119,6 @@
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
-      <type>size_t</type>
-      <name>vector_initial_capacity</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>ga8920a1d7d9d5db65a90e0e27b112ed2e</anchor>
-      <arglist>(const vector_t *const vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>size_t</type>
-      <name>vector_initial_capacity_bytes</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gaed053eb4d25253b5f69b9712212d9e62</anchor>
-      <arglist>(const vector_t *const vector)</arglist>
-    </member>
-    <member kind="function">
       <type>char *</type>
       <name>vector_data</name>
       <anchorfile>group__Vector__API.html</anchorfile>
@@ -416,20 +402,6 @@
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
-      <type>size_t</type>
-      <name>vector_initial_capacity</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>ga8920a1d7d9d5db65a90e0e27b112ed2e</anchor>
-      <arglist>(const vector_t *const vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>size_t</type>
-      <name>vector_initial_capacity_bytes</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gaed053eb4d25253b5f69b9712212d9e62</anchor>
-      <arglist>(const vector_t *const vector)</arglist>
-    </member>
-    <member kind="function">
       <type>char *</type>
       <name>vector_data</name>
       <anchorfile>group__Vector__API.html</anchorfile>
@@ -614,13 +586,6 @@
     </member>
     <member kind="variable">
       <type>size_t</type>
-      <name>initial_cap</name>
-      <anchorfile>structvector__t.html</anchorfile>
-      <anchor>ac2a9b3a5c2b8dc9cdd3995b771056ece</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>size_t</type>
       <name>capacity</name>
       <anchorfile>structvector__t.html</anchorfile>
       <anchor>a81e18fd00e94087a8f04b657ffc34c04</anchor>
@@ -776,20 +741,6 @@
       <name>vector_capacity_bytes</name>
       <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga3bfc1317eaeaee9b29a452c4fa41e4b3</anchor>
-      <arglist>(const vector_t *const vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>size_t</type>
-      <name>vector_initial_capacity</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>ga8920a1d7d9d5db65a90e0e27b112ed2e</anchor>
-      <arglist>(const vector_t *const vector)</arglist>
-    </member>
-    <member kind="function">
-      <type>size_t</type>
-      <name>vector_initial_capacity_bytes</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gaed053eb4d25253b5f69b9712212d9e62</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">

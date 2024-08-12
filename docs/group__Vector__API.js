@@ -15,8 +15,6 @@ var group__Vector__API =
     [ "vector_element_size", "group__Vector__API.html#gaae93d7f0c056c1d11d3232a7a7aa5e09", null ],
     [ "vector_capacity", "group__Vector__API.html#gab24bd801f91d4ae1ac79b54430b0409f", null ],
     [ "vector_capacity_bytes", "group__Vector__API.html#ga3bfc1317eaeaee9b29a452c4fa41e4b3", null ],
-    [ "vector_initial_capacity", "group__Vector__API.html#ga8920a1d7d9d5db65a90e0e27b112ed2e", null ],
-    [ "vector_initial_capacity_bytes", "group__Vector__API.html#gaed053eb4d25253b5f69b9712212d9e62", null ],
     [ "vector_data", "group__Vector__API.html#gac4d24b2cc8c8c44d36107b9a0fffea35", null ],
     [ "vector_linear_find", "group__Vector__API.html#ga184f04299040b2bfd8c03ef22abc7b8b", null ],
     [ "vector_binary_find", "group__Vector__API.html#ga5081815905cf71570856aef717659463", null ],
