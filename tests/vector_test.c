@@ -39,7 +39,6 @@ START_TEST (test_vector_create)
     ck_assert_ptr_nonnull(vector);
 
     ck_assert_uint_eq(vector_capacity(vector), expected);
-    ck_assert_uint_eq(vector_initial_capacity(vector), expected);
 }
 END_TEST
 
@@ -90,7 +89,6 @@ START_TEST (test_vector_clone)
 
     ck_assert(clone);
     ck_assert_uint_eq(vector_capacity(clone), vector_capacity(vector));
-    ck_assert_uint_eq(vector_initial_capacity(clone), vector_initial_capacity(vector));
     ck_assert_uint_eq(vector_element_size(clone), vector_element_size(vector));
 
     for (size_t i = 0; i < capacity; ++i)

@@ -33,7 +33,6 @@ struct vector_t
 {
     size_t data_offset; /**< @brief Amount of bytes reserved for derived container's header */
     size_t element_size;/**< @brief Size of the underling element type */
-    size_t initial_cap; /**< @brief @todo maybe removed, because wastefull in some cases. */
     size_t capacity;    /**< @brief Current amount of allocated elements */
     void *alloc_param;  /**< @brief Parameter that holds non-default allocator's data */
     char memory[];
@@ -103,7 +102,6 @@ vector_t *vector_create_(const vector_opts_t *const opts)
     (*vector) = (vector_t) {
         .data_offset = opts->data_offset,
         .element_size = opts->element_size,
-        .initial_cap = opts->initial_cap,
         .capacity = opts->initial_cap,
         .alloc_param = opts->alloc_param,
     };
@@ -204,20 +202,6 @@ size_t vector_capacity_bytes(const vector_t *const vector)
 {
     assert(vector);
     return vector->capacity * vector->element_size;
-}
-
-
-size_t vector_initial_capacity(const vector_t *const vector)
-{
-    assert(vector);
-    return vector->initial_cap;
-}
-
-
-size_t vector_initial_capacity_bytes(const vector_t *const vector)
-{
-    assert(vector);
-    return vector->initial_cap * vector->element_size;
 }
 
 

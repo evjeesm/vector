@@ -3,7 +3,7 @@
 
 AC_PREREQ([2.69])
 AC_CONFIG_MACRO_DIRS([m4])
-AC_INIT([Vector], [1.0], [https://github.com/evjeesm])
+AC_INIT([Vector], [2.0.0], [https://github.com/evjeesm])
 AC_CONFIG_AUX_DIR([build-aux])
 
 # valgrind

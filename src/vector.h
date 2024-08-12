@@ -330,26 +330,6 @@ size_t vector_capacity_bytes(const vector_t *const vector);
 
 
 /**
-* @brief Reports initial capacity of the vector.
-* @todo may be removed
-* @param[in] vector Pointer to a vector instance.
-* @returns          Amount of elements initially allocated.
-*
-*/
-size_t vector_initial_capacity(const vector_t *const vector);
-
-
-/**
-* @brief Reports initial capacity of the vector in bytes.
-* @todo may be removed later
-* @param[in] vector Pointer to a vector instance.
-* @returns          Amount of bytes initially allocated for elements.
-*
-*/
-size_t vector_initial_capacity_bytes(const vector_t *const vector);
-
-
-/**
 * @brief Gives a pointer to a location where elements' data begins.
 *
 * @warning
