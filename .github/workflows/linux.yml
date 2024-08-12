@@ -64,7 +64,7 @@ jobs:
   call-auto-docs:
       uses: ./.github/workflows/auto_docs.yml
       with:
-        source-branch: ${{ github.head_ref || github.ref_name }}
+        source-branch: 'main'
         target-branch: 'docs'
       permissions:
         contents: write
