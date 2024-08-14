@@ -34,6 +34,9 @@ jobs:
         path: /usr/local/bin/doxygen
         key: doxygen-${{ env.DOXYGEN_VER }}
 
+    - name: Configure dot
+      run: sudo dot -c
+
     - name: Install Doxygen if not cached
       if: steps.cache-doxygen-restore.outputs.cache-hit != 'true'
       run: |
@@ -78,7 +81,14 @@ jobs:
     - name: Commit Docs
       run: |
         git add -f docs *.tag
-        git commit -m "AutoDocs Update"
+        git diff --staged --quiet \
+          || git commit -m "AutoDocs Update" \
+          && echo "No documentation changes!"
 
-    - name: Push changes to target branch
-      run: git push origin ${{ inputs.target-branch }}
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        branch: docs
+        clean: true
+        folder: .
+        ssh-key: ${{ secrets.AUTO_DOCS_DEPLOY_KEY }}
