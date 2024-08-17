@@ -9,6 +9,7 @@
 # documentation
 !docs
 !doxyconf
+!header.html
 
 !src
 !tests
