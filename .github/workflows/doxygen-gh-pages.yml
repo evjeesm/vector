@@ -17,7 +17,7 @@ jobs:
         run: |
           git config --global user.name Github Actions
           git config --global user.emale actions@github.com
-          git config --global pull.ff only
+          git config --global pull.rebase false
 
       - name: Pull main branch
         run: git pull --recurse-submodules origin main
