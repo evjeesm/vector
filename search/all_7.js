@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['globalvalue_0',['globalValue',['../file_8h.html#a4a86bef4b6181cb3f53bd0461a9a511b',1,'file.h']]]
+  ['layout_0',['Memory layout',['../index.html#autotoc_md3',1,'']]],
+  ['libraries_1',['Libraries',['../index.html#autotoc_md6',1,'']]]
 ];

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['_5f_5finit_5f_5f_0',['__init__',['../classdocstring_1_1PyClass.html#a03342ef04e3b83b2df9dec57a10f62c4',1,'docstring.PyClass.__init__()'],['../classpyexample_1_1PyClass.html#ac453f98ee6fbd41496b5c864bda1af21',1,'pyexample.PyClass.__init__()']]]
+  ['binary_5ffind_0',['binary_find',['../vector_8c.html#afec86be827dcdde96c62016b77630a7c',1,'vector.c']]],
+  ['binary_5ffind_5findex_1',['binary_find_index',['../vector_8c.html#a162bfa9cf07c25a5eb6c883820a68e99',1,'vector.c']]]
 ];

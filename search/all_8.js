@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ieee_0',['ieee',['../classmux__using__with.html#a44d1d60c58066d98a072e90b31c9d908',1,'mux_using_with']]],
-  ['implementation_20details_1',['Implementation details',['../index.html#autotoc_md1',1,'']]],
-  ['initial_5fcap_2',['initial_cap',['../structvector__opts__t.html#a3bcfe6caf89c0029a925d0be842abc23',1,'vector_opts_t']]]
+  ['memory_0',['memory',['../structvector__t.html#a2c7a23fb3c2197cc5557b8543ffdb2f7',1,'vector_t']]],
+  ['memory_20layout_1',['Memory layout',['../index.html#autotoc_md3',1,'']]],
+  ['minimal_20example_2',['Minimal Example',['../index.html#autotoc_md9',1,'']]]
 ];
