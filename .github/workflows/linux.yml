@@ -1,7 +1,7 @@
 name: Linux Debian CI
 
 on:
-  workflow-call: 
+  workflow_call: 
 
 jobs:
   build:

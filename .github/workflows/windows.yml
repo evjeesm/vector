@@ -1,7 +1,7 @@
 name: Windows MSYS2 CI
 
 on:
-  workflow-call:
+  workflow_call:
 
 jobs:
   build:
