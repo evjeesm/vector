@@ -20,7 +20,10 @@ jobs:
           git config --global pull.rebase false
 
       - name: Fetch main branch
-        run: git fetch origin main
+        run: |
+          git fetch origin main
+          git switch main
+          git switch -
 
       - name: Checkout source files
         run: git checkout main -- src examples memory
