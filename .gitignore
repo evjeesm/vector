@@ -4,6 +4,11 @@
 # submodules
 !.gitmodules
 !memory
+!docs/doxygen-awesome-css
+
+# documentation
+!docs
+!doxyconf
 
 !src
 !tests
