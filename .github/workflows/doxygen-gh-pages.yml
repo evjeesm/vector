@@ -19,8 +19,11 @@ jobs:
           git config --global user.emale actions@github.com
           git config --global pull.rebase false
 
-      - name: Pull main branch
-        run: git pull --recurse-submodules --allow-unrelated-histories origin main
+      - name: Fetch main branch
+        run: git fetch origin main
+
+      - name: Checkout source files
+        run: git checkout main -- src examples memory
 
       - uses: DenverCoder1/doxygen-github-pages-action@v2.0.0
         with:
