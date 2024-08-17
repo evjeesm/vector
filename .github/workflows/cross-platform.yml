@@ -15,5 +15,5 @@ jobs:
     secrets: inherit
   call-doxygen-gh-pages:
     needs: [call-linux, call-windows]
-    if: github.event.push == true
+    if: github.event_name == 'push'
     uses: ./.github/workflows/doxygen-gh-pages.yml
