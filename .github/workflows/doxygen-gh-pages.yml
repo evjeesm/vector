@@ -13,6 +13,12 @@ jobs:
           ref: docs
           submodules: recursive
 
+      - name: Configure git
+        run: |
+          git config --global user.name Github Actions
+          git config --global user.emale actions@github.com
+          git config --global pull.ff only
+
       - name: Pull main branch
         run: git pull --recurse-submodules origin main
 
