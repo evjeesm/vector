@@ -18,3 +18,7 @@ jobs:
     if: github.event_name == 'push'
     uses: ./.github/workflows/doxygen-gh-pages.yml
     secrets: inherit
+  call-tag-files:
+    needs: [call-doxygen-gh-pages]
+    uses: ./.github/workflows/tag-files.yml
+    secrets: inherit
