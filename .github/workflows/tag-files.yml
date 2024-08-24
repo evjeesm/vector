@@ -2,6 +2,10 @@ name: Resolve tag files
 
 on:
   workflow_call:
+    inputs:
+      url:
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -18,9 +22,12 @@ jobs:
           git config --global user.name Github Actions
           git config --global user.email actions@github.com
 
-      - name: Update vector.tag
+      - name: Get short repository name
+        run: echo REPOSITORY_NAME=${GITHUB_REPOSITORY#*\/} >> $GITHUB_ENV
+
+      - name: Update push tagfile
         run: |
-          wget https://evjeesm.github.io/vector/vector.tag
-          git add -f vector.tag
+          wget "${{ inputs.url }}/$REPOSITORY_NAME/$REPOSITORY_NAME.tag"
+          git add -f "$REPOSITORY_NAME.tag"
           git commit -m "[skip ci] Update tagfile in main"
           git push
