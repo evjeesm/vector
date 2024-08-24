@@ -29,5 +29,6 @@ jobs:
         run: |
           wget "${{ inputs.url }}/$REPOSITORY_NAME/$REPOSITORY_NAME.tag"
           git add -f "$REPOSITORY_NAME.tag"
-          git commit -m "[skip ci] Update tagfile in main"
-          git push
+          git diff --staged --quiet && \
+            echo "No changes in tagfile." || \
+            git commit -m "[skip ci] Update tagfile in main" && git push
