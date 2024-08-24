@@ -1105,7 +1105,7 @@ EXAMPLE_RECURSIVE      = NO
 # that contain images that are to be included in the documentation (see the
 # \image command).
 
-IMAGE_PATH             = imgs/vector-scheme.svg
+IMAGE_PATH             = imgs
 
 # The INPUT_FILTER tag can be used to specify a program that doxygen should
 # invoke to filter for each input file. Doxygen will invoke the filter program
@@ -1418,7 +1418,8 @@ HTML_EXTRA_STYLESHEET  = docs/doxygen-awesome-css/doxygen-awesome.css \
 # files will be copied as-is; there are no commands or markers available.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_FILES       = docs/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js
+HTML_EXTRA_FILES       = docs/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js \
+                         docs/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js
 
 # The HTML_COLORSTYLE tag can be used to specify if the generated HTML output
 # should be rendered with a dark or light theme.
