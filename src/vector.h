@@ -37,6 +37,21 @@
 typedef struct vector_t vector_t;
 
 /**
+* @brief Allocator options.
+*/
+typedef struct alloc_opts_t
+{
+    size_t size;
+    /**< @brief @copybrief vector_t::data_offset */
+
+    void *allocator; 
+    /**< @brief User defined allocator structure.
+     *   @details Will be copied into vector's memory region.
+     */
+}
+alloc_opts_t;
+
+/**
 * @brief Vector options.
 *
 * Parameters that are passed to a @ref vector_create_ function,
@@ -44,10 +59,13 @@ typedef struct vector_t vector_t;
 */
 typedef struct vector_opts_t
 {
-    size_t data_offset;  /**< @brief @copybrief vector_t::data_offset */
-    size_t element_size; /**< @brief @copybrief vector_t::element_size */
-    size_t initial_cap;  /**< @brief Amount of elements that will be preallocated on @ref vector_create_ "vector creation". */
-    void *alloc_param;   /**< @brief @copybrief vector_t::alloc_param */
+    /* required: */
+    size_t element_size;      /**< @brief @copybrief vector_t::element_size */
+
+    /* optional: */
+    size_t initial_cap;       /**< @brief Amount of elements that will be preallocated. */
+    size_t ext_header_size;   /**< @brief @copybrief vector_t::ext_header_size */
+    alloc_opts_t *alloc_opts; /**< @brief optional allocator */
 }
 vector_opts_t;
 
@@ -160,6 +178,7 @@ typedef int (*transform_t) (void *const element, void *const param);
         }\
     )\
 
+#define alloc_opts(...) &(alloc_opts_t){__VA_ARGS__}
 
 /**
 * @brief Vector contructor.

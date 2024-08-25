@@ -15,15 +15,21 @@ typedef struct mock_alloc
 }
 mock_alloc_t;
 
+typedef struct
+{
+    void *allocator;
+}
+alloc_param_t;
+
 
 void* vector_alloc(size_t size, void *const param)
 {
-    mock_alloc_t *alloc = param;
+    mock_alloc_t *alloc = ((alloc_param_t*)param)->allocator;
     if (alloc->allocd + size > alloc->limit)
     {
         return NULL;
     }
-    
+
     void *block = &alloc->memory[alloc->allocd];
     alloc->allocd += size;
     return block;
@@ -32,13 +38,13 @@ void* vector_alloc(size_t size, void *const param)
 
 void *vector_realloc(void *ptr, size_t size, void *const param)
 {
-    mock_alloc_t *alloc = param;
+    mock_alloc_t *alloc = ((alloc_param_t*)param)->allocator;
     (void) ptr;
     if (alloc->allocd + size > alloc->limit)
     {
         return NULL;
     }
-    
+
     void *block = &alloc->memory[alloc->allocd];
     memcpy(block, &alloc->memory[0], alloc->allocd);
     alloc->allocd += size;
@@ -64,11 +70,16 @@ void teardown(void)
 
 START_TEST (test_vector_data_size_overflow_assert)
 {
-    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
+    mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX }; /* will be referenced */
+    alloc_param_t alloc_param = { &alloc }; /* struct will be copied into the vectors memory region */
+
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = (-1ul / sizeof(int) + 1),
-        .alloc_param = &alloc,
+        .alloc_opts = alloc_opts(
+            .size = sizeof(alloc_param),
+            .allocator = &alloc_param
+        ),
     ); 
 
     (void) vec;
@@ -78,11 +89,16 @@ END_TEST
 
 START_TEST (test_vector_alloc_size_overflow_assert)
 {
-    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
+    mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX };
+    alloc_param_t alloc_param = { &alloc }; /* struct will be copied into the vectors memory region */
+
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = (-1ul / sizeof(int) - 5),
-        .alloc_param = &alloc,
+        .alloc_opts = alloc_opts(
+            .size = sizeof(alloc_param),
+            .allocator = &alloc_param
+        ),
     );
     (void) vec;
 }
@@ -91,13 +107,18 @@ END_TEST
 
 START_TEST (test_vector_alloc_failure)
 {
-    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
+    mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX };
+    alloc_param_t alloc_param = { &alloc }; /* struct will be copied into the vectors memory region */
+
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = (MOCK_MEMORY_MAX / sizeof(int)),
-        .alloc_param = &alloc,
+        .alloc_opts = alloc_opts(
+            .size = sizeof(alloc_param),
+            .allocator = &alloc_param
+        ),
     ); /* exceedes maximum */
-    
+
     ck_assert_ptr_null(vec);
 }
 END_TEST
@@ -105,11 +126,16 @@ END_TEST
 
 START_TEST (test_vector_resize)
 {
-    mock_alloc_t alloc = {.limit = MOCK_MEMORY_MAX };
+    mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX };
+    alloc_param_t alloc_param = { &alloc }; /* struct will be copied into the vectors memory region */
+
     vector_t *vec = vector_create(
         .element_size = sizeof(int),
         .initial_cap = 10,
-        .alloc_param = &alloc,
+        .alloc_opts = alloc_opts(
+            .size = sizeof(alloc_param),
+            .allocator = &alloc_param
+        ),
     );
 
     ck_assert_uint_eq(VECTOR_SUCCESS, vector_resize(&vec, 11, 999));

@@ -31,15 +31,14 @@
 
 struct vector_t
 {
-    size_t data_offset; /**< @brief Amount of bytes reserved for derived container's header */
-    size_t element_size;/**< @brief Size of the underling element type */
-    size_t capacity;    /**< @brief Current amount of allocated elements */
-    void *alloc_param;  /**< @brief Parameter that holds non-default allocator's data */
+    size_t element_size;   /**< @brief Size of the underling element type. */
+    size_t capacity;       /**< @brief Current amount of allocated elements. */
+    size_t allocator_size; /**< @brief Size of the allocator. */
+    size_t ext_header_size;/**< @brief Size of the extention header. */
     char memory[];
-    /**<
-    * @brief Beginning of the vector's data.
-    *
-    * Must be offsetted by @ref vector_t::data_offset "data_offset" to get to elements 
+    /**< @brief Beginning of the vector's memory region.
+    *    @details Must be offsetted by @ref vector_t::data_offset "data_offset" 
+    *             and allocator size(if present) to get to the elements.
     */
 };
 
@@ -52,7 +51,8 @@ struct vector_t
 */
 static size_t calculate_alloc_size (const size_t element_size,
         const size_t capacity,
-        const size_t data_offset);
+        const size_t allocator_size,
+        const size_t ext_header_size);
 
 /**
 * @brief Performs binary search on a vectors range.
@@ -88,11 +88,15 @@ vector_t *vector_create_(const vector_opts_t *const opts)
     assert(opts);
     assert(opts->element_size);
 
+    const size_t allocator_size = opts->alloc_opts ? opts->alloc_opts->size : 0;
+    void *const alloc_param = opts->alloc_opts ? opts->alloc_opts->allocator : NULL;
+
     const size_t alloc_size = calculate_alloc_size(opts->element_size,
             opts->initial_cap,
-            opts->data_offset);
-    
-    vector_t *vector = (vector_t *) vector_alloc(alloc_size, opts->alloc_param);
+            allocator_size,
+            opts->ext_header_size);
+
+    vector_t *vector = (vector_t *) vector_alloc(alloc_size, alloc_param);
     if (!vector)
     {
         /* call may abort execution of the program */
@@ -100,11 +104,14 @@ vector_t *vector_create_(const vector_opts_t *const opts)
     }
 
     (*vector) = (vector_t) {
-        .data_offset = opts->data_offset,
         .element_size = opts->element_size,
         .capacity = opts->initial_cap,
-        .alloc_param = opts->alloc_param,
+        .allocator_size = allocator_size,
+        .ext_header_size = opts->ext_header_size,
     };
+
+    /* copy allocator struct */
+    memcpy(vector->memory, alloc_param, allocator_size);
 
     return vector;
 }
@@ -113,22 +120,22 @@ vector_t *vector_create_(const vector_opts_t *const opts)
 void vector_destroy(vector_t *const vector)
 {
     assert(vector);
-    vector_free(vector, vector->alloc_param);
+    vector_free(vector, vector->memory);
 }
 
 
 void* vector_get_ext_header(const vector_t *const vector)
 {
     assert(vector);
-    assert((vector->data_offset != 0) && "trying to access extended header that wasn't alloc'd");
-    return (void*)vector->memory;
+    assert((vector->ext_header_size != 0) && "trying to access extended header that wasn't alloc'd");
+    return (void*)vector->memory + vector->allocator_size;
 }
 
 
 size_t vector_data_offset(const vector_t *const vector)
 {
     assert(vector);
-    return vector->data_offset;
+    return vector->ext_header_size + vector->allocator_size;
 }
 
 
@@ -136,9 +143,13 @@ vector_t *vector_clone(const vector_t *const vector)
 {
     assert(vector);
 
-    const size_t alloc_size = calculate_alloc_size(vector->element_size, vector->capacity, vector->data_offset);
+    const size_t alloc_size = calculate_alloc_size(vector->element_size,
+            vector->capacity,
+            vector->allocator_size,
+            vector->ext_header_size);
+
     // inheriting original vectors allocation method
-    vector_t *clone = (vector_t *) vector_alloc(alloc_size, vector->alloc_param);
+    vector_t *clone = (vector_t *) vector_alloc(alloc_size, (char *const)vector->memory);
     if (!clone)
     {
         return NULL;
@@ -207,7 +218,8 @@ size_t vector_capacity_bytes(const vector_t *const vector)
 
 char *vector_data(const vector_t *const vector)
 {
-    return (char*) vector->memory + vector->data_offset;
+    assert(vector);
+    return (char*) vector->memory + vector_data_offset(vector);
 }
 
 
@@ -278,7 +290,7 @@ void *vector_get(const vector_t *const vector, const size_t index)
     assert(vector);
     assert((index < vector->capacity) && "Index out of capacity bounds!");
 
-    return (void*) (vector->memory + vector->data_offset + index * vector->element_size);
+    return (void*) (vector->memory + vector_data_offset(vector) + index * vector->element_size);
 }
 
 
@@ -338,9 +350,12 @@ vector_status_t vector_resize(vector_t **const vector, const size_t capacity, co
 {
     assert(vector && *vector);
 
-    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, capacity, (*vector)->data_offset);
+    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, 
+            capacity,
+            (*vector)->allocator_size,
+            (*vector)->ext_header_size);
 
-    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size, (*vector)->alloc_param);
+    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size, (*vector)->memory);
     if (!vec)
     {
         return error;
@@ -437,10 +452,13 @@ size_t calc_aligned_size(const size_t size, const size_t alignment)
 * === Static Functions === *
 *                         */
 
-static size_t calculate_alloc_size(const size_t element_size, const size_t capacity, const size_t data_offset)
+static size_t calculate_alloc_size(const size_t element_size,
+        const size_t capacity,
+        const size_t allocator_size,
+        const size_t ext_header_size)
 {
     const size_t data_size = element_size * capacity;
-    const size_t alloc_size = sizeof(vector_t) + data_offset + data_size;
+    const size_t alloc_size = sizeof(vector_t) + allocator_size + ext_header_size + data_size;
     ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, "allocation size overflow!");
     return alloc_size;
 }
