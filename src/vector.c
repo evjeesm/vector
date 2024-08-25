@@ -128,7 +128,7 @@ void* vector_get_ext_header(const vector_t *const vector)
 {
     assert(vector);
     assert((vector->ext_header_size != 0) && "trying to access extended header that wasn't alloc'd");
-    return (void*)vector->memory;
+    return (void*)vector->memory + vector->allocator_size;
 }
 
 
