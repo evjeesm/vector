@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['alloc_5fparam_0',['alloc_param',['../structvector__t.html#a0a33cfb277b867e4490507bf97df793e',1,'vector_t::alloc_param'],['../structvector__opts__t.html#ad79692b43e6ce7a17529a35a18d32da2',1,'vector_opts_t::alloc_param']]]
+  ['alloc_5fopts_0',['alloc_opts',['../structvector__opts__t.html#ae3be5355b15fddf109d5f58b1983458e',1,'vector_opts_t']]],
+  ['allocator_1',['allocator',['../structalloc__opts__t.html#abf80e1a20faf8eec6840fedeed69ec1f',1,'alloc_opts_t']]],
+  ['allocator_5fsize_2',['allocator_size',['../structvector__t.html#a158574d167ee9598bf51b1eee2a3c575',1,'vector_t']]]
 ];

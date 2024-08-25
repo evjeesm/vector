@@ -2,4 +2,6 @@
 <area shape="rect" id="Node000001" title="Swaps values of elements designated by indicies." alt="" coords="5,5,109,31"/>
 <area shape="rect" id="Node000002" href="$group__Vector__API.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="157,5,248,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,15,143,15,143,21,109,21"/>
+<area shape="rect" id="Node000003" href="$group__Vector__API.html#ga435ecb8dca435624d8d277feb6b2cc80" title="Access vector_t::data_offset property for extensions." alt="" coords="296,5,439,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="248,15,282,15,282,21,248,21"/>
 </map>

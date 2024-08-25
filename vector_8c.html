@@ -37,7 +37,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Vector<span id="projectnumber">&#160;2.0.0</span>
+   <div id="projectname">Vector<span id="projectnumber">&#160;0.0.2</span>
    </div>
   </td>
  </tr>
@@ -147,8 +147,8 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a50c131cdbcfc769f4bbe9a68912207ca" id="r_a50c131cdbcfc769f4bbe9a68912207ca"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a50c131cdbcfc769f4bbe9a68912207ca">calculate_alloc_size</a> (const size_t element_size, const size_t capacity, const size_t data_offset)</td></tr>
-<tr class="separator:a50c131cdbcfc769f4bbe9a68912207ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a340abc280ca3260619357acb41f2aa98" id="r_a340abc280ca3260619357acb41f2aa98"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a340abc280ca3260619357acb41f2aa98">calculate_alloc_size</a> (const size_t element_size, const size_t capacity, const size_t allocator_size, const size_t ext_header_size)</td></tr>
+<tr class="separator:a340abc280ca3260619357acb41f2aa98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afec86be827dcdde96c62016b77630a7c" id="r_afec86be827dcdde96c62016b77630a7c"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afec86be827dcdde96c62016b77630a7c">binary_find</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const void *const value, const size_t start, const size_t end, const <a class="el" href="group__Callbacks.html#gae47f476ece20d219ac1d39c71110e553">compare_t</a> cmp, void *const param)</td></tr>
 <tr class="memdesc:afec86be827dcdde96c62016b77630a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs binary search on a vectors range.  <br /></td></tr>
 <tr class="separator:afec86be827dcdde96c62016b77630a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,7 +165,7 @@ Functions</h2></td></tr>
 <tr class="memdesc:gafc2e34dbacffe6480af8681fbf46e808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a location where user can put a header for the derived class.  <br /></td></tr>
 <tr class="separator:gafc2e34dbacffe6480af8681fbf46e808"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga435ecb8dca435624d8d277feb6b2cc80" id="r_ga435ecb8dca435624d8d277feb6b2cc80"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector__API.html#ga435ecb8dca435624d8d277feb6b2cc80">vector_data_offset</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
-<tr class="memdesc:ga435ecb8dca435624d8d277feb6b2cc80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access <a class="el" href="structvector__t.html#ab0fb2acbeb3bf70cb7dc348958b76990">vector_t::data_offset</a> property for extensions.  <br /></td></tr>
+<tr class="memdesc:ga435ecb8dca435624d8d277feb6b2cc80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access vector_t::data_offset property for extensions.  <br /></td></tr>
 <tr class="separator:ga435ecb8dca435624d8d277feb6b2cc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7243756372efd57714853efaf7521358" id="r_ga7243756372efd57714853efaf7521358"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structvector__t.html">vector_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Vector__API.html#ga7243756372efd57714853efaf7521358">vector_clone</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
 <tr class="memdesc:ga7243756372efd57714853efaf7521358"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duplicate vector.  <br /></td></tr>
@@ -310,8 +310,8 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a50c131cdbcfc769f4bbe9a68912207ca" name="a50c131cdbcfc769f4bbe9a68912207ca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50c131cdbcfc769f4bbe9a68912207ca">&#9670;&#160;</a></span>calculate_alloc_size()</h2>
+<a id="a340abc280ca3260619357acb41f2aa98" name="a340abc280ca3260619357acb41f2aa98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a340abc280ca3260619357acb41f2aa98">&#9670;&#160;</a></span>calculate_alloc_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -332,7 +332,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>data_offset</em></span>&#160;)</td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>allocator_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t</td>          <td class="paramname"><span class="paramname"><em>ext_header_size</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -343,7 +348,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>Calculates allocation size for the vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00440">440</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00455">455</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -397,11 +402,11 @@ Functions</h2></td></tr>
 <p>Performs binary search on a vectors range. </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to the found element on success or NULL otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00449">449</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00467">467</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="vector_8c_afec86be827dcdde96c62016b77630a7c_cgraph.svg" width="244" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="vector_8c_afec86be827dcdde96c62016b77630a7c_cgraph.svg" width="435" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>
@@ -456,11 +461,11 @@ Here is the call graph for this function:</div>
 <p>Performs binary search on a vectors range. </p>
 <dl class="section return"><dt>Returns</dt><dd>index of the found element on success or -1 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00478">478</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00496">496</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="vector_8c_a162bfa9cf07c25a5eb6c883820a68e99_cgraph.svg" width="287" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="vector_8c_a162bfa9cf07c25a5eb6c883820a68e99_cgraph.svg" width="478" height="60"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 
 </div>

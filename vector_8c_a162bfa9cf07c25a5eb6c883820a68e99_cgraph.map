@@ -3,4 +3,6 @@
 <area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="47,31,41,21,44,11,56,5,74,3,96,6,105,15,102,19,94,11,74,8,57,10,49,15,47,20,52,28"/>
 <area shape="rect" id="Node000002" href="$group__Vector__API.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="191,29,281,55"/>
 <area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="143,39,177,39,177,45,143,45"/>
+<area shape="rect" id="Node000003" href="$group__Vector__API.html#ga435ecb8dca435624d8d277feb6b2cc80" title="Access vector_t::data_offset property for extensions." alt="" coords="329,29,472,55"/>
+<area shape="poly" id="edge3_Node000002_Node000003" title=" " alt="" coords="282,39,315,39,315,45,282,45"/>
 </map>

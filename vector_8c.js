@@ -3,7 +3,7 @@ var vector_8c =
     [ "vector_t", "structvector__t.html", "structvector__t" ],
     [ "DEBUG", "vector_8c.html#a453ee3236960e12934d7f815650a3f8b", null ],
     [ "ASSERT_OVERFLOW", "vector_8c.html#a16263e31bec7cf3e8518401a2b66a973", null ],
-    [ "calculate_alloc_size", "vector_8c.html#a50c131cdbcfc769f4bbe9a68912207ca", null ],
+    [ "calculate_alloc_size", "vector_8c.html#a340abc280ca3260619357acb41f2aa98", null ],
     [ "binary_find", "vector_8c.html#afec86be827dcdde96c62016b77630a7c", null ],
     [ "binary_find_index", "vector_8c.html#a162bfa9cf07c25a5eb6c883820a68e99", null ],
     [ "vector_create_", "group__Vector__API.html#gae9c418efba1bbeb20a8becffe6a09b75", null ],

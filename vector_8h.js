@@ -1,5 +1,6 @@
 var vector_8h =
 [
+    [ "alloc_opts_t", "structalloc__opts__t.html", "structalloc__opts__t" ],
     [ "vector_opts_t", "structvector__opts__t.html", "structvector__opts__t" ],
     [ "TMP_REF", "vector_8h.html#ad92ce696967261588cab3848dfe73c02", null ],
     [ "vector_create", "group__Vector__API.html#ga160b0d4b8d0836eda9a50bfa71514de8", null ],

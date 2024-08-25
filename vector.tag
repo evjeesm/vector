@@ -24,8 +24,8 @@
       <type>static size_t</type>
       <name>calculate_alloc_size</name>
       <anchorfile>vector_8c.html</anchorfile>
-      <anchor>a50c131cdbcfc769f4bbe9a68912207ca</anchor>
-      <arglist>(const size_t element_size, const size_t capacity, const size_t data_offset)</arglist>
+      <anchor>a340abc280ca3260619357acb41f2aa98</anchor>
+      <arglist>(const size_t element_size, const size_t capacity, const size_t allocator_size, const size_t ext_header_size)</arglist>
     </member>
     <member kind="function" static="yes">
       <type>static void *</type>
@@ -242,6 +242,7 @@
     <name>vector.h</name>
     <path>src/</path>
     <filename>vector_8h.html</filename>
+    <class kind="struct">alloc_opts_t</class>
     <class kind="struct">vector_opts_t</class>
     <member kind="define">
       <type>#define</type>
@@ -536,15 +537,26 @@
     </member>
   </compound>
   <compound kind="struct">
-    <name>vector_opts_t</name>
-    <filename>structvector__opts__t.html</filename>
+    <name>alloc_opts_t</name>
+    <filename>structalloc__opts__t.html</filename>
     <member kind="variable">
       <type>size_t</type>
-      <name>data_offset</name>
-      <anchorfile>structvector__opts__t.html</anchorfile>
-      <anchor>a5e3487546230439b703036a86b7eace1</anchor>
+      <name>size</name>
+      <anchorfile>structalloc__opts__t.html</anchorfile>
+      <anchor>abcbbae68ec835dd4091a32487bc9daa2</anchor>
       <arglist></arglist>
     </member>
+    <member kind="variable">
+      <type>void *</type>
+      <name>allocator</name>
+      <anchorfile>structalloc__opts__t.html</anchorfile>
+      <anchor>abf80e1a20faf8eec6840fedeed69ec1f</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>vector_opts_t</name>
+    <filename>structvector__opts__t.html</filename>
     <member kind="variable">
       <type>size_t</type>
       <name>element_size</name>
@@ -560,23 +572,23 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>void *</type>
-      <name>alloc_param</name>
+      <type>size_t</type>
+      <name>ext_header_size</name>
       <anchorfile>structvector__opts__t.html</anchorfile>
-      <anchor>ad79692b43e6ce7a17529a35a18d32da2</anchor>
+      <anchor>ae5a8b3368fff2365e65d2816f7a57ecd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>alloc_opts_t *</type>
+      <name>alloc_opts</name>
+      <anchorfile>structvector__opts__t.html</anchorfile>
+      <anchor>ae3be5355b15fddf109d5f58b1983458e</anchor>
       <arglist></arglist>
     </member>
   </compound>
   <compound kind="struct">
     <name>vector_t</name>
     <filename>structvector__t.html</filename>
-    <member kind="variable">
-      <type>size_t</type>
-      <name>data_offset</name>
-      <anchorfile>structvector__t.html</anchorfile>
-      <anchor>ab0fb2acbeb3bf70cb7dc348958b76990</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="variable">
       <type>size_t</type>
       <name>element_size</name>
@@ -592,10 +604,17 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>void *</type>
-      <name>alloc_param</name>
+      <type>size_t</type>
+      <name>allocator_size</name>
       <anchorfile>structvector__t.html</anchorfile>
-      <anchor>a0a33cfb277b867e4490507bf97df793e</anchor>
+      <anchor>a158574d167ee9598bf51b1eee2a3c575</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>size_t</type>
+      <name>ext_header_size</name>
+      <anchorfile>structvector__t.html</anchorfile>
+      <anchor>ad039a1d8cf3619808dcf2bfd04fc4ded</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
