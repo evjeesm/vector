@@ -2,8 +2,6 @@
 
 #include <stdio.h>
 
-#define static_assert(cond, msg) enum __static_assert__{ _ = 1/((size_t)cond) }
-
 //
 // Add new types in that xmacro list:
 //
@@ -126,7 +124,7 @@ int dog_make_sound(const void *const element, void *const param)
 int main()
 {
     const size_t size = 10;
-    vector_t *v = vector_create(.element_size = sizeof(data_t), .initial_cap = size);
+    vector_t *v = vector_create(.element_size = (sizeof(data_t) + sizeof(object_header_t)), .initial_cap = size);
     for (size_t i = 0; i < size; ++i)
     {
 

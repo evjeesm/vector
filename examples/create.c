@@ -35,11 +35,10 @@ void default_create(void)
 
 void explicit_opts_create(void)
 {
-    vector_t *vector = vector_create
-        (
-            .element_size = sizeof(float),
-            .initial_cap = 100
-        );
+    vector_t *vector = vector_create (
+        .element_size = sizeof(float),
+        .initial_cap = 100
+    );
 
     assert(vector && "Buy more RAM!");
 
@@ -59,11 +58,10 @@ void extended_header(void)
     }
     ext_t;
 
-    vector_t *vector = vector_create
-        (
-            .data_offset = sizeof(ext_t),
-            .element_size = sizeof(long)
-        );
+    vector_t *vector = vector_create (
+        .ext_header_size = sizeof(ext_t),
+        .element_size = sizeof(long)
+    );
 
     // ...
 
