@@ -13,17 +13,8 @@
 #include <string.h> /** memcpy, memset */
 
 /**
- * @brief Mark code for debug only, so it will be stripped out in Release mode
- */
-#ifndef NDEBUG
-#define DEBUG(code) code
-#else
-#define DEBUG(code)
-#endif
-
-/**
+ * @internal
  * @brief Assert for detectiong overflow of the allocation size.
- *
  * Less likely to happen.
  */
 #define ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, message) \
@@ -37,7 +28,7 @@ struct vector_t
     size_t ext_header_size;/**< @brief Size of the extention header. */
     char memory[];
     /**< @brief Beginning of the vector's memory region.
-    *    @details Must be offsetted by @ref vector_t::data_offset "data_offset" 
+    *    @details Must be offsetted by @ref vector_t::ext_header_size
     *             and allocator size(if present) to get to the elements.
     */
 };
@@ -124,21 +115,6 @@ void vector_destroy(vector_t *const vector)
 }
 
 
-void* vector_get_ext_header(const vector_t *const vector)
-{
-    assert(vector);
-    assert((vector->ext_header_size != 0) && "trying to access extended header that wasn't alloc'd");
-    return (void*)vector->memory + vector->allocator_size;
-}
-
-
-size_t vector_data_offset(const vector_t *const vector)
-{
-    assert(vector);
-    return vector->ext_header_size + vector->allocator_size;
-}
-
-
 vector_t *vector_clone(const vector_t *const vector)
 {
     assert(vector);
@@ -156,6 +132,42 @@ vector_t *vector_clone(const vector_t *const vector)
     }
     memcpy(clone, vector, alloc_size);
     return clone;
+}
+
+
+vector_status_t vector_resize(vector_t **const vector, const size_t capacity, const vector_status_t error)
+{
+    assert(vector && *vector);
+
+    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, 
+            capacity,
+            (*vector)->allocator_size,
+            (*vector)->ext_header_size);
+
+    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size, (*vector)->memory);
+    if (!vec)
+    {
+        return error;
+    }
+
+    vec->capacity = capacity;
+    *vector = vec;
+    return VECTOR_SUCCESS;
+}
+
+
+void* vector_get_ext_header(const vector_t *const vector)
+{
+    assert(vector);
+    assert((vector->ext_header_size != 0) && "trying to access extended header that wasn't alloc'd");
+    return (void*)vector->memory + vector->allocator_size;
+}
+
+
+size_t vector_data_offset(const vector_t *const vector)
+{
+    assert(vector);
+    return vector->ext_header_size + vector->allocator_size;
 }
 
 
@@ -216,13 +228,6 @@ size_t vector_capacity_bytes(const vector_t *const vector)
 }
 
 
-char *vector_data(const vector_t *const vector)
-{
-    assert(vector);
-    return (char*) vector->memory + vector_data_offset(vector);
-}
-
-
 void *vector_linear_find(const vector_t *const vector, const size_t limit, const predicate_t predicate, void *param)
 {
     assert(vector);
@@ -272,16 +277,10 @@ ssize_t vector_binary_find_index(const vector_t *const vector,
 }
 
 
-ssize_t cmp_lex_asc(const void *value, const void *element, void *param)
+char *vector_data(const vector_t *const vector)
 {
-
-    return memcmp(value, element, (size_t)param);
-}
-
-
-ssize_t cmp_lex_dsc(const void *value, const void *element, void *param)
-{
-    return memcmp(element, value, (size_t)param);
+    assert(vector);
+    return (char*) vector->memory + vector_data_offset(vector);
 }
 
 
@@ -343,27 +342,6 @@ void vector_shift(vector_t *const vector, const size_t offset, const size_t leng
     assert((offset + shift + length <= vector->capacity) && "Shifted range exceedes capacity");
 
     vector_move(vector, vector_get(vector, offset + shift), offset, length);
-}
-
-
-vector_status_t vector_resize(vector_t **const vector, const size_t capacity, const vector_status_t error)
-{
-    assert(vector && *vector);
-
-    const size_t alloc_size = calculate_alloc_size((*vector)->element_size, 
-            capacity,
-            (*vector)->allocator_size,
-            (*vector)->ext_header_size);
-
-    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size, (*vector)->memory);
-    if (!vec)
-    {
-        return error;
-    }
-
-    vec->capacity = capacity;
-    *vector = vec;
-    return VECTOR_SUCCESS;
 }
 
 
@@ -445,6 +423,19 @@ void __attribute__((weak)) vector_free(void *ptr, void *const param)
 size_t calc_aligned_size(const size_t size, const size_t alignment)
 {
     return (size + alignment - 1) / alignment * alignment;
+}
+
+
+ssize_t cmp_lex_asc(const void *value, const void *element, void *param)
+{
+
+    return memcmp(value, element, (size_t)param);
+}
+
+
+ssize_t cmp_lex_dsc(const void *value, const void *element, void *param)
+{
+    return memcmp(element, value, (size_t)param);
 }
 
 

@@ -1,6 +1,6 @@
 # Vector
 
-Classic opaque type library. (`vector_t` impl is not exposed in headers)  
+Classic opaque type library.  
 Contains a `vector_t` - base ADT for dynamic arrays.
 
 The design allows for development of derived random access containers with ease.  
