@@ -106,7 +106,7 @@ Provides api for array manipulations with extendability in mind.
 ## Usage
 
 Link against `libvector_static.a` or `libvector.so` on **linux**.  
-If you on **Windows** platform link to `libvector_static.dll`.
+If you on **Windows** platform link to `libvector_static.lib`.
 
 ### Minimal Example
 
