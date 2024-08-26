@@ -1,0 +1,159 @@
+/**
+@page Guide 📘 Guide
+@tableofcontents
+
+@section create 🔨 Creating a vector
+         In this section we'll discuss creation of the vector. @n
+         Based on @ref create.c "Example file".
+
+@subsection def_create ⚙️ Default options
+
+@dontinclude create.c
+@skip main
+@skip }
+@skip default_create
+@skipline vector_t
+@arg @ref vector_opts_t::element_size "element_size" is the only mandatory explicit option.
+@n
+
+@subsection custom_opts ⚙️ Custom options
+
+@skip explicit_opts_create
+@skip vector_t
+@until );
+@note Extension and Custom allocator options will be discussed later.
+
+@n
+
+@subsection no_macro_wrapper ⚙️ No macro wrapper
+           You can avoid macro wrapper with default values 
+           if you know what you are doing. @n
+           Just create @ref vector_opts_t "opts" on stack @n
+           and pass by reference into a @ref vector_create_ function directly:
+
+@dontinclude create.c
+@skip main
+@skip }
+@skip cloning
+@skipline opts
+@skipline vector_t
+@n
+
+@subsection cloning ⿻ Clone an existing vector
+            With @ref vector_clone you are able to produce exact copy of an existing vector.
+
+@dontinclude create.c
+@skip main
+@skip }
+@skip cloning
+@skipline vector_clone
+@n
+
+@subsection error_resolution ❗Error handling
+
+Check that @p vector value is @c NULL, then resolve allocation error.
+If you got none resolution choises, perform gracefull program termination.
+See following example, print error and exit abnormally.
+
+@dontinclude create.c
+@skip default_create
+@skip !vector
+@until }
+@n
+
+@subsection deallocate 🧨 Deallocating a vector
+Prevent memory leaks by deallocation resources, when they not needed anymore!
+
+@dontinclude create.c
+@skipline vector_destroy
+
+@attention Always remember to deallocate @p vector created with @ref vector_create or @ref vector_clone !
+
+@n
+
+===
+
+@section extend ⬆️ Extending a vector
+         In this section we'll discuss an extension points of the vector @n
+
+@subsection extended_header ⚙️ Allocate extended header
+            It is possible to reserve space to store derived class data @n
+            in a memory allocated by underlying @ref src/vector.h "vector".
+
+Define a structure @p ext_t that will be peallocated
+right after @ref vector_t and allocator region if present:
+
+@dontinclude create.c
+@skip extended_header
+@skip typedef
+@until _t;
+
+Create vector specifying @ref vector_opts_t::ext_header_size to reserve space for @p ext_t.
+@skip vector_t
+@until );
+
+Initialize extended header:
+@skip vector_get_ext_header
+@until {0};
+@n
+
+@subsection resize_error ❗Customize resize error
+
+@ref vector_resize "Resize function" takes additional parameter @p error
+indicating an error code that is going to be returned from resize when allocation error occures.
+This allows derived classes to provide custom error code that is not in @ref vector_status_t
+and/or if they need different error codes depending on context they call resize from.
+
+@see vector_resize
+@n
+
+@subsection custom_allocator ⚙️ Override default allocator
+
+Define a structure of the allocator region: @n
+@c ALIGNED macro serves as constructor for temporary reference to an @c alloc_t.
+
+@dontinclude aligned_alloc.c
+@skip ALIGNED 
+@until _t;
+
+Create vector by providing @ref alloc_opts_t :
+@skip main
+@skip vector_t 
+@until );
+
+Implement @ref vector_alloc, @ref vector_realloc, and @ref vector_free functions @n
+Functions can be implemented in external translation unit and then linked:
+
+@skip vector_alloc
+@until return
+@until }
+@n
+@skip vector_realloc
+@until return
+@until }
+@n
+@skip vector_free
+@until }
+
+@n
+
+===
+
+*/
+
+/**
+@dir   examples
+@brief Collection of useful examples, showcasing different ways of using vector.
+
+@example create.c
+@par Different ways of managing vector's lifetime.
+@author Evgeni Semenov
+
+@example polymorph.c
+@par Little naive implementation of xmacro generated polymophism
+@author Evgeni Semenov
+
+@example aligned_alloc.c
+@par Achieving address aligned vector.
+@author Evgeni Semenov
+*/
