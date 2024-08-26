@@ -8,7 +8,7 @@
 #define ALIGNED(bytes) &(alloc_t){.alignment = bytes}
 
 #if defined _WIN32 || defined __CYGWIN__
-#define aligned_alloc _aligned_malloc
+#define aligned_alloc(alignment, size) _aligned_malloc(size, alignment)
 #endif
 
 typedef struct alloc
