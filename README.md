@@ -1,6 +1,6 @@
 # Vector
 
-Classic opaque type library. (`vector_t` impl is not exposed in headers)  
+Classic opaque type library.  
 Contains a `vector_t` - base ADT for dynamic arrays.
 
 The design allows for development of derived random access containers with ease.  
@@ -106,7 +106,7 @@ Provides api for array manipulations with extendability in mind.
 ## Usage
 
 Link against `libvector_static.a` or `libvector.so` on **linux**.  
-If you on **Windows** platform link to `libvector_static.dll`.
+If you on **Windows** platform link to `libvector_static.lib`.
 
 ### Minimal Example
 
