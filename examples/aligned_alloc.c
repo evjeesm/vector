@@ -7,6 +7,10 @@
 #define MAX_ALIGNMENT 2 * 1024 * 1024 // 4MB
 #define ALIGNED(bytes) &(alloc_t){.alignment = bytes}
 
+#if defined _WIN32 || defined __CYGWIN__
+#define aligned_alloc __aligned_alloc
+#endif
+
 typedef struct alloc
 {
     size_t alignment;
