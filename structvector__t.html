@@ -135,13 +135,11 @@ Data Fields</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Vector control structure type. </p>
-<p>Designed to be passed by reference.</p>
-<p>Functions that can cause reallocation of the vector must take a double pointer to a vector, this way vector pointer will be updated.</p>
-<dl class="section user"><dt>Example of vector declaration:</dt><dd><div class="fragment"><div class="line"><a class="code hl_struct" href="structvector__t.html">vector_t</a> *vector;</div>
-<div class="ttc" id="astructvector__t_html"><div class="ttname"><a href="structvector__t.html">vector_t</a></div><div class="ttdoc">Vector control structure type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00032">vector.c:33</a></div></div>
-</div><!-- fragment --> </dd></dl>
+<p>Designed to be passed by reference. Functions that can cause reallocation of the vector must take a double pointer to a vector, this way vector pointer will be updated. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="aligned_alloc_8c-example.html#_a0">aligned_alloc.c</a>, <a class="el" href="create_8c-example.html#_a0">create.c</a>, and <a class="el" href="polymorph_8c-example.html#_a2">polymorph.c</a>.</dd>
+</dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00032">32</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00023">23</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="ada42e4f54768423800961ae3e815406d" name="ada42e4f54768423800961ae3e815406d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ada42e4f54768423800961ae3e815406d">&#9670;&#160;</a></span>element_size</h2>
@@ -157,7 +155,7 @@ Data Fields</h2></td></tr>
 
 <p>Size of the underling element type. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00034">34</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00025">25</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -175,7 +173,7 @@ Data Fields</h2></td></tr>
 
 <p>Current amount of allocated elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00035">35</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00026">26</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -193,7 +191,7 @@ Data Fields</h2></td></tr>
 
 <p>Size of the allocator. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00036">36</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00027">27</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -211,7 +209,7 @@ Data Fields</h2></td></tr>
 
 <p>Size of the extention header. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00037">37</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00028">28</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -228,9 +226,9 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Beginning of the vector's memory region. </p>
-<p>Must be offsetted by data_offset and allocator size(if present) to get to the elements. </p>
+<p>Must be offsetted by <a class="el" href="#ad039a1d8cf3619808dcf2bfd04fc4ded">vector_t::ext_header_size</a> and allocator size(if present) to get to the elements. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00038">38</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00029">29</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>

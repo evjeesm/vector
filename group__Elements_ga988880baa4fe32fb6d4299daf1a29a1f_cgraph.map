@@ -1,0 +1,7 @@
+<map id="vector_foreach" name="vector_foreach">
+<area shape="rect" id="Node000001" title="Perform immutable action on each element of the vector." alt="" coords="5,5,124,31"/>
+<area shape="rect" id="Node000002" href="$group__Elements.html#ga9437d9506a3b2799f595c88b82f160b3" title="Returns pointer for the element at index." alt="" coords="172,5,263,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,15,158,15,158,21,124,21"/>
+<area shape="rect" id="Node000003" href="$group__Extension.html#ga435ecb8dca435624d8d277feb6b2cc80" title="Compute offset from vector_t::memory to first element." alt="" coords="311,5,453,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="263,15,297,15,297,21,263,21"/>
+</map>

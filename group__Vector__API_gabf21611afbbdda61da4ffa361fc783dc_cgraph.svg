@@ -30,7 +30,7 @@
 <!-- Node2 -->
 <g id="Node000002" class="node">
 <title>Node2</title>
-<g id="a_Node000002"><a xlink:href="group__Vector__API.html#ga9437d9506a3b2799f595c88b82f160b3" target="_top" xlink:title="Returns pointer for the element at index.">
+<g id="a_Node000002"><a xlink:href="group__Elements.html#ga9437d9506a3b2799f595c88b82f160b3" target="_top" xlink:title="Returns pointer for the element at index.">
 <polygon fill="white" stroke="#666666" points="180,-19 112,-19 112,0 180,0 180,-19"/>
 <text text-anchor="middle" x="146" y="-7" font-family="Mononoki" font-size="10.00">vector_get</text>
 </a>
@@ -48,7 +48,7 @@
 <!-- Node3 -->
 <g id="Node000003" class="node">
 <title>Node3</title>
-<g id="a_Node000003"><a xlink:href="group__Vector__API.html#ga435ecb8dca435624d8d277feb6b2cc80" target="_top" xlink:title="Access vector_t::data_offset property for extensions.">
+<g id="a_Node000003"><a xlink:href="group__Extension.html#ga435ecb8dca435624d8d277feb6b2cc80" target="_top" xlink:title="Compute offset from vector_t::memory to first element.">
 <polygon fill="white" stroke="#666666" points="323,-19 216,-19 216,0 323,0 323,-19"/>
 <text text-anchor="middle" x="269.5" y="-7" font-family="Mononoki" font-size="10.00">vector_data_offset</text>
 </a>

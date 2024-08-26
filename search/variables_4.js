@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['memory_0',['memory',['../structvector__t.html#a2c7a23fb3c2197cc5557b8543ffdb2f7',1,'vector_t']]]
+  ['initial_5fcap_0',['initial_cap',['../structvector__opts__t.html#a3bcfe6caf89c0029a925d0be842abc23',1,'vector_opts_t']]]
 ];

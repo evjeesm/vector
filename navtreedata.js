@@ -36,6 +36,21 @@ var NAVTREE =
     [ "Usage", "index.html#autotoc_md8", [
       [ "Minimal Example", "index.html#autotoc_md9", null ]
     ] ],
+    [ "📘 Guide", "Guide.html", [
+      [ "🔨 Creating a vector", "Guide.html#create", [
+        [ "⚙️ Default options", "Guide.html#def_create", null ],
+        [ "⚙️ Custom options", "Guide.html#custom_opts", null ],
+        [ "⚙️ No macro wrapper", "Guide.html#no_macro_wrapper", null ],
+        [ "⿻ Clone an existing vector", "Guide.html#cloning", null ],
+        [ "❗Error handling", "Guide.html#error_resolution", null ],
+        [ "🧨 Deallocating a vector", "Guide.html#deallocate", null ]
+      ] ],
+      [ "⬆️ Extending a vector", "Guide.html#extend", [
+        [ "⚙️ Allocate extended header", "Guide.html#extended_header", null ],
+        [ "❗Customize resize error", "Guide.html#resize_error", null ],
+        [ "⚙️ Override default allocator", "Guide.html#custom_allocator", null ]
+      ] ]
+    ] ],
     [ "Topics", "topics.html", "topics" ],
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
@@ -55,13 +70,14 @@ var NAVTREE =
         [ "Enumerator", "globals_eval.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
-    ] ]
+    ] ],
+    [ "Examples", "examples.html", "examples" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"Guide.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

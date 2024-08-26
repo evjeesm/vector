@@ -134,7 +134,7 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Allocator functions. </p>
-<p>These are <em>weak</em> <em>symbols</em> that can be overridden by the user. You can customize how you allocate underling memory for the vector. By passing vector_t::alloc_param you can go even farther and customize allocation process per vector instance. </p>
+<p>These are <em>weak</em> <em>symbols</em> that can be overridden by the user. You can customize how you allocate underling memory for the vector. By passing <code>param</code> you can go even further and customize allocation process per vector instance. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gac06d4923e85171dfa1e3fae4f141b658" name="gac06d4923e85171dfa1e3fae4f141b658"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gac06d4923e85171dfa1e3fae4f141b658">&#9670;&#160;</a></span>vector_alloc()</h2>
@@ -163,8 +163,10 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>vector_t::alloc_param</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structalloc__opts__t.html" title="Allocator options.">alloc_opts_t</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>allocated memory chunk or <code>NULL</code> pointer on failure. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="aligned__alloc_8c_source.html#l00040">40</a> of file <a class="el" href="aligned__alloc_8c_source.html">aligned_alloc.c</a>.</p>
 
 </div>
 </div>
@@ -193,7 +195,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Reallocates already allocated memory chunk in order to change allocation size. </p>
-<dl class="section warning"><dt>Warning</dt><dd>This operation can move whole chunk to a completely different location. Make sure you update</dd></dl>
+<dl class="section warning"><dt>Warning</dt><dd>This operation can move whole chunk to a completely different location.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>Pointer to a memory chunk previously allocated with current allocator! </td></tr>
@@ -202,8 +204,10 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>vector_t::alloc_param</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structalloc__opts__t.html" title="Allocator options.">alloc_opts_t</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>allocated memory chunk or <code>NULL</code> pointer on failure. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="aligned__alloc_8c_source.html#l00047">47</a> of file <a class="el" href="aligned__alloc_8c_source.html">aligned_alloc.c</a>.</p>
 
 </div>
 </div>
@@ -234,7 +238,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>vector_t::alloc_param </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="structalloc__opts__t.html" title="Allocator options.">alloc_opts_t</a> </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="aligned__alloc_8c_source.html#l00070">70</a> of file <a class="el" href="aligned__alloc_8c_source.html">aligned_alloc.c</a>.</p>
 
 </div>
 </div>

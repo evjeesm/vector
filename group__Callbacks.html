@@ -108,12 +108,17 @@ $(function(){initNavTree('group__Callbacks.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#typedef-members">Typedefs</a>  </div>
-  <div class="headertitle"><div class="title">Callbacks</div></div>
+  <div class="headertitle"><div class="title">Callbacks<div class="ingroups"><a class="el" href="group__Vector__API.html">Vector API</a></div></div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Callbacks used by various API funcions.  
 <a href="#details">More...</a></p>
+<div class="dynheader">
+Collaboration diagram for Callbacks:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="group__Callbacks.svg" width="232" height="36"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
@@ -124,13 +129,13 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:gae47f476ece20d219ac1d39c71110e553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare, used to define traversal order.  <br /></td></tr>
 <tr class="separator:gae47f476ece20d219ac1d39c71110e553"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2a12fb990fb59f84ca1920d78d867aa6" id="r_ga2a12fb990fb59f84ca1920d78d867aa6"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga2a12fb990fb59f84ca1920d78d867aa6">foreach_t</a>) (const void *const element, void *const param)</td></tr>
-<tr class="memdesc:ga2a12fb990fb59f84ca1920d78d867aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector__API.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>.  <br /></td></tr>
+<tr class="memdesc:ga2a12fb990fb59f84ca1920d78d867aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Elements.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>.  <br /></td></tr>
 <tr class="separator:ga2a12fb990fb59f84ca1920d78d867aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga89204e5e91ceae8be993751982edb299" id="r_ga89204e5e91ceae8be993751982edb299"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga89204e5e91ceae8be993751982edb299">aggregate_t</a>) (const void *const element, void *const acc, void *const param)</td></tr>
-<tr class="memdesc:ga89204e5e91ceae8be993751982edb299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector__API.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>.  <br /></td></tr>
+<tr class="memdesc:ga89204e5e91ceae8be993751982edb299"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Elements.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>.  <br /></td></tr>
 <tr class="separator:ga89204e5e91ceae8be993751982edb299"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3b3896688782a9a532d27c5d841c0e79" id="r_ga3b3896688782a9a532d27c5d841c0e79"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ga3b3896688782a9a532d27c5d841c0e79">transform_t</a>) (void *const element, void *const param)</td></tr>
-<tr class="memdesc:ga3b3896688782a9a532d27c5d841c0e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Vector__API.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>.  <br /></td></tr>
+<tr class="memdesc:ga3b3896688782a9a532d27c5d841c0e79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Callback determines an operation for <a class="el" href="group__Elements.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>.  <br /></td></tr>
 <tr class="separator:ga3b3896688782a9a532d27c5d841c0e79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -158,7 +163,7 @@ Typedefs</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> - element matches, otherwise <code>false</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00097">97</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00091">91</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -184,8 +189,9 @@ Typedefs</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>Positive (value &gt; element), negative (value &lt; element) or zero (value == element). </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00108">108</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00102">102</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -201,18 +207,18 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Callback determines an operation for <a class="el" href="group__Vector__API.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>. </p>
+<p>Callback determines an operation for <a class="el" href="group__Elements.html#ga988880baa4fe32fb6d4299daf1a29a1f">vector_foreach</a>. </p>
 <p>This operation will be performed on each element of the vector, until one of the calls retuned non-zero value.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>Points to an element in a processed vector. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">param</td><td>User defined parameter that for scaling.</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">param</td><td>User defined parameter that for scaling. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>User defined code, non-zero code results in loop break. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00121">121</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00114">114</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -228,19 +234,19 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Callback determines an operation for <a class="el" href="group__Vector__API.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>. </p>
+<p>Callback determines an operation for <a class="el" href="group__Elements.html#ga1a193e06f6700de896628631b8569740">vector_aggregate</a>. </p>
 <p>This operation will be performed on each element of the vector, until one of the calls retuned non-zero value. Reduces vector into a <code>acc</code> parameter, non-destructive operation.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>Points to an element in a processed vector. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">acc</td><td>Accumulator that stores end result. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">param</td><td>User defined parameter that for scaling.</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">param</td><td>User defined parameter that for scaling. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>User defined code, non-zero code results in loop break. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00136">136</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00127">127</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -256,18 +262,18 @@ Typedefs</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Callback determines an operation for <a class="el" href="group__Vector__API.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>. </p>
+<p>Callback determines an operation for <a class="el" href="group__Elements.html#ga176c007bd441e4469a28ba47ca952dfb">vector_transform</a>. </p>
 <p>This operation will be performed on each element of the vector, until one of the calls retuned non-zero value. Destructive operation, designed to mutate vector elements.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">element</td><td>Points to an element in a processed vector. </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">param</td><td>User defined parameter that for scaling.</td></tr>
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">param</td><td>User defined parameter that for scaling. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>User defined code, non-zero code results in loop break. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00150">150</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00139">139</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>

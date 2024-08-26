@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['usage_0',['Usage',['../index.html#autotoc_md8',1,'']]],
-  ['utilities_1',['Utilities',['../group__Utilities.html',1,'']]]
+  ['options_0',['options',['../Guide.html#custom_opts',1,'⚙️ Custom options'],['../Guide.html#def_create',1,'⚙️ Default options']]],
+  ['override_20default_20allocator_1',['⚙️ Override default allocator',['../Guide.html#custom_allocator',1,'']]]
 ];
