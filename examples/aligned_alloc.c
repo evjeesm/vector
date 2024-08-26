@@ -37,23 +37,24 @@ void *vector_alloc(const size_t alloc_size, void *const param)
 {
     assert(param);
     alloc_t* alloc = (alloc_t*)param;
-    void *ptr = NULL;
-
-    if (0 == posix_memalign(&ptr, alloc->alignment, alloc_size))
-    {
-        alloc->last_size = alloc_size;
-    }
-
-    return ptr;
+    return aligned_alloc(alloc->alignment, alloc_size);
 }
 
 void *vector_realloc(void *const ptr, size_t alloc_size, void *const param)
 {
+    assert(ptr);
+    assert(alloc_size > 0);
     assert(param);
-    alloc_t *alloc = (alloc_t*)param;
-    void *new = NULL;
 
-    if (0 == posix_memalign(&new, alloc->alignment, alloc_size))
+    alloc_t *alloc = (alloc_t*)param;
+
+    if (alloc_size == alloc->last_size)
+    {
+        return ptr;
+    }
+
+    void *new = aligned_alloc(alloc->alignment, alloc_size);
+    if (new)
     {
         memcpy(new, ptr, alloc->last_size);
         alloc->last_size = alloc_size;
@@ -67,5 +68,4 @@ void vector_free(void *const ptr, void *const param)
     (void) param;
     free(ptr);
 }
-
 
