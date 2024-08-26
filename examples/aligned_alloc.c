@@ -14,6 +14,25 @@ typedef struct alloc
 }
 alloc_t;
 
+int main(void)
+{
+    vector_t *aligned_vector = vector_create (
+        .element_size = sizeof(int),
+        .alloc_opts = alloc_opts (
+            .size = sizeof(alloc_t), 
+            .data = ALIGNED(MAX_ALIGNMENT),
+        ),
+    );
+
+    assert((0 == (size_t)aligned_vector % MAX_ALIGNMENT)
+        && "Address must be aligned to MAX_ALIGNMENT");
+
+    // ...
+
+    vector_destroy(aligned_vector);
+    return 0;
+}
+
 void *vector_alloc(const size_t alloc_size, void *const param)
 {
     assert(param);
@@ -49,22 +68,4 @@ void vector_free(void *const ptr, void *const param)
     free(ptr);
 }
 
-int main(void)
-{
-    vector_t *aligned_vector = vector_create (
-        .element_size = sizeof(int),
-        .alloc_opts = alloc_opts (
-            .size = sizeof(alloc_t), 
-            .data = ALIGNED(MAX_ALIGNMENT),
-        ),
-    );
-
-    assert((0 == (size_t)aligned_vector % MAX_ALIGNMENT)
-        && "Address must be aligned to MAX_ALIGNMENT");
-
-    // ...
-
-    vector_destroy(aligned_vector);
-    return 0;
-}
 
