@@ -78,7 +78,7 @@ START_TEST (test_vector_data_size_overflow_assert)
         .initial_cap = (-1ul / sizeof(int) + 1),
         .alloc_opts = alloc_opts(
             .size = sizeof(alloc_param),
-            .allocator = &alloc_param
+            .data = &alloc_param
         ),
     ); 
 
@@ -97,7 +97,7 @@ START_TEST (test_vector_alloc_size_overflow_assert)
         .initial_cap = (-1ul / sizeof(int) - 5),
         .alloc_opts = alloc_opts(
             .size = sizeof(alloc_param),
-            .allocator = &alloc_param
+            .data = &alloc_param
         ),
     );
     (void) vec;
@@ -115,7 +115,7 @@ START_TEST (test_vector_alloc_failure)
         .initial_cap = (MOCK_MEMORY_MAX / sizeof(int)),
         .alloc_opts = alloc_opts(
             .size = sizeof(alloc_param),
-            .allocator = &alloc_param
+            .data = &alloc_param
         ),
     ); /* exceedes maximum */
 
@@ -134,7 +134,7 @@ START_TEST (test_vector_resize)
         .initial_cap = 10,
         .alloc_opts = alloc_opts(
             .size = sizeof(alloc_param),
-            .allocator = &alloc_param
+            .data = &alloc_param
         ),
     );
 

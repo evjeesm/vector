@@ -42,9 +42,9 @@ typedef struct vector_t vector_t;
 typedef struct alloc_opts_t
 {
     size_t size;
-    /**< @brief @copybrief vector_t::data_offset */
+    /**< @brief Size of the allocator data */
 
-    void *allocator; 
+    void *data;
     /**< @brief User defined allocator structure.
      *   @details Will be copied into vector's memory region.
      */
@@ -178,6 +178,7 @@ typedef int (*transform_t) (void *const element, void *const param);
         }\
     )\
 
+/** @brief Use this macro to define allocator opts in @ref vector_opts_t */
 #define alloc_opts(...) &(alloc_opts_t){__VA_ARGS__}
 
 /**
@@ -211,7 +212,7 @@ void vector_destroy(vector_t *const vector);
 *
 * Function returns a pointer to reserved space after vector's control struct.
 * Space for the header extension has to be preallocated on vector creation,
-* size of this region is specified by @ref vector_t::data_offset property in @ref vector_opts_t struct.
+* size of this region is specified by @ref vector_t::ext_header_size property in @ref vector_opts_t struct.
 *
 * @param[in] vector Pointer to vector.
 * @returns Pointer to @ref vector_t::memory
@@ -221,7 +222,7 @@ void* vector_get_ext_header(const vector_t *const vector);
 
 
 /**
-* @brief Access @ref vector_t::data_offset property for extensions.
+* @brief Compute offset from vector_t::memory to first element.
 *
 * @param[in] vector Pointer to vector.
 * @returns          Data offset in bytes

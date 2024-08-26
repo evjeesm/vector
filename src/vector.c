@@ -89,7 +89,7 @@ vector_t *vector_create_(const vector_opts_t *const opts)
     assert(opts->element_size);
 
     const size_t allocator_size = opts->alloc_opts ? opts->alloc_opts->size : 0;
-    void *const alloc_param = opts->alloc_opts ? opts->alloc_opts->allocator : NULL;
+    void *const alloc_param = opts->alloc_opts ? opts->alloc_opts->data : NULL;
 
     const size_t alloc_size = calculate_alloc_size(opts->element_size,
             opts->initial_cap,
@@ -106,8 +106,8 @@ vector_t *vector_create_(const vector_opts_t *const opts)
     (*vector) = (vector_t) {
         .element_size = opts->element_size,
         .capacity = opts->initial_cap,
-        .allocator_size = allocator_size,
         .ext_header_size = opts->ext_header_size,
+        .allocator_size = allocator_size,
     };
 
     /* copy allocator struct */
