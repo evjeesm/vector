@@ -207,6 +207,16 @@ void vector_part_copy(const vector_t *const vector,
 }
 
 
+alloc_opts_t vector_alloc_opts(const vector_t *const vector)
+{
+    assert(vector);
+    return (alloc_opts_t) {
+        .size = vector->allocator_size,
+        .data = vector->allocator_size ? (void *)vector->memory : NULL
+    };
+}
+
+
 size_t vector_element_size(const vector_t *const vector)
 {
     assert(vector);
