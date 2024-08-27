@@ -22,8 +22,8 @@ int main(void)
 {
     vector_t *aligned_vector = vector_create (
         .element_size = sizeof(int),
-        .alloc_opts = alloc_opts (
-            .size = sizeof(alloc_t), 
+        .alloc_opts = alloc_opts(
+            .size = sizeof(alloc_t),
             .data = ALIGNED(MAX_ALIGNMENT),
         ),
     );
