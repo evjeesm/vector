@@ -122,6 +122,9 @@ Collaboration diagram for Properties:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:gafe6a5c3c08ddafc9be60051f447be0e1" id="r_gafe6a5c3c08ddafc9be60051f447be0e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structalloc__opts__t.html">alloc_opts_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gafe6a5c3c08ddafc9be60051f447be0e1">vector_alloc_opts</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
+<tr class="memdesc:gafe6a5c3c08ddafc9be60051f447be0e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access allocator options.  <br /></td></tr>
+<tr class="separator:gafe6a5c3c08ddafc9be60051f447be0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaae93d7f0c056c1d11d3232a7a7aa5e09" id="r_gaae93d7f0c056c1d11d3232a7a7aa5e09"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#gaae93d7f0c056c1d11d3232a7a7aa5e09">vector_element_size</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
 <tr class="memdesc:gaae93d7f0c056c1d11d3232a7a7aa5e09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reports current element size.  <br /></td></tr>
 <tr class="separator:gaae93d7f0c056c1d11d3232a7a7aa5e09"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,6 +138,34 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Access properties of a vector. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="gafe6a5c3c08ddafc9be60051f447be0e1" name="gafe6a5c3c08ddafc9be60051f447be0e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe6a5c3c08ddafc9be60051f447be0e1">&#9670;&#160;</a></span>vector_alloc_opts()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structalloc__opts__t.html">alloc_opts_t</a> vector_alloc_opts </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structvector__t.html">vector_t</a> *const</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Access allocator options. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">vector</td><td>Pointer to a vector instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>pointer to an allocator and size. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00210">210</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+
+</div>
+</div>
 <a id="gaae93d7f0c056c1d11d3232a7a7aa5e09" name="gaae93d7f0c056c1d11d3232a7a7aa5e09"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaae93d7f0c056c1d11d3232a7a7aa5e09">&#9670;&#160;</a></span>vector_element_size()</h2>
 
@@ -159,7 +190,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Element size in bytes. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00210">210</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00220">220</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -187,7 +218,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Amount of elements currently allocated. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00217">217</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00227">227</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -215,7 +246,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Amount of bytes currently allocated for elements. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00224">224</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00234">234</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>

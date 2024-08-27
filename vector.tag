@@ -91,6 +91,13 @@
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
     </member>
     <member kind="function">
+      <type>alloc_opts_t</type>
+      <name>vector_alloc_opts</name>
+      <anchorfile>group__Properties.html</anchorfile>
+      <anchor>gafe6a5c3c08ddafc9be60051f447be0e1</anchor>
+      <arglist>(const vector_t *const vector)</arglist>
+    </member>
+    <member kind="function">
       <type>size_t</type>
       <name>vector_element_size</name>
       <anchorfile>group__Properties.html</anchorfile>
@@ -373,6 +380,13 @@
       <anchorfile>group__Vector__API.html</anchorfile>
       <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
       <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
+    </member>
+    <member kind="function">
+      <type>alloc_opts_t</type>
+      <name>vector_alloc_opts</name>
+      <anchorfile>group__Properties.html</anchorfile>
+      <anchor>gafe6a5c3c08ddafc9be60051f447be0e1</anchor>
+      <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
       <type>size_t</type>
@@ -762,6 +776,13 @@
     <name>Properties</name>
     <title>Properties</title>
     <filename>group__Properties.html</filename>
+    <member kind="function">
+      <type>alloc_opts_t</type>
+      <name>vector_alloc_opts</name>
+      <anchorfile>group__Properties.html</anchorfile>
+      <anchor>gafe6a5c3c08ddafc9be60051f447be0e1</anchor>
+      <arglist>(const vector_t *const vector)</arglist>
+    </member>
     <member kind="function">
       <type>size_t</type>
       <name>vector_element_size</name>
