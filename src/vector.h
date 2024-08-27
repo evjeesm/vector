@@ -292,6 +292,14 @@ void vector_part_copy(const vector_t *const vector,
 * @addtogroup Properties
 * @brief   Access properties of a vector. @{ */
 
+/**
+* @brief   Access allocator options.
+*
+* @param[in] vector Pointer to a vector instance.
+* @returns   pointer to an allocator and size.
+*/
+alloc_opts_t vector_alloc_opts(const vector_t *const vector);
+
 
 /**
 * @brief   Reports current element size.
