@@ -73,6 +73,12 @@ typedef enum vector_status_t
 vector_status_t;
 
 /**
+* Represents vectors default create values.
+*/
+#define VECTOR_DEFAULT_ARGS \
+    .initial_cap = 10
+
+/**
  * @addtogroup Vector_API Vector API
  * @brief      Main vectors methods. @{ */
 
@@ -156,7 +162,7 @@ typedef int (*transform_t) (void *const element, void *const param);
 #define vector_create(...) \
     vector_create_( \
         &(vector_opts_t) { \
-            .initial_cap = 10, \
+            VECTOR_DEFAULT_ARGS,\
             __VA_ARGS__ \
         }\
     )\
