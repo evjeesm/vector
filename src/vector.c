@@ -14,7 +14,7 @@
 
 /**
  * @internal
- * @brief Assert for detectiong overflow of the allocation size.
+ * @brief Assert for allocation size overflow detection.
  * Less likely to happen.
  */
 #define ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, message) \
@@ -24,8 +24,8 @@ struct vector_t
 {
     size_t element_size;   /**< @brief Size of the underling element type. */
     size_t capacity;       /**< @brief Current amount of allocated elements. */
-    size_t allocator_size; /**< @brief Size of the allocator. */
     size_t ext_header_size;/**< @brief Size of the extention header. */
+    size_t allocator_size; /**< @brief Size of the allocator. */
     char memory[];
     /**< @brief Beginning of the vector's memory region.
     *    @details Must be offsetted by @ref vector_t::ext_header_size
@@ -38,7 +38,7 @@ struct vector_t
 *                             */
 
 /**
-* Calculates allocation size for the vector.
+* @brief   Calculates allocation size for the vector.
 */
 static size_t calculate_alloc_size (const size_t element_size,
         const size_t capacity,
@@ -46,7 +46,12 @@ static size_t calculate_alloc_size (const size_t element_size,
         const size_t ext_header_size);
 
 /**
-* @brief Performs binary search on a vectors range.
+* @brief   Access allocator region of the vector.
+*/
+static void *get_allocator(const vector_t *const vector);
+
+/**
+* @brief   Performs binary search on a vectors range.
 *
 * @returns pointer to the found element on success or NULL otherwise.
 */
@@ -79,18 +84,14 @@ vector_t *vector_create_(const vector_opts_t *const opts)
     assert(opts);
     assert(opts->element_size);
 
-    const size_t allocator_size = opts->alloc_opts ? opts->alloc_opts->size : 0;
-    void *const alloc_param = opts->alloc_opts ? opts->alloc_opts->data : NULL;
-
     const size_t alloc_size = calculate_alloc_size(opts->element_size,
             opts->initial_cap,
-            allocator_size,
+            opts->alloc_opts.size,
             opts->ext_header_size);
 
-    vector_t *vector = (vector_t *) vector_alloc(alloc_size, alloc_param);
+    vector_t *vector = (vector_t *) vector_alloc(alloc_size, opts->alloc_opts.data);
     if (!vector)
     {
-        /* call may abort execution of the program */
         return NULL;
     }
 
@@ -98,11 +99,11 @@ vector_t *vector_create_(const vector_opts_t *const opts)
         .element_size = opts->element_size,
         .capacity = opts->initial_cap,
         .ext_header_size = opts->ext_header_size,
-        .allocator_size = allocator_size,
+        .allocator_size = opts->alloc_opts.size,
     };
 
     /* copy allocator struct */
-    memcpy(vector->memory, alloc_param, allocator_size);
+    memcpy(get_allocator(vector), opts->alloc_opts.data, opts->alloc_opts.size);
 
     return vector;
 }
@@ -125,12 +126,14 @@ vector_t *vector_clone(const vector_t *const vector)
             vector->ext_header_size);
 
     // inheriting original vectors allocation method
-    vector_t *clone = (vector_t *) vector_alloc(alloc_size, (char *const)vector->memory);
+    vector_t *clone = (vector_t *) vector_alloc(alloc_size, get_allocator(vector));
     if (!clone)
     {
         return NULL;
     }
+
     memcpy(clone, vector, alloc_size);
+
     return clone;
 }
 
@@ -144,7 +147,7 @@ vector_status_t vector_resize(vector_t **const vector, const size_t capacity, co
             (*vector)->allocator_size,
             (*vector)->ext_header_size);
 
-    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size, (*vector)->memory);
+    vector_t *vec = (vector_t*) vector_realloc(*vector, alloc_size, get_allocator(*vector));
     if (!vec)
     {
         return error;
@@ -212,7 +215,7 @@ alloc_opts_t vector_alloc_opts(const vector_t *const vector)
     assert(vector);
     return (alloc_opts_t) {
         .size = vector->allocator_size,
-        .data = vector->allocator_size ? (void *)vector->memory : NULL
+        .data = vector->allocator_size ? get_allocator(vector) : NULL,
     };
 }
 
@@ -438,7 +441,6 @@ size_t calc_aligned_size(const size_t size, const size_t alignment)
 
 ssize_t cmp_lex_asc(const void *value, const void *element, void *param)
 {
-
     return memcmp(value, element, (size_t)param);
 }
 
@@ -462,6 +464,13 @@ static size_t calculate_alloc_size(const size_t element_size,
     const size_t alloc_size = sizeof(vector_t) + allocator_size + ext_header_size + data_size;
     ASSERT_OVERFLOW(element_size, capacity, data_size, alloc_size, "allocation size overflow!");
     return alloc_size;
+}
+
+
+static void *get_allocator(const vector_t *const vector)
+{
+    // assert((vector->allocator_size) && "No allocator region!");
+    return (char*)vector->memory;
 }
 
 

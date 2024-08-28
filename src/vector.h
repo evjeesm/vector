@@ -56,7 +56,7 @@ typedef struct vector_opts_t
     /* optional: */
     size_t initial_cap;       /**< @brief Amount of elements that will be preallocated. */
     size_t ext_header_size;   /**< @brief @copybrief vector_t::ext_header_size */
-    alloc_opts_t *alloc_opts; /**< @brief optional allocator */
+    alloc_opts_t alloc_opts;  /**< @brief optional allocator */
 }
 vector_opts_t;
 
@@ -144,7 +144,7 @@ typedef int (*transform_t) (void *const element, void *const param);
  * @brief      Constructors/Destructors @{ */
 
 /** @brief Use this macro to define allocator opts in @ref vector_opts_t */
-#define alloc_opts(...) &(alloc_opts_t){__VA_ARGS__}
+#define alloc_opts(...) (alloc_opts_t){__VA_ARGS__}
 
 /**
 * @brief   Vector constructor.
