@@ -50,13 +50,13 @@ alloc_opts_t;
 */
 typedef struct vector_opts_t
 {
+    alloc_opts_t alloc_opts;  /**< @brief optional allocator */
+    size_t ext_header_size;   /**< @brief @copybrief vector_t::ext_header_size */
     /* required: */
     size_t element_size;      /**< @brief @copybrief vector_t::element_size */
 
     /* optional: */
     size_t initial_cap;       /**< @brief Amount of elements that will be preallocated. */
-    size_t ext_header_size;   /**< @brief @copybrief vector_t::ext_header_size */
-    alloc_opts_t alloc_opts;  /**< @brief optional allocator */
 }
 vector_opts_t;
 
