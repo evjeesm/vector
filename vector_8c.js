@@ -2,6 +2,7 @@ var vector_8c =
 [
     [ "vector_t", "structvector__t.html", "structvector__t" ],
     [ "calculate_alloc_size", "vector_8c.html#a340abc280ca3260619357acb41f2aa98", null ],
+    [ "get_allocator", "vector_8c.html#a4511ed374861bb6242bc2b6791012ba4", null ],
     [ "binary_find", "vector_8c.html#afec86be827dcdde96c62016b77630a7c", null ],
     [ "binary_find_index", "vector_8c.html#a162bfa9cf07c25a5eb6c883820a68e99", null ],
     [ "vector_create_", "group__Lifetime.html#gae9c418efba1bbeb20a8becffe6a09b75", null ],

@@ -1,7 +1,9 @@
 <map id="vector_clone" name="vector_clone">
-<area shape="rect" id="Node000001" title="Duplicates a vector." alt="" coords="5,31,111,56"/>
-<area shape="rect" id="Node000002" href="$vector_8c.html#a340abc280ca3260619357acb41f2aa98" title=" " alt="" coords="159,5,311,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,33,144,28,145,34,111,38"/>
-<area shape="rect" id="Node000003" href="$group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658" title="Allocates memory chunk of alloc_size." alt="" coords="184,55,285,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,48,170,56,170,61,111,53"/>
+<area shape="rect" id="Node000001" title="Duplicates a vector." alt="" coords="5,55,111,80"/>
+<area shape="rect" id="Node000002" href="$vector_8c.html#a340abc280ca3260619357acb41f2aa98" title="Calculates allocation size for the vector." alt="" coords="159,5,311,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,52,174,32,176,37,105,57"/>
+<area shape="rect" id="Node000003" href="$vector_8c.html#a4511ed374861bb6242bc2b6791012ba4" title="Access allocator region of the vector." alt="" coords="181,55,288,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="111,65,167,65,167,70,111,70"/>
+<area shape="rect" id="Node000004" href="$group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658" title="Allocates memory chunk of alloc_size." alt="" coords="184,104,285,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="105,77,176,98,174,103,103,83"/>
 </map>

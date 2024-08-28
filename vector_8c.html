@@ -133,7 +133,11 @@ Data Structures</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a340abc280ca3260619357acb41f2aa98" id="r_a340abc280ca3260619357acb41f2aa98"><td class="memItemLeft" align="right" valign="top">static size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a340abc280ca3260619357acb41f2aa98">calculate_alloc_size</a> (const size_t element_size, const size_t capacity, const size_t allocator_size, const size_t ext_header_size)</td></tr>
+<tr class="memdesc:a340abc280ca3260619357acb41f2aa98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates allocation size for the vector.  <br /></td></tr>
 <tr class="separator:a340abc280ca3260619357acb41f2aa98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4511ed374861bb6242bc2b6791012ba4" id="r_a4511ed374861bb6242bc2b6791012ba4"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4511ed374861bb6242bc2b6791012ba4">get_allocator</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
+<tr class="memdesc:a4511ed374861bb6242bc2b6791012ba4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Access allocator region of the vector.  <br /></td></tr>
+<tr class="separator:a4511ed374861bb6242bc2b6791012ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afec86be827dcdde96c62016b77630a7c" id="r_afec86be827dcdde96c62016b77630a7c"><td class="memItemLeft" align="right" valign="top">static void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afec86be827dcdde96c62016b77630a7c">binary_find</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector, const void *const value, const size_t start, const size_t end, const <a class="el" href="group__Callbacks.html#gae47f476ece20d219ac1d39c71110e553">compare_t</a> cmp, void *const param)</td></tr>
 <tr class="memdesc:afec86be827dcdde96c62016b77630a7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs binary search on a vectors range.  <br /></td></tr>
 <tr class="separator:afec86be827dcdde96c62016b77630a7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -270,9 +274,39 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
 <p>Calculates allocation size for the vector. </p>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00456">456</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00458">458</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+
+</div>
+</div>
+<a id="a4511ed374861bb6242bc2b6791012ba4" name="a4511ed374861bb6242bc2b6791012ba4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4511ed374861bb6242bc2b6791012ba4">&#9670;&#160;</a></span>get_allocator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void * get_allocator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structvector__t.html">vector_t</a> *const</td>          <td class="paramname"><span class="paramname"><em>vector</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Access allocator region of the vector. </p>
+
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00470">470</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
 </div>
 </div>
@@ -326,7 +360,7 @@ Functions</h2></td></tr>
 <p>Performs binary search on a vectors range. </p>
 <dl class="section return"><dt>Returns</dt><dd>pointer to the found element on success or NULL otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00468">468</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00477">477</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -385,7 +419,7 @@ Here is the call graph for this function:</div>
 <p>Performs binary search on a vectors range. </p>
 <dl class="section return"><dt>Returns</dt><dd>index of the found element on success or -1 otherwise. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00497">497</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00506">506</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">

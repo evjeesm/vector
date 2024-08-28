@@ -156,14 +156,14 @@ $(function(){initNavTree('Guide.html',''); initResizable(true); });
 <div class="ttc" id="astructvector__opts__t_html"><div class="ttname"><a href="structvector__opts__t.html">vector_opts_t</a></div><div class="ttdoc">Vector options.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00051">vector.h:52</a></div></div>
 <div class="ttc" id="astructvector__opts__t_html_a18f1f3e195d1c4a691e232b1fcaec0c1"><div class="ttname"><a href="structvector__opts__t.html#a18f1f3e195d1c4a691e232b1fcaec0c1">vector_opts_t::element_size</a></div><div class="ttdeci">size_t element_size</div><div class="ttdoc">Size of the underling element type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00054">vector.h:54</a></div></div>
 <div class="line">    <a class="code hl_struct" href="structvector__t.html">vector_t</a> *vector = <a class="code hl_function" href="group__Lifetime.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a>(&amp;opts);</div>
-<div class="ttc" id="agroup__Lifetime_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="group__Lifetime.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00077">vector.c:77</a></div></div>
+<div class="ttc" id="agroup__Lifetime_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="group__Lifetime.html#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00082">vector.c:82</a></div></div>
 </div><!-- fragment --><p><br  />
  </p>
 <h2><a class="anchor" id="cloning"></a>
 ⿻ Clone an existing vector</h2>
 <p>With <a class="el" href="group__Lifetime.html#ga7243756372efd57714853efaf7521358">vector_clone</a> you are able to produce exact copy of an existing vector.</p>
  <div class="fragment"><div class="line">    <a class="code hl_struct" href="structvector__t.html">vector_t</a> *clone = <a class="code hl_function" href="group__Lifetime.html#ga7243756372efd57714853efaf7521358">vector_clone</a>(vector);</div>
-<div class="ttc" id="agroup__Lifetime_html_ga7243756372efd57714853efaf7521358"><div class="ttname"><a href="group__Lifetime.html#ga7243756372efd57714853efaf7521358">vector_clone</a></div><div class="ttdeci">vector_t * vector_clone(const vector_t *const vector)</div><div class="ttdoc">Duplicates a vector.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00118">vector.c:118</a></div></div>
+<div class="ttc" id="agroup__Lifetime_html_ga7243756372efd57714853efaf7521358"><div class="ttname"><a href="group__Lifetime.html#ga7243756372efd57714853efaf7521358">vector_clone</a></div><div class="ttdeci">vector_t * vector_clone(const vector_t *const vector)</div><div class="ttdoc">Duplicates a vector.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00119">vector.c:119</a></div></div>
 </div><!-- fragment --><p><br  />
  </p>
 <h2><a class="anchor" id="error_resolution"></a>
@@ -180,7 +180,7 @@ $(function(){initNavTree('Guide.html',''); initResizable(true); });
 🧨 Deallocating a vector</h2>
 <p>Prevent memory leaks by deallocation resources, when they not needed anymore!</p>
  <div class="fragment"><div class="line">    <a class="code hl_function" href="group__Lifetime.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a>(vector);</div>
-<div class="ttc" id="agroup__Lifetime_html_gae0c0da17ad9469e47ef376a82b6493f3"><div class="ttname"><a href="group__Lifetime.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a></div><div class="ttdeci">void vector_destroy(vector_t *const vector)</div><div class="ttdoc">Deallocates vector.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00111">vector.c:111</a></div></div>
+<div class="ttc" id="agroup__Lifetime_html_gae0c0da17ad9469e47ef376a82b6493f3"><div class="ttname"><a href="group__Lifetime.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a></div><div class="ttdeci">void vector_destroy(vector_t *const vector)</div><div class="ttdoc">Deallocates vector.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00112">vector.c:112</a></div></div>
 </div><!-- fragment --> <dl class="section attention"><dt>Attention</dt><dd>Always remember to deallocate <code>vector</code> created with <a class="el" href="group__Lifetime.html#ga160b0d4b8d0836eda9a50bfa71514de8">vector_create</a> or <a class="el" href="group__Lifetime.html#ga7243756372efd57714853efaf7521358">vector_clone</a> !</dd></dl>
 <p><br  />
  </p><hr  />
@@ -207,7 +207,7 @@ $(function(){initNavTree('Guide.html',''); initResizable(true); });
 <div class="line">    );</div>
 </div><!-- fragment --><p> Initialize extended header: </p><div class="fragment"><div class="line">    ext_t *header = <a class="code hl_function" href="group__Extension.html#gafc2e34dbacffe6480af8681fbf46e808">vector_get_ext_header</a>(vector);</div>
 <div class="line">    *header = (ext_t) {0};</div>
-<div class="ttc" id="agroup__Extension_html_gafc2e34dbacffe6480af8681fbf46e808"><div class="ttname"><a href="group__Extension.html#gafc2e34dbacffe6480af8681fbf46e808">vector_get_ext_header</a></div><div class="ttdeci">void * vector_get_ext_header(const vector_t *const vector)</div><div class="ttdoc">Provides a location where user can put a header for the derived class.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00159">vector.c:159</a></div></div>
+<div class="ttc" id="agroup__Extension_html_gafc2e34dbacffe6480af8681fbf46e808"><div class="ttname"><a href="group__Extension.html#gafc2e34dbacffe6480af8681fbf46e808">vector_get_ext_header</a></div><div class="ttdeci">void * vector_get_ext_header(const vector_t *const vector)</div><div class="ttdoc">Provides a location where user can put a header for the derived class.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00162">vector.c:162</a></div></div>
 </div><!-- fragment --><p><br  />
  </p>
 <h2><a class="anchor" id="resize_error"></a>
@@ -233,8 +233,8 @@ $(function(){initNavTree('Guide.html',''); initResizable(true); });
 <div class="line">alloc_t;</div>
 </div><!-- fragment --><p> Create vector by providing <a class="el" href="structalloc__opts__t.html">alloc_opts_t</a> : </p><div class="fragment"><div class="line">    <a class="code hl_struct" href="structvector__t.html">vector_t</a> *aligned_vector = <a class="code hl_define" href="group__Lifetime.html#ga160b0d4b8d0836eda9a50bfa71514de8">vector_create</a> (</div>
 <div class="line">        .element_size = <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>),</div>
-<div class="line">        .<a class="code hl_define" href="group__Lifetime.html#gaa28827c8d5d9cf48741aaa05e8fd608a">alloc_opts</a> = <a class="code hl_define" href="group__Lifetime.html#gaa28827c8d5d9cf48741aaa05e8fd608a">alloc_opts</a> (</div>
-<div class="line">            .size = <span class="keyword">sizeof</span>(alloc_t), </div>
+<div class="line">        .<a class="code hl_define" href="group__Lifetime.html#gaa28827c8d5d9cf48741aaa05e8fd608a">alloc_opts</a> = <a class="code hl_define" href="group__Lifetime.html#gaa28827c8d5d9cf48741aaa05e8fd608a">alloc_opts</a>(</div>
+<div class="line">            .size = <span class="keyword">sizeof</span>(alloc_t),</div>
 <div class="line">            .data = ALIGNED(MAX_ALIGNMENT),</div>
 <div class="line">        ),</div>
 <div class="line">    );</div>

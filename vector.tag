@@ -15,6 +15,13 @@
     </member>
     <member kind="function" static="yes">
       <type>static void *</type>
+      <name>get_allocator</name>
+      <anchorfile>vector_8c.html</anchorfile>
+      <anchor>a4511ed374861bb6242bc2b6791012ba4</anchor>
+      <arglist>(const vector_t *const vector)</arglist>
+    </member>
+    <member kind="function" static="yes">
+      <type>static void *</type>
       <name>binary_find</name>
       <anchorfile>vector_8c.html</anchorfile>
       <anchor>afec86be827dcdde96c62016b77630a7c</anchor>
@@ -586,10 +593,10 @@
       <arglist></arglist>
     </member>
     <member kind="variable">
-      <type>alloc_opts_t *</type>
+      <type>alloc_opts_t</type>
       <name>alloc_opts</name>
       <anchorfile>structvector__opts__t.html</anchorfile>
-      <anchor>ae3be5355b15fddf109d5f58b1983458e</anchor>
+      <anchor>a390f740c675ad2161cb604d72e5957ea</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -612,16 +619,16 @@
     </member>
     <member kind="variable">
       <type>size_t</type>
-      <name>allocator_size</name>
+      <name>ext_header_size</name>
       <anchorfile>structvector__t.html</anchorfile>
-      <anchor>a158574d167ee9598bf51b1eee2a3c575</anchor>
+      <anchor>ad039a1d8cf3619808dcf2bfd04fc4ded</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>size_t</type>
-      <name>ext_header_size</name>
+      <name>allocator_size</name>
       <anchorfile>structvector__t.html</anchorfile>
-      <anchor>ad039a1d8cf3619808dcf2bfd04fc4ded</anchor>
+      <anchor>a158574d167ee9598bf51b1eee2a3c575</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">

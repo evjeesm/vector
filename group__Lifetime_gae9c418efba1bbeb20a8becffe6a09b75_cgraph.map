@@ -1,7 +1,9 @@
 <map id="vector_create_" name="vector_create_">
-<area shape="rect" id="Node000001" title="Vector contructor." alt="" coords="5,31,124,56"/>
-<area shape="rect" id="Node000002" href="$vector_8c.html#a340abc280ca3260619357acb41f2aa98" title=" " alt="" coords="172,5,324,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="124,33,158,28,158,33,125,38"/>
-<area shape="rect" id="Node000003" href="$group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658" title="Allocates memory chunk of alloc_size." alt="" coords="197,55,299,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="125,48,184,56,183,62,124,54"/>
+<area shape="rect" id="Node000001" title="Vector contructor." alt="" coords="5,55,124,80"/>
+<area shape="rect" id="Node000002" href="$vector_8c.html#a340abc280ca3260619357acb41f2aa98" title="Calculates allocation size for the vector." alt="" coords="172,5,324,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="112,52,186,32,187,37,113,57"/>
+<area shape="rect" id="Node000003" href="$vector_8c.html#a4511ed374861bb6242bc2b6791012ba4" title="Access allocator region of the vector." alt="" coords="195,55,301,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="124,65,180,65,180,70,124,70"/>
+<area shape="rect" id="Node000004" href="$group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658" title="Allocates memory chunk of alloc_size." alt="" coords="197,104,299,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="113,77,187,98,186,103,112,83"/>
 </map>

@@ -123,12 +123,12 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a81e18fd00e94087a8f04b657ffc34c04" id="r_a81e18fd00e94087a8f04b657ffc34c04"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a81e18fd00e94087a8f04b657ffc34c04">capacity</a></td></tr>
 <tr class="memdesc:a81e18fd00e94087a8f04b657ffc34c04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current amount of allocated elements.  <br /></td></tr>
 <tr class="separator:a81e18fd00e94087a8f04b657ffc34c04"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a158574d167ee9598bf51b1eee2a3c575" id="r_a158574d167ee9598bf51b1eee2a3c575"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a158574d167ee9598bf51b1eee2a3c575">allocator_size</a></td></tr>
-<tr class="memdesc:a158574d167ee9598bf51b1eee2a3c575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the allocator.  <br /></td></tr>
-<tr class="separator:a158574d167ee9598bf51b1eee2a3c575"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad039a1d8cf3619808dcf2bfd04fc4ded" id="r_ad039a1d8cf3619808dcf2bfd04fc4ded"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad039a1d8cf3619808dcf2bfd04fc4ded">ext_header_size</a></td></tr>
 <tr class="memdesc:ad039a1d8cf3619808dcf2bfd04fc4ded"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the extention header.  <br /></td></tr>
 <tr class="separator:ad039a1d8cf3619808dcf2bfd04fc4ded"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a158574d167ee9598bf51b1eee2a3c575" id="r_a158574d167ee9598bf51b1eee2a3c575"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a158574d167ee9598bf51b1eee2a3c575">allocator_size</a></td></tr>
+<tr class="memdesc:a158574d167ee9598bf51b1eee2a3c575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of the allocator.  <br /></td></tr>
+<tr class="separator:a158574d167ee9598bf51b1eee2a3c575"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c7a23fb3c2197cc5557b8543ffdb2f7" id="r_a2c7a23fb3c2197cc5557b8543ffdb2f7"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c7a23fb3c2197cc5557b8543ffdb2f7">memory</a> []</td></tr>
 <tr class="memdesc:a2c7a23fb3c2197cc5557b8543ffdb2f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Beginning of the vector's memory region.  <br /></td></tr>
 <tr class="separator:a2c7a23fb3c2197cc5557b8543ffdb2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,24 +177,6 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="a158574d167ee9598bf51b1eee2a3c575" name="a158574d167ee9598bf51b1eee2a3c575"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a158574d167ee9598bf51b1eee2a3c575">&#9670;&#160;</a></span>allocator_size</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t vector_t::allocator_size</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Size of the allocator. </p>
-
-<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00027">27</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
-
-</div>
-</div>
 <a id="ad039a1d8cf3619808dcf2bfd04fc4ded" name="ad039a1d8cf3619808dcf2bfd04fc4ded"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad039a1d8cf3619808dcf2bfd04fc4ded">&#9670;&#160;</a></span>ext_header_size</h2>
 
@@ -208,6 +190,24 @@ Data Fields</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Size of the extention header. </p>
+
+<p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00027">27</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
+
+</div>
+</div>
+<a id="a158574d167ee9598bf51b1eee2a3c575" name="a158574d167ee9598bf51b1eee2a3c575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a158574d167ee9598bf51b1eee2a3c575">&#9670;&#160;</a></span>allocator_size</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t vector_t::allocator_size</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Size of the allocator. </p>
 
 <p class="definition">Definition at line <a class="el" href="vector_8c_source.html#l00028">28</a> of file <a class="el" href="vector_8c_source.html">vector.c</a>.</p>
 
