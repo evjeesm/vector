@@ -252,58 +252,6 @@ size_t vector_data_offset(const vector_t *const vector);
 /** @} @noop Extension */
 
 /**
-* @brief   Copy element range to other location.
-* @details Copies range [offset, offset + length) elements into a destination pointer.
-*          Destination pointer can point to vector's buffer.
-*
-* @param[in]  vector Pointer to vector instance.
-* @param[out] dest   Destination pointer.
-* @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
-* @param[in]  length Size of the coping range in elements.
-*/
-void vector_copy(const vector_t *const vector,
-        char *dest,
-        const size_t offset,
-        const size_t length);
-
-
-/**
-* @brief   Moves range of the vector elements to another location.
-* @details Works as @ref vector_copy, but supports overlapping regions.
-*
-* @param[in]  vector Pointer to vector instance.
-* @param[out] dest   Destination pointer.
-* @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
-* @param[in]  length Size of the coping range in elements.
-*/
-void vector_move(const vector_t *const vector,
-        char *dest,
-        const size_t offset,
-        const size_t length);
-
-
-/**
-* @brief   Partial copying.
-* @details Partial copy of the elements in a range [offset, offset + length],
-*          where part of the element described by @c part_offset and @c part_length in bytes.
-*          All parts stored in a contiguous destination array one next to another.
-*
-* @param[in]  vector     Pointer to vector instance.
-* @param[out] dest       Destination pointer.
-* @param[in]  offset     Offset in @ref vector_t::element_size "elements" (begin index).
-* @param[in] length      Size of the coping range in elements.
-* @param[in] part_offset Offset in bytes inside an element,
-*                        begining of the portion to copy.
-* @param[in] part_length Length of the copying portion in bytes.
-*/
-void vector_part_copy(const vector_t *const vector,
-        char *dest,
-        const size_t offset,
-        const size_t length,
-        const size_t part_offset,
-        const size_t part_length);
-
-/**
 * @addtogroup Properties
 * @brief   Access properties of a vector. @{ */
 
@@ -407,7 +355,6 @@ ssize_t vector_binary_find_index(const vector_t *const vector,
 * @addtogroup Elements
 * @brief Access and manipulate elements of a vector. @{ */
 
-
 /**
 * @brief   Gives a pointer to a location where elements' data begins.
 * @warning Does not assert when capacity is zero.
@@ -446,6 +393,59 @@ void vector_set(vector_t *const vector, const size_t index, const void *const va
 * @param[in] index  Denotes an element to be zeroed.
 */
 void vector_set_zero(vector_t *const vector, const size_t index);
+
+
+/**
+* @brief   Copy element range to other location.
+* @details Copies range [offset, offset + length) elements into a destination pointer.
+*          Destination pointer can point to vector's buffer.
+*
+* @param[in]  vector Pointer to vector instance.
+* @param[out] dest   Destination pointer.
+* @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
+* @param[in]  length Size of the coping range in elements.
+*/
+void vector_copy(const vector_t *const vector,
+        char *dest,
+        const size_t offset,
+        const size_t length);
+
+
+/**
+* @brief   Moves range of the vector elements to another location.
+* @details Works as @ref vector_copy, but supports overlapping regions.
+*
+* @param[in]  vector Pointer to vector instance.
+* @param[out] dest   Destination pointer.
+* @param[in]  offset Offset in @ref vector_t::element_size "elements" (begin index).
+* @param[in]  length Size of the coping range in elements.
+*/
+void vector_move(const vector_t *const vector,
+        char *dest,
+        const size_t offset,
+        const size_t length);
+
+
+/**
+* @brief   Partial copying.
+* @details Partial copy of the elements in a range [offset, offset + length],
+*          where part of the element described by @c part_offset and @c part_length in bytes.
+*          All parts stored in a contiguous destination array one next to another.
+*
+* @param[in]  vector     Pointer to vector instance.
+* @param[out] dest       Destination pointer.
+* @param[in]  offset     Offset in @ref vector_t::element_size "elements" (begin index).
+* @param[in] length      Size of the coping range in elements.
+* @param[in] part_offset Offset in bytes inside an element,
+*                        begining of the portion to copy.
+* @param[in] part_length Length of the copying portion in bytes.
+*/
+void vector_part_copy(const vector_t *const vector,
+        char *dest,
+        const size_t offset,
+        const size_t length,
+        const size_t part_offset,
+        const size_t part_length);
 
 
 /**

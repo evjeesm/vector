@@ -181,42 +181,6 @@ size_t vector_data_offset(const vector_t *const vector)
 }
 
 
-void vector_copy(const vector_t *const vector, char *const dest, const size_t offset, const size_t length)
-{
-    assert(dest);
-    assert(vector);
-    assert((offset + length <= vector->capacity) && "`offset + length` exceeds vector's capacity!");
-
-    memcpy(dest, vector_get(vector, offset), length * (vector->element_size));
-}
-
-
-void vector_move(const vector_t *const vector, char *dest, const size_t offset, const size_t length)
-{
-    assert(dest);
-    assert(vector);
-    assert((offset + length <= vector->capacity) && "`offset + length` exceeds vector's capacity!");
-
-    memmove(dest, vector_get(vector, offset), length * (vector->element_size));
-}
-
-
-void vector_part_copy(const vector_t *const vector,
-        char *dest,
-        const size_t offset,
-        const size_t length,
-        const size_t part_offset,
-        const size_t part_length)
-{
-    for (size_t i = offset; i < length; ++i)
-    {
-        char *src = (char *)vector_get(vector, i) + part_offset;
-        memcpy(dest, src, part_length);
-        dest += part_length;
-    }
-}
-
-
 alloc_opts_t vector_alloc_opts(const vector_t *const vector)
 {
     assert(vector);
@@ -327,6 +291,44 @@ void vector_set_zero(vector_t *const vector, const size_t index)
     void *dest = vector_get(vector, index);
     memset(dest, 0x00, vector->element_size);
 }
+
+
+void vector_copy(const vector_t *const vector, char *const dest, const size_t offset, const size_t length)
+{
+    assert(dest);
+    assert(vector);
+    assert((offset + length <= vector->capacity) && "`offset + length` exceeds vector's capacity!");
+
+    memcpy(dest, vector_get(vector, offset), length * (vector->element_size));
+}
+
+
+void vector_move(const vector_t *const vector, char *dest, const size_t offset, const size_t length)
+{
+    assert(dest);
+    assert(vector);
+    assert((offset + length <= vector->capacity) && "`offset + length` exceeds vector's capacity!");
+
+    memmove(dest, vector_get(vector, offset), length * (vector->element_size));
+}
+
+
+void vector_part_copy(const vector_t *const vector,
+        char *dest,
+        const size_t offset,
+        const size_t length,
+        const size_t part_offset,
+        const size_t part_length)
+{
+    for (size_t i = offset; i < length; ++i)
+    {
+        char *src = (char *)vector_get(vector, i) + part_offset;
+        memcpy(dest, src, part_length);
+        dest += part_length;
+    }
+}
+
+
 
 
 void vector_spread(vector_t *const vector, const size_t index, const size_t amount)
