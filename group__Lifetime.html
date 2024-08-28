@@ -167,7 +167,7 @@ Functions</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="aligned_alloc_8c-example.html#a2">aligned_alloc.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00147">147</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00153">153</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
@@ -187,12 +187,13 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    <a class="code hl_function" href="#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a>( \</div>
 <div class="line">        &amp;(<a class="code hl_struct" href="structvector__opts__t.html">vector_opts_t</a>) { \</div>
-<div class="line">            .initial_cap = 10, \</div>
+<div class="line">            <a class="code hl_define" href="vector_8h.html#a5e34f2d91394e1cfcde918615affbc86">VECTOR_DEFAULT_ARGS</a>,\</div>
 <div class="line">            __VA_ARGS__ \</div>
 <div class="line">        }\</div>
 <div class="line">    )\</div>
 <div class="ttc" id="agroup__Lifetime_html_gae9c418efba1bbeb20a8becffe6a09b75"><div class="ttname"><a href="#gae9c418efba1bbeb20a8becffe6a09b75">vector_create_</a></div><div class="ttdeci">vector_t * vector_create_(const vector_opts_t *const opts)</div><div class="ttdoc">Vector contructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00082">vector.c:82</a></div></div>
 <div class="ttc" id="astructvector__opts__t_html"><div class="ttname"><a href="structvector__opts__t.html">vector_opts_t</a></div><div class="ttdoc">Vector options.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00051">vector.h:52</a></div></div>
+<div class="ttc" id="avector_8h_html_a5e34f2d91394e1cfcde918615affbc86"><div class="ttname"><a href="vector_8h.html#a5e34f2d91394e1cfcde918615affbc86">VECTOR_DEFAULT_ARGS</a></div><div class="ttdeci">#define VECTOR_DEFAULT_ARGS</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00078">vector.h:78</a></div></div>
 </div><!-- fragment -->
 <p>Vector constructor. </p>
 <p>Preferable way to invoke vector constructor. Provides default values. </p><dl class="section warning"><dt>Warning</dt><dd><a class="el" href="structvector__opts__t.html#a18f1f3e195d1c4a691e232b1fcaec0c1">element_size</a> is mandatory! </dd></dl>
@@ -200,7 +201,7 @@ Functions</h2></td></tr>
 <dl class="section examples"><dt>Examples</dt><dd><a class="el" href="aligned_alloc_8c-example.html#a1">aligned_alloc.c</a>, <a class="el" href="create_8c-example.html#a1">create.c</a>, and <a class="el" href="polymorph_8c-example.html#a3">polymorph.c</a>.</dd>
 </dl>
 
-<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00156">156</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00162">162</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>

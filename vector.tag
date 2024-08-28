@@ -71,6 +71,13 @@
     </member>
     <member kind="function">
       <type>size_t</type>
+      <name>vector_ext_header_size</name>
+      <anchorfile>group__Extension.html</anchorfile>
+      <anchor>gacb4ec311fa5851f503419118b4984f54</anchor>
+      <arglist>(const vector_t *const vector)</arglist>
+    </member>
+    <member kind="function">
+      <type>size_t</type>
       <name>vector_data_offset</name>
       <anchorfile>group__Extension.html</anchorfile>
       <anchor>ga435ecb8dca435624d8d277feb6b2cc80</anchor>
@@ -253,6 +260,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>VECTOR_DEFAULT_ARGS</name>
+      <anchorfile>vector_8h.html</anchorfile>
+      <anchor>a5e34f2d91394e1cfcde918615affbc86</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>alloc_opts</name>
       <anchorfile>group__Lifetime.html</anchorfile>
       <anchor>gaa28827c8d5d9cf48741aaa05e8fd608a</anchor>
@@ -358,6 +372,13 @@
       <name>vector_get_ext_header</name>
       <anchorfile>group__Extension.html</anchorfile>
       <anchor>gafc2e34dbacffe6480af8681fbf46e808</anchor>
+      <arglist>(const vector_t *const vector)</arglist>
+    </member>
+    <member kind="function">
+      <type>size_t</type>
+      <name>vector_ext_header_size</name>
+      <anchorfile>group__Extension.html</anchorfile>
+      <anchor>gacb4ec311fa5851f503419118b4984f54</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
@@ -572,6 +593,20 @@
     <name>vector_opts_t</name>
     <filename>structvector__opts__t.html</filename>
     <member kind="variable">
+      <type>alloc_opts_t</type>
+      <name>alloc_opts</name>
+      <anchorfile>structvector__opts__t.html</anchorfile>
+      <anchor>a390f740c675ad2161cb604d72e5957ea</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>size_t</type>
+      <name>ext_header_size</name>
+      <anchorfile>structvector__opts__t.html</anchorfile>
+      <anchor>ae5a8b3368fff2365e65d2816f7a57ecd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
       <type>size_t</type>
       <name>element_size</name>
       <anchorfile>structvector__opts__t.html</anchorfile>
@@ -583,20 +618,6 @@
       <name>initial_cap</name>
       <anchorfile>structvector__opts__t.html</anchorfile>
       <anchor>a3bcfe6caf89c0029a925d0be842abc23</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>size_t</type>
-      <name>ext_header_size</name>
-      <anchorfile>structvector__opts__t.html</anchorfile>
-      <anchor>ae5a8b3368fff2365e65d2816f7a57ecd</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="variable">
-      <type>alloc_opts_t</type>
-      <name>alloc_opts</name>
-      <anchorfile>structvector__opts__t.html</anchorfile>
-      <anchor>a390f740c675ad2161cb604d72e5957ea</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -769,6 +790,13 @@
       <name>vector_get_ext_header</name>
       <anchorfile>group__Extension.html</anchorfile>
       <anchor>gafc2e34dbacffe6480af8681fbf46e808</anchor>
+      <arglist>(const vector_t *const vector)</arglist>
+    </member>
+    <member kind="function">
+      <type>size_t</type>
+      <name>vector_ext_header_size</name>
+      <anchorfile>group__Extension.html</anchorfile>
+      <anchor>gacb4ec311fa5851f503419118b4984f54</anchor>
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">

@@ -10,6 +10,7 @@ var vector_8c =
     [ "vector_clone", "group__Lifetime.html#ga7243756372efd57714853efaf7521358", null ],
     [ "vector_resize", "group__Lifetime.html#ga6e5077303af4dfe720af5a0608553922", null ],
     [ "vector_get_ext_header", "group__Extension.html#gafc2e34dbacffe6480af8681fbf46e808", null ],
+    [ "vector_ext_header_size", "group__Extension.html#gacb4ec311fa5851f503419118b4984f54", null ],
     [ "vector_data_offset", "group__Extension.html#ga435ecb8dca435624d8d277feb6b2cc80", null ],
     [ "vector_copy", "group__Vector__API.html#gabf21611afbbdda61da4ffa361fc783dc", null ],
     [ "vector_move", "group__Vector__API.html#gaa94c547c9488b4f9dce5eb01067c2ae1", null ],

@@ -148,6 +148,8 @@ Macros</h2></td></tr>
 <tr class="memitem:ad92ce696967261588cab3848dfe73c02" id="r_ad92ce696967261588cab3848dfe73c02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad92ce696967261588cab3848dfe73c02">TMP_REF</a>(type,  value)&#160;&#160;&#160;(type[1]){value}</td></tr>
 <tr class="memdesc:ad92ce696967261588cab3848dfe73c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create temporary typed reference.  <br /></td></tr>
 <tr class="separator:ad92ce696967261588cab3848dfe73c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e34f2d91394e1cfcde918615affbc86" id="r_a5e34f2d91394e1cfcde918615affbc86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5e34f2d91394e1cfcde918615affbc86">VECTOR_DEFAULT_ARGS</a>&#160;&#160;&#160;    .initial_cap = 10</td></tr>
+<tr class="separator:a5e34f2d91394e1cfcde918615affbc86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gaa28827c8d5d9cf48741aaa05e8fd608a" id="r_gaa28827c8d5d9cf48741aaa05e8fd608a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Lifetime.html#gaa28827c8d5d9cf48741aaa05e8fd608a">alloc_opts</a>(...)&#160;&#160;&#160;(<a class="el" href="structalloc__opts__t.html">alloc_opts_t</a>){__VA_ARGS__}</td></tr>
 <tr class="memdesc:gaa28827c8d5d9cf48741aaa05e8fd608a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this macro to define allocator opts in <a class="el" href="structvector__opts__t.html">vector_opts_t</a>.  <br /></td></tr>
 <tr class="separator:gaa28827c8d5d9cf48741aaa05e8fd608a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,6 +201,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gafc2e34dbacffe6480af8681fbf46e808" id="r_gafc2e34dbacffe6480af8681fbf46e808"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Extension.html#gafc2e34dbacffe6480af8681fbf46e808">vector_get_ext_header</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
 <tr class="memdesc:gafc2e34dbacffe6480af8681fbf46e808"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides a location where user can put a header for the derived class.  <br /></td></tr>
 <tr class="separator:gafc2e34dbacffe6480af8681fbf46e808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb4ec311fa5851f503419118b4984f54" id="r_gacb4ec311fa5851f503419118b4984f54"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Extension.html#gacb4ec311fa5851f503419118b4984f54">vector_ext_header_size</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
+<tr class="memdesc:gacb4ec311fa5851f503419118b4984f54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves extended header size.  <br /></td></tr>
+<tr class="separator:gacb4ec311fa5851f503419118b4984f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga435ecb8dca435624d8d277feb6b2cc80" id="r_ga435ecb8dca435624d8d277feb6b2cc80"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__Extension.html#ga435ecb8dca435624d8d277feb6b2cc80">vector_data_offset</a> (const <a class="el" href="structvector__t.html">vector_t</a> *const vector)</td></tr>
 <tr class="memdesc:ga435ecb8dca435624d8d277feb6b2cc80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compute offset from <a class="el" href="structvector__t.html#a2c7a23fb3c2197cc5557b8543ffdb2f7" title="Beginning of the vector&#39;s memory region.">vector_t::memory</a> to first element.  <br /></td></tr>
 <tr class="separator:ga435ecb8dca435624d8d277feb6b2cc80"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -310,6 +315,23 @@ Functions</h2></td></tr>
 <p>Used to create temporary reference to an object, that need to be passed via pointer. Life time of the referenced object is bounded by a scope in which it was defined. </p>
 
 <p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00020">20</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
+
+</div>
+</div>
+<a id="a5e34f2d91394e1cfcde918615affbc86" name="a5e34f2d91394e1cfcde918615affbc86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e34f2d91394e1cfcde918615affbc86">&#9670;&#160;</a></span>VECTOR_DEFAULT_ARGS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VECTOR_DEFAULT_ARGS&#160;&#160;&#160;    .initial_cap = 10</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Represents vectors default create values. </p>
+
+<p class="definition">Definition at line <a class="el" href="vector_8h_source.html#l00078">78</a> of file <a class="el" href="vector_8h_source.html">vector.h</a>.</p>
 
 </div>
 </div>
