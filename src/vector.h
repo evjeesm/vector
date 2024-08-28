@@ -233,6 +233,15 @@ void* vector_get_ext_header(const vector_t *const vector);
 
 
 /**
+* @brief   Retrieves extended header size.
+* @details Returns full hierarchy extension size.
+* @param[in] vector Pointer to vector.
+* @returns Total size of extensions in bytes.
+*/
+size_t vector_ext_header_size(const vector_t *const vector);
+
+
+/**
 * @brief   Compute offset from vector_t::memory to first element.
 *
 * @param[in] vector Pointer to vector.

@@ -167,6 +167,13 @@ void* vector_get_ext_header(const vector_t *const vector)
 }
 
 
+size_t vector_ext_header_size(const vector_t *const vector)
+{
+    assert(vector);
+    return vector->ext_header_size;
+}
+
+
 size_t vector_data_offset(const vector_t *const vector)
 {
     assert(vector);
