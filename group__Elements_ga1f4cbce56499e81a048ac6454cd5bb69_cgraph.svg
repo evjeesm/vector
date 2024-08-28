@@ -48,7 +48,7 @@
 <!-- Node4 -->
 <g id="Node000004" class="node">
 <title>Node4</title>
-<g id="a_Node000004"><a xlink:href="group__Vector__API.html#gaa94c547c9488b4f9dce5eb01067c2ae1" target="_top" xlink:title="Moves range of the vector elements to another location.">
+<g id="a_Node000004"><a xlink:href="group__Elements.html#gaa94c547c9488b4f9dce5eb01067c2ae1" target="_top" xlink:title="Moves range of the vector elements to another location.">
 <polygon fill="white" stroke="#666666" points="190,-19 110,-19 110,0 190,0 190,-19"/>
 <text text-anchor="middle" x="150" y="-7" font-family="Mononoki" font-size="10.00">vector_move</text>
 </a>

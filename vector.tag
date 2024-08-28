@@ -84,27 +84,6 @@
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>vector_copy</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
-      <arglist>(const vector_t *const vector, char *const dest, const size_t offset, const size_t length)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>vector_move</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>vector_part_copy</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
-    </member>
-    <member kind="function">
       <type>alloc_opts_t</type>
       <name>vector_alloc_opts</name>
       <anchorfile>group__Properties.html</anchorfile>
@@ -180,6 +159,27 @@
       <anchorfile>group__Elements.html</anchorfile>
       <anchor>gaf3eaea4a3a47741f46eae9ae6e984ef2</anchor>
       <arglist>(vector_t *const vector, const size_t index)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_copy</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
+      <arglist>(const vector_t *const vector, char *const dest, const size_t offset, const size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_move</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_part_copy</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -389,27 +389,6 @@
       <arglist>(const vector_t *const vector)</arglist>
     </member>
     <member kind="function">
-      <type>void</type>
-      <name>vector_copy</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>vector_move</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>vector_part_copy</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
-    </member>
-    <member kind="function">
       <type>alloc_opts_t</type>
       <name>vector_alloc_opts</name>
       <anchorfile>group__Properties.html</anchorfile>
@@ -485,6 +464,27 @@
       <anchorfile>group__Elements.html</anchorfile>
       <anchor>gaf3eaea4a3a47741f46eae9ae6e984ef2</anchor>
       <arglist>(vector_t *const vector, const size_t index)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_copy</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_move</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_part_copy</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
@@ -672,27 +672,6 @@
     <subgroup>Elements</subgroup>
     <subgroup>Allocation</subgroup>
     <subgroup>Utilities</subgroup>
-    <member kind="function">
-      <type>void</type>
-      <name>vector_copy</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>vector_move</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
-    </member>
-    <member kind="function">
-      <type>void</type>
-      <name>vector_part_copy</name>
-      <anchorfile>group__Vector__API.html</anchorfile>
-      <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
-      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
-    </member>
   </compound>
   <compound kind="group">
     <name>Callbacks</name>
@@ -897,6 +876,27 @@
       <anchorfile>group__Elements.html</anchorfile>
       <anchor>gaf3eaea4a3a47741f46eae9ae6e984ef2</anchor>
       <arglist>(vector_t *const vector, const size_t index)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_copy</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>gabf21611afbbdda61da4ffa361fc783dc</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_move</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>gaa94c547c9488b4f9dce5eb01067c2ae1</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length)</arglist>
+    </member>
+    <member kind="function">
+      <type>void</type>
+      <name>vector_part_copy</name>
+      <anchorfile>group__Elements.html</anchorfile>
+      <anchor>ga39836c927f0e0fc79dbf39728972d08e</anchor>
+      <arglist>(const vector_t *const vector, char *dest, const size_t offset, const size_t length, const size_t part_offset, const size_t part_length)</arglist>
     </member>
     <member kind="function">
       <type>void</type>
