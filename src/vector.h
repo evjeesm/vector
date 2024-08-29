@@ -370,7 +370,7 @@ char *vector_data(const vector_t *const vector);
 * @brief Returns pointer for the element at @c index.
 *
 * @param[in] vector Pointer to a vector instance.
-* @param[in] index  Denotes an element to be overriden by @c value.
+* @param[in] index  Denotes an element to be accessed.
 * @returns          A pointer to a vector element at @c index.
 */
 void *vector_get(const vector_t *const vector, const size_t index);
