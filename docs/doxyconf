@@ -1405,7 +1405,8 @@ HTML_STYLESHEET        =
 # documentation.
 # This tag requires that the tag GENERATE_HTML is set to YES.
 
-HTML_EXTRA_STYLESHEET  = docs/doxygen-awesome-css/doxygen-awesome.css \
+HTML_EXTRA_STYLESHEET  = docs/themed-imgs.css \
+                         docs/doxygen-awesome-css/doxygen-awesome.css \
                          docs/doxygen-awesome-css/doxygen-awesome-sidebar-only.css \
                          docs/doxygen-awesome-css/doxygen-awesome-sidebar-only-darkmode-toggle.css
 
