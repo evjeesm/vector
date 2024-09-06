@@ -113,7 +113,7 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
  Contains a <code><a class="el" href="structvector__t.html" title="Vector control structure type.">vector_t</a></code> - base ADT for dynamic arrays.</p>
 <p>The design allows for development of derived random access containers with ease. <br  />
  Provides api for array manipulations with extendability in mind.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<h1><a class="anchor" id="autotoc_md1"></a>
 Implementation details</h1>
 <ul>
 <li>Does not perform auto scaling and tracking of stored elements. <br  />
@@ -127,7 +127,7 @@ Implementation details</h1>
  You can use memalign instead of malloc for instance or custom allocator of your preference.</li>
 </ul>
 <p><a href="https://evjeesm.github.io/vector">See Full Documentation</a></p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<h1><a class="anchor" id="autotoc_md2"></a>
 Supported platforms</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -137,12 +137,12 @@ Supported platforms</h1>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Windows   </td><td class="markdownTableBodyNone"><img src="https://github.com/evjeesm/vector/actions/workflows/windows.yml/badge.svg" alt="check-windows" style="pointer-events: none;" class="inline"/>   </td><td class="markdownTableBodyNone"><a href="https://codecov.io/github/evjeesm/vector"><img src="https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows" alt="codecov" style="pointer-events: none;" class="inline"/></a>   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md5"></a>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Memory layout</h1>
 <p><img src="vector-scheme.svg" alt="" style="pointer-events: none;" class="inline" title="vector-scheme"/>     </p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md4"></a>
 Dependencies</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md5"></a>
 Build System</h2>
 <ul>
 <li>gcc</li>
@@ -156,7 +156,7 @@ Build System</h2>
 <li>valgrind - for memory leak checks</li>
 <li>lcov - for code coverage analizing</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
 Libraries</h2>
 <ul>
 <li>stdlib</li>
@@ -165,7 +165,7 @@ Libraries</h2>
 <li>sys/types</li>
 <li><a href="https://github.com/evjeesm/memory/blob/d7960a02c33ef956b9c915f3791fbdd6afdb0335/memswap.h">memswap</a></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md9"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Build Process</h1>
 <ul>
 <li>Install <b>Build System</b> dependencies:<ul>
@@ -201,11 +201,11 @@ Build Process</h1>
  Procede to installation: <div class="fragment"><div class="line">make install</div>
 </div><!-- fragment --></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md10"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 Usage</h1>
 <p>Link against <code>libvector_static.a</code> or <code>libvector.so</code> on <b>linux</b>. <br  />
  If you on <b>Windows</b> platform link to <code>libvector_static.lib</code>.</p>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Minimal Example</h2>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="vector_8h.html">vector.h</a>&quot;</span></div>
 <div class="line"> </div>
