@@ -64,13 +64,15 @@ jobs:
       - name: Create status badge
         run: |
           case ${{ needs.build.result }} in \
-          success)   echo "![status](https://img.shields.io/badge/Linux_CI-passes-green)"   > status.md ;; \
-          failure)   echo "![status](https://img.shields.io/badge/Linux_CI-failed-red)"     > status.md ;; \
-          cancelled) echo "![status](https://img.shields.io/badge/Linux_CI-cancelled-grey)" > status.md ;; \
+          success)   echo "![status](https://img.shields.io/badge/Linux_CI-passes-green)"   > ${{ name }}-status.md ;; \
+          failure)   echo "![status](https://img.shields.io/badge/Linux_CI-failed-red)"     > ${{ name }}-status.md ;; \
+          cancelled) echo "![status](https://img.shields.io/badge/Linux_CI-cancelled-grey)" > ${{ name }}-status.md ;; \
           esac
 
+      - name: Make status artifact name
+        run: echo STATUS_NAME=${{ name }}-status >> $GITHUB_ENV
       - name: Upload status badge
         uses: actions/upload-artifact@v4
         with:
-          name: status
-          path: status.md
+          name: "$STATUS_NAME"
+          path: *-status.md
