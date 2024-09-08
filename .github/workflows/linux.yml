@@ -70,7 +70,7 @@ jobs:
           esac
 
       - name: Make status artifact name
-        run: echo STATUS_NAME=${{ name }}-status >> $GITHUB_ENV
+        run: echo STATUS_NAME=${{ github.workflow }}-status >> $GITHUB_ENV
       - name: Upload status badge
         uses: actions/upload-artifact@v4
         with:
