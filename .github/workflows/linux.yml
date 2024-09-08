@@ -64,9 +64,9 @@ jobs:
       - name: Create status badge
         run: |
           case ${{ needs.build.result }} in \
-          success)   echo "![status](https://img.shields.io/badge/Linux_CI-passes-green)"   > ${{ name }}-status.md ;; \
-          failure)   echo "![status](https://img.shields.io/badge/Linux_CI-failed-red)"     > ${{ name }}-status.md ;; \
-          cancelled) echo "![status](https://img.shields.io/badge/Linux_CI-cancelled-grey)" > ${{ name }}-status.md ;; \
+          success)   echo "![status](https://img.shields.io/badge/Linux_CI-passes-green)"   > ${{ github.workflow }}-status.md ;; \
+          failure)   echo "![status](https://img.shields.io/badge/Linux_CI-failed-red)"     > ${{ github.workflow }}-status.md ;; \
+          cancelled) echo "![status](https://img.shields.io/badge/Linux_CI-cancelled-grey)" > ${{ github.workflow }}-status.md ;; \
           esac
 
       - name: Make status artifact name
