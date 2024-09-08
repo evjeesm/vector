@@ -1,4 +1,4 @@
-name: Linux Debian CI
+name: Linux CI
 
 on:
   workflow_call: 
@@ -55,3 +55,17 @@ jobs:
 
     - name: Run distcheck
       run: make distcheck
+
+  report-status:
+    if: always()
+    needs: [build]
+    steps:
+      - name: Create status badge
+        run: |
+          [ ${{ jobs.build.outcome }} == "success" ] && cat "![status](https://img.shields.io/badge/Linux_CI-passes-green)" > status.md \
+                                                     || cat "![status](https://img.shields.io/badge/Linux_CI-failed-red)" > status.md
+      - name: Upload status badge
+        uses: actions/upload-artifact@v4
+        with:
+          name: status
+          path: status.md
