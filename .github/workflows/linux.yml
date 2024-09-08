@@ -2,6 +2,8 @@ name: Linux CI
 
 on:
   workflow_call:
+env:
+  PLATFORM: Linux
 
 jobs:
   build:
@@ -64,15 +66,16 @@ jobs:
       - name: Create status badge
         run: |
           case ${{ needs.build.result }} in \
-          success)   echo "![status](https://img.shields.io/badge/Linux_CI-passes-green)"   > ${{ github.workflow }}-status.md ;; \
-          failure)   echo "![status](https://img.shields.io/badge/Linux_CI-failed-red)"     > ${{ github.workflow }}-status.md ;; \
-          cancelled) echo "![status](https://img.shields.io/badge/Linux_CI-cancelled-grey)" > ${{ github.workflow }}-status.md ;; \
+          success)   echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-passes-green)"   > ${{ env.PLATFORM }}-status.md ;; \
+          failure)   echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-failed-red)"     > ${{ env.PLATFORM }}-status.md ;; \
+          cancelled) echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-cancelled-grey)" > ${{ env.PLATFORM }}-status.md ;; \
           esac
 
       - name: Make status artifact name
-        run: echo STATUS_NAME=${{ github.workflow }}-status >> $GITHUB_ENV
+        run: echo STATUS_NAME=${{ env.PLATFORM }}-status >> $GITHUB_ENV
+
       - name: Upload status badge
         uses: actions/upload-artifact@v4
         with:
-          name: "$STATUS_NAME"
-          path: ./*-status.md
+          name: ${{ env.STATUS_NAME }}
+          path: *status.md
