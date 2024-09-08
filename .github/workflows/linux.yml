@@ -66,16 +66,13 @@ jobs:
       - name: Create status badge
         run: |
           case ${{ needs.build.result }} in \
-          success)   echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-passes-green)"   > ${{ env.PLATFORM }}-status.md ;; \
-          failure)   echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-failed-red)"     > ${{ env.PLATFORM }}-status.md ;; \
-          cancelled) echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-cancelled-grey)" > ${{ env.PLATFORM }}-status.md ;; \
+          success) echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-passes-green)" > ${{ env.PLATFORM }}-status.md ;; \
+          failure) echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-failed-red)" > ${{ env.PLATFORM }}-status.md ;; \
+          cancelled) echo "![status](https://img.shields.io/badge/${{ env.PLATFORM }}-cancelled-lightgrey)" > ${{ env.PLATFORM }}-status.md ;; \
           esac
-
-      - name: Make status artifact name
-        run: echo STATUS_NAME=${{ env.PLATFORM }}-status >> $GITHUB_ENV
 
       - name: Upload status badge
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.STATUS_NAME }}
+          name: statuses
           path: '*-status.md'
