@@ -63,8 +63,12 @@ jobs:
     steps:
       - name: Create status badge
         run: |
-          [ ${{ needs.build.result }} == "success" ] && echo "![status](https://img.shields.io/badge/Linux_CI-passes-green)" > status.md \
-                                                     || echo "![status](https://img.shields.io/badge/Linux_CI-failed-red)" > status.md
+          case ${{ needs.build.result }} in \
+          success)   echo "![status](https://img.shields.io/badge/Linux_CI-passes-green)"   > status.md ;; \
+          failure)   echo "![status](https://img.shields.io/badge/Linux_CI-failed-red)"     > status.md ;; \
+          cancelled) echo "![status](https://img.shields.io/badge/Linux_CI-cancelled-grey)" > status.md ;; \
+          esac
+
       - name: Upload status badge
         uses: actions/upload-artifact@v4
         with:
