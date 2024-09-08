@@ -16,10 +16,12 @@ jobs:
       - name: Download statuses
         uses: actions/download-artifact@v4
         with:
-          name: statuses
+          pattern: '*-status'
+          path: statuses
 
       - name: Render README.md
-        run: echo "... Rendering ..."
+        run: |
+          for f in statuses/* ; do cat $f; done
 
       - name: Configure Git
         run: |
