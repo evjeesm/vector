@@ -1,7 +1,7 @@
 name: Linux CI
 
 on:
-  workflow_call: 
+  workflow_call:
 
 jobs:
   build:
@@ -57,6 +57,7 @@ jobs:
       run: make distcheck
 
   report-status:
+    runs-on: ubuntu-latest
     if: always()
     needs: [build]
     steps:
