@@ -18,6 +18,7 @@ jobs:
         with:
           pattern: '*-status'
           path: statuses
+          merge-multiple: true
 
       - name: Render README.md
         run: |
