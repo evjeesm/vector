@@ -11,6 +11,10 @@
 #define aligned_alloc(alignment, size) _aligned_malloc(size, alignment)
 #endif
 
+#ifdef __linux__
+static_assert(0)
+#endif
+
 typedef struct alloc
 {
     size_t alignment;
