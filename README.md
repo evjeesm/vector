@@ -27,7 +27,7 @@ Provides api for array manipulations with extendability in mind.
 | Platforms | CI/CD                                                                                       | COVERAGE                                                                                                                      |
 | --------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | Linux     | %Linux-status.md%  | [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian)](https://codecov.io/github/evjeesm/vector)  |
-| Windows   | %Windows-status.md%| [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
+| Windows   | ![status](https://img.shields.io/badge/Windows-passes-green)| [![codecov](https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows)](https://codecov.io/github/evjeesm/vector) |
 
 ## Memory layout
 
