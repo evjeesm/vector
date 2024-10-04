@@ -33,3 +33,6 @@ jobs:
   call-static:
     needs: [call-tag-files]
     uses: ./.github/workflows/static.yml
+    permissions:
+      pages: write
+      id-token: write
