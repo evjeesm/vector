@@ -225,6 +225,10 @@ $(function(){initNavTree('Guide.html',''); initResizable(true); });
 <div class="line"><span class="preprocessor">#define aligned_alloc(alignment, size) _aligned_malloc(size, alignment)</span></div>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
+<div class="line"><span class="comment">// #ifdef __linux__</span></div>
+<div class="line"><span class="comment">// static_assert(0)</span></div>
+<div class="line"><span class="comment">// #endif</span></div>
+<div class="line"> </div>
 <div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>alloc</div>
 <div class="line">{</div>
 <div class="line">    <span class="keywordtype">size_t</span> alignment;</div>
@@ -246,7 +250,7 @@ Functions can be implemented in external translation unit and then linked:</p>
 <div class="line">    assert(param);</div>
 <div class="line">    alloc_t* alloc = (alloc_t*)param;</div>
 <div class="line">    <span class="keywordflow">return</span> aligned_alloc(alloc-&gt;alignment, alloc_size);</div>
-<div class="ttc" id="agroup__Allocation_html_gac06d4923e85171dfa1e3fae4f141b658"><div class="ttname"><a href="group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658">vector_alloc</a></div><div class="ttdeci">void * vector_alloc(const size_t alloc_size, void *const param)</div><div class="ttdoc">Allocates memory chunk of alloc_size.</div><div class="ttdef"><b>Definition</b> <a href="aligned__alloc_8c_source.html#l00040">aligned_alloc.c:40</a></div></div>
+<div class="ttc" id="agroup__Allocation_html_gac06d4923e85171dfa1e3fae4f141b658"><div class="ttname"><a href="group__Allocation.html#gac06d4923e85171dfa1e3fae4f141b658">vector_alloc</a></div><div class="ttdeci">void * vector_alloc(const size_t alloc_size, void *const param)</div><div class="ttdoc">Allocates memory chunk of alloc_size.</div><div class="ttdef"><b>Definition</b> <a href="aligned__alloc_8c_source.html#l00044">aligned_alloc.c:44</a></div></div>
 <div class="line">}</div>
 </div><!-- fragment --><p><br  />
 </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> *<a class="code hl_function" href="group__Allocation.html#ga6bc2c0ee8e64283e06259c3edc6c6022">vector_realloc</a>(<span class="keywordtype">void</span> *<span class="keyword">const</span> ptr, <span class="keywordtype">size_t</span> alloc_size, <span class="keywordtype">void</span> *<span class="keyword">const</span> param)</div>
@@ -260,7 +264,7 @@ Functions can be implemented in external translation unit and then linked:</p>
 <div class="line">    <span class="keywordflow">if</span> (alloc_size == alloc-&gt;last_size)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">return</span> ptr;</div>
-<div class="ttc" id="agroup__Allocation_html_ga6bc2c0ee8e64283e06259c3edc6c6022"><div class="ttname"><a href="group__Allocation.html#ga6bc2c0ee8e64283e06259c3edc6c6022">vector_realloc</a></div><div class="ttdeci">void * vector_realloc(void *const ptr, size_t alloc_size, void *const param)</div><div class="ttdoc">Reallocates already allocated memory chunk in order to change allocation size.</div><div class="ttdef"><b>Definition</b> <a href="aligned__alloc_8c_source.html#l00047">aligned_alloc.c:47</a></div></div>
+<div class="ttc" id="agroup__Allocation_html_ga6bc2c0ee8e64283e06259c3edc6c6022"><div class="ttname"><a href="group__Allocation.html#ga6bc2c0ee8e64283e06259c3edc6c6022">vector_realloc</a></div><div class="ttdeci">void * vector_realloc(void *const ptr, size_t alloc_size, void *const param)</div><div class="ttdoc">Reallocates already allocated memory chunk in order to change allocation size.</div><div class="ttdef"><b>Definition</b> <a href="aligned__alloc_8c_source.html#l00051">aligned_alloc.c:51</a></div></div>
 <div class="line">    }</div>
 </div><!-- fragment --><p><br  />
 </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__Allocation.html#gacd97ea77de38db5fb50d9e8ba216a734">vector_free</a>(<span class="keywordtype">void</span> *<span class="keyword">const</span> ptr, <span class="keywordtype">void</span> *<span class="keyword">const</span> param)</div>
@@ -268,7 +272,7 @@ Functions can be implemented in external translation unit and then linked:</p>
 <div class="line">    (void) param;</div>
 <div class="line">    free(ptr);</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__Allocation_html_gacd97ea77de38db5fb50d9e8ba216a734"><div class="ttname"><a href="group__Allocation.html#gacd97ea77de38db5fb50d9e8ba216a734">vector_free</a></div><div class="ttdeci">void vector_free(void *const ptr, void *const param)</div><div class="ttdoc">Free allocation that was previously allocated.</div><div class="ttdef"><b>Definition</b> <a href="aligned__alloc_8c_source.html#l00070">aligned_alloc.c:70</a></div></div>
+<div class="ttc" id="agroup__Allocation_html_gacd97ea77de38db5fb50d9e8ba216a734"><div class="ttname"><a href="group__Allocation.html#gacd97ea77de38db5fb50d9e8ba216a734">vector_free</a></div><div class="ttdeci">void vector_free(void *const ptr, void *const param)</div><div class="ttdoc">Free allocation that was previously allocated.</div><div class="ttdef"><b>Definition</b> <a href="aligned__alloc_8c_source.html#l00074">aligned_alloc.c:74</a></div></div>
 </div><!-- fragment --><p> <br  />
  </p><hr  />
  </div></div><!-- contents -->
