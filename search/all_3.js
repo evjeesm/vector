@@ -5,5 +5,5 @@ var searchData=
   ['default_20allocator_2',['⚙️ Override default allocator',['../Guide.html#custom_allocator',1,'']]],
   ['default_20options_3',['⚙️ Default options',['../Guide.html#def_create',1,'']]],
   ['dependencies_4',['Dependencies',['../index.html#autotoc_md6',1,'']]],
-  ['details_5',['Implementation details',['../index.html#autotoc_md1',1,'']]]
+  ['details_5',['Implementation details',['../index.html#autotoc_md3',1,'']]]
 ];
