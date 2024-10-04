@@ -22,9 +22,10 @@ jobs:
 
       - name: Render README.md
         run: |
+          cp README.md.in README.md
           for path in statuses/* ; do
           filename=$(basename $path)
-          sed "s@%${filename}%@$(cat ${path})@g" README.md.in > README.md
+          sed -i "s@%${filename}%@$(cat ${path})@g" README.md
           done
 
       - name: Configure Git
