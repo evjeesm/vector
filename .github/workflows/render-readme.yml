@@ -23,7 +23,7 @@ jobs:
       - name: Render README.md
         run: |
           for path in statuses/* ; do \
-          filename=$(basename $path)
+          filename=$(basename $path) \
           sed "s@%${filename}%@$(cat ${path})@g" README.md.in > README.md \
           done
 
