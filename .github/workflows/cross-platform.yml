@@ -29,7 +29,7 @@ jobs:
     uses: ./.github/workflows/tag-files.yml
     with:
       url: https://evjeesm.github.io/
-      secrets: inherit
+    secrets: inherit
   call-static:
     needs: [call-tag-files]
     uses: ./.github/workflows/static.yml
