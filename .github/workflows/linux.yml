@@ -7,7 +7,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
     - uses: actions/checkout@v4
@@ -15,7 +15,7 @@ jobs:
         submodules: recursive
     - uses: awalsh128/cache-apt-pkgs-action@latest
       with:
-        packages: autoconf-archive valgrind check lcov=1.16-1
+        packages: autoconf-archive valgrind check lcov
         version: 1.0
 
     - name: Pull & update submodules recursively
