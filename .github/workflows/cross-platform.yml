@@ -15,8 +15,8 @@ jobs:
     uses: ./.github/workflows/windows.yml
     secrets: inherit
   call-render-readme:
-    if: always()
     needs: [call-linux, call-windows]
+    if: github.event_name == 'push'
     uses: ./.github/workflows/render-readme.yml
     secrets: inherit
   call-doxygen-gh-pages:
