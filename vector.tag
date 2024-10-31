@@ -6,13 +6,6 @@
     <filename>vector_8c.html</filename>
     <includes id="vector_8h" name="vector.h" local="yes" import="no" module="no" objc="no">vector.h</includes>
     <class kind="struct">vector_t</class>
-    <member kind="define">
-      <type>#define</type>
-      <name>ASSERT_OVERFLOW</name>
-      <anchorfile>vector_8c.html</anchorfile>
-      <anchor>a16263e31bec7cf3e8518401a2b66a973</anchor>
-      <arglist>(element_size, capacity, data_size, alloc_size, message)</arglist>
-    </member>
     <member kind="function" static="yes">
       <type>static size_t</type>
       <name>calculate_alloc_size</name>
