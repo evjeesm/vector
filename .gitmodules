@@ -1,6 +1,6 @@
 [submodule "memory"]
 	path = memory
-	url = git@github.com:evjeesm/memory
+	url = https://github.com/evjeesm/memory
 	branch = main
 [submodule "docs/doxygen-awesome-css"]
 	path = docs/doxygen-awesome-css
