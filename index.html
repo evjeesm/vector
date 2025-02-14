@@ -19,6 +19,7 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="themed-imgs.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 <link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
@@ -109,124 +110,8 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">Vector </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a> Classic opaque type library. <br  />
- Contains a <code><a class="el" href="structvector__t.html" title="Vector control structure type.">vector_t</a></code> - base ADT for dynamic arrays.</p>
-<p>The design allows for development of derived random access containers with ease. <br  />
- Provides api for array manipulations with extendability in mind.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-Implementation details</h1>
-<ul>
-<li>Does not perform auto scaling and tracking of stored elements. <br  />
- (all these functionalities have to be implemented in derived containers by design)</li>
-<li>Memory alignment is up to user. <br  />
- Element of the vector are laid out one after another without padding. <br  />
- You can add byte padding manually in struct of the element type. <br  />
- Also you are able set <code>data_offset</code> to add padding between control struct and contents of the vector. <br  />
- If you dislike how memory alignment is done, see next point.</li>
-<li>Default allocation strategy is a standard heap allocation, but can be altered. <br  />
- You can use memalign instead of malloc for instance or custom allocator of your preference.</li>
-</ul>
-<p><a href="https://evjeesm.github.io/vector">See Full Documentation</a></p>
-<h1><a class="anchor" id="autotoc_md2"></a>
-Supported platforms</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Platforms   </th><th class="markdownTableHeadNone">CI/CD   </th><th class="markdownTableHeadNone">COVERAGE    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Linux   </td><td class="markdownTableBodyNone"><img src="https://img.shields.io/badge/Linux-passes-green" alt="status" class="inline"/>   </td><td class="markdownTableBodyNone"><a href="https://codecov.io/github/evjeesm/vector"><img src="https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=debian" alt="codecov" style="pointer-events: none;" class="inline"/></a>    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Windows   </td><td class="markdownTableBodyNone"><img src="https://img.shields.io/badge/Windows-passes-green" alt="status" class="inline"/>   </td><td class="markdownTableBodyNone"><a href="https://codecov.io/github/evjeesm/vector"><img src="https://codecov.io/github/evjeesm/vector/graph/badge.svg?flag=windows" alt="codecov" style="pointer-events: none;" class="inline"/></a>   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md3"></a>
-Memory layout</h1>
-<p><img src="vector-scheme.svg" alt="" style="pointer-events: none;" class="inline" title="vector-scheme"/>     </p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-Dependencies</h1>
-<h2><a class="anchor" id="autotoc_md5"></a>
-Build System</h2>
-<ul>
-<li>gcc</li>
-<li>make</li>
-<li>autotools: <br  />
- automake &gt;= 1.11.2 <br  />
- autoconf <br  />
- autoconf-archive - install separately (for valgrind support) <br  />
- libtool</li>
-<li>check - testing framework</li>
-<li>valgrind - for memory leak checks</li>
-<li>lcov - for code coverage analizing</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-Libraries</h2>
-<ul>
-<li>stdlib</li>
-<li>string</li>
-<li>stdbool</li>
-<li>sys/types</li>
-<li><a href="https://github.com/evjeesm/memory/blob/d7960a02c33ef956b9c915f3791fbdd6afdb0335/memswap.h">memswap</a></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md7"></a>
-Build Process</h1>
-<ul>
-<li>Install <b>Build System</b> dependencies:<ul>
-<li>On <b>Debian</b> / <b>Ubuntu</b>:<ul>
-<li>In your fav shell run: <div class="fragment"><div class="line">sudo apt-get install gcc make automake autoconf autoconf-archive libtool \</div>
-<div class="line">    check valgrind lcov</div>
-</div><!-- fragment --></li>
-</ul>
-</li>
-<li>On <b>Windows</b>:<ul>
-<li>Install <a href="https://www.msys2.org/">msys2</a> environment.</li>
-<li>In msys2 shell run: <div class="fragment"><div class="line">pacman -S curl git mingw-w64-ucrt-x86_64-gcc \</div>
-<div class="line">    mingw-264-ucrt-x86_64-check \</div>
-<div class="line">    autotools autoconf-archive lcov</div>
-</div><!-- fragment --> Set up git newline <code>\n</code> to <code>\r\n</code> convertion (windows style): <div class="fragment"><div class="line">git config --global core.autocrlf input</div>
-</div><!-- fragment --></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Clone the repository: <div class="fragment"><div class="line">git clone https://github.com/evjeesm/vector.git vector; cd vector;</div>
-<div class="line">git submodule update --init --recursive;</div>
-</div><!-- fragment --></li>
-<li>Configure project: <div class="fragment"><div class="line">./autogen.sh &amp;&amp; ./configure CFLAGS=&lt;YOUR COMPILATION FLAGS&gt; --prefix=&lt;/path/to/install/folder/&gt;</div>
-</div><!-- fragment --></li>
-<li>Build project: (use -j&lt;threads&gt; option for multithreaded building) <div class="fragment"><div class="line">make</div>
-</div><!-- fragment --></li>
-<li>Run Tests: <div class="fragment"><div class="line">make check</div>
-<div class="line">make check-valgrind    # optional memory check</div>
-</div><!-- fragment --></li>
-<li>If no errors occured during <em>check</em> you can safely install library <br  />
- in your desired prefix path that you specified at configure step. <br  />
- Procede to installation: <div class="fragment"><div class="line">make install</div>
-</div><!-- fragment --></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md8"></a>
-Usage</h1>
-<p>Link against <code>libvector_static.a</code> or <code>libvector.so</code> on <b>linux</b>. <br  />
- If you on <b>Windows</b> platform link to <code>libvector_static.lib</code>.</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Minimal Example</h2>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="vector_8h.html">vector.h</a>&quot;</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">void</span>)</div>
-<div class="line">{</div>
-<div class="line">    <a class="code hl_struct" href="structvector__t.html">vector_t</a> *vector = <a class="code hl_define" href="group__Lifetime.html#ga160b0d4b8d0836eda9a50bfa71514de8">vector_create</a>(.element_size = <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));</div>
-<div class="line">    <span class="keywordtype">int</span> a = 69;</div>
-<div class="line">    <a class="code hl_function" href="group__Elements.html#gab3a5e466261d31ee9edd77a5eb280030">vector_set</a>(&amp;vector, 0, &amp;a);</div>
-<div class="line">    <a class="code hl_function" href="group__Elements.html#gab3a5e466261d31ee9edd77a5eb280030">vector_set</a>(&amp;vector, 1, <a class="code hl_define" href="vector_8h.html#ad92ce696967261588cab3848dfe73c02">TMP_REF</a>(<span class="keywordtype">int</span>, 42));</div>
-<div class="line"> </div>
-<div class="line">    <a class="code hl_function" href="group__Elements.html#ga9437d9506a3b2799f595c88b82f160b3">vector_get</a>(vector, 1, &amp;a); <span class="comment">// a = 42</span></div>
-<div class="line">    <a class="code hl_function" href="group__Lifetime.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a>(vector);</div>
-<div class="line">}</div>
-<div class="ttc" id="agroup__Elements_html_ga9437d9506a3b2799f595c88b82f160b3"><div class="ttname"><a href="group__Elements.html#ga9437d9506a3b2799f595c88b82f160b3">vector_get</a></div><div class="ttdeci">void * vector_get(const vector_t *const vector, const size_t index)</div><div class="ttdoc">Returns pointer for the element at index.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00271">vector.c:271</a></div></div>
-<div class="ttc" id="agroup__Elements_html_gab3a5e466261d31ee9edd77a5eb280030"><div class="ttname"><a href="group__Elements.html#gab3a5e466261d31ee9edd77a5eb280030">vector_set</a></div><div class="ttdeci">void vector_set(vector_t *const vector, const size_t index, const void *const value)</div><div class="ttdoc">Sets element at given index to a value.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00280">vector.c:280</a></div></div>
-<div class="ttc" id="agroup__Lifetime_html_ga160b0d4b8d0836eda9a50bfa71514de8"><div class="ttname"><a href="group__Lifetime.html#ga160b0d4b8d0836eda9a50bfa71514de8">vector_create</a></div><div class="ttdeci">#define vector_create(...)</div><div class="ttdoc">Vector constructor.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00162">vector.h:162</a></div></div>
-<div class="ttc" id="agroup__Lifetime_html_gae0c0da17ad9469e47ef376a82b6493f3"><div class="ttname"><a href="group__Lifetime.html#gae0c0da17ad9469e47ef376a82b6493f3">vector_destroy</a></div><div class="ttdeci">void vector_destroy(vector_t *const vector)</div><div class="ttdoc">Deallocates vector.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00112">vector.c:112</a></div></div>
-<div class="ttc" id="astructvector__t_html"><div class="ttname"><a href="structvector__t.html">vector_t</a></div><div class="ttdoc">Vector control structure type.</div><div class="ttdef"><b>Definition</b> <a href="vector_8c_source.html#l00023">vector.c:24</a></div></div>
-<div class="ttc" id="avector_8h_html"><div class="ttname"><a href="vector_8h.html">vector.h</a></div><div class="ttdoc">Public interface of the vector.</div></div>
-<div class="ttc" id="avector_8h_html_ad92ce696967261588cab3848dfe73c02"><div class="ttname"><a href="vector_8h.html#ad92ce696967261588cab3848dfe73c02">TMP_REF</a></div><div class="ttdeci">#define TMP_REF(type, value)</div><div class="ttdoc">Create temporary typed reference.</div><div class="ttdef"><b>Definition</b> <a href="vector_8h_source.html#l00020">vector.h:20</a></div></div>
-</div><!-- fragment --> </div></div><!-- PageDoc -->
+<div class="textblock"><p><a class="anchor" id="md_docs_2mainpage"></a> <img src="logo.svg" alt="" style="pointer-events: none;" class="inline" title="vector-logo"/>     </p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
 </div><!-- doc-content -->

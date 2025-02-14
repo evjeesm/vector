@@ -994,6 +994,11 @@
     </member>
   </compound>
   <compound kind="page">
+    <name>Readme</name>
+    <title>Readme</title>
+    <filename>Readme.html</filename>
+  </compound>
+  <compound kind="page">
     <name>Guide</name>
     <title>📘 Guide</title>
     <filename>Guide.html</filename>
@@ -1013,6 +1018,6 @@
     <name>index</name>
     <title>Vector</title>
     <filename>index.html</filename>
-    <docanchor file="index.html" title="Vector">md_README</docanchor>
+    <docanchor file="index.html">md_docs_2mainpage</docanchor>
   </compound>
 </tagfile>

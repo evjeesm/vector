@@ -25,17 +25,7 @@
 var NAVTREE =
 [
   [ "Vector", "index.html", [
-    [ "Implementation details", "index.html#autotoc_md1", null ],
-    [ "Supported platforms", "index.html#autotoc_md2", null ],
-    [ "Memory layout", "index.html#autotoc_md3", null ],
-    [ "Dependencies", "index.html#autotoc_md4", [
-      [ "Build System", "index.html#autotoc_md5", null ],
-      [ "Libraries", "index.html#autotoc_md6", null ]
-    ] ],
-    [ "Build Process", "index.html#autotoc_md7", null ],
-    [ "Usage", "index.html#autotoc_md8", [
-      [ "Minimal Example", "index.html#autotoc_md9", null ]
-    ] ],
+    [ "Readme", "Readme.html", null ],
     [ "📘 Guide", "Guide.html", [
       [ "🔨 Creating a vector", "Guide.html#create", [
         [ "⚙️ Default options", "Guide.html#def_create", null ],
