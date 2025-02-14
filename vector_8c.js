@@ -1,7 +1,6 @@
 var vector_8c =
 [
     [ "vector_t", "structvector__t.html", "structvector__t" ],
-    [ "ASSERT_OVERFLOW", "vector_8c.html#a16263e31bec7cf3e8518401a2b66a973", null ],
     [ "calculate_alloc_size", "vector_8c.html#a340abc280ca3260619357acb41f2aa98", null ],
     [ "get_allocator", "vector_8c.html#a4511ed374861bb6242bc2b6791012ba4", null ],
     [ "binary_find", "vector_8c.html#afec86be827dcdde96c62016b77630a7c", null ],
