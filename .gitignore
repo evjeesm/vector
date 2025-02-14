@@ -8,6 +8,10 @@
 
 # documentation
 !docs
+!docs/*.css
+!docs/*.md
+!docs/*.dox
+!docs/*.html
 !doxyconf
 !header.html
 
