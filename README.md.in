@@ -1,4 +1,5 @@
 # Vector
+![vector-logo](imgs/logo.svg)  
 
 Classic opaque type library.  
 Contains a `vector_t` - base ADT for dynamic arrays.
