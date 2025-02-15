@@ -9,5 +9,6 @@ var searchData=
   ['allocator_6',['⚙️ Override default allocator',['../Guide.html#custom_allocator',1,'']]],
   ['allocator_5fsize_7',['allocator_size',['../structvector__t.html#a158574d167ee9598bf51b1eee2a3c575',1,'vector_t']]],
   ['an_20existing_20vector_8',['⿻ Clone an existing vector',['../Guide.html#cloning',1,'']]],
-  ['api_9',['Vector API',['../group__Vector__API.html',1,'']]]
+  ['api_9',['Vector API',['../group__Vector__API.html',1,'']]],
+  ['assert_5foverflow_10',['ASSERT_OVERFLOW',['../vector_8c.html#a16263e31bec7cf3e8518401a2b66a973',1,'vector.c']]]
 ];

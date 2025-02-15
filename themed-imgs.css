@@ -1,5 +1,11 @@
-@media (prefers-color-scheme: dark) {
-    html:not(.dark-mode) p > img.inline[src$=\.svg] {
-        filter: invert(93%) hue-rotate(180deg)
-    }
+/* <!-- for older awesome version --> */
+/* @media (prefers-color-scheme: dark) { */
+/*     html:not(.dark-mode) p > img.inline[src$=\.svg] { */
+/*         filter: invert(93%) hue-rotate(180deg) */
+/*     } */
+/* } */
+
+html.light-mode p > img.inline[src$=\.svg],
+html.light-mode td#projectlogo > img {
+    filter: invert(93%) hue-rotate(180deg)
 }
