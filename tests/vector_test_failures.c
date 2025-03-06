@@ -68,6 +68,24 @@ void teardown(void)
     // noth
 }
 
+
+START_TEST (test_vector_create_no_opts_provided)
+{
+    vector_opts_t *opts = NULL;
+    vector_t *vec = vector_create_(opts);
+    (void) vec;
+}
+END_TEST
+
+
+START_TEST (test_vector_create_no_element_size)
+{
+    vector_t *vec = vector_create();
+    (void) vec;
+}
+END_TEST
+
+
 START_TEST (test_vector_data_size_overflow_assert)
 {
     mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX }; /* will be referenced */
@@ -157,11 +175,15 @@ Suite * vector_other_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
 
+    tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
+
     /*
      * Test assertions when overflow occures
      */
     tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
+
     tcase_add_test(tc_core, test_vector_resize);
     tcase_add_test(tc_core, test_vector_alloc_failure);
 
