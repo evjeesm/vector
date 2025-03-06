@@ -33,7 +33,7 @@ jobs:
       run: make
 
     - name: Run check
-      run: make check-code-coverage
+      run: make check
 
     - name: Run valgrind check
       run: make check-valgrind
@@ -47,6 +47,9 @@ jobs:
           *.log
           tests/*.log
         retention-days: 5
+
+    - name: Run check-coverage
+      run: make check-code-coverage
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1

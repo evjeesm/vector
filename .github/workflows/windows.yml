@@ -47,8 +47,7 @@ jobs:
       run: make
 
     - name: Run check
-      run: make check-code-coverage
-
+      run: make check
     # NO valgrind support on windows,
     # TODO: will try to use Dr. Memory, but it's not included in msys2.
 
@@ -61,6 +60,9 @@ jobs:
           *.log
           tests/*.log
         retention-days: 5
+
+    - name: Run check-coverage
+      run: make check-code-coverage
 
     - name: Upload coverage reports to Codecov
       uses: codecov/codecov-action@v4.0.1
