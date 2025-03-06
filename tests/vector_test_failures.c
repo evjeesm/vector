@@ -142,6 +142,25 @@ START_TEST (test_vector_alloc_failure)
 END_TEST
 
 
+START_TEST (test_vector_clone_failure)
+{
+    mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX };
+    alloc_param_t alloc_param = { &alloc }; /* struct will be copied into the vectors memory region */
+
+    vector_t *vec = vector_create(
+        .element_size = sizeof(int),
+        .initial_cap = (MOCK_MEMORY_MAX / sizeof(int) / 2),
+        .alloc_opts = alloc_opts(
+            .size = sizeof(alloc_param),
+            .data = &alloc_param
+        ),
+    );
+
+    vector_t *clone = vector_clone(vec); /* failed, not enough memory for cloning */
+    ck_assert_ptr_null(clone);
+}
+
+
 START_TEST (test_vector_destroy_null)
 {
     vector_t *vec = NULL;
@@ -171,6 +190,7 @@ START_TEST (test_vector_resize)
 }
 END_TEST
 
+
 Suite * vector_other_suite(void)
 {
     Suite *s;
@@ -194,6 +214,7 @@ Suite * vector_other_suite(void)
 
     tcase_add_test(tc_core, test_vector_resize);
     tcase_add_test(tc_core, test_vector_alloc_failure);
+    tcase_add_test(tc_core, test_vector_clone_failure);
 
     tcase_add_test_raise_signal(tc_core, test_vector_destroy_null, SIGABRT);
 
