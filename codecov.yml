@@ -15,4 +15,3 @@ flag_management:
 
 ignore:
   - "tests"
-  - "src/memswap.c"
