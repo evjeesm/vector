@@ -86,6 +86,30 @@ START_TEST (test_vector_create_no_element_size)
 END_TEST
 
 
+START_TEST (test_vector_get_ext_on_null)
+{
+    vector_t *vec = NULL;
+    (void) vector_get_ext_header(vec);
+}
+END_TEST
+
+
+START_TEST (test_vector_get_ext_unallocd)
+{
+    vector_t *vec = vector_create();
+    (void) vector_get_ext_header(vec);
+}
+END_TEST
+
+
+START_TEST (test_vector_ext_size_null)
+{
+    vector_t *vec = NULL;
+    (void) vector_ext_header_size(vec);
+}
+END_TEST
+
+
 START_TEST (test_vector_data_size_overflow_assert)
 {
     mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX }; /* will be referenced */
@@ -228,6 +252,10 @@ Suite * vector_other_suite(void)
 
     tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
+
+    tcase_add_test_raise_signal(tc_core, test_vector_ext_size_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_get_ext_on_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_get_ext_unallocd, SIGABRT);
 
     /*
      * Test assertions when overflow occures

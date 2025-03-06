@@ -43,6 +43,29 @@ START_TEST (test_vector_create)
 END_TEST
 
 
+START_TEST (test_vector_get_ext_header)
+{
+    vector_t *vector = vector_create(.ext_header_size = 16, .element_size = sizeof(int));
+    char *header = vector_get_ext_header(vector);
+    ck_assert_ptr_nonnull(header);
+}
+END_TEST
+
+
+START_TEST (test_vector_ext_header_size)
+{
+    ck_assert_uint_eq(0, vector_ext_header_size(vector)); /* Zero case */
+
+    /* Non-zero case */
+    {
+        const size_t ext_size = 16;
+        vector_t *vector = vector_create(.ext_header_size = ext_size, .element_size = sizeof(int));
+        ck_assert_uint_eq(ext_size, vector_ext_header_size(vector));
+    }
+}
+END_TEST
+
+
 START_TEST (test_vector_get_set)
 {
     int array[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -448,6 +471,8 @@ Suite *vector_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup_empty, teardown);
     tcase_add_test(tc_core, test_vector_create);
+    tcase_add_test(tc_core, test_vector_get_ext_header);
+    tcase_add_test(tc_core, test_vector_ext_header_size);
     tcase_add_test(tc_core, test_vector_get_set);
     tcase_add_test(tc_core, test_vector_set_zero);
     tcase_add_test(tc_core, test_vector_clone);
