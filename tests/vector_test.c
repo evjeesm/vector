@@ -48,6 +48,7 @@ START_TEST (test_vector_get_ext_header)
     vector_t *vector = vector_create(.ext_header_size = 16, .element_size = sizeof(int));
     char *header = vector_get_ext_header(vector);
     ck_assert_ptr_nonnull(header);
+    vector_destroy(vector);
 }
 END_TEST
 
@@ -61,6 +62,7 @@ START_TEST (test_vector_ext_header_size)
         const size_t ext_size = 16;
         vector_t *vector = vector_create(.ext_header_size = ext_size, .element_size = sizeof(int));
         ck_assert_uint_eq(ext_size, vector_ext_header_size(vector));
+        vector_destroy(vector);
     }
 }
 END_TEST

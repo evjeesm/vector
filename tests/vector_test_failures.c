@@ -96,7 +96,10 @@ END_TEST
 
 START_TEST (test_vector_get_ext_unallocd)
 {
-    vector_t *vec = vector_create();
+    mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX }; /* will be referenced */
+    alloc_param_t alloc_param = { &alloc }; /* struct will be copied into the vectors memory region */
+
+    vector_t *vec = vector_create(.alloc_opts = alloc_opts(.size = sizeof(alloc_param), .data = &alloc_param));
     (void) vector_get_ext_header(vec);
 }
 END_TEST
