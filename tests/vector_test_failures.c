@@ -169,6 +169,14 @@ START_TEST (test_vector_destroy_null)
 END_TEST
 
 
+START_TEST (test_vector_clone_null)
+{
+    vector_t *vec = NULL;
+    vector_clone(vec);
+}
+END_TEST
+
+
 START_TEST (test_vector_resize)
 {
     mock_alloc_t alloc = { .limit = MOCK_MEMORY_MAX };
@@ -216,6 +224,7 @@ Suite * vector_other_suite(void)
     tcase_add_test(tc_core, test_vector_alloc_failure);
     tcase_add_test(tc_core, test_vector_clone_failure);
 
+    tcase_add_test_raise_signal(tc_core, test_vector_clone_null, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_destroy_null, SIGABRT);
 
     suite_add_tcase(s, tc_core);
