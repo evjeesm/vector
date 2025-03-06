@@ -49,21 +49,8 @@ jobs:
     - name: Run check
       run: make check-code-coverage
 
-# NO valgrind support on windows,
-# TODO: will try to use Dr. Memory, but it's not included in msys2.
-
-    # - name: Run valgrind check
-    #   run: make check-valgrind
-
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v4.0.1
-      with:
-        flags: windows
-        name:  Windows MSYS2 CI
-        token: ${{ secrets.CODECOV_TOKEN }}
-
-    - name: Run distcheck
-      run: make distcheck
+    # NO valgrind support on windows,
+    # TODO: will try to use Dr. Memory, but it's not included in msys2.
 
     - name: Archive test logs
       uses: actions/upload-artifact@v4
@@ -74,6 +61,16 @@ jobs:
           *.log
           tests/*.log
         retention-days: 5
+
+    - name: Upload coverage reports to Codecov
+      uses: codecov/codecov-action@v4.0.1
+      with:
+        flags: windows
+        name:  Windows MSYS2 CI
+        token: ${{ secrets.CODECOV_TOKEN }}
+
+    - name: Run distcheck
+      run: make distcheck
 
   report-status:
     runs-on: ubuntu-latest
