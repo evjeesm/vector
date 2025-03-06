@@ -62,6 +62,9 @@ jobs:
         name:  Windows MSYS2 CI
         token: ${{ secrets.CODECOV_TOKEN }}
 
+    - name: Run distcheck
+      run: make distcheck
+
     - name: Archive test logs
       uses: actions/upload-artifact@v4
       if: failure()
@@ -71,9 +74,6 @@ jobs:
           *.log
           tests/*.log
         retention-days: 5
-
-    - name: Run distcheck
-      run: make distcheck
 
   report-status:
     runs-on: ubuntu-latest
