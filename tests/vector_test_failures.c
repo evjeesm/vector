@@ -283,11 +283,6 @@ Suite * vector_other_suite(void)
 
 int main(void)
 {
-#ifdef _WIN64
-    _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
-    _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDERR);
-#endif
-
     int number_failed;
     Suite *s;
     SRunner *sr;
