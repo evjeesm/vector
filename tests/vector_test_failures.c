@@ -3,10 +3,6 @@
 #include <signal.h>
 #include <stdio.h>
 
-#ifdef _WIN64
-#include <crtdbg.h>
-#endif
-
 #include "../src/vector.h"
 
 #define MOCK_MEMORY_MAX 256 * sizeof(int)
