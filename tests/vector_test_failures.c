@@ -253,7 +253,9 @@ Suite * vector_other_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
 
+#ifndef _WIN32
     tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
+#endif
     tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
 
     tcase_add_test_raise_signal(tc_core, test_vector_ext_size_null, SIGABRT);
