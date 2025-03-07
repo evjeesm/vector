@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['vector_0',['Vector',['../index.html',1,'Vector'],['../Readme.html#autotoc_md2',1,'Vector']]],
+  ['vector_0',['Vector',['../index.html',1,'Vector'],['../Readme.html#autotoc_md0',1,'Vector']]],
   ['vector_1',['vector',['../Guide.html#extend',1,'⬆️ Extending a vector'],['../Guide.html#cloning',1,'⿻ Clone an existing vector'],['../Guide.html#create',1,'🔨 Creating a vector'],['../Guide.html#deallocate',1,'🧨 Deallocating a vector']]],
   ['vector_20api_2',['Vector API',['../group__Vector__API.html',1,'']]],
   ['vector_2ec_3',['vector.c',['../vector_8c.html',1,'']]],
