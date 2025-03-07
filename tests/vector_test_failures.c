@@ -253,14 +253,20 @@ Suite * vector_other_suite(void)
 
     tcase_add_checked_fixture(tc_core, setup, teardown);
 
-#ifndef _WIN32
-    tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
-#endif
+#ifdef _WIN64
+    tcase_add_exit_test(tc_core, test_vector_create_no_opts_provided, 127);
+    tcase_add_exit_test(tc_core, test_vector_create_no_element_size, 127);
+    tcase_add_exit_test(tc_core, test_vector_ext_size_null, 127);
+    tcase_add_exit_test(tc_core, test_vector_get_ext_on_null, 127);
+    tcase_add_exit_test(tc_core, test_vector_get_ext_unallocd, 127);
+#else
     tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
-
+    tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_ext_size_null, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_get_ext_on_null, SIGABRT);
     tcase_add_test_raise_signal(tc_core, test_vector_get_ext_unallocd, SIGABRT);
+#endif
+
 
     /*
      * Test assertions when overflow occures
