@@ -263,18 +263,21 @@ Suite * vector_other_suite(void)
     tcase_add_test(tc_core, test_vector_alloc_failure);
     tcase_add_test(tc_core, test_vector_clone_failure);
 
-    // tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
+    /*
+     * failing on windows
+     */
+    tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
 
-    // tcase_add_test_raise_signal(tc_core, test_vector_ext_size_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_get_ext_on_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_get_ext_unallocd, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_ext_size_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_get_ext_on_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_get_ext_unallocd, SIGABRT);
 
-    // tcase_add_test_raise_signal(tc_core, test_vector_clone_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_destroy_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_clone_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_destroy_null, SIGABRT);
 
-    // tcase_add_test_raise_signal(tc_core, test_vector_resize_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_resize_pointer_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_resize_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_resize_pointer_null, SIGABRT);
 
     suite_add_tcase(s, tc_core);
 
