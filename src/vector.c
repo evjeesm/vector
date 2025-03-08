@@ -81,8 +81,8 @@ static ssize_t binary_find_index (const vector_t *const vector,
 
 vector_t *vector_create_(const vector_opts_t *const opts)
 {
-    assert(opts);
-    assert(opts->element_size);
+    assert(opts && "non-null opts required!");
+    assert(opts->element_size && "'element_size' gt then zero required!");
 
     const size_t alloc_size = calculate_alloc_size(opts->element_size,
             opts->initial_cap,
