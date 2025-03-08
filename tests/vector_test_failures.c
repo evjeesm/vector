@@ -251,7 +251,7 @@ Suite * vector_other_suite(void)
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    tcase_add_checked_fixture(tc_core, setup, teardown);
+    // tcase_add_checked_fixture(tc_core, setup, teardown);
 
     /*
      * Test assertions when overflow occures
