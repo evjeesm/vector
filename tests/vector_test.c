@@ -399,7 +399,7 @@ START_TEST (test_vector_binary_find_none)
     memcpy(vector_get(vector, 0), data, sizeof(int) * capacity);
     
     const int value = 33;
-    void *element = vector_binary_find(vector, &value, capacity, cmp_lex_asc, NULL);
+    void *element = vector_binary_find(vector, &value, capacity, cmp_int_asc, NULL);
     ck_assert_ptr_null(element);
 }
 END_TEST
