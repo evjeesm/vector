@@ -1,6 +1,5 @@
 #include <check.h>
 #include <stdlib.h>
-#include <signal.h>
 #include <stdio.h>
 
 #include "../src/vector.h"
@@ -57,15 +56,6 @@ void vector_free(void *ptr, void *const param)
     // not actually freeing for the sake of a test.
     (void) param;
     (void) ptr;
-}
-
-void setup(void)
-{
-}
-
-void teardown(void)
-{
-    // noth
 }
 
 
@@ -247,37 +237,37 @@ Suite * vector_other_suite(void)
     TCase *tc_core;
 
     s = suite_create("Vector Failures");
-    
+
     /* Core test case */
     tc_core = tcase_create("Core");
 
-    // tcase_add_checked_fixture(tc_core, setup, teardown);
+    tcase_add_test(tc_core, test_vector_resize);
+    tcase_add_test(tc_core, test_vector_alloc_failure);
+    tcase_add_test(tc_core, test_vector_clone_failure);
 
+#ifdef _WIN64
     /*
      * Test assertions when overflow occures
      */
-    // tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
-    //
-    // tcase_add_test(tc_core, test_vector_resize);
-    // tcase_add_test(tc_core, test_vector_alloc_failure);
-    // tcase_add_test(tc_core, test_vector_clone_failure);
+    tcase_add_test_raise_signal(tc_core, test_vector_data_size_overflow_assert, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_alloc_size_overflow_assert, SIGABRT);
 
     /*
      * failing on windows
      */
     tcase_add_test_raise_signal(tc_core, test_vector_create_no_opts_provided, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
-    //
-    // tcase_add_test_raise_signal(tc_core, test_vector_ext_size_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_get_ext_on_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_get_ext_unallocd, SIGABRT);
-    //
-    // tcase_add_test_raise_signal(tc_core, test_vector_clone_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_destroy_null, SIGABRT);
-    //
-    // tcase_add_test_raise_signal(tc_core, test_vector_resize_null, SIGABRT);
-    // tcase_add_test_raise_signal(tc_core, test_vector_resize_pointer_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_create_no_element_size, SIGABRT);
+
+    tcase_add_test_raise_signal(tc_core, test_vector_ext_size_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_get_ext_on_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_get_ext_unallocd, SIGABRT);
+
+    tcase_add_test_raise_signal(tc_core, test_vector_clone_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_destroy_null, SIGABRT);
+
+    tcase_add_test_raise_signal(tc_core, test_vector_resize_null, SIGABRT);
+    tcase_add_test_raise_signal(tc_core, test_vector_resize_pointer_null, SIGABRT);
+#endif
 
     suite_add_tcase(s, tc_core);
 
