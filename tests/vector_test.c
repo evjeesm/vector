@@ -130,17 +130,18 @@ END_TEST
 
 START_TEST(test_vector_alloc_opts)
 {
-    const size_t size = 42;
-    int data; // dummy data
+    int data = 42; // dummy data
+    const size_t data_size = sizeof(data);
+
     vector_t *v = vector_create(
         .element_size = sizeof(int),
-        .alloc_opts = alloc_opts(.data = &data, .size = size)
+        .alloc_opts = alloc_opts(.data = &data, .size = data_size)
     );
 
     alloc_opts_t alloc_opts = vector_alloc_opts(v);
 
-    ck_assert_ptr_eq(alloc_opts.data, &data);
-    ck_assert_uint_eq(alloc_opts.size, size);
+    ck_assert_int_eq(alloc_opts.data, data);
+    ck_assert_uint_eq(alloc_opts.size, data_size);
 
     vector_destroy(v);
 }
