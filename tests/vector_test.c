@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <cassert>
 
 #include "../src/vector.h"
 
@@ -124,6 +125,61 @@ START_TEST (test_vector_clone)
     }
 
     vector_destroy(clone);
+}
+END_TEST
+
+
+START_TEST(test_vector_alloc_opts)
+{
+    const size_t size = 42;
+    int data; // dummy data
+    vector_t *v = vector_create(
+        .element_size = sizeof(int),
+        .alloc_opts = alloc_opts(.data = &data, .size = size)
+    );
+
+    alloc_opts_t alloc_opts = vector_alloc_opts(v);
+
+    ck_assert_ptr_eq(alloc_opts.data, &data);
+    ck_assert_uint_eq(alloc_opts.size, size);
+
+    vector_destroy(v);
+}
+END_TEST
+
+
+START_TEST(test_vector_capacity_bytes)
+{
+    size_t capacity_bytes = vector_capacity_bytes(vector);
+
+    ck_assert_uint_eq(capacity_bytes, vector_capacity(vector) * vector_element_size(vector));
+}
+END_TEST
+
+
+START_TEST(test_vector_data)
+{
+    void *data = vector_data(vector);
+    void *first_element = vector_get(vector, 0);
+
+    ck_assert_ptr_eq(data, first_element);
+}
+END_TEST
+
+
+START_TEST(test_calc_aligned_size)
+{
+    const size_t alignment = 8;
+    size_t aligned;
+
+    aligned = calc_aligned_size(0, alignment);
+    ck_assert_uint_eq(aligned, 0);
+
+    aligned = calc_aligned_size(8, alignment);
+    ck_assert_uint_eq(aligned, alignment);
+
+    aligned = calc_aligned_size(15, alignment);
+    ck_assert_uint_eq(aligned, alignment*2);
 }
 END_TEST
 
@@ -478,6 +534,10 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_get_set);
     tcase_add_test(tc_core, test_vector_set_zero);
     tcase_add_test(tc_core, test_vector_clone);
+    tcase_add_test(tc_core, test_vector_alloc_opts);
+    tcase_add_test(tc_core, test_vector_capacity_bytes);
+    tcase_add_test(tc_core, test_vector_data);
+    tcase_add_test(tc_core, test_calc_aligned_size);
     tcase_add_test(tc_core, test_vector_resize);
     tcase_add_test(tc_core, test_vector_copy);
     tcase_add_test(tc_core, test_vector_move);
