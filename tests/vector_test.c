@@ -140,7 +140,7 @@ START_TEST(test_vector_alloc_opts)
 
     alloc_opts_t alloc_opts = vector_alloc_opts(v);
 
-    ck_assert_int_eq(alloc_opts.data, data);
+    ck_assert_int_eq(*(int*)(alloc_opts.data), data);
     ck_assert_uint_eq(alloc_opts.size, data_size);
 
     vector_destroy(v);
