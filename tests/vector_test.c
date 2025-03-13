@@ -392,6 +392,19 @@ START_TEST (test_vector_binary_find)
 END_TEST
 
 
+START_TEST (test_vector_binary_find_none)
+{
+    const size_t capacity = vector_capacity(vector);
+    const int data[] = {-100, -1, 0, 10, 12, 20, 21, 30, 34, 60};
+    memcpy(vector_get(vector, 0), data, sizeof(int) * capacity);
+    
+    const int value = 33;
+    void *element = vector_binary_find(vector, &value, capacity, cmp_lex_asc, NULL);
+    ck_assert_ptr_null(element);
+}
+END_TEST
+
+
 START_TEST (test_vector_binary_find_lex)
 {
     const size_t words = 5;
@@ -547,6 +560,7 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_part_copy);
     tcase_add_test(tc_core, test_vector_linear_find);
     tcase_add_test(tc_core, test_vector_binary_find);
+    tcase_add_test(tc_core, test_vector_binary_find_none);
     tcase_add_test(tc_core, test_vector_binary_find_lex);
     tcase_add_test(tc_core, test_vector_foreach);
     tcase_add_test(tc_core, test_vector_transform);
