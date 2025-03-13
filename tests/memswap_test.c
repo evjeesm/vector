@@ -1,6 +1,5 @@
 #include <check.h>
 #include <stdlib.h>
-#include "memory/memswap.h"
 
 #include "memswap.h"
 
@@ -10,6 +9,12 @@ START_TEST(memswap_size_aligned_test)
     int dst[10] = {9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
     memswap((char*)src, (char*)dst, sizeof(src));
+
+    for (size_t i = 0; i < 10; ++i)
+    {
+        ck_assert_int_eq(dst[i], i);
+        ck_assert_int_eq(src[i], 9 - i);
+    }
 }
 END_TEST
 
@@ -19,6 +24,12 @@ START_TEST(memswap_size_missaligned_test)
     int dst[11] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0};
 
     memswap((char*)src, (char*)dst, sizeof(src));
+
+    for (size_t i = 0; i < 11; ++i)
+    {
+        ck_assert_int_eq(dst[i], i);
+        ck_assert_int_eq(src[i], 10 - i);
+    }
 }
 END_TEST
 
