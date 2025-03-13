@@ -2,8 +2,8 @@
 VALGRIND_memcheck_FLAGS = --leak-check=full --track-origins=yes
 @VALGRIND_CHECK_RULES@
 
-TESTS = vector_test vector_test_failures
-check_PROGRAMS = vector_test vector_test_failures
+TESTS = vector_test vector_test_failures memswap_test
+check_PROGRAMS = vector_test vector_test_failures memswap_test
 
 vector_test_SOURCES = vector_test.c $(top_builddir)/src/vector.h
 vector_test_LDADD = $(top_builddir)/src/libvector_static.la @CHECK_LIBS@
@@ -19,6 +19,13 @@ vector_test_failures_LIBS = $(CODE_COVERAGE_LIBS)
 vector_test_failures_CFLAGS = @CHECK_CFLAGS@ $(CODE_COVERAGE_CFLAGS)
 vector_test_failures_CPPFLAGS = $(CODE_COVERAGE_CPPFLAGS)
 vector_test_failures_CXXFLAGS = $(CODE_COVERAGE_CXXFLAGS)
+
+memswap_test_SOURCES = memswap_test.c $(top_srcdir)/src/memswap.c $(top_srcdir)/src/memswap.h
+memswap_test_LDADD = @CHECK_LIBS@
+memswap_test_LIBS = $(CODE_COVERAGE_LIBS)
+memswap_test_CFLAGS = @CHECK_CFLAGS@ $(CODE_COVERAGE_CFLAGS)
+memswap_test_CPPFLAGS = $(CODE_COVERAGE_CPPFLAGS) -I$(top_srcdir)/src
+memswap_test_CXXFLAGS = $(CODE_COVERAGE_CXXFLAGS)
 
 debug-vector-test: $(top_builddir)/src/libvector_static.la vector_test
 	LD_LIBRARY_PATH=$(top_builddir)/src:/usr/local/lib CK_FORK=no gdb -tui vector_test
