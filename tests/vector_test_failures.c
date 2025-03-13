@@ -1,7 +1,7 @@
 #include <check.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <signal.h>
 #include "../src/vector.h"
 
 #define MOCK_MEMORY_MAX 256 * sizeof(int)
@@ -245,7 +245,7 @@ Suite * vector_other_suite(void)
     tcase_add_test(tc_core, test_vector_alloc_failure);
     tcase_add_test(tc_core, test_vector_clone_failure);
 
-#ifdef _WIN64
+#ifndef _WIN64
     /*
      * Test assertions when overflow occures
      */
