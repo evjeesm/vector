@@ -1,6 +1,6 @@
 noinst_LTLIBRARIES = libvector_funcs.la
 libvector_funcs_la_SOURCES = vector.c vector.h memswap.c memswap.h
-libvector_funcs_la_CPPFLAGS = -I$(top_srcdir)/vector/src
+libvector_funcs_la_CPPFLAGS = -I$(top_srcdir)/src
 
 lib_LTLIBRARIES = libvector_static.la
 

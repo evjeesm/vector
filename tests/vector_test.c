@@ -131,17 +131,18 @@ END_TEST
 
 START_TEST(test_vector_alloc_opts)
 {
-    const size_t size = 42;
-    int data; // dummy data
+    int data = 42; // dummy data
+    const size_t data_size = sizeof(data);
+
     vector_t *v = vector_create(
         .element_size = sizeof(int),
-        .alloc_opts = alloc_opts(.data = &data, .size = size)
+        .alloc_opts = alloc_opts(.data = &data, .size = data_size)
     );
 
     alloc_opts_t alloc_opts = vector_alloc_opts(v);
 
-    ck_assert_ptr_eq(alloc_opts.data, &data);
-    ck_assert_uint_eq(alloc_opts.size, size);
+    ck_assert_int_eq(*(int*)(alloc_opts.data), data);
+    ck_assert_uint_eq(alloc_opts.size, data_size);
 
     vector_destroy(v);
 }
@@ -392,6 +393,19 @@ START_TEST (test_vector_binary_find)
 END_TEST
 
 
+START_TEST (test_vector_binary_find_none)
+{
+    const size_t capacity = vector_capacity(vector);
+    const int data[] = {-100, -1, 0, 10, 12, 20, 21, 30, 34, 60};
+    memcpy(vector_get(vector, 0), data, sizeof(int) * capacity);
+    
+    const int value = 33;
+    void *element = vector_binary_find(vector, &value, capacity, cmp_int_asc, NULL);
+    ck_assert_ptr_null(element);
+}
+END_TEST
+
+
 START_TEST (test_vector_binary_find_lex)
 {
     const size_t words = 5;
@@ -407,6 +421,30 @@ START_TEST (test_vector_binary_find_lex)
     {
         void *element = vector_get(vector, i);
         void *found = vector_binary_find(vector, element, words, cmp_lex_asc, (void*)word_len);
+
+        ck_assert(found);
+        ck_assert_mem_eq(element, found, word_len);
+        ck_assert_ptr_eq(element, found);
+    }
+}
+END_TEST
+
+
+START_TEST (test_vector_binary_find_lex_dsc)
+{
+    const size_t words = 5;
+    const size_t word_len = 3;
+
+    const char* data[] = {"aaa", "abc", "abd", "acz", "xyz"};
+    for (size_t i = 0; i < words; ++i)
+    {
+        vector_set(vector, i, data[words - 1 - i]);
+    }
+
+    for (size_t i = 0; i < words; ++i)
+    {
+        void *element = vector_get(vector, i);
+        void *found = vector_binary_find(vector, element, words, cmp_lex_dsc, (void*)word_len);
 
         ck_assert(found);
         ck_assert_mem_eq(element, found, word_len);
@@ -547,7 +585,9 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_part_copy);
     tcase_add_test(tc_core, test_vector_linear_find);
     tcase_add_test(tc_core, test_vector_binary_find);
+    tcase_add_test(tc_core, test_vector_binary_find_none);
     tcase_add_test(tc_core, test_vector_binary_find_lex);
+    tcase_add_test(tc_core, test_vector_binary_find_lex_dsc);
     tcase_add_test(tc_core, test_vector_foreach);
     tcase_add_test(tc_core, test_vector_transform);
     tcase_add_test(tc_core, test_vector_aggregate);
