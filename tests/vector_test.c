@@ -429,6 +429,30 @@ START_TEST (test_vector_binary_find_lex)
 END_TEST
 
 
+START_TEST (test_vector_binary_find_lex_dsc)
+{
+    const size_t words = 5;
+    const size_t word_len = 3;
+
+    const char* data[] = {"aaa", "abc", "abd", "acz", "xyz"};
+    for (size_t i = 0; i < words; ++i)
+    {
+        vector_set(vector, i, data[words - 1 - i]);
+    }
+
+    for (size_t i = 0; i < words; ++i)
+    {
+        void *element = vector_get(vector, i);
+        void *found = vector_binary_find(vector, element, words, cmp_lex_dsc, (void*)word_len);
+
+        ck_assert(found);
+        ck_assert_mem_eq(element, found, word_len);
+        ck_assert_ptr_eq(element, found);
+    }
+}
+END_TEST
+
+
 START_TEST (test_vector_spread)
 {
     const size_t capacity = vector_capacity(vector);
@@ -562,6 +586,7 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_binary_find);
     tcase_add_test(tc_core, test_vector_binary_find_none);
     tcase_add_test(tc_core, test_vector_binary_find_lex);
+    tcase_add_test(tc_core, test_vector_binary_find_lex_dsc);
     tcase_add_test(tc_core, test_vector_foreach);
     tcase_add_test(tc_core, test_vector_transform);
     tcase_add_test(tc_core, test_vector_aggregate);
