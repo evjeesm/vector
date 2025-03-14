@@ -148,6 +148,23 @@ START_TEST(test_vector_alloc_opts)
 END_TEST
 
 
+START_TEST(test_vector_alloc_opts_none)
+{
+    vector_t *v = vector_create(
+        .element_size = sizeof(int),
+        .alloc_opts = alloc_opts()
+    );
+
+    alloc_opts_t alloc_opts = vector_alloc_opts(v);
+
+    ck_assert_ptr_null(alloc_opts.data);
+    ck_assert_uint_eq(alloc_opts.size, 0);
+
+    vector_destroy(v);
+}
+END_TEST
+
+
 START_TEST(test_vector_capacity_bytes)
 {
     size_t capacity_bytes = vector_capacity_bytes(vector);
@@ -572,6 +589,7 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_set_zero);
     tcase_add_test(tc_core, test_vector_clone);
     tcase_add_test(tc_core, test_vector_alloc_opts);
+    tcase_add_test(tc_core, test_vector_alloc_opts_none);
     tcase_add_test(tc_core, test_vector_capacity_bytes);
     tcase_add_test(tc_core, test_vector_data);
     tcase_add_test(tc_core, test_calc_aligned_size);
