@@ -522,6 +522,24 @@ START_TEST (test_vector_foreach)
 END_TEST
 
 
+int just_break(const void *const el, void *const param)
+{
+    (void) el;
+    return *(int*)&param;
+}
+
+
+START_TEST (test_vector_foreach_break)
+{
+    const int capacity = vector_capacity(vector);
+    const int expected_status = 1;
+
+    int status = vector_foreach(vector, capacity, just_break, (void*)((size_t)expected_status));
+    ck_assert_int_eq(expected_status, status);
+}
+END_TEST
+
+
 int add_value(void *const el, void *const param)
 {
     *(int*)el += *(int*)param;
@@ -606,6 +624,7 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_binary_find_lex);
     tcase_add_test(tc_core, test_vector_binary_find_lex_dsc);
     tcase_add_test(tc_core, test_vector_foreach);
+    tcase_add_test(tc_core, test_vector_foreach_break);
     tcase_add_test(tc_core, test_vector_transform);
     tcase_add_test(tc_core, test_vector_aggregate);
 
