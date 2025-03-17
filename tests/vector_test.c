@@ -470,6 +470,37 @@ START_TEST (test_vector_binary_find_lex_dsc)
 END_TEST
 
 
+START_TEST (test_vector_binary_find_index)
+{
+    const size_t capacity = vector_capacity(vector);
+    const int data[] = {-100, -1, 0, 10, 12, 20, 21, 30, 34, 60};
+    memcpy(vector_get(vector, 0), data, sizeof(int) * capacity);
+
+    for (size_t i = 0; i < capacity; ++i)
+    {
+        void *element = vector_get(vector, i);
+        ssize_t index = vector_binary_find_index(vector, element, capacity, cmp_int_asc, NULL);
+
+        ck_assert_uint_eq(index, i);
+    }
+}
+END_TEST
+
+
+START_TEST (test_vector_binary_find_index_none)
+{
+    const size_t capacity = vector_capacity(vector);
+    const int data[] = {-100, -1, 0, 10, 12, 20, 21, 30, 34, 60};
+    memcpy(vector_get(vector, 0), data, sizeof(int) * capacity);
+    const int missing_element = 13;
+
+    ssize_t index = vector_binary_find_index(vector, &missing_element, capacity, cmp_int_asc, NULL);
+
+    ck_assert_uint_eq(-1, index);
+}
+END_TEST
+
+
 START_TEST (test_vector_spread)
 {
     const size_t capacity = vector_capacity(vector);
@@ -653,6 +684,8 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_binary_find_none);
     tcase_add_test(tc_core, test_vector_binary_find_lex);
     tcase_add_test(tc_core, test_vector_binary_find_lex_dsc);
+    tcase_add_test(tc_core, test_vector_binary_find_index);
+    tcase_add_test(tc_core, test_vector_binary_find_index_none);
     tcase_add_test(tc_core, test_vector_foreach);
     tcase_add_test(tc_core, test_vector_foreach_break);
     tcase_add_test(tc_core, test_vector_transform);
