@@ -1,5 +1,6 @@
 # Vector
 ![vector-logo](imgs/logo.svg)  
+![version](https://img.shields.io/github/v/tag/evjeesm/vector)  
 
 Classic opaque type library.  
 Contains a `vector_t` - base ADT for dynamic arrays.
