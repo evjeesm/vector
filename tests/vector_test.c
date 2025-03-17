@@ -589,6 +589,36 @@ START_TEST (test_vector_aggregate)
 }
 
 
+int sum_with_limit(const void *const el, void *const acc, void *const param)
+{
+    const int limit = *(int*)&param;
+    const int *el_ = (int*) el;
+    int *acc_ = acc;
+    if (*acc_ >= limit) return 1; /* break */
+    *acc_ += *el_;
+    return 0;
+}
+
+START_TEST (test_vector_aggregate_break)
+{
+    /* fill vector */
+    const int capacity = vector_capacity(vector);
+    for (int i = 0; i < capacity; ++i)
+    {
+        vector_set(vector, i, &i);
+    }
+    
+    const int limit = 9;
+    const int expected_sum = 10;
+    const int expected_status = 1;
+    int total = 0;
+    int status = vector_aggregate(vector, capacity, sum_with_limit, &total, (void*)(size_t)limit);
+
+    ck_assert_int_eq(expected_status, status);
+    ck_assert_int_eq(expected_sum, total);
+}
+
+
 Suite *vector_suite(void)
 {
     Suite *s;
@@ -627,6 +657,7 @@ Suite *vector_suite(void)
     tcase_add_test(tc_core, test_vector_foreach_break);
     tcase_add_test(tc_core, test_vector_transform);
     tcase_add_test(tc_core, test_vector_aggregate);
+    tcase_add_test(tc_core, test_vector_aggregate_break);
 
     suite_add_tcase(s, tc_core);
 
