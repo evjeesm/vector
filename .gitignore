@@ -27,7 +27,7 @@
 !*.md.in
 
 !.gitignore
-!.clangd
+!compile_commands.json
 !autogen.sh
 
 config.h
