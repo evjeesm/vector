@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout latest
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Generate Documentation
         uses: DenverCoder1/doxygen-github-pages-action@v2.0.0
